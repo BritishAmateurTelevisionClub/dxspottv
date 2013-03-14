@@ -18,7 +18,7 @@ session_start();
 if(!(isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]))) {
 ?>
 <h2>New User Registration</h2>
-<form action='/spot/register.php' method="post">
+<form action='/atvspot/register.php' method="post">
 <table style='padding: 5px;'>
 <tr><td>
 Callsign: 
@@ -94,7 +94,7 @@ $ret = mysqli_query($dbc, $insert_query) or die(mysqli_error($dbc));
 ?>
 <h2>Registration Successful!</h2>
 <br>
-Click <a href="/spot/">here</a> to return to the map and log in.
+Click <a href="/atvspot/">here</a> to return to the map and log in.
 
 <?php
 mysql_end($dbc);
