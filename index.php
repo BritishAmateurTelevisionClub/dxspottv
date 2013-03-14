@@ -244,6 +244,18 @@ border="0" cellpadding="0" cellspacing="0">
 <td><p align="center">
 <strong>3cm:</strong> <input type="checkbox" id="3cmbox" onClick="boxclick(this,'3cm')" /></p></td>
 
+<td><p align="center">
+<select id="time_select">
+  <option value="all">All Spots</option>
+  <option value="year">Last year</option>
+  <option value="6months">Last 6 months</option>
+  <option value="1month">Last Month</option>
+  <option value="1week">Last Week</option>
+  <option value="24hours">Last 24 Hours</option>
+  <option value="12hours">Last 12 Hours</option>
+</select>
+</td>
+
 </tr></table>
 </form>
 
