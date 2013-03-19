@@ -63,9 +63,9 @@ if (isset($_COOKIE["auth_error"])) {
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-$irc_frame_source = "https://webchat.freenode.net/?channels=#atvspot&nick=<?php print $callsign; ?>&prompt=1"
+var irc_frame_source = "https://webchat.freenode.net/?channels=#atvspot&nick=<?php print $callsign; ?>&prompt=1"
 <?php } else { ?>
-$irc_frame_source = "https://webchat.freenode.net/?channels=#atvspot"
+var irc_frame_source = "https://webchat.freenode.net/?channels=#atvspot"
 <?php } ?> // End of callsign as nick for irc
 </script>
 <script type="text/javascript" src="js/atvspot.js"></script>
