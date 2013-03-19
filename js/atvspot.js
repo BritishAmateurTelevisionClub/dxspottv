@@ -156,6 +156,7 @@
         script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
             'callback=initialize';
         document.body.appendChild(script);
+        $('#irc_frame').attr('src', $irc_frame_source);
       }
 
       window.onload = loadScript;

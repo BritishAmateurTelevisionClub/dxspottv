@@ -61,6 +61,13 @@ if (isset($_COOKIE["auth_error"])) {
 <link href="map-default.css" rel="stylesheet">
 <?php include_once("g_analytics.php") ?>
 <script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript">
+<?php if($user_known) { ?> // Do we fill in callsign as nick for irc
+$irc_frame_source = "https://webchat.freenode.net/?channels=#atvspot&nick=<?php print $callsign; ?>&prompt=1"
+<?php } else { ?>
+$irc_frame_source = "https://webchat.freenode.net/?channels=#atvspot"
+<?php } ?> // End of callsign as nick for irc
+</script>
 <script type="text/javascript" src="js/atvspot.js"></script>
 </head>
 <body>
@@ -148,16 +155,8 @@ if ($auth_error==1) {
 </form>
 <?php
 } // End of greeting/login form
-if($user_known) { // Do we fill in callsign as nick for irc
 ?>
-<iframe src="https://webchat.freenode.net/?channels=#atvspot&nick=<?php print $callsign; ?>&prompt=1" frameborder="0" height="600px" width="100%"></iframe><br>
-<?php
-} else {
-?>
-<iframe src="https://webchat.freenode.net/?channels=#atvspot" frameborder="0" height="600px" width="100%"></iframe><br>
-<?php
-} // End of callsign as nick for irc
-?>
+<iframe id='irc_frame' frameborder="0" height="600px" width="100%"></iframe><br>
 </td>
 </tr>
 </tbody>
