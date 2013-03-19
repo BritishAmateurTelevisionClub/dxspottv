@@ -108,7 +108,17 @@
 		var u_id = new Array();
 		for(u_id in JSONinput){
 			var user = JSONinput[u_id];
-			createUserMarker(new google.maps.LatLng(user['latitude'], user['longitude']),user['callsign'],"Last Active "+user['active']+" hours ago.","users");
+			var activity_str;
+			if(user['months_active']>0) {
+				activity_str = 'Last active ' + user['months_active'] + ' months ago.';
+			} else if (user['days_active']>0) {
+				activity_str = 'Last active ' + user['days_active'] + ' days ago.';
+			} else if (user['hours_active']>0) {
+				activity_str = 'Last active ' + user['hours_active'] + 'hours ago.';
+			} else {
+				activity_str = 'Currently Active.'
+			}
+			createUserMarker(new google.maps.LatLng(user['latitude'], user['longitude']),user['callsign'],activity_str,"users");
 		}
     	}
 
