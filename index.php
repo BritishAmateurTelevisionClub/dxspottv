@@ -159,6 +159,8 @@ Password: <input type=password name="passwd" />
 <?php
 if ($auth_error==1) {
   print '<font color="red">' . $auth_error_text . '</font>';
+} else if ($logged_in==0) {
+  print '<a href="register.php">Register New User</a>';
 }
 ?>
 </form>
