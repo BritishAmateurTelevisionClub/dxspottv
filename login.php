@@ -23,7 +23,7 @@ if($crypt==$target) {
 		$insert_query="INSERT into sessions (session_id, user_id) VALUES ('{$session_key}', '{$user_id}');";
 		$ret = mysqli_query($dbc, $insert_query) or die(mysqli_error($dbc));
 	} else {
-		$update_query="UPDATE sessions set session_id='{$session_key}' where user_id = '{$user_id}';";
+		$update_query="UPDATE sessions set session_id='{$session_key}',activity=NOW() where user_id = '{$user_id}';";
 		$ret = mysqli_query($dbc, $update_query) or die(mysqli_error($dbc));
 	}
         $return_data = array('error' => 0, 'callsign' => $callsign, 'session_key' => $session_key); 
