@@ -168,6 +168,7 @@ if ($auth_error==1) {
 } // End of greeting/login form
 ?>
 <iframe id='irc_frame' frameborder="0" height="600px" width="100%"></iframe><br>
+To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a>.
 </td>
 </tr>
 </tbody>
