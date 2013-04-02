@@ -121,8 +121,17 @@ if($logged_in) { // If logged in, show spot form
 ?>
 <h3>Spot</h3>
 <form id='spot'>
-Frequency: <input type=text></input>
-
+Frequency: <input type=text name="spot_freq"></input>
+&nbsp;Mode: <select id="spot_mode_select">
+<option value="1">PAL</option>
+<option value="2">Digital QPSK</option>
+</select>
+<br>
+<b>Remote Station</b><br>
+Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input>
+&nbsp;Locator: <input type=text name="remote_loc" id="remote_loc"></input>
+<br>
+Comments: <input type=text name="spot_comments" length=60></input>
 <input type=submit />
 </form>
 <?php
