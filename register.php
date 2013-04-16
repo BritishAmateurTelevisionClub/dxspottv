@@ -21,32 +21,32 @@ if(!(isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]))) {
 <form action='/atvspot/register.php' method="post">
 <table style='padding: 5px;'>
 <tr><td>
-Callsign: 
+<b>Callsign:</b>&nbsp;
 </td><td>
 <input type=text name='callsign' /> Will be converted to Upper case. eg. M0DNY
 </td></tr>
 <tr><td>
-Password: 
+<b>Password:</b>&nbsp;
 </td><td>
 <input type=password name='passwd' />
 </td></tr>
 <tr></tr>
 <tr><td>
-Locator: 
+<b>Locator:</b>&nbsp;
 </td><td>
 <input type=text name='locator' id='locator' onChange=calc_lat_lon() /> Maidenhead eg. IO91HW (Use either 4 or 6 characters)
 </td></tr>
 <tr>
 <td>
-Latitude: 
+<b>Latitude:</b>&nbsp;
 </td><td>
 <input type=text name='lat' id='lat' />
-Longitude:&nbsp;
+<b>Longitude:</b>&nbsp;
 <input type=text name='lon' id='lon' /> (Will fill in automatically from Locator)
 </td>
 </tr>
 <tr><td>
-Email Address: 
+<b>Email Address:</b>&nbsp;
 </td><td>
 <input type=text name='email' /> Just for administrator contact in case of issues. Not publicly disclosed.
 </td></tr>
