@@ -85,19 +85,18 @@ border="0" cellpadding="0" cellspacing="0">
 <tr>
 
 <td><p align="center">
-<strong>Users:</strong> <input type="checkbox" id="userbox" onClick="boxclick(this,'user')" /></p></td>
+<strong>Band:</strong>&nbsp;
+<select id="band_select" onClick="bandselect(this)">
+  <option value="all">All Bands</option>
+  <option value="70cm">70cm</option>
+  <option value="23cm">23cm</option>
+  <option value="13cm">13cm & above</option>
+</select>
+<td><p align="center">
+<strong>Users:</strong>&nbsp;<input type="checkbox" id="userbox" onClick="boxclick(this,'user')" /></p></td>
 
 <td><p align="center">
-<strong>70cm:</strong> <input type="checkbox" id="70cmbox" onClick="boxclick(this,'70cm')" /></p></td>
-
-<td><p align="center">
-<strong>23cm:</strong> <input type="checkbox" id="23cmbox" onClick="boxclick(this,'23cm')" /></p></td>
-
-<td><p align="center">
-<strong>13cm:</strong> <input type="checkbox" id="13cmbox" onClick="boxclick(this,'13cm')" /></p></td>
-
-<td><p align="center">
-<strong>3cm:</strong> <input type="checkbox" id="3cmbox" onClick="boxclick(this,'3cm')" /></p></td>
+<strong>Repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterbox" onClick="boxclick(this,'repeater')" /></p></td>
 
 <td><p align="center">
 <select id="time_select">
@@ -178,4 +177,3 @@ Copyright 2013 Phil Crump <a href='https://www.thecraag.com/' target='_blank'>th
 </div>
 </body>
 </html>
-
