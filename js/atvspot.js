@@ -10,6 +10,9 @@
 	var infowindow;
 	var session_id;
 	var logged_in;
+	
+	var timespan_select = document.getElementById("time_select");
+	
 	function initialize() {
 		var mapOptions = {
         		zoom: 6,
@@ -148,6 +151,24 @@
  	   }
 	}
 	http.send(null);
+	}
+	
+	function getSpots() {
+	var JsonObject = {};
+	var http = new XMLHttpRequest();
+	http.open("GET", "/atvspot/ajax/spots.php", true);
+	http.onreadystatechange = function () {
+	   if (http.readyState == 4 && http.status == 200) {
+    		var responseTxt = http.responseText;
+    		myJSONObject = eval('(' + responseTxt + ')');
+    		//parseUsers(myJSONObject);
+ 	   }
+	}
+	http.send(null);
+	}
+	
+	timespan_select.onchange = function() {
+		var nuTimeSpan = timespan_select.value;
 	}
 
       function loadScript() {
