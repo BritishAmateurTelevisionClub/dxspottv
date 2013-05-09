@@ -99,7 +99,7 @@ border="0" cellpadding="0" cellspacing="0">
 
 <td><p align="center">
 <strong>Band:</strong>&nbsp;
-<select id="band_select" onClick="bandselect(this)">
+<select id="band_select">
   <option value="all">All Bands</option>
   <option value="70cm">70cm</option>
   <option value="23cm">23cm</option>
