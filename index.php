@@ -175,6 +175,11 @@ To open the channel in your native IRC client, <a href="irc://chat.freenode.net:
 </table>
 <br>
 Copyright 2013 Phil Crump <a href='https://www.thecraag.com/' target='_blank'>thecraag.com</a>
+<br><br>
+<h4>I'm currently listening on:</h4>
+70cm checkbox <br>
+23cm checkbox <br>
+13cm checkbox <br>
 </div>
 </body>
 </html>
