@@ -125,47 +125,47 @@
 		}
     	}
 
-	function getRepeaters() {
-	var JsonObject = {};
-	var http = new XMLHttpRequest();
-	http.open("GET", "/atvspot/ajax/repeaters.php", true);
-	http.onreadystatechange = function () {
-	   if (http.readyState == 4 && http.status == 200) {
-    		var responseTxt = http.responseText;
-    		myJSONObject = eval('(' + responseTxt + ')');
-    		parseRepeaters(myJSONObject);
- 	   }
-	}
-	http.send(null);
-	}
-
-	function getUsers() {
-	var JsonObject = {};
-	var http = new XMLHttpRequest();
-	http.open("GET", "/atvspot/ajax/users.php", true);
-	http.onreadystatechange = function () {
-	   if (http.readyState == 4 && http.status == 200) {
-    		var responseTxt = http.responseText;
-    		myJSONObject = eval('(' + responseTxt + ')');
+function getRepeaters() {
+	$.ajax({
+		url: "/atvspot/ajax/repeaters.php",
+		data: {
+			bands: $("band_select").val();
+		},
+		success: function( data ) {
+			//console.log(data);
+			myJSONObject = eval('(' + data + ')');
     		parseUsers(myJSONObject);
- 	   }
-	}
-	http.send(null);
-	}
-	
-	function getSpots() {
-	var JsonObject = {};
-	var http = new XMLHttpRequest();
-	http.open("GET", "/atvspot/ajax/spots.php", true);
-	http.onreadystatechange = function () {
-	   if (http.readyState == 4 && http.status == 200) {
-    		var responseTxt = http.responseText;
-    		myJSONObject = eval('(' + responseTxt + ')');
-    		//parseUsers(myJSONObject);
- 	   }
-	}
-	http.send(null);
-	}
+		}
+	});
+}
+
+function getUsers() {
+	$.ajax({
+		url: "/atvspot/ajax/users.php",
+		data: {
+			timespan: $("time_select").val(),
+			bands: $("band_select").val();
+		},
+		success: function( data ) {
+			//console.log(data);
+			myJSONObject = eval('(' + data + ')');
+    		parseUsers(myJSONObject);
+		}
+	});
+}
+
+function getSpots() {	
+	$.ajax({
+		url: "/atvspot/ajax/spots.php",
+		data: {
+			timespan: $("time_select").val(),
+			bands: $("band_select").val();
+		},
+		success: function( data ) {
+			console.log(data);
+		}
+	});
+}
 	
 	timespan_select.onchange = function() {
 		var nuTimeSpan = timespan_select.value;
