@@ -59,6 +59,7 @@ if (isset($_COOKIE["auth_error"])) {
 <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
 <title>ATVSpot</title>
 <link href="map-default.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <?php include_once("g_analytics.php") ?>
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript">
