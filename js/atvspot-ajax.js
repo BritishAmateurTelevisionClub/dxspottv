@@ -1,3 +1,17 @@
+// Set up refresh timers
+//
+$(document).ready(function() {
+	// Update Map objects every 2 seconds
+	window.setInterval(updateMap(),2000);
+});
+
+function updateMap() {
+	console.log("Updating map..");
+	getUsers();
+	getRepeaters();
+	//getSpots();
+}
+
 function getRepeaters() {
 	$.ajax({
 		url: "/ajax/repeaters.php",
