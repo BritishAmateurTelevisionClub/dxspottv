@@ -127,16 +127,16 @@ border="0" cellpadding="0" cellspacing="0">
 if($logged_in) {
   print "Hi " . $callsign . "!";
 ?>
-&nbsp;&nbsp;<a href="logout.php">Logout</a>
+&nbsp;&nbsp;<button id="logout_button">Logout</button>
 <br><br>
 <?
 } else {
 ?>
-<form id=login action="login.php" method="post">
+<form id=login_form action="login.php" method="post">
 <b>Login: </b>
 Callsign: <input type=text name="callsign" <?php if($user_known) { print 'value="' . $callsign . '"'; } ?>/>
 Password: <input type=password name="passwd" />
-<input type=submit text='Login' />
+<button id="login_button">Log In</button>
 <?php
 if ($auth_error==1) {
   print '<font color="red">' . $auth_error_text . '</font>';

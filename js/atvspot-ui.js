@@ -4,6 +4,18 @@ $(document).ready(function() {
 	document.getElementById('irc_frame').src = irc_frame_source;
 });
 
+// Set up login/logout buttons
+//
+$(document).ready(function() {
+	$('#login_button').button().click( function() {
+    	$('#login_form').submit();
+	});
+	$('#logout_button').button().click( function() {
+    	window.location.href = "/logout.php";
+	});
+});
+
+
 // Show/Hide webIRC
 //
 function hideIRC() {
