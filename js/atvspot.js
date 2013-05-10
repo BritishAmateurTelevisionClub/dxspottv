@@ -36,10 +36,6 @@
 		getUsers();
 
 		show("user");
-		show("70cm");
-		show("23cm");
-		show("13cm");
-		show("3cm");
       	}
 
 	function getMarkerImage(iconColor) {
