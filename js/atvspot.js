@@ -1,42 +1,46 @@
-	if(!Array.prototype.last) {
-	    Array.prototype.last = function() {
-	        return this[this.length - 1];
-	    }
-	}
-	var repeater_markers = [];
-	var user_markers = [];
-        var map;
+var repeater_markers = [];
+var user_markers = [];
+var map;
 
-	var infowindow;
-	var session_id;
-	var logged_in;
+var infowindow;
+var session_id;
+var logged_in;
 
-	
-	function initialize() {
-		var mapOptions = {
-        		zoom: 6,
-        		center: new google.maps.LatLng(51.5, -1.39),
-        		mapTypeId: google.maps.MapTypeId.ROADMAP
-        	};
+// Load Google Maps Script
+//
+$(document).ready(function() {
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=initialize';
+	document.body.appendChild(script);
+}
 
-       		map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-		infowindow = new google.maps.InfoWindow(
-		{
+// Callback from Google Maps Script Load
+//
+function initialize() {
+	var mapOptions = {
+		zoom: 6,
+		center: new google.maps.LatLng(51.5, -1.39),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+	infowindow = new google.maps.InfoWindow( {
 			size: new google.maps.Size(150,50)
-		});
+	});
 
-		google.maps.event.addListener(map, 'click', function() {
-		        infowindow.close();
-	        });
+	google.maps.event.addListener(map, 'click', function() {
+		infowindow.close();
+	});
 
-		blueIcon = new google.maps.MarkerImage("https://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png");
-		redIcon = new google.maps.MarkerImage("https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png");
+	blueIcon = new google.maps.MarkerImage("https://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png");
+	redIcon = new google.maps.MarkerImage("https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png");
 
-		getRepeaters();
-		getUsers();
+	getRepeaters();
+	getUsers();
 
-		show("user");
-      	}
+	show("user");
+}
 
 	function getMarkerImage(iconColor) {
    		if ((typeof(iconColor)=="undefined") || (iconColor==null)) {
@@ -166,13 +170,4 @@ function getSpots() {
 		var nuTimeSpan = timespan_select.value;
 	});
 
-      function loadScript() {
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
-            'callback=initialize';
-        document.body.appendChild(script);
-        document.getElementById('irc_frame').src = irc_frame_source;
-      }
-
-      window.onload = loadScript;
+      

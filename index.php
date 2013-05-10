@@ -69,6 +69,7 @@ var irc_frame_source = "http://webchat.freenode.net/?channels=#atvspot&nick=<?ph
 var irc_frame_source = "http://webchat.freenode.net/?channels=#atvspot"
 <?php } ?> // End of callsign as nick for irc
 </script>
+<script type="text/javascript" src="js/atvspot-util.js"></script>
 <script type="text/javascript" src="js/atvspot.js"></script>
 <script type="text/javascript" src="js/atvspot-ui.js"></script>
 </head>
@@ -122,6 +123,7 @@ border="0" cellpadding="0" cellspacing="0">
 <?php
 if($logged_in) {
   print "Hi " . $callsign . "!";
+  print "<br><br>";
 ?>
 &nbsp;&nbsp;<a href="logout.php">Logout</a>
 <?
@@ -145,7 +147,7 @@ if ($auth_error==1) {
 ?>
 <iframe id='irc_frame' frameborder="0" height="400px" width="100%"></iframe><br>
 <span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a> and <a href="javascript:void(0)" onclick="hideIRC();">hide webIRC</a>.</span>
-<span id='irc_hidden_blurb'>webIRC hidden. To show, <a href="javascript:void(0)" onclick="showIRC();">click here</a>.</span>
+<span id='irc_hidden_blurb' style="display: none">IRC Chat hidden. To show, <a href="javascript:void(0)" onclick="showIRC();">click here</a>.</span>
 <br><br>
 <?php
 if($logged_in) { // If logged in, show spot form
