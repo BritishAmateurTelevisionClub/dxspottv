@@ -45,6 +45,9 @@ $(document).ready(function() {
 	$('#logout_button').button().click( function() {
     	window.location.href = "/logout.php";
 	});
+	$('#register_button').button().click( function() {
+    	window.location.href = "/register.php";
+	});
 	
 	// Set up tabs
 	$( "#tabs" ).tabs();
