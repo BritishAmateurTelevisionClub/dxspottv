@@ -17,6 +17,7 @@ while($row = mysqli_fetch_array($repeater_result))
 	$output[$i]['latitude'] = $row['lat'];
 	$output[$i]['longitude'] = $row['lon'];
 	$output[$i]['band'] = $row['band'];
+	$output[$i]['active'] = $row['active'];
 }
 
 $json_output = json_encode($output);
@@ -29,6 +30,7 @@ while($row = mysqli_fetch_array($repeater_result))
 	$repeater['latitude'] = $row['lat'];
 	$repeater['longitude'] = $row['lon'];
 	$repeater['band'] = $row['band'];
+	$repeater['active'] = $row['active'];
 	$output[] = $repeater;
 	unset($repeater);
 }

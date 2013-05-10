@@ -84,11 +84,16 @@ function initialize() {
         	});
 	}
 
-	function createRepeaterMarker(latlng,name,html,category) {
+	function createRepeaterMarker(latlng,name,html,category,active) {
 		var contentString = html;
+		if(active==1) {
+			var toBeIcon = repeaterIcon;
+		} else {
+			var toBeIcon = repeaterOfflineIcon;
+		}
 		var marker = new google.maps.Marker({
 		        position: latlng,
-				icon: repeaterIcon,
+				icon: toBeIcon,
 				//icon: mapicons[category],
 		        map: map,
 		        title: name
@@ -108,7 +113,7 @@ function initialize() {
 		var r_id = new Array();
 		for(r_id in JSONinput){
 			var repeater = JSONinput[r_id];
-			createRepeaterMarker(new google.maps.LatLng(repeater['latitude'], repeater['longitude']),repeater['callsign'],repeater['description'],repeater['band']);
+			createRepeaterMarker(new google.maps.LatLng(repeater['latitude'], repeater['longitude']),repeater['callsign'],repeater['description'],repeater['band'],repeater['active']);
 		}
     	}
 
