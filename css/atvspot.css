@@ -18,9 +18,9 @@ html, body {
   font-size: 75% !important;
 }
 
-#callsign {
+#callsign_input {
 	size: 10;
 }
-#password {
+#passwd_input {
 	size: 15;
 }
