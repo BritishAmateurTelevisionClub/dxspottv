@@ -58,11 +58,11 @@ if (isset($_COOKIE["auth_error"])) {
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
 <title>DXSpot.TV</title>
-<link href="atvspot.css" rel="stylesheet">
-<link href="map-default.css" rel="stylesheet">
+<link href="css/atvspot.css" rel="stylesheet">
+<link href="css/map-default.css" rel="stylesheet">
 <link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-<script src="js/jquery-ui-1.10.3.custom.js"></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
 <?php include_once("g_analytics.php") ?>
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript">
