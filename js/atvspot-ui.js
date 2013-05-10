@@ -16,16 +16,16 @@ $(document).ready(function() {
 	// Then functions for if changed
 	$('#userBox').change(function() {
 		if ($('#userBox').is(":checked")) {
-			mapShow("user");
+			usersShow();
 		} else {
-			mapHide("user");
+			usersHide();
 		}
 	});
 	$('#repeaterBox').change(function() {
 		if ($('#repeaterBox').is(":checked")) {
-			mapShow("repeater");
+			repeatersShow();
 		} else {
-			mapHide("repeater");
+			repeatersHide();
 		}
 	});
 });

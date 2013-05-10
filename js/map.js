@@ -28,6 +28,32 @@
         infowindow.close();
       }
 
+function usersShow() {
+	for (var i=0; i<user_markers.length; i++) {
+		user_markers[i].setVisible(true);
+	}
+	infowindow.close();
+}
+function usersHide() {
+	for (var i=0; i<user_markers.length; i++) {
+		user_markers[i].setVisible(false);
+	}
+	infowindow.close();
+}
+
+function repeatersShow() {
+	for (var i=0; i<repeater_markers.length; i++) {
+		repeater_markers[i].setVisible(true);
+	}
+	infowindow.close();
+}
+function repeatersHide() {
+	for (var i=0; i<repeater_markers.length; i++) {
+		repeater_markers[i].setVisible(false);
+	}
+	infowindow.close();
+}
+
       function myclick(i) {
         google.maps.event.trigger(gmarkers[i],"click");
       }
