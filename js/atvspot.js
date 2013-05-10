@@ -145,7 +145,7 @@ function getRepeaters() {
 		success: function( data ) {
 			//console.log(data);
 			myJSONObject = eval('(' + data + ')');
-    		parseUsers(myJSONObject);
+    		parseRepeaters(myJSONObject);
 		}
 	});
 }
