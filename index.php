@@ -72,9 +72,10 @@ var irc_frame_source = "http://webchat.freenode.net/?channels=#atvspot&nick=<?ph
 var irc_frame_source = "http://webchat.freenode.net/?channels=#atvspot"
 <?php } ?> // End of callsign as nick for irc
 </script>
-<script type="text/javascript" src="js/atvspot-util.js"></script>
 <script type="text/javascript" src="js/atvspot.js"></script>
+<script type="text/javascript" src="js/atvspot-ajax.js"></script>
 <script type="text/javascript" src="js/atvspot-ui.js"></script>
+<script type="text/javascript" src="js/atvspot-util.js"></script>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
@@ -111,10 +112,10 @@ border="0" cellpadding="0" cellspacing="0">
   <option value="13cm">13cm & above</option>
 </select>
 <td><p align="center">
-<strong>Users:</strong>&nbsp;<input type="checkbox" id="userbox" onClick="boxclick(this,'user')" /></p></td>
+<strong>Users:</strong>&nbsp;<input type="checkbox" id="userBox" /></p></td>
 
 <td><p align="center">
-<strong>Repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterbox" onClick="boxclick(this,'repeater')" /></p></td>
+<strong>Repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterBox" /></p></td>
 
 </tr></table>
 </form>

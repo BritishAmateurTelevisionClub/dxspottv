@@ -1,3 +1,35 @@
+// Set up Time Span list
+//
+$(document).ready(function() {
+	$('#time_select').change(function() {
+		var nuTimeSpan = timespan_select.value;
+	});
+});
+
+// Set up Users/Repeaters checkboxes
+//
+$(document).ready(function() {
+	// Both checkboxes checked
+	$('#userBox').prop('checked', true);
+	$('#repeaterBox').prop('checked', true);
+	// So show all to start! (done in map load callback)
+	// Then functions for if changed
+	$('#userBox').change(function() {
+		if ($('#userBox').is(":checked")) {
+			mapShow("user");
+		} else {
+			mapHide("user");
+		}
+	});
+	$('#repeaterBox').change(function() {
+		if ($('#repeaterBox').is(":checked")) {
+			mapShow("repeater");
+		} else {
+			mapShow("repeater");
+		}
+	});
+});
+
 // Load IRC (using php-configured url)
 //
 $(document).ready(function() {
@@ -31,7 +63,6 @@ function showIRC() {
 	$('#irc_frame').show();
 	$('#irc_shown_blurb').show();
 }
-
 
 
 // "I'm Listening" Frequency Boxes

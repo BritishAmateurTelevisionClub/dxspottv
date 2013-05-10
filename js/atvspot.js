@@ -45,7 +45,7 @@ function initialize() {
 	getRepeaters();
 	getUsers();
 
-	show("user");
+	mapShow("user");
 }
 
 	function getMarkerImage(iconColor) {
@@ -139,52 +139,5 @@ function initialize() {
 			}
 			createUserMarker(new google.maps.LatLng(user['latitude'], user['longitude']),user['callsign'],activity_str,"users");
 		}
-    	}
-
-function getRepeaters() {
-	$.ajax({
-		url: "/ajax/repeaters.php",
-		data: {
-			bands: $("band_select").val()
-		},
-		success: function( data ) {
-			//console.log(data);
-			myJSONObject = eval('(' + data + ')');
-    		parseRepeaters(myJSONObject);
-		}
-	});
 }
 
-function getUsers() {
-	$.ajax({
-		url: "/ajax/users.php",
-		data: {
-			timespan: $("time_select").val(),
-			bands: $("band_select").val()
-		},
-		success: function( data ) {
-			//console.log(data);
-			myJSONObject = eval('(' + data + ')');
-    		parseUsers(myJSONObject);
-		}
-	});
-}
-
-function getSpots() {	
-	$.ajax({
-		url: "/ajax/spots.php",
-		data: {
-			timespan: $("time_select").val(),
-			bands: $("band_select").val()
-		},
-		success: function( data ) {
-			console.log(data);
-		}
-	});
-}
-	
-	$('#time_select').change(function() {
-		var nuTimeSpan = timespan_select.value;
-	});
-
-      
