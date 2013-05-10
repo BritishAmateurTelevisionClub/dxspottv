@@ -57,7 +57,7 @@ if (isset($_COOKIE["auth_error"])) {
 <html>
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
-<title>ATVSpot</title>
+<title>DXSpot.TV</title>
 <link href="map-default.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <?php include_once("g_analytics.php") ?>
@@ -73,7 +73,7 @@ var irc_frame_source = "https://webchat.freenode.net/?channels=#atvspot"
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
-<h2>ATV Spot Map</h2>
+<h2>ATV DXSpot</h2>
 <table
 style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
 border="0" cellpadding="0" cellspacing="0">
