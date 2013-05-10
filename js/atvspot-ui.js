@@ -2,7 +2,7 @@
 //
 $(document).ready(function() {
 	document.getElementById('irc_frame').src = irc_frame_source;
-}
+});
 
 // Show/Hide webIRC
 //
@@ -43,4 +43,4 @@ $(document).ready(function() {
 			$('#listen_13cm_options').hide(50);
 		}
 	});
-}
+});
