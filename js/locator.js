@@ -1,3 +1,10 @@
+function calc_lat_lon() {
+	var latlon = [];
+	latlon = LoctoLatLon(document.getElementById("locator").value);
+	document.getElementById("lat").value = latlon[0];
+	document.getElementById("lon").value = latlon[1];
+}
+
 function getDeg(arg, base, offset, cmp)
 // convert letters into angles by subtracting the base char code from the input char code
 {

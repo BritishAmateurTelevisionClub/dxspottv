@@ -2,15 +2,10 @@
 <head>
 <title>DXSpot.TV - Register</title>
 <link href="/css/atvspot-register.css" rel="stylesheet">
-<script type="text/javascript" src="js/locator.js"></script>
-<script>
-function calc_lat_lon() {
-	var latlon = [];
-	latlon = LoctoLatLon(document.getElementById("locator").value);
-	document.getElementById("lat").value = latlon[0];
-	document.getElementById("lon").value = latlon[1];
-}
-</script>
+<script src="/js/jquery-1.9.1.min.js"></script>
+<script src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script type="text/javascript" src="/js/register.js"></script>
+<script type="text/javascript" src="/js/locator.js"></script>
 </head>
 <body>
 <?php
@@ -19,7 +14,7 @@ session_start();
 if(!(isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]))) {
 ?>
 <h2>New User Registration</h2>
-<form action='/register.php' method="post">
+<form id='register_form' action='/register.php' method="post">
 <label class="register_labels"><b>Callsign:</b>&nbsp;</label><input type=text name='callsign' /> Will be converted to Upper case. eg. M0DNY
 <br>
 <label class="register_labels"><b>Password:</b>&nbsp;</label><input type=password name='passwd' />
@@ -38,7 +33,7 @@ $publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
 echo recaptcha_get_html($publickey);
 ?>
 <br>
-<input type=submit value='Register' />
+<button class="reduce-font-size" id="register_button">Register</button>
 </form>
 <?php
 } else {
