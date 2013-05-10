@@ -79,7 +79,7 @@ function initialize() {
 	        user_markers.push(marker);
 
 		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.setContent(name+"<br>"+contentString);
+			infowindow.setContent("<b>"+name+"</b><br>"+contentString);
 		        infowindow.open(map,marker);
         	});
 	}
@@ -104,7 +104,7 @@ function initialize() {
 	        repeater_markers.push(marker);
 
 		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.setContent(name+"<br>"+contentString);
+			infowindow.setContent("<b>"+name+"</b><br>"+contentString);
 		        infowindow.open(map,marker);
         	});
 	}
