@@ -131,12 +131,10 @@ if($logged_in) {
 } else {
 ?>
 <form id=login_form action="login.php" method="post">
-<b>Login: </b>
 Callsign: <input type=text name="callsign" id="callsign_input" <?php if($user_known) { print 'value="' . $callsign . '"'; } ?>/>
 Password: <input type=password name="passwd" id="passwd_input" />
 <button class="login-button reduce-font-size" id="login_button">Log In</button>
 </form>
-<br>
 <?php
 if ($auth_error==1) {
 ?>
@@ -154,13 +152,13 @@ if ($auth_error==1) {
 ?>
 <div id="tabs">
 	<ul>
-		<li><a href="#webIRC">IRC Chat</a></li>
+		<li><a href="#webIRC" class="reduce-font-size">IRC Chat</a></li>
 		<?php
 		if($logged_in) { // If logged in, show spot form
 		?>
-		<li><a href="#spotForm">Submit Spots</a></li>
+		<li><a href="#spotForm" class="reduce-font-size">Submit Spots</a></li>
 		<?php } ?>
-		<li><a href="#spotLog">Global Spot Log</a></li>
+		<li><a href="#spotLog" class="reduce-font-size">Global Spot Log</a></li>
 	</ul>
 	<div id="webIRC">
 		<iframe id='irc_frame' frameborder="0"></iframe><br>
