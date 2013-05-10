@@ -14,12 +14,8 @@ html, body {
 	margin: 5px;
 }
 
-.login-button, .logout-button {
-  font-size: 62.5% !important;
-}
-
 .reduce-font-size {
-  font-size: 62.5% !important;
+  font-size: 75% !important;
 }
 
 #callsign {
