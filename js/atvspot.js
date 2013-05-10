@@ -36,6 +36,12 @@ function initialize() {
 	blueIcon = new google.maps.MarkerImage("https://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png");
 	redIcon = new google.maps.MarkerImage("https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png");
 
+	userActiveIcon = new google.maps.MarkerImage("/images/active_user.ico");
+	userAwayIcon = new google.maps.MarkerImage("/images/away_user.ico");
+	userUnknownIcon = new google.maps.MarkerImage("/images/unknown_user.ico");
+	repeaterIcon = new google.maps.MarkerImage("/images/active_repeater.ico");
+	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
+
 	getRepeaters();
 	getUsers();
 
@@ -62,8 +68,8 @@ function initialize() {
 		var contentString = html;
 		var marker = new google.maps.Marker({
 		        position: latlng,
-			icon: redIcon,
-			//icon: mapicons[category],
+				icon: userActiveIcon,
+				//icon: mapicons[category],
 		        map: map,
 		        title: name
         		//zIndex: Math.round(latlng.lat()*-100000)<<5
@@ -82,8 +88,8 @@ function initialize() {
 		var contentString = html;
 		var marker = new google.maps.Marker({
 		        position: latlng,
-			icon: blueIcon,
-			//icon: mapicons[category],
+				icon: repeaterIcon,
+				//icon: mapicons[category],
 		        map: map,
 		        title: name
         		//zIndex: Math.round(latlng.lat()*-100000)<<5
@@ -111,12 +117,18 @@ function initialize() {
 		for(u_id in JSONinput){
 			var user = JSONinput[u_id];
 			var activity_str;
-			if(user['months_active']>0) {
+			if(user['months_active']>1) {
 				activity_str = 'Last active ' + user['months_active'] + ' months ago.';
-			} else if (user['days_active']>0) {
+			} else if(user['months_active']>0) {
+				activity_str = 'Last active ' + user['months_active'] + ' month ago.';
+			} else if (user['days_active']>1) {
 				activity_str = 'Last active ' + user['days_active'] + ' days ago.';
-			} else if (user['hours_active']>0) {
+			} else if (user['days_active']>0) {
+				activity_str = 'Last active ' + user['days_active'] + ' day ago.';
+			} else if (user['hours_active']>1) {
 				activity_str = 'Last active ' + user['hours_active'] + 'hours ago.';
+			} else if (user['hours_active']>0) {
+				activity_str = 'Last active ' + user['hours_active'] + 'hour ago.';
 			} else {
 				activity_str = 'Currently Active.'
 			}
