@@ -171,27 +171,25 @@ if ($auth_error==1) {
 		if($logged_in) { // If logged in, show spot form
 		?>
 	<div id="spotForm" class="reduce-tab-padding">
-		<h4>I'm currently listening on:</h4>
+		<b>I'm currently listening on:</b>
 		<form id=listening>
 		70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq" value="" />MHz</span><br>
 		23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq" value="" />MHz</span><br>
 		13cm: <input type="checkbox" id="listen_13cm_box" /><span id='listen_13cm_options' style="display: none">&nbsp;<input type="text" id="listen_13cm_freq" value="" />MHz</span>
 		</form>
-		<br>
-		<b>Spot</b>
+		<b>New Spot</b>
 		<form id='spot_form'>
-		Frequency: <input type=text name="spot_freq"></input>
-		&nbsp;Mode: <select id="spot_mode_select">
-		<option value="1">PAL</option>
-		<option value="2">Digital QPSK</option>
+		Frequency: <input type=text name="spot_freq"></input><br>
+		Mode: <select id="spot_mode_select">
+		<option value="analogtv">Analog TV</option>
+		<option value="digitaltv">Digital TV</option>
 		</select>
 		<br>
-		<u>Remote Station</u><br>
-		Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input>
-		&nbsp;Locator: <input type=text name="remote_loc" id="remote_loc"></input>
-		<br>
-		Comments: <input type=text name="spot_comments" length=60></input>
-		<input type=submit />
+		<b>Remote Station</b><br>
+		Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input><br>
+		Locator: <input type=text name="remote_loc" id="remote_loc"></input><br>
+		Comments: <input type=text name="spot_comments" length=60></input><br>
+		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>
 		</form>
 	</div>
 	<?php } ?>
