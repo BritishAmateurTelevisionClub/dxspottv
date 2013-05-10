@@ -152,13 +152,24 @@ if ($auth_error==1) {
 <?php
 } // End of greeting/login form
 ?>
-<iframe id='irc_frame' frameborder="0"></iframe><br>
-<span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a> and <a href="javascript:void(0)" onclick="hideIRC();">hide webIRC</a>.</span>
-<span id='irc_hidden_blurb' style="display: none">IRC Chat hidden. To show, <a href="javascript:void(0)" onclick="showIRC();">click here</a>.</span>
-<?php
-if($logged_in) { // If logged in, show spot form
-?>
-<h4>I'm currently listening on:</h4>
+<div id="tabs">
+	<ul>
+		<li><a href="#webIRC">First</a></li>
+		<?php
+		if($logged_in) { // If logged in, show spot form
+		?>
+		<li><a href="#spotForm">Second</a></li>
+		<?php } ?>
+	</ul>
+	<div id="webIRC">
+		<iframe id='irc_frame' frameborder="0"></iframe><br>
+		<span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a>.
+	</div>
+	<?php
+		if($logged_in) { // If logged in, show spot form
+		?>
+	<div id="spotForm">
+		<h4>I'm currently listening on:</h4>
 <form id=listening>
 70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq" value="" />MHz</span><br>
 23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq" value="" />MHz</span><br>
@@ -180,13 +191,9 @@ Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input>
 Comments: <input type=text name="spot_comments" length=60></input>
 <input type=submit />
 </form>
-<?php
-} else {
-?>
-<h4>You must be logged in to submit spots.</h4>
-<?php
-}
-?>
+	</div>
+	<?php } ?>
+</div>
 </td>
 </tr>
 </tbody>

@@ -13,6 +13,9 @@ $(document).ready(function() {
 	$('#logout_button').button().click( function() {
     	window.location.href = "/logout.php";
 	});
+	
+	// Set up tabs
+	$( "#tabs" ).tabs();
 });
 
 
