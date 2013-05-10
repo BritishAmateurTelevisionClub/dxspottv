@@ -1,6 +1,7 @@
 <html>
 <head>
-<title>Register New User</title>
+<title>DXSpot.TV - Register</title>
+<link href="css/atvspot.css" rel="stylesheet">
 <script type="text/javascript" src="js/locator.js"></script>
 <script>
 function calc_lat_lon() {
@@ -19,38 +20,17 @@ if(!(isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]))) {
 ?>
 <h2>New User Registration</h2>
 <form action='/register.php' method="post">
-<table style='padding: 5px;'>
-<tr><td>
-<b>Callsign:</b>&nbsp;
-</td><td>
-<input type=text name='callsign' /> Will be converted to Upper case. eg. M0DNY
-</td></tr>
-<tr><td>
-<b>Password:</b>&nbsp;
-</td><td>
-<input type=password name='passwd' />
-</td></tr>
-<tr></tr>
-<tr><td>
-<b>Locator:</b>&nbsp;
-</td><td>
-<input type=text name='locator' id='locator' onChange=calc_lat_lon() /> Maidenhead eg. IO91HW (Use either 4 or 6 characters)
-</td></tr>
-<tr>
-<td>
-<b>Latitude:</b>&nbsp;
-</td><td>
-<input type=text name='lat' id='lat' />
-<b>Longitude:</b>&nbsp;
-<input type=text name='lon' id='lon' /> (Will fill in automatically from Locator)
-</td>
-</tr>
-<tr><td>
-<b>Email Address:</b>&nbsp;
-</td><td>
-<input type=text name='email' /> Just for administrator contact in case of issues. Not publicly disclosed.
-</td></tr>
-</table>
+<label><b>Callsign:</b>&nbsp;</label><input type=text name='callsign' /> Will be converted to Upper case. eg. M0DNY
+<br>
+<label><b>Password:</b>&nbsp;</label><input type=password name='passwd' />
+<br><br>
+<label><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() /> Maidenhead eg. IO91HW (Use either 4 or 6 characters)
+<br>
+<label><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' />
+<br>
+<label><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' /> (Will fill in automatically from Locator)
+<br>
+<label><b>Email Address:</b>&nbsp;</label><input type=text name='email' /> Just for administrator contact in case of issues. Not publicly disclosed.
 <br>
 <?php
 require_once('recaptchalib.php');
