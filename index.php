@@ -154,12 +154,13 @@ if ($auth_error==1) {
 ?>
 <div id="tabs">
 	<ul>
-		<li><a href="#webIRC">First</a></li>
+		<li><a href="#webIRC">IRC Chat</a></li>
 		<?php
 		if($logged_in) { // If logged in, show spot form
 		?>
-		<li><a href="#spotForm">Second</a></li>
+		<li><a href="#spotForm">Submit Spots</a></li>
 		<?php } ?>
+		<li><a href="#spotLog">Global Spot Log</a></li>
 	</ul>
 	<div id="webIRC">
 		<iframe id='irc_frame' frameborder="0"></iframe><br>
@@ -193,6 +194,9 @@ Comments: <input type=text name="spot_comments" length=60></input>
 </form>
 	</div>
 	<?php } ?>
+	<div id="spotLog">
+		Coming soon...
+	</div>
 </div>
 </td>
 </tr>
