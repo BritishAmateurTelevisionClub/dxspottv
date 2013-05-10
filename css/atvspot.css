@@ -13,3 +13,7 @@ html, body {
 #spot_form {
 	margin: 5px;
 }
+
+.login-button, .logout-button {
+  font: 62.5%;
+}
