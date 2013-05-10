@@ -129,7 +129,7 @@ function getRepeaters() {
 	$.ajax({
 		url: "/ajax/repeaters.php",
 		data: {
-			bands: $("band_select").val();
+			bands: $("band_select").val()
 		},
 		success: function( data ) {
 			//console.log(data);
@@ -144,7 +144,7 @@ function getUsers() {
 		url: "/ajax/users.php",
 		data: {
 			timespan: $("time_select").val(),
-			bands: $("band_select").val();
+			bands: $("band_select").val()
 		},
 		success: function( data ) {
 			//console.log(data);
@@ -159,7 +159,7 @@ function getSpots() {
 		url: "/ajax/spots.php",
 		data: {
 			timespan: $("time_select").val(),
-			bands: $("band_select").val();
+			bands: $("band_select").val()
 		},
 		success: function( data ) {
 			console.log(data);
