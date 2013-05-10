@@ -127,7 +127,7 @@ border="0" cellpadding="0" cellspacing="0">
 if($logged_in) {
   print "Hi " . $callsign . "!";
 ?>
-&nbsp;&nbsp;<button class=logout-button id="logout_button">Logout</button>
+&nbsp;&nbsp;<button class="logout-button" id="logout_button">Logout</button>
 <br><br>
 <?
 } else {
@@ -136,7 +136,7 @@ if($logged_in) {
 <b>Login: </b>
 Callsign: <input type=text name="callsign" <?php if($user_known) { print 'value="' . $callsign . '"'; } ?>/>
 Password: <input type=password name="passwd" />
-<button class=login-button id="login_button">Log In</button>
+<button class="login-button" id="login_button">Log In</button>
 <?php
 if ($auth_error==1) {
   print '<font color="red">' . $auth_error_text . '</font>';

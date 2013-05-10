@@ -15,5 +15,5 @@ html, body {
 }
 
 .login-button, .logout-button {
-  font-size: 62.5%;
+  font-size: 62.5% !important;
 }
