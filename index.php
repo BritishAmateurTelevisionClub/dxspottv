@@ -147,10 +147,10 @@ if ($auth_error==1) {
 </div>
 <?php
 } else if ($logged_in==0) {
-  print '<a href="register.php">Register New User</a>';
-}
 ?>
+&nbsp;&nbsp;<button class="register-button reduce-font-size" id="register_button">Register</button>
 <?php
+} // End of auth_error/register link.
 } // End of greeting/login form
 ?>
 <div id="tabs">
