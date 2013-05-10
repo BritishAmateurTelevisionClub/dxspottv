@@ -10,8 +10,7 @@
 	var infowindow;
 	var session_id;
 	var logged_in;
-	
-	var timespan_select;
+
 	
 	function initialize() {
 		var mapOptions = {
@@ -167,12 +166,11 @@ function getSpots() {
 	});
 }
 	
-	timespan_select.onchange = function() {
+	$('#time_select').change(function() {
 		var nuTimeSpan = timespan_select.value;
-	}
+	});
 
       function loadScript() {
-        timespan_select = document.getElementById("time_select");
         var script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
