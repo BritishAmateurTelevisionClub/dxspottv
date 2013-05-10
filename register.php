@@ -14,7 +14,7 @@ session_start();
 </head>
 <body>
 <h2>New User Registration</h2>
-<form id='register_form' action='/register.php' method="post">
+<form id='register_form'>
 	<label class="register_labels"><b>First Name/Nickname:</b>&nbsp;</label>
 	<input type=text name='fname' class="required" minlength="2" />
 <br>
