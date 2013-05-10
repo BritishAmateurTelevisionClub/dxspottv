@@ -4,6 +4,8 @@ session_start();
 //print "<br>";
 if (isset($_COOKIE["auth_error"])) {
   if ($_COOKIE["auth_error"]=="1") {
+  	// Unset Auth Error
+  	setcookie("auth_error", "", time()-3600);
     // Redirect back after failed login
     $user_known = 0;
     $logged_in = 0;
