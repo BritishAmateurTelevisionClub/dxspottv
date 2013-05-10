@@ -118,8 +118,6 @@ border="0" cellpadding="0" cellspacing="0">
 
 </tr></table>
 </form>
-
-
 <div id="map_canvas"></div>
 </td>
 <td width="40%" style="padding: 5px; vertical-align: top;">
@@ -127,7 +125,7 @@ border="0" cellpadding="0" cellspacing="0">
 if($logged_in) {
   print "Hi " . $callsign . "!";
 ?>
-&nbsp;&nbsp;<button class="logout-button" id="logout_button">Logout</button>
+&nbsp;&nbsp;<button class="logout-button reduce-font-size" id="logout_button">Logout</button>
 <br><br>
 <?
 } else {
@@ -136,15 +134,21 @@ if($logged_in) {
 <b>Login: </b>
 Callsign: <input type=text name="callsign" <?php if($user_known) { print 'value="' . $callsign . '"'; } ?>/>
 Password: <input type=password name="passwd" />
-<button class="login-button" id="login_button">Log In</button>
+<button class="login-button reduce-font-size" id="login_button">Log In</button>
+</form>
+<br>
 <?php
 if ($auth_error==1) {
-  print '<font color="red">' . $auth_error_text . '</font>';
+?>
+<div class="ui-state-error ui-corner-all reduce-font-size" style="padding: 0 .7em;">
+		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+		<strong>Alert:</strong><?php print $auth_error_text; ?></p>
+</div>
+<?php
 } else if ($logged_in==0) {
   print '<a href="register.php">Register New User</a>';
 }
 ?>
-</form>
 <?php
 } // End of greeting/login form
 ?>

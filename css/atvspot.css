@@ -17,3 +17,14 @@ html, body {
 .login-button, .logout-button {
   font-size: 62.5% !important;
 }
+
+.reduce-font-size {
+  font-size: 62.5% !important;
+}
+
+#callsign {
+	size: 10;
+}
+#password {
+	size: 15;
+}
