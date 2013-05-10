@@ -18,6 +18,9 @@ html, body {
 .reduce-font-size {
   font-size: 80% !important;
 }
+.reduce-tab-padding {
+  padding: 0.5em !important;
+}
 
 #callsign_input {
 	width: 70px;

@@ -140,7 +140,7 @@ if ($auth_error==1) {
 ?>
 <div class="ui-state-error ui-corner-all reduce-font-size" style="padding: 0 .7em;">
 		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-		<strong>Alert:</strong><?php print $auth_error_text; ?></p>
+		<strong>Alert:</strong>&nbsp;<?php print $auth_error_text; ?></p>
 </div>
 <?php
 } else if ($logged_in==0) {
@@ -159,41 +159,49 @@ if ($auth_error==1) {
 		<li><a href="#spotForm" class="reduce-font-size">Submit Spots</a></li>
 		<?php } ?>
 		<li><a href="#spotLog" class="reduce-font-size">Global Spot Log</a></li>
+		<li><a href="#helpTab" class="reduce-font-size">Help</a></li>
+		<li><a href="#aboutTab" class="reduce-font-size">About</a></li>
 	</ul>
-	<div id="webIRC">
+	<div id="webIRC" class="reduce-tab-padding">
 		<iframe id='irc_frame' frameborder="0"></iframe><br>
 		<span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a>.
 	</div>
 	<?php
 		if($logged_in) { // If logged in, show spot form
 		?>
-	<div id="spotForm">
+	<div id="spotForm" class="reduce-tab-padding">
 		<h4>I'm currently listening on:</h4>
-<form id=listening>
-70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq" value="" />MHz</span><br>
-23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq" value="" />MHz</span><br>
-13cm: <input type="checkbox" id="listen_13cm_box" /><span id='listen_13cm_options' style="display: none">&nbsp;<input type="text" id="listen_13cm_freq" value="" />MHz</span>
-</form>
-<br>
-<b>Spot</b>
-<form id='spot_form'>
-Frequency: <input type=text name="spot_freq"></input>
-&nbsp;Mode: <select id="spot_mode_select">
-<option value="1">PAL</option>
-<option value="2">Digital QPSK</option>
-</select>
-<br>
-<u>Remote Station</u><br>
-Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input>
-&nbsp;Locator: <input type=text name="remote_loc" id="remote_loc"></input>
-<br>
-Comments: <input type=text name="spot_comments" length=60></input>
-<input type=submit />
-</form>
+		<form id=listening>
+		70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq" value="" />MHz</span><br>
+		23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq" value="" />MHz</span><br>
+		13cm: <input type="checkbox" id="listen_13cm_box" /><span id='listen_13cm_options' style="display: none">&nbsp;<input type="text" id="listen_13cm_freq" value="" />MHz</span>
+		</form>
+		<br>
+		<b>Spot</b>
+		<form id='spot_form'>
+		Frequency: <input type=text name="spot_freq"></input>
+		&nbsp;Mode: <select id="spot_mode_select">
+		<option value="1">PAL</option>
+		<option value="2">Digital QPSK</option>
+		</select>
+		<br>
+		<u>Remote Station</u><br>
+		Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input>
+		&nbsp;Locator: <input type=text name="remote_loc" id="remote_loc"></input>
+		<br>
+		Comments: <input type=text name="spot_comments" length=60></input>
+		<input type=submit />
+		</form>
 	</div>
 	<?php } ?>
-	<div id="spotLog">
-		Coming soon...
+	<div id="spotLog" class="reduce-tab-padding">
+		Coming soon.
+	</div>
+	<div id="helpTab" class="reduce-tab-padding">
+		You need to be registered to submit spots.
+	</div>
+	<div id="aboutTab" class="reduce-tab-padding">
+		DXSpot.TV is an ATV Spotting Site...
 	</div>
 </div>
 </td>
