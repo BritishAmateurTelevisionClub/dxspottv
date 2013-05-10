@@ -16,12 +16,12 @@ html, body {
 }
 
 .reduce-font-size {
-  font-size: 100% !important;
+  font-size: 80% !important;
 }
 
 #callsign_input {
-	size: 10;
+	width: 100px;
 }
 #passwd_input {
-	size: 15;
+	width: 150px;
 }
