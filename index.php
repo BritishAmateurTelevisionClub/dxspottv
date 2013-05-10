@@ -58,6 +58,7 @@ if (isset($_COOKIE["auth_error"])) {
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
 <title>DXSpot.TV</title>
+<link href="atvspot.css" rel="stylesheet">
 <link href="map-default.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <?php include_once("g_analytics.php") ?>
@@ -123,9 +124,9 @@ border="0" cellpadding="0" cellspacing="0">
 <?php
 if($logged_in) {
   print "Hi " . $callsign . "!";
-  print "<br><br>";
 ?>
 &nbsp;&nbsp;<a href="logout.php">Logout</a>
+<br><br>
 <?
 } else {
 ?>
@@ -145,7 +146,7 @@ if ($auth_error==1) {
 <?php
 } // End of greeting/login form
 ?>
-<iframe id='irc_frame' frameborder="0" height="400px" width="100%"></iframe><br>
+<iframe id='irc_frame' frameborder="0"></iframe><br>
 <span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a> and <a href="javascript:void(0)" onclick="hideIRC();">hide webIRC</a>.</span>
 <span id='irc_hidden_blurb' style="display: none">IRC Chat hidden. To show, <a href="javascript:void(0)" onclick="showIRC();">click here</a>.</span>
 <?php
@@ -153,13 +154,13 @@ if($logged_in) { // If logged in, show spot form
 ?>
 <h4>I'm currently listening on:</h4>
 <form id=listening>
-70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq">432</input>MHz</span><br>
-23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq">1240</input>MHz</span><br>
-13cm: <input type="checkbox" id="listen_13cm_box" /><span id='listen_13cm_options' style="display: none">&nbsp;<input type="text" id="listen_13cm_freq">2450</input>MHz</span>
+70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq" value="" />MHz</span><br>
+23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq" value="" />MHz</span><br>
+13cm: <input type="checkbox" id="listen_13cm_box" /><span id='listen_13cm_options' style="display: none">&nbsp;<input type="text" id="listen_13cm_freq" value="" />MHz</span>
 </form>
 <br>
 <b>Spot</b>
-<form id='spot' style='margin: 5px;'>
+<form id='spot_form'>
 Frequency: <input type=text name="spot_freq"></input>
 &nbsp;Mode: <select id="spot_mode_select">
 <option value="1">PAL</option>
