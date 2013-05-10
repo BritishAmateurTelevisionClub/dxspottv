@@ -28,3 +28,6 @@ html, body {
 #passwd_input {
 	width: 70px;
 }
+#login_form {
+	margin-bottom: 0em;
+}

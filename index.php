@@ -139,7 +139,7 @@ Password: <input type=password name="passwd" id="passwd_input" />
 <?php
 if ($auth_error==1) {
 ?>
-<div class="ui-state-error ui-corner-all reduce-font-size" style="padding: 0 .7em;">
+<div class="ui-state-error ui-corner-all reduce-font-size" style="padding: .3em .7em;">
 		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
 		<strong>Alert:</strong>&nbsp;<?php print $auth_error_text; ?></p>
 </div>
