@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>DXSpot.TV - Register</title>
-<link href="css/atvspot.css" rel="stylesheet">
+<link href="/css/atvspot-register.css" rel="stylesheet">
 <script type="text/javascript" src="js/locator.js"></script>
 <script>
 function calc_lat_lon() {
