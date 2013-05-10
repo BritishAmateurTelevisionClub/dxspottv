@@ -60,7 +60,9 @@ if (isset($_COOKIE["auth_error"])) {
 <title>DXSpot.TV</title>
 <link href="atvspot.css" rel="stylesheet">
 <link href="map-default.css" rel="stylesheet">
+<link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script src="js/jquery-ui-1.10.3.custom.js"></script>
 <?php include_once("g_analytics.php") ?>
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript">
