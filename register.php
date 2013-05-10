@@ -20,17 +20,17 @@ if(!(isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]))) {
 ?>
 <h2>New User Registration</h2>
 <form action='/register.php' method="post">
-<label><b>Callsign:</b>&nbsp;</label><input type=text name='callsign' /> Will be converted to Upper case. eg. M0DNY
+<label class="register_labels"><b>Callsign:</b>&nbsp;</label><input type=text name='callsign' /> Will be converted to Upper case. eg. M0DNY
 <br>
-<label><b>Password:</b>&nbsp;</label><input type=password name='passwd' />
+<label class="register_labels"><b>Password:</b>&nbsp;</label><input type=password name='passwd' />
 <br><br>
-<label><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() /> Maidenhead eg. IO91HW (Use either 4 or 6 characters)
+<label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() /> Maidenhead eg. IO91HW (Use either 4 or 6 characters)
 <br>
-<label><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' />
+<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' />
 <br>
-<label><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' /> (Will fill in automatically from Locator)
+<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' /> (Will fill in automatically from Locator)
 <br>
-<label><b>Email Address:</b>&nbsp;</label><input type=text name='email' /> Just for administrator contact in case of issues. Not publicly disclosed.
+<label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' /> Just for administrator contact in case of issues. Not publicly disclosed.
 <br>
 <?php
 require_once('recaptchalib.php');
