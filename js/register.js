@@ -5,6 +5,7 @@ $(document).ready(function() {
 	$('#register_button').button().click( function() {
 		$.ajax({
 			url: '/ajax/submit_register.php',
+			type: "GET",
 			data: {
 				fname: $('#fname').val(),
 				callsign: $('#callsign').val(),
