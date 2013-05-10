@@ -127,7 +127,7 @@
 
 function getRepeaters() {
 	$.ajax({
-		url: "/atvspot/ajax/repeaters.php",
+		url: "/ajax/repeaters.php",
 		data: {
 			bands: $("band_select").val();
 		},
@@ -141,7 +141,7 @@ function getRepeaters() {
 
 function getUsers() {
 	$.ajax({
-		url: "/atvspot/ajax/users.php",
+		url: "/ajax/users.php",
 		data: {
 			timespan: $("time_select").val(),
 			bands: $("band_select").val();
@@ -156,7 +156,7 @@ function getUsers() {
 
 function getSpots() {	
 	$.ajax({
-		url: "/atvspot/ajax/spots.php",
+		url: "/ajax/spots.php",
 		data: {
 			timespan: $("time_select").val(),
 			bands: $("band_select").val();

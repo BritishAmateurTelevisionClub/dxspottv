@@ -38,5 +38,5 @@ if($crypt==$target) {
 mysql_end($dbc);
 //echo json_encode($return_data);
 } // End Login
-header( 'Location: https://www.thecraag.com/atvspot/' ) 
+header( 'Location: http://www.dxspot.tv/' ) 
 ?>
