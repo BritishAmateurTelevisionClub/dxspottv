@@ -25,7 +25,7 @@ $(document).ready(function() {
 		if ($('#repeaterBox').is(":checked")) {
 			mapShow("repeater");
 		} else {
-			mapShow("repeater");
+			mapHide("repeater");
 		}
 	});
 });
