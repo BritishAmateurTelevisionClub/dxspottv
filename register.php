@@ -34,7 +34,7 @@ if(!(isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]))) {
 <br>
 <?php
 require_once('recaptchalib.php');
-$publickey = "6LfceNsSAAAAAFQpBQ9euTLv5ZEcNIjx6u0vj63B";
+$publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
 echo recaptcha_get_html($publickey);
 ?>
 <br>
@@ -44,7 +44,7 @@ echo recaptcha_get_html($publickey);
 } else {
 
 require_once('recaptchalib.php');
-$privatekey = "6LfceNsSAAAAAOX9XoasUeOg6uMA0pYSPYpIn3AY";
+$privatekey = "6LfVM-ESAAAAAJa-5SRWpWMBEOI1z1UNSkVbvqzp";
 $resp = recaptcha_check_answer ($privatekey,
                                 $_SERVER["REMOTE_ADDR"],
                                 $_POST["recaptcha_challenge_field"],
