@@ -70,6 +70,7 @@ var irc_frame_source = "http://webchat.freenode.net/?channels=#atvspot"
 <?php } ?> // End of callsign as nick for irc
 </script>
 <script type="text/javascript" src="js/atvspot.js"></script>
+<script type="text/javascript" src="js/atvspot-ui.js"></script>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
@@ -143,15 +144,18 @@ if ($auth_error==1) {
 } // End of greeting/login form
 ?>
 <iframe id='irc_frame' frameborder="0" height="400px" width="100%"></iframe><br>
-To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a>.
+<span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a> and <a href="javascript:void(0)" onclick="hideIRC();">hide webIRC</a>.</span>
+<span id='irc_hidden_blurb'>webIRC hidden. To show, <a href="javascript:void(0)" onclick="showIRC();">click here</a>.</span>
 <br><br>
 <?php
 if($logged_in) { // If logged in, show spot form
 ?>
 <h4>I'm currently listening on:</h4>
-70cm checkbox <br>
-23cm checkbox <br>
-13cm checkbox <br>
+<form id=listening>
+70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq">432</input>MHz</span>
+23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq">1240</input>MHz</span>
+13cm: <input type="checkbox" id="listen_13cm_box" /><span id='listen_13cm_options' style="display: none">&nbsp;<input type="text" id="listen_13cm_freq">2450</input>MHz</span>
+</form>
 <h4>Spot</h4>
 <form id='spot'>
 Frequency: <input type=text name="spot_freq"></input>
