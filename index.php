@@ -116,31 +116,6 @@ border="0" cellpadding="0" cellspacing="0">
 
 
 <div id="map_canvas"></div>
-<?php
-if($logged_in) { // If logged in, show spot form
-?>
-<h3>Spot</h3>
-<form id='spot'>
-Frequency: <input type=text name="spot_freq"></input>
-&nbsp;Mode: <select id="spot_mode_select">
-<option value="1">PAL</option>
-<option value="2">Digital QPSK</option>
-</select>
-<br>
-<b>Remote Station</b><br>
-Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input>
-&nbsp;Locator: <input type=text name="remote_loc" id="remote_loc"></input>
-<br>
-Comments: <input type=text name="spot_comments" length=60></input>
-<input type=submit />
-</form>
-<?php
-} else {
-?>
-<h4>You must be logged in to submit spots.</h4>
-<?php
-}
-?>
 </td>
 <td width="40%" style="padding: 5px; vertical-align: top;">
 <?php
@@ -167,19 +142,44 @@ if ($auth_error==1) {
 <?php
 } // End of greeting/login form
 ?>
-<iframe id='irc_frame' frameborder="0" height="600px" width="100%"></iframe><br>
+<iframe id='irc_frame' frameborder="0" height="400px" width="100%"></iframe><br>
 To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a>.
+<br><br>
+<?php
+if($logged_in) { // If logged in, show spot form
+?>
+<h4>I'm currently listening on:</h4>
+70cm checkbox <br>
+23cm checkbox <br>
+13cm checkbox <br>
+<h4>Spot</h4>
+<form id='spot'>
+Frequency: <input type=text name="spot_freq"></input>
+&nbsp;Mode: <select id="spot_mode_select">
+<option value="1">PAL</option>
+<option value="2">Digital QPSK</option>
+</select>
+<br>
+<b>Remote Station</b><br>
+Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input>
+&nbsp;Locator: <input type=text name="remote_loc" id="remote_loc"></input>
+<br>
+Comments: <input type=text name="spot_comments" length=60></input>
+<input type=submit />
+</form>
+<?php
+} else {
+?>
+<h4>You must be logged in to submit spots.</h4>
+<?php
+}
+?>
 </td>
 </tr>
 </tbody>
 </table>
 <br>
 Copyright 2013 Phil Crump <a href='https://www.thecraag.com/' target='_blank'>thecraag.com</a>
-<br><br>
-<h4>I'm currently listening on:</h4>
-70cm checkbox <br>
-23cm checkbox <br>
-13cm checkbox <br>
 </div>
 </body>
 </html>
