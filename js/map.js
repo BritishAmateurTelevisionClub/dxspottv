@@ -9,7 +9,7 @@
             user_markers[i].setVisible(true);
           }
         }
-        document.getElementById(category+"box").checked = true;
+        document.getElementById(category+"Box").checked = true;
       }
 
       function mapHide(category) {
@@ -24,7 +24,7 @@
           }
         }
 
-        document.getElementById(category+"box").checked = false;
+        document.getElementById(category+"Box").checked = false;
         infowindow.close();
       }
 
