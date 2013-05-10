@@ -126,9 +126,9 @@ function initialize() {
 			} else if (user['days_active']>0) {
 				activity_str = 'Last active ' + user['days_active'] + ' day ago.';
 			} else if (user['hours_active']>1) {
-				activity_str = 'Last active ' + user['hours_active'] + 'hours ago.';
+				activity_str = 'Last active ' + user['hours_active'] + ' hours ago.';
 			} else if (user['hours_active']>0) {
-				activity_str = 'Last active ' + user['hours_active'] + 'hour ago.';
+				activity_str = 'Last active ' + user['hours_active'] + ' hour ago.';
 			} else {
 				activity_str = 'Currently Active.'
 			}
