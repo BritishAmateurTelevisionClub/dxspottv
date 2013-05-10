@@ -148,25 +148,25 @@ if ($auth_error==1) {
 <iframe id='irc_frame' frameborder="0" height="400px" width="100%"></iframe><br>
 <span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a> and <a href="javascript:void(0)" onclick="hideIRC();">hide webIRC</a>.</span>
 <span id='irc_hidden_blurb' style="display: none">IRC Chat hidden. To show, <a href="javascript:void(0)" onclick="showIRC();">click here</a>.</span>
-<br><br>
 <?php
 if($logged_in) { // If logged in, show spot form
 ?>
 <h4>I'm currently listening on:</h4>
 <form id=listening>
-70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq">432</input>MHz</span>
-23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq">1240</input>MHz</span>
+70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq">432</input>MHz</span><br>
+23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq">1240</input>MHz</span><br>
 13cm: <input type="checkbox" id="listen_13cm_box" /><span id='listen_13cm_options' style="display: none">&nbsp;<input type="text" id="listen_13cm_freq">2450</input>MHz</span>
 </form>
-<h4>Spot</h4>
-<form id='spot'>
+<br>
+<b>Spot</b>
+<form id='spot' style='margin: 5px;'>
 Frequency: <input type=text name="spot_freq"></input>
 &nbsp;Mode: <select id="spot_mode_select">
 <option value="1">PAL</option>
 <option value="2">Digital QPSK</option>
 </select>
 <br>
-<b>Remote Station</b><br>
+<u>Remote Station</u><br>
 Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input>
 &nbsp;Locator: <input type=text name="remote_loc" id="remote_loc"></input>
 <br>
