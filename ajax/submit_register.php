@@ -32,25 +32,25 @@ $lat = escape($dbc, $_REQUEST["lat"]);
 $lon = escape($dbc, $_REQUEST["lon"]);
 $name = escape($dbc, $_REQUEST["fname"]);
 
-if($callsign="") {
+if($callsign=="") {
 	$output['successful'] = 0;
 	$output['error'] = "2"; // Callsign Error
-} else if($passwd="") {
+} else if($passwd=="") {
 	$output['successful'] = 0;
 	$output['error'] = "3"; // Password Error
-} else if($email="") {
+} else if($email=="") {
 	$output['successful'] = 0;
 	$output['error'] = "4"; // Email Error
-} else if($locator="") {
+} else if($locator=="") {
 	$output['successful'] = 0;
 	$output['error'] = "5"; // Locator Error
-} else if($lat="") {
+} else if($lat=="") {
 	$output['successful'] = 0;
 	$output['error'] = "6"; // Lat Error
-} else if($lon="") {
+} else if($lon=="") {
 	$output['successful'] = 0;
 	$output['error'] = "7"; // Lon Error
-} else if($name="") {
+} else if($name=="") {
 	$output['successful'] = 0;
 	$output['error'] = "8"; // Name Error
 } else { // No error!
