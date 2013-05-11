@@ -186,6 +186,7 @@ $(document).ready(function() {
 function updateListening() {
 	$.ajax({
 		url: "/ajax/update_listening.php",
+		type: "GET",
 		data: {
 			l70cm: $('#listen_70cm_box').is(":checked"),
 			l70cm_freq: $('#listen_70cm_freq').val(),

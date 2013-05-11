@@ -12,6 +12,7 @@ function updateMap() {
 function getRepeaters() {
 	$.ajax({
 		url: "/ajax/repeaters.php",
+		type: "GET",
 		data: {
 			bands: $("band_select").val()
 		},
@@ -26,6 +27,7 @@ function getRepeaters() {
 function getUsers() {
 	$.ajax({
 		url: "/ajax/users.php",
+		type: "GET",
 		data: {
 			timespan: $("time_select").val(),
 			bands: $("band_select").val()
@@ -41,6 +43,7 @@ function getUsers() {
 function getSpots() {	
 	$.ajax({
 		url: "/ajax/spots.php",
+		type: "GET",
 		data: {
 			timespan: $("time_select").val(),
 			bands: $("band_select").val()
@@ -54,6 +57,7 @@ function getSpots() {
 function submitSpot() {
 	$.ajax({
 		url: "/ajax/submitSpot.php",
+		type: "GET",
 		data: {
 			freq: $("spot_freq").val(),
 			mode: $("spot_mode_select").val(),
@@ -73,6 +77,7 @@ function submitListen() {
 	var active13cm = $('#listen_13cm_box').is(":checked");
 	$.ajax({
 		url: "/ajax/submitListen.php",
+		type: "GET",
 		data: {
 			active70cm: active70cm,
 			active23cm: active23cm,
