@@ -3,7 +3,9 @@
 $(document).ready(function() {
 	$("#validationFailDialog").dialog({ autoOpen: false });
 	$("#captchaFailDialog").dialog({ autoOpen: false });
-	$('#register_form').validate();
+	$('#register_form').validate({
+		submitHandler: function(form) { }
+	});
 	$('#register_button').button().click( function() {
 		if($("#register_form").valid()==true) {
 			$.ajax({
