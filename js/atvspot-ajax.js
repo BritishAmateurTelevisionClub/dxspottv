@@ -77,7 +77,9 @@ function submitListen() {
 	$.ajax({
 		url: "/ajax/submitListen.php",
 		data: {
-			70cm: active70cm
+			active70cm: active70cm,
+			active23cm: active23cm,
+			active13cm: active13cm
 		},
 		success: function( data ) {
 			console.log(data);
