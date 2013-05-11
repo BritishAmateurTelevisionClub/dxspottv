@@ -2,11 +2,10 @@
 //
 $(document).ready(function() {
 	$("#validationFailDialog").dialog({ autoOpen: false });
+	$("#captchaFailDialog").dialog({ autoOpen: false });
 	$('#register_form').validate();
 	$('#register_button').button().click( function() {
 		if($("#register_form").valid()==true) {
-			
-			$('#first_form').hide();
 			$.ajax({
 				url: '/ajax/submit_register.php',
 				type: "GET",
@@ -26,6 +25,7 @@ $(document).ready(function() {
 					var returnJSON = eval('(' + data + ')');
 					if(returnJSON['successful']==1) {
 						console.log("Registered!");
+						$('#first_form').hide();
 						$('#successMessage').show();
 					} else {
 						$('#first_form').show();
