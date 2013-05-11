@@ -33,4 +33,5 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 }
 } else { // Not got cookies or variables
 print 'Access Denied.';
+}
 ?>
