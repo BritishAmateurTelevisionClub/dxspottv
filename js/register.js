@@ -5,6 +5,7 @@ $(document).ready(function() {
 	$('#register_form').validate();
 	$('#register_button').button().click( function() {
 		if($("#register_form").valid()==true) {
+			Recaptcha.reload();
 			$.ajax({
 				url: '/ajax/submit_register.php',
 				type: "GET",
