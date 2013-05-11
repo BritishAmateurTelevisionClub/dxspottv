@@ -5,7 +5,8 @@ $(document).ready(function() {
 	$('#register_form').validate();
 	$('#register_button').button().click( function() {
 		if($("#register_form").valid()==true) {
-			Recaptcha.reload();
+			
+			$('#first_form').hide();
 			$.ajax({
 				url: '/ajax/submit_register.php',
 				type: "GET",
@@ -25,9 +26,14 @@ $(document).ready(function() {
 					var returnJSON = eval('(' + data + ')');
 					if(returnJSON['successful']==1) {
 						console.log("Registered!");
+						$('#successMessage').show();
 					} else {
+						$('#first_form').show();
+						Recaptcha.reload();
 						if(returnJSON['error']==1) {
-							alert('Captcha Error');
+							$("#captchaFailDialog").dialog("open");
+						} else {
+							alert("An unknown error occurred, please try again.");
 						}
 					}
 				}
@@ -35,5 +41,8 @@ $(document).ready(function() {
 		} else { // Form failed validation
 			$("#validationFailDialog").dialog("open");
 		}
+	});
+	$('#return_button').button().click( function() {
+    	window.location.href = "/";
 	});
 });

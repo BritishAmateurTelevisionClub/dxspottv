@@ -13,9 +13,10 @@ session_start();
 <script type="text/javascript" src="/js/locator.js"></script>
 </head>
 <body>
+<div id="first_form">
 <h2>New User Registration</h2>
 <form id='register_form'>
-	<label class="register_labels"><b>First Name/Nickname:</b>&nbsp;</label>
+	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
 	<input type=text name='fname' class="required" minlength="2" />
 <br>
 	<label class="register_labels"><b>Callsign:</b>&nbsp;</label>
@@ -26,9 +27,9 @@ session_start();
 <br><br>
 <label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() class="required" minlength="4" /> Maidenhead eg. IO91HW (Use either 4 or 6 characters)
 <br>
-<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' />
+<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" /> (Will fill in automatically from Locator)
 <br>
-<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' /> (Will fill in automatically from Locator)
+<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" /> (likewise)
 <br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' class="required email" /> Just for administrator contact in case of issues. Not publicly disclosed.
 <br><br>
@@ -39,9 +40,14 @@ echo recaptcha_get_html($publickey);
 ?>
 <button class="reduce-font-size" id="register_button">Register</button>
 </form>
+</div>
+<div id="successMessage" style="display: none">
 <h2>Registration Successful!</h2>
 <br>
+<button class="reduce-font-size" id="return_button">Return to Home</button>
 Click <a href="/">here</a> to return to the map and log in.
+</div>
 <div id="validationFailDialog" title="Validation Failed">The Form failed validation, please check and try again.</div>
+<div id="captchaFailDialog" title="Captcha Failed">The Captcha was incorrect, please try again.</div>
 </body>
 </html>
