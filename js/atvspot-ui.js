@@ -56,7 +56,7 @@ $(document).ready(function() {
 	});
 	
 	// Set up tabs
-	$( "#tabs" ).tabs(.tabs({ heightStyle: "auto" });
+	$( "#tabs" ).tabs();
 });
 
 
