@@ -1,10 +1,51 @@
-// Set up Time Span list
+// Set up Time/Band dropdowns
 //
 $(document).ready(function() {
 	$('#time_select').change(function() {
 		var nuTimeSpan = timespan_select.value;
 	});
+	$('#band_select').change(function() {
+		changeBandSelect($('#band_select').val());
+	});
 });
+
+function changeRepeaterBandSelect(select_val) {
+	switch(select_val)
+	{
+	case "70cm":
+		for (var i=0; i<repeater_markers.length; i++) {
+			if(repeater_markers[i].is70cm==1) {
+				repeater_markers[i].setVisible(true);
+			} else {
+				repeater_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "23cm":
+		for (var i=0; i<repeater_markers.length; i++) {
+			if(repeater_markers[i].is23cm==1) {
+				repeater_markers[i].setVisible(true);
+			} else {
+				repeater_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "13cm":
+		for (var i=0; i<repeater_markers.length; i++) {
+			if(repeater_markers[i].is13cm==1 || repeater_markers[i].is3cm==1) {
+				repeater_markers[i].setVisible(true);
+			} else {
+				repeater_markers[i].setVisible(false);
+			}
+		}
+		break;
+	default: // All
+		for (var i=0; i<repeater_markers.length; i++) {
+			repeater_markers[i].setVisible(true);
+		}
+		break;
+	}
+}
 
 // Spot Form
 $(document).ready(function() {

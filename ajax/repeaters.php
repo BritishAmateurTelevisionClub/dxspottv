@@ -2,42 +2,24 @@
 session_start();
 include('../spot_login.php');
 
-if(isset($_REQUEST['mode_id'])) { // Specific Mode
-
-$mode_id = escape($dbc, $_REQUEST['mode_id']);
-
-$output = array();
-$i=1;
-$repeater_result = mysqli_query($dbc, "SELECT * FROM repeaters WHERE mode='" . $mode_id . "';") or die(mysqli_error($dbc));
-while($row = mysqli_fetch_array($repeater_result))
-{
-	$output[$i] = array();
-	$output[$i]['callsign'] = $row['callsign'];
-	$output[$i]['description'] = $row['Description'];
-	$output[$i]['latitude'] = $row['lat'];
-	$output[$i]['longitude'] = $row['lon'];
-	$output[$i]['band'] = $row['band'];
-	$output[$i]['active'] = $row['active'];
-}
-
-$json_output = json_encode($output);
-} else {
 $repeater_result = mysqli_query($dbc, "SELECT * FROM repeaters;") or die(mysqli_error($dbc));
+
 while($row = mysqli_fetch_array($repeater_result))
 {
 	$repeater['callsign'] = $row['callsign'];
 	$repeater['description'] = $row['Description'];
 	$repeater['latitude'] = $row['lat'];
 	$repeater['longitude'] = $row['lon'];
-	$repeater['band'] = $row['band'];
+	$repeater['is_70cm'] = $row['is_70cm'];
+	$repeater['is_23cm'] = $row['is_23cm'];
+	$repeater['is_13cm'] = $row['is_13cm'];
+	$repeater['is_3cm'] = $row['is_3cm'];
 	$repeater['active'] = $row['active'];
 	$output[] = $repeater;
 	unset($repeater);
 }
 
-$json_output = json_encode($output);
-}
+print = json_encode($output);
 
-echo $json_output;
 mysql_end($dbc);
 ?>

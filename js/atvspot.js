@@ -95,6 +95,10 @@ function createRepeaterMarker(repeater_data) {
         title: repeater_data['callsign']
 	});
     marker.callsign = repeater_data['callsign'];
+    marker.is70cm = repeater_data['is_70cm'];
+    marker.is23cm = repeater_data['is_23cm'];
+    marker.is13cm = repeater_data['is_13cm'];
+    marker.is3cm = repeater_data['is_3cm'];
     repeater_markers.push(marker);
 
 	google.maps.event.addListener(marker, 'click', function() {
