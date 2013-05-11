@@ -71,13 +71,13 @@ function submitSpot() {
 }
 
 function submitListen() {
-	var 70cmActive = $('#listen_70cm_box').is(":checked");
-	var 23cmActive = $('#listen_23cm_box').is(":checked");
-	var 13cmActive = $('#listen_13cm_box').is(":checked");
+	var active70cm = $('#listen_70cm_box').is(":checked");
+	var active23cm = $('#listen_23cm_box').is(":checked");
+	var active13cm = $('#listen_13cm_box').is(":checked");
 	$.ajax({
 		url: "/ajax/submitListen.php",
 		data: {
-			70cm: 70cmActive
+			70cm: active70cm
 		},
 		success: function( data ) {
 			console.log(data);
