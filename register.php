@@ -32,12 +32,16 @@ session_start();
 <br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' class="required email" /> Just for administrator contact in case of issues. Not publicly disclosed.
 <br><br>
-<div id="recaptcha_div"></div>
-<br>
+<?php
+require_once('recaptchalib.php');
+$publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
+echo recaptcha_get_html($publickey);
+?>
 <button class="reduce-font-size" id="register_button">Register</button>
 </form>
 <h2>Registration Successful!</h2>
 <br>
 Click <a href="/">here</a> to return to the map and log in.
+<div id="validationFailDialog" title="Validation Failed">The Form failed validation, please check and try again.</div>
 </body>
 </html>

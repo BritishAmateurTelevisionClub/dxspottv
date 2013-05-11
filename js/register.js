@@ -1,11 +1,10 @@
 // Set up button
 //
 $(document).ready(function() {
-	fetchCaptcha();
+	$("#validationFailDialog").dialog({ autoOpen: false });
 	$('#register_form').validate();
 	$('#register_button').button().click( function() {
 		if($("#register_form").valid()==true) {
-			fetchCaptcha();
 			$.ajax({
 				url: '/ajax/submit_register.php',
 				type: "GET",
@@ -32,16 +31,8 @@ $(document).ready(function() {
 					}
 				}
 			});
+		} else { // Form failed validation
+			$("#validationFailDialog").dialog("open");
 		}
 	});
 });
-
-function fetchCaptcha() {
-	$.ajax({
-		url: '/ajax/create_captcha.php',
-		type: "GET",
-		success: function( captchaHTML ) {
-			$('#recaptcha_div').html(captchaHTML);
-		}
-	});
-}
