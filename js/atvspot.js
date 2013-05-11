@@ -48,96 +48,80 @@ function initialize() {
 	mapShow("user");
 }
 
-	function getMarkerImage(iconColor) {
-   		if ((typeof(iconColor)=="undefined") || (iconColor==null)) {
-			iconColor = "red";
-		}
-		if (!gicons[iconColor]) {
-			gicons[iconColor] = new google.maps.MarkerImage("http://admissions.mansfield.edu/more/visit-mansfield/interactive-map/map/maps/pin-"+ iconColor +"2.png",
-				// This marker is 20 pixels wide by 34 pixels tall.
-				new google.maps.Size(30, 30),
-				// The origin for this image is 0,0.
-				new google.maps.Point(0,0),
-				// The anchor for this image is at 6,20.
-				new google.maps.Point(9, 30));
-		}
-		return gicons[iconColor];
+function createUserMarker(user_data) {
+	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
+	var contentString;
+	if(user_data['months_active']>1) {
+		contentString = 'Last active ' + user_data['months_active'] + ' months ago.';
+	} else if(user_data['months_active']>0) {
+		contentString = 'Last active ' + user_data['months_active'] + ' month ago.';
+	} else if (user_data['days_active']>1) {
+		contentString = 'Last active ' + user_data['days_active'] + ' days ago.';
+	} else if (user_data['days_active']>0) {
+		contentString = 'Last active ' + user_data['days_active'] + ' day ago.';
+	} else if (user_data['hours_active']>1) {
+		contentString = 'Last active ' + user_data['hours_active'] + ' hours ago.';
+	} else if (user_data['hours_active']>0) {
+		contentString = 'Last active ' + user_data['hours_active'] + ' hour ago.';
+	} else {
+		contentString = 'Currently Active.'
 	}
+	var marker = new google.maps.Marker({
+        position: lat_lon,
+		icon: userActiveIcon,
+        map: map,
+        title: user_data['callsign']
+    });
+    marker.callsign = user_data['callsign'];
+    user_markers.push(marker);
 
-	function createUserMarker(latlng,name,html,category) {
-		var contentString = html;
-		var marker = new google.maps.Marker({
-		        position: latlng,
-				icon: userActiveIcon,
-				//icon: mapicons[category],
-		        map: map,
-		        title: name
-        		//zIndex: Math.round(latlng.lat()*-100000)<<5
-	        });
-	        marker.mycategory = category;
-	        marker.myname = name;
-	        user_markers.push(marker);
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent("<b>"+user_data['callsign']+"</b><br>"+contentString);
+        infowindow.open(map,marker);
+   	});
+}
 
-		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.setContent("<b>"+name+"</b><br>"+contentString);
-		        infowindow.open(map,marker);
-        	});
+function createRepeaterMarker(repeater_data) {
+	var latlon = new google.maps.LatLng(repeater_data['latitude'], repeater_data['longitude']);
+	if(repeater_data['active']==1) {
+		var toBeIcon = repeaterIcon;
+	} else {
+		var toBeIcon = repeaterOfflineIcon;
 	}
+	var marker = new google.maps.Marker({
+        position: latlon,
+		icon: toBeIcon,
+        map: map,
+        title: repeater_data['callsign']
+	});
+    marker.callsign = repeater_data['callsign'];
+    repeater_markers.push(marker);
 
-	function createRepeaterMarker(latlng,name,html,category,active) {
-		var contentString = html;
-		if(active==1) {
-			var toBeIcon = repeaterIcon;
-		} else {
-			var toBeIcon = repeaterOfflineIcon;
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent("<b>"+repeater_data['callsign']+"</b><br>"+repeater_data['description']);
+        infowindow.open(map,marker);
+  	});
+}
+
+function parseRepeaters(JSONinput) {
+	var r_id = new Array();
+	for(r_id in JSONinput){
+		var repeater = JSONinput[r_id];
+		var marker_search = jQuery.inArray(repeater['callsign'], repeater_markers.callsign)
+		if(marker_search<0) {
+			createRepeaterMarker(repeater);
 		}
-		var marker = new google.maps.Marker({
-		        position: latlng,
-				icon: toBeIcon,
-				//icon: mapicons[category],
-		        map: map,
-		        title: name
-        		//zIndex: Math.round(latlng.lat()*-100000)<<5
-	        });
-	        marker.mycategory = category;
-	        marker.myname = name;
-	        repeater_markers.push(marker);
-
-		google.maps.event.addListener(marker, 'click', function() {
-			infowindow.setContent("<b>"+name+"</b><br>"+contentString);
-		        infowindow.open(map,marker);
-        	});
 	}
+}
 
-	function parseRepeaters(JSONinput) {
-		var r_id = new Array();
-		for(r_id in JSONinput){
-			var repeater = JSONinput[r_id];
-			createRepeaterMarker(new google.maps.LatLng(repeater['latitude'], repeater['longitude']),repeater['callsign'],repeater['description'],repeater['band'],repeater['active']);
+function parseUsers(JSONinput) {
+	var u_id = new Array();
+	for(u_id in JSONinput){
+		var user = JSONinput[u_id];
+		var marker_search = jQuery.inArray(user['callsign'], user_markers.callsign)
+		if(marker_search<0) {
+			createUserMarker(user);
 		}
-    	}
-
-	function parseUsers(JSONinput) {
-		var u_id = new Array();
-		for(u_id in JSONinput){
-			var user = JSONinput[u_id];
-			var activity_str;
-			if(user['months_active']>1) {
-				activity_str = 'Last active ' + user['months_active'] + ' months ago.';
-			} else if(user['months_active']>0) {
-				activity_str = 'Last active ' + user['months_active'] + ' month ago.';
-			} else if (user['days_active']>1) {
-				activity_str = 'Last active ' + user['days_active'] + ' days ago.';
-			} else if (user['days_active']>0) {
-				activity_str = 'Last active ' + user['days_active'] + ' day ago.';
-			} else if (user['hours_active']>1) {
-				activity_str = 'Last active ' + user['hours_active'] + ' hours ago.';
-			} else if (user['hours_active']>0) {
-				activity_str = 'Last active ' + user['hours_active'] + ' hour ago.';
-			} else {
-				activity_str = 'Currently Active.'
-			}
-			createUserMarker(new google.maps.LatLng(user['latitude'], user['longitude']),user['callsign'],activity_str,"users");
-		}
+	}
 }
 
