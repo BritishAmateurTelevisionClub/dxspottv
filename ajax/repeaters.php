@@ -19,7 +19,7 @@ while($row = mysqli_fetch_array($repeater_result))
 	unset($repeater);
 }
 
-print = json_encode($output);
+print json_encode($output);
 
 mysql_end($dbc);
 ?>
