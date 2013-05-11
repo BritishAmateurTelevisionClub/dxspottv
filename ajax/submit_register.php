@@ -1,4 +1,7 @@
 <?php
+
+if(!(isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]))) {
+
 require_once('recaptchalib.php');
 $privatekey = "6LfVM-ESAAAAAJa-5SRWpWMBEOI1z1UNSkVbvqzp";
 $resp = recaptcha_check_answer ($privatekey,
@@ -10,8 +13,7 @@ $output = array();
 
 if (!$resp->is_valid) {
 	$output['successful'] = 0;
-	//$output['error'] = "1"; // CAPTCHA Error
-	$output['error'] = $resp->error; // CAPTCHA Error
+	$output['error'] = "1"; // CAPTCHA Error
 	print json_encode($output);
 	die ();
 }

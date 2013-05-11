@@ -14,3 +14,8 @@ html, body {
 	width:150px;
     float:left;
 }
+
+#recaptcha_div {
+	height: 300px;
+	width: 500px;
+}

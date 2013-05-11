@@ -32,11 +32,7 @@ session_start();
 <br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' class="required email" /> Just for administrator contact in case of issues. Not publicly disclosed.
 <br><br>
-<?php
-require_once('recaptchalib.php');
-$publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
-echo recaptcha_get_html($publickey);
-?>
+<div id="recaptcha_div"></div>
 <br>
 <button class="reduce-font-size" id="register_button">Register</button>
 </form>
