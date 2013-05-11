@@ -187,12 +187,12 @@ function updateListening() {
 	$.ajax({
 		url: "/ajax/update_listening.php",
 		data: {
-			70cm: $('#listen_70cm_box').is(":checked"),
-			70cm_freq: $('#listen_70cm_freq').val(),
-			23cm: $('#listen_23cm_box').is(":checked"),
-			23cm_freq: $('#listen_23cm_freq').val(),
-			13cm: $('#listen_13cm_box').is(":checked"),
-			13cm_freq: $('#listen_13cm_freq').val()
+			l70cm: $('#listen_70cm_box').is(":checked"),
+			l70cm_freq: $('#listen_70cm_freq').val(),
+			l23cm: $('#listen_23cm_box').is(":checked"),
+			l23cm_freq: $('#listen_23cm_freq').val(),
+			l13cm: $('#listen_13cm_box').is(":checked"),
+			l13cm_freq: $('#listen_13cm_freq').val()
 		},
 		success: function( data ) {
 			console.log(data);
