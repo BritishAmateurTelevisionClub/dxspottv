@@ -15,7 +15,7 @@ $(document).ready(function() {
 					fname: $('#fname').val(),
 					callsign: $('#callsign').val(),
 					passwd: $('#passwd').val(),
-					email: $('#passwd').val(),
+					email: $('#email').val(),
 					locator: $('#locator').val(),
 					lat: $('#lon').val(),
 					lon: $('#lon').val(),
