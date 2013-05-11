@@ -20,6 +20,7 @@ while($session_row = mysqli_fetch_array($session_result))
 	$output[$i]['hours_active'] = $hours_diff;
 	$output[$i]['days_active'] = $days_diff;
 	$output[$i]['months_active'] = $months_diff;
+	$i++;
 }
 
 $json_output = json_encode($output);
