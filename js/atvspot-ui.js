@@ -5,9 +5,48 @@ $(document).ready(function() {
 		var nuTimeSpan = timespan_select.value;
 	});
 	$('#band_select').change(function() {
+		changeUsersBandSelect($('#band_select').val());
 		changeRepeatersBandSelect($('#band_select').val());
 	});
 });
+
+function changeUsersBandSelect(select_val) {
+	switch(select_val)
+	{
+	case "70cm":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].is70cm==1) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "23cm":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].is23cm==1) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "13cm":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].is13cm==1 || user_markers[i].is3cm==1) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	default: // All
+		for (var i=0; i<user_markers.length; i++) {
+			user_markers[i].setVisible(true);
+		}
+		break;
+	}
+}
 
 function changeRepeatersBandSelect(select_val) {
 	switch(select_val)
@@ -124,6 +163,7 @@ $(document).ready(function() {
 		} else {
 			$('#listen_70cm_options').hide(50);
 		}
+		updateListening();
 	});
 	$('#listen_23cm_box').change(function() {
 		if ($('#listen_23cm_box').is(":checked")) {
@@ -131,6 +171,7 @@ $(document).ready(function() {
 		} else {
 			$('#listen_23cm_options').hide(50);
 		}
+		updateListening();
 	});
 	$('#listen_13cm_box').change(function() {
 		if ($('#listen_13cm_box').is(":checked")) {
@@ -138,5 +179,23 @@ $(document).ready(function() {
 		} else {
 			$('#listen_13cm_options').hide(50);
 		}
+		updateListening();
 	});
 });
+
+function updateListening() {
+	$.ajax({
+		url: "/ajax/update_listening.php",
+		data: {
+			70cm: $('#listen_70cm_box').is(":checked"),
+			70cm_freq: $('#listen_70cm_freq').val(),
+			23cm: $('#listen_23cm_box').is(":checked"),
+			23cm_freq: $('#listen_23cm_freq').val(),
+			13cm: $('#listen_13cm_box').is(":checked"),
+			13cm_freq: $('#listen_13cm_freq').val()
+		},
+		success: function( data ) {
+			console.log(data);
+		}
+	});
+}

@@ -73,6 +73,10 @@ function createUserMarker(user_data) {
         title: user_data['callsign']
     });
     marker.callsign = user_data['callsign'];
+    marker.is70cm = user_data['is_70cm'];
+    marker.is23cm = user_data['is_23cm'];
+    marker.is13cm = user_data['is_13cm'];
+    marker.is3cm = user_data['is_3cm'];
     user_markers.push(marker);
 
 	google.maps.event.addListener(marker, 'click', function() {
