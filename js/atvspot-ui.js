@@ -6,6 +6,12 @@ $(document).ready(function() {
 	});
 });
 
+// Spot Form
+$(document).ready(function() {
+	$('#spot_button').button().click( function() {
+    	submitSpot();
+	});
+});
 // Set up Users/Repeaters checkboxes
 //
 $(document).ready(function() {
