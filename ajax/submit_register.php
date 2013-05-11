@@ -1,6 +1,9 @@
 <?php
 
-if(!(isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]))) {
+if(!(isset($_REQUEST["fname"]) && isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]) && isset($_REQUEST["email"]) && isset($_REQUEST["locator"]) && isset($_REQUEST["lat"]) && isset($_REQUEST["lon"]))) {
+	$output['successful'] = 0;
+	$output['error'] = "0"; // Lack of stuff Error
+} else {
 
 require_once('recaptchalib.php');
 $privatekey = "6LfVM-ESAAAAAJa-5SRWpWMBEOI1z1UNSkVbvqzp";
@@ -58,6 +61,7 @@ $crypt = crypt($passwd, $salt);
 $insert_query="INSERT into users (name, callsign, password, salt, locator, email, lat, lon) VALUES ('{$name}', '{$callsign}', '{$crypt}', '{$salt}', '{$locator}', '{$email}', '{$lat}', '{$lon}');";
 $ret = mysqli_query($dbc, $insert_query) or die(mysqli_error($dbc));
 $output['successful'] = 1;
+}
 }
 print json_encode($output);
 ?>
