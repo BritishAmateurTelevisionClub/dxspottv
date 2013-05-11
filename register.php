@@ -38,7 +38,7 @@ require_once('recaptchalib.php');
 $publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
 echo recaptcha_get_html($publickey);
 ?>
-<button class="reduce-font-size" id="register_button">Register</button>
+<button id="register_button">Register</button>
 </form>
 </div>
 <div id="successMessage" style="display: none">
