@@ -17,7 +17,7 @@ $(document).ready(function() {
 					passwd: $('#passwd').val(),
 					email: $('#email').val(),
 					locator: $('#locator').val(),
-					lat: $('#lon').val(),
+					lat: $('#lat').val(),
 					lon: $('#lon').val(),
 					recaptcha_challenge_field: $('[name="recaptcha_challenge_field"]').val(),
 					recaptcha_response_field: $('[name="recaptcha_response_field"]').val()
