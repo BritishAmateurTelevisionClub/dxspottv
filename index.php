@@ -181,16 +181,16 @@ if ($auth_error==1) {
 		</form>
 		<b>New Spot</b>
 		<form id='spot_form'>
-		Frequency: <input type=text name="spot_freq"></input><br>
-		Mode: <select id="spot_mode_select">
+		<label class="spot_form_labels">Frequency:&nbsp;</label><input type=text name="spot_freq" class="spot_box_med" /><br>
+		<label class="spot_form_labels">Mode:&nbsp;</label><select id="spot_mode_select">
 		<option value="analogtv">Analog TV</option>
 		<option value="digitaltv">Digital TV</option>
 		</select>
 		<br>
 		<b>Remote Station</b><br>
-		Callsign: <input type=text name="remote_callsign" id="remote_callsign"></input><br>
-		Locator: <input type=text name="remote_loc" id="remote_loc"></input><br>
-		Comments: <input type=text name="spot_comments" length=60></input><br>
+		<label class="spot_form_labels">Callsign:&nbsp;</label><input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" /><br>
+		<label class="spot_form_labels">Locator:&nbsp;</label><input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
+		<label class="spot_form_labels">Comments:&nbsp;</label><input type=text name="spot_comments" class="spot_box_long" /><br>
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>
 		</form>
 	</div>
