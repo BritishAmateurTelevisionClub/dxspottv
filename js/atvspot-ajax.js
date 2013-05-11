@@ -60,8 +60,8 @@ function submitSpot() {
 		data: {
 			freq: $("spot_freq").val(),
 			mode: $("spot_mode_select").val(),
-			remote-callsign: $("remote_callsign").val(),
-			remote-locator: $("remote_loc").val(),
+			remoteCallsign: $("remote_callsign").val(),
+			remoteLocator: $("remote_loc").val(),
 			comments: $("spot_comments").val()
 		},
 		success: function( data ) {
@@ -71,13 +71,13 @@ function submitSpot() {
 }
 
 function submitListen() {
-	var 70cm-active = $('#listen_70cm_box').is(":checked");
-	var 23cm-active = $('#listen_23cm_box').is(":checked");
-	var 13cm-active = $('#listen_13cm_box').is(":checked");
+	var 70cm_active = $('#listen_70cm_box').is(":checked");
+	var 23cm_active = $('#listen_23cm_box').is(":checked");
+	var 13cm_active = $('#listen_13cm_box').is(":checked");
 	$.ajax({
 		url: "/ajax/submitListen.php",
 		data: {
-			70cm: 70cm-active
+			70cm: 70cm_active
 		},
 		success: function( data ) {
 			console.log(data);
