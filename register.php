@@ -45,7 +45,6 @@ echo recaptcha_get_html($publickey);
 <h2>Registration Successful!</h2>
 <br>
 <button class="reduce-font-size" id="return_button">Return to Home</button>
-Click <a href="/">here</a> to return to the map and log in.
 </div>
 <div id="validationFailDialog" title="Validation Failed">The Form failed validation, please check and try again.</div>
 <div id="captchaFailDialog" title="Captcha Failed">The Captcha was incorrect, please try again.</div>
