@@ -1,5 +1,7 @@
 // Set up refresh functions
 //
+var mapRefresh=self.setInterval(function(){updateMap()},3000);
+
 function updateMap() {
 	console.log("Updating map..");
 	getUsers();
