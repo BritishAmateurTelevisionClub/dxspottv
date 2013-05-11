@@ -190,17 +190,17 @@ function updateListening() {
 	if($('#listen_70cm_box').is(":checked")) {
 		active70cm = 1;
 	} else {
-		active70cm = 1;
+		active70cm = 0;
 	}
 	if($('#listen_23cm_box').is(":checked")) {
 		active23cm = 1;
 	} else {
-		active23cm = 1;
+		active23cm = 0;
 	}
 	if($('#listen_13cm_box').is(":checked")) {
 		active13cm = 1;
 	} else {
-		active70cm = 1;
+		active70cm = 0;
 	}
 	$.ajax({
 		url: "/ajax/update_listening.php",
