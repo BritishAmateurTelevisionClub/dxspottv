@@ -46,6 +46,8 @@ function initialize() {
 	getUsers();
 
 	mapShow("user");
+	
+	window.setInterval(updateMap(),2000);
 }
 
 	function getMarkerImage(iconColor) {
