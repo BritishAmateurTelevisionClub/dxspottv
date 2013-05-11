@@ -107,8 +107,8 @@ function parseRepeaters(JSONinput) {
 	var r_id = new Array();
 	for(r_id in JSONinput){
 		var repeater = JSONinput[r_id];
-		var marker_search = jQuery.inArray(repeater['callsign'], repeater_markers.callsign)
-		if(marker_search<0) {
+		var marker_search = $.grep(repeater_markers, function(e){ return e.callsign == repeater['callsign']; });
+		if(marker_search==0) {
 			createRepeaterMarker(repeater);
 		}
 	}
@@ -118,8 +118,8 @@ function parseUsers(JSONinput) {
 	var u_id = new Array();
 	for(u_id in JSONinput){
 		var user = JSONinput[u_id];
-		var marker_search = jQuery.inArray(user['callsign'], user_markers.callsign)
-		if(marker_search<0) {
+		var marker_search = $.grep(user_markers, function(e){ return e.callsign == user['callsign']; });
+		if(marker_search==0) {
 			createUserMarker(user);
 		}
 	}
