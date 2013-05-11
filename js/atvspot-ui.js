@@ -5,11 +5,11 @@ $(document).ready(function() {
 		var nuTimeSpan = timespan_select.value;
 	});
 	$('#band_select').change(function() {
-		changeBandSelect($('#band_select').val());
+		changeRepeatersBandSelect($('#band_select').val());
 	});
 });
 
-function changeRepeaterBandSelect(select_val) {
+function changeRepeatersBandSelect(select_val) {
 	switch(select_val)
 	{
 	case "70cm":
