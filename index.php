@@ -137,10 +137,10 @@ if($logged_in) {
 Callsign: <input type=text name="callsign" id="callsign_input" <?php if($user_known) { print 'value="' . $callsign . '"'; } ?>/>
 Password: <input type=password name="passwd" id="passwd_input" />
 <button class="login-button reduce-font-size" id="login_button">Log In</button>
-</form>
 <?php
 if ($auth_error==1) {
 ?>
+</form>
 <div class="ui-state-error ui-corner-all reduce-font-size" style="padding: 0em .7em;">
 		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
 		<strong>Alert:</strong>&nbsp;<?php print $auth_error_text; ?></p>
@@ -149,6 +149,7 @@ if ($auth_error==1) {
 } else if ($logged_in==0) {
 ?>
 &nbsp;&nbsp;<button class="register-button reduce-font-size" id="register_button">Register</button>
+</form>
 <?php
 } // End of auth_error/register link.
 } // End of greeting/login form
