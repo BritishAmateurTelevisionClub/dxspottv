@@ -10,7 +10,8 @@ $output = array();
 
 if (!$resp->is_valid) {
 	$output['successful'] = 0;
-	$output['error'] = "1"; // CAPTCHA Error
+	//$output['error'] = "1"; // CAPTCHA Error
+	$output['error'] = $resp->error; // CAPTCHA Error
 	print json_encode($output);
 	die ();
 }
