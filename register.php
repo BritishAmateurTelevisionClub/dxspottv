@@ -17,13 +17,13 @@ session_start();
 <h2>New User Registration</h2>
 <form id='register_form'>
 	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
-	<input type=text name='fname' class="required" minlength="2" />
+	<input type=text name='fname' id='fname' class="required" minlength="2" />
 <br>
 	<label class="register_labels"><b>Callsign:</b>&nbsp;</label>
-	<input type=text name='callsign' class="required" minlength="4" /> Will be converted to Upper case. eg. M0DNY
+	<input type=text name='callsign' id='callsign' class="required" minlength="4" /> Will be converted to Upper case. eg. M0DNY
 <br>
 	<label class="register_labels"><b>Password:</b>&nbsp;</label>
-	<input type=password name='passwd' class="required" minlength="5" />
+	<input type=password name='passwd' id='passwd' class="required" minlength="5" />
 <br><br>
 <label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() class="required" minlength="4" /> Maidenhead eg. IO91HW (Use either 4 or 6 characters)
 <br>
@@ -31,7 +31,7 @@ session_start();
 <br>
 <label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" /> (likewise)
 <br>
-<label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' class="required email" /> Just for administrator contact in case of issues. Not publicly disclosed.
+<label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" /> Just for administrator contact in case of issues. Not publicly disclosed.
 <br><br>
 <?php
 require_once('recaptchalib.php');
