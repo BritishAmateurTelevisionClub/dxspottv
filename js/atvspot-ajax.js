@@ -72,9 +72,24 @@ function submitSpot() {
 }
 
 function submitListen() {
-	var active70cm = $('#listen_70cm_box').is(":checked");
-	var active23cm = $('#listen_23cm_box').is(":checked");
-	var active13cm = $('#listen_13cm_box').is(":checked");
+	var active70cm;
+	var active23cm;
+	var active13cm;
+	if($('#listen_70cm_box').is(":checked")) {
+		active70cm = 1;
+	} else {
+		active70cm = 1;
+	}
+	if($('#listen_23cm_box').is(":checked")) {
+		active23cm = 1;
+	} else {
+		active23cm = 1;
+	}
+	if($('#listen_13cm_box').is(":checked")) {
+		active13cm = 1;
+	} else {
+		active13cm = 1;
+	}
 	$.ajax({
 		url: "/ajax/submitListen.php",
 		type: "GET",
