@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /ajax/
+Disallow: /js/
+Disallow: /css/
+Disallow: /images/
+Disallow: /logout.php
+
