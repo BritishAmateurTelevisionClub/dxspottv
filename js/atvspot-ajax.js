@@ -56,18 +56,18 @@ function getSpots() {
 
 function submitSpot() {
 	var rlatlon = [];
-	rlatlon = LoctoLatLon($("remote_loc").val());
+	rlatlon = LoctoLatLon($("#remote_loc").val());
 	$.ajax({
 		url: "/ajax/submit_spot.php",
 		type: "GET",
 		data: {
-			freq: $("spot_freq").val(),
-			mode: $("spot_mode_select").val(),
-			r_callsign: $("remote_callsign").val(),
-			r_locator: $("remote_loc").val(),
+			freq: $("#spot_freq").val(),
+			mode: $("#spot_mode_select").val(),
+			r_callsign: $("#remote_callsign").val(),
+			r_locator: $("#remote_loc").val(),
 			r_lat: latlon[0],
 			r_lon: latlon[1],
-			comments: $("spot_comments").val()
+			comments: $("#spot_comments").val()
 		},
 		success: function( data ) {
 			console.log(data);
