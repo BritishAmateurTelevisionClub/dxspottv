@@ -23,6 +23,7 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 		$r_lon = mysqli_real_escape_string($dbc, $_REQUEST["r_lon"]);
 		
 		$check_existing_user = mysqli_query($dbc, "SELECT id FROM users WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
+		$check_existing_repeater = mysqli_query($dbc, "SELECT id FROM repeaters WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
 		if(mysqli_num_rows ($check_existing_user)!=0) { // End user exists
 		
 			$check_existing_user_row = mysqli_fetch_array($check_existing_user);
@@ -33,7 +34,9 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 			updateRemoteUserActivity($user_id);
 			
 		} else if(mysqli_num_rows ($check_existing_repeater)!=0) { // Is a repeater
-		
+			
+			$check_existing_repeater_row = mysqli_fetch_array($check_existing_repeater);
+			$r_userid = $check_existing_repeater_row['id'];
 			$add_spot_query = "INSERT into spots (mode_id, frequency, primary_id, secondary_id, secondary_isrepeater, comments) VALUES ('{$mode_id}', '{$freq}', '{$user_id}', '{$r_userid}', '1', '{$comments}');";
 			mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
 			
