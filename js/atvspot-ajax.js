@@ -59,7 +59,7 @@ function getSpots() {
 	$.ajax({
 		url: "/ajax/spots.php",
 		success: function( data ) {
-			console.log(data);
+			//console.log(data);
 			myJSONObject = eval('(' + data + ')');
     		parseSpots(myJSONObject);
 		}
@@ -82,7 +82,7 @@ function submitSpot() {
 			comments: $("#spot_comments").val()
 		},
 		success: function( data ) {
-			console.log(data);
+			//console.log(data);
 		}
 	});
 }
@@ -118,7 +118,7 @@ function updateListening() {
 			l13cm_freq: $('#listen_13cm_freq').val()
 		},
 		success: function( data ) {
-			console.log(data);
+			//console.log(data);
 		}
 	});
 }
