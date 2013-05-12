@@ -16,6 +16,7 @@ while($user_row = mysqli_fetch_array($user_result))
 	$hours_diff = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%H');
 	$days_diff = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%d');
 	$output[$i] = array();
+	$output[$i]['id'] = $user_id;
 	$output[$i]['callsign'] = $user_row['callsign'];
 	$output[$i]['latitude'] = $user_row['lat'];
 	$output[$i]['longitude'] = $user_row['lon'];

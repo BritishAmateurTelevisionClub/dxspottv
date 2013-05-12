@@ -1,5 +1,6 @@
 var repeater_markers = [];
 var user_markers = [];
+var spot_lines = [];
 var map;
 
 var infowindow;
@@ -79,6 +80,7 @@ function createUserMarker(user_data) {
         map: map,
         title: user_data['callsign']
     });
+    marker.user_id = user_data['id']
     marker.callsign = user_data['callsign'];
     marker.is70cm = user_data['is_70cm'];
     marker.is23cm = user_data['is_23cm'];
@@ -118,6 +120,47 @@ function createRepeaterMarker(repeater_data) {
   	});
 }
 
+function createSpotLine(spot_data) {
+
+	var primary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['primary_id']; });
+	var primary_latlon = user_markers[primary_search].position;
+	var primary_callsign = user_markers[primary_search].callsign;
+	var secondary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['secondary_id']; });
+	var secondary_latlon = user_markers[secondary_search].position;
+	var secondary_callsign = user_markers[secondary_search].callsign;
+	
+	var spotLineCoordinates = [
+		primary_latlon,
+		secondary_latlon
+	];
+	var spotLine = new google.maps.Polyline({
+    	path: spotLineCoordinates,
+    	strokeColor: "#FF0000",
+    	strokeOpacity: 1.0,
+    	strokeWeight: 2
+	});
+	
+	spotLine.frequency = spot_data['frequency'];
+	spotLine.mode_id = spot_data['mode_id'];
+	
+	spotLine.primary_id = spot_data['primary_id'];
+	spotLine.primary_callsign = primary_callsign;
+	spotLine.secondary_id = spot_data['secondary_id'];
+	spotLine.secondary_cakksugb = secondary_callsign;
+	spotLine.time = spot_data['time'];
+	spotLine.comments = spot_data['comments'];
+	
+	google.maps.event.addListener(spotLine, 'click', function() {
+		infowindow.setContent("<b>"+
+			primary_callsign+"</b><br>"+"<b>"+
+			secondary_callsign+"</b>");
+    	infowindow.open(map,spotLine);
+   	});
+	
+	spotLine.setMap(map);
+	spot_lines.push(spotLine);
+}
+
 function parseRepeaters(JSONinput) {
 	var r_id = new Array();
 	for(r_id in JSONinput){
@@ -140,3 +183,13 @@ function parseUsers(JSONinput) {
 	}
 }
 
+function parseSpots(JSONinput) {
+	var s_id = new Array();
+	for(s_id in JSONinput){
+		var spot = JSONinput[s_id];
+		var spot_search = $.grep(spot_lines, function(e){ return e.id == spot['id']; });
+		if(spot_search==0) {
+			createSpotLine(spot);
+		}
+	}
+}

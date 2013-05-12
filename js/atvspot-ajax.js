@@ -6,7 +6,7 @@ function updateMap() {
 	console.log("Updating map..");
 	getUsers();
 	getRepeaters();
-	//getSpots();
+	getSpots();
 }
 
 function getRepeaters() {
@@ -43,13 +43,10 @@ function getUsers() {
 function getSpots() {	
 	$.ajax({
 		url: "/ajax/spots.php",
-		type: "GET",
-		data: {
-			timespan: $("time_select").val(),
-			bands: $("band_select").val()
-		},
 		success: function( data ) {
 			console.log(data);
+			myJSONObject = eval('(' + data + ')');
+    		parseSpots(myJSONObject);
 		}
 	});
 }
