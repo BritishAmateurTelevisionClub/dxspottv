@@ -118,7 +118,7 @@ $(document).ready(function() {
 
 // Load IRC (using php-configured url)
 //
-$(document).ready(function() {
+$(window).load(function () {
 	document.getElementById('irc_frame').src = irc_frame_source;
 });
 
