@@ -130,6 +130,7 @@ function createSpotLine(spot_data) {
 		var secondary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['secondary_id']; });
 	} else {
 		var secondary_search = $.grep(repeater_markers, function(e){ return e.repeater_id == spot_data['secondary_id']; });
+	}
 	
 	var secondary_latlon = secondary_search[0].position;
 	var secondary_callsign = secondary_search[0].callsign;
