@@ -117,3 +117,29 @@ $(document).ready(function() {
 		updateListening();
 	});
 });
+
+function createGlobalSpotLog(spotLog) {
+	var spotLogDivContent = "";
+	var spot = new Array();
+	for(spot in spotLog.reverse()){
+		var primary_search = $.grep(user_markers, function(e){
+			return e.user_id == spot_lines[i].primary_id;
+		});
+		// find our secondary marker
+		if(spot_lines[i].secondary_isrepeater==1) { // if its a repeater
+			var secondary_search = $.grep(repeater_markers, function(e){
+				return e.repeater_id == spot_lines[i].secondary_id;
+			});
+		} else { // or a user
+			var secondary_search = $.grep(user_markers, function(e){
+				return e.user_id == spot_lines[i].secondary_id;
+			});
+		}
+		spotLogDivContent+=spot['time'].substr(11,8);
+		spotLogDivContent+=":&nbsp<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
+		spotLogDivContent+="<br>";
+		spotLogDivContent+="Frequency:&nbsp;"+spot['frequency']+"MHz";
+		spotLogDivContent+="<br><br>";
+	}
+	$('#spotLog').html(spotLogDivContent);
+}

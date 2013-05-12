@@ -62,6 +62,7 @@ function getSpots() {
 			//console.log(data);
 			myJSONObject = eval('(' + data + ')');
     		parseSpots(myJSONObject);
+    		createGlobalSpotLog(myJSONObject);
 		}
 	});
 }
