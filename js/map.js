@@ -30,40 +30,129 @@
 
 function usersShow() {
 	changeUsersBandSelect($('#band_select').val());
-	//for (var i=0; i<user_markers.length; i++) {
-	//	user_markers[i].setVisible(true);
-	//}
+	checkSpots();
 	infowindow.close();
 }
 function usersHide() {
 	for (var i=0; i<user_markers.length; i++) {
 		user_markers[i].setVisible(false);
-		for (var j=0; j<spot_lines.length; j++) {
-			if ((spot_lines[j].primary_id == user_markers[i].user_id) || (spot_lines[j].secondary_id == user_markers[i].user_id)) {
-				spot_lines[j].setVisible(false);
-			}
-		}
 	}
+	checkSpots();
 	infowindow.close();
 }
 
 function repeatersShow() {
 	changeRepeatersBandSelect($('#band_select').val());
-	//for (var i=0; i<repeater_markers.length; i++) {
-	//	repeater_markers[i].setVisible(true);
-	//}
+	checkSpots();
 	infowindow.close();
 }
 function repeatersHide() {
 	for (var i=0; i<repeater_markers.length; i++) {
 		repeater_markers[i].setVisible(false);
-		for (var j=0; j<spot_lines.length; j++) {
-			if (spot_lines[j].secondary_id == repeaters_markers[i].repeater_id) {
-				spot_lines[j].setVisible(false);
-			}
+	}
+	checkSpots();
+	infowindow.close();
+}
+
+function checkSpots() {
+	for (var i=0; i<spot_lines.length; i++) {
+		// find our primary user marker
+		var primary_search = $.grep(user_markers, function(e){
+			return e.user_id == spot_lines[i].primary_id;
+		});
+		// find our secondary marker
+		if(spot_lines[i].secondary_isrepeater==1) { // if its a repeater
+			var secondary_search = $.grep(repeater_markers, function(e){
+				return e.repeater_id == spot_lines[i].secondary_id;
+			});
+		} else { // or a user
+			var secondary_search = $.grep(user_markers, function(e){
+				return e.user_id == spot_lines[i].secondary_id;
+			});
+		}
+		// if both ends are visible then show(), else hide()
+		if((primary_search[0].is(":visible")==true) && (secondary_search[0].is(":visible")==true)) {
+			spot_lines[i].show();
+		} else {
+			spot_lines[i].hide();
 		}
 	}
-	infowindow.close();
+}
+
+function changeUsersBandSelect(select_val) {
+	switch(select_val)
+	{
+	case "70cm":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].is70cm==1) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "23cm":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].is23cm==1) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "13cm":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].is13cm==1 || user_markers[i].is3cm==1) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	default: // All
+		for (var i=0; i<user_markers.length; i++) {
+			user_markers[i].setVisible(true);
+		}
+		break;
+	}
+}
+
+function changeRepeatersBandSelect(select_val) {
+	switch(select_val)
+	{
+	case "70cm":
+		for (var i=0; i<repeater_markers.length; i++) {
+			if(repeater_markers[i].is70cm==1) {
+				repeater_markers[i].setVisible(true);
+			} else {
+				repeater_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "23cm":
+		for (var i=0; i<repeater_markers.length; i++) {
+			if(repeater_markers[i].is23cm==1) {
+				repeater_markers[i].setVisible(true);
+			} else {
+				repeater_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "13cm":
+		for (var i=0; i<repeater_markers.length; i++) {
+			if(repeater_markers[i].is13cm==1 || repeater_markers[i].is3cm==1) {
+				repeater_markers[i].setVisible(true);
+			} else {
+				repeater_markers[i].setVisible(false);
+			}
+		}
+		break;
+	default: // All
+		for (var i=0; i<repeater_markers.length; i++) {
+			repeater_markers[i].setVisible(true);
+		}
+		break;
+	}
 }
 
 function myclick(i) {
