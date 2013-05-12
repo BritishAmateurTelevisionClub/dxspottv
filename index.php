@@ -78,6 +78,7 @@ var irc_frame_source = "http://webchat.freenode.net/?channels=#atvspot"
 <script type="text/javascript" src="js/atvspot-ajax.js"></script>
 <script type="text/javascript" src="js/atvspot-ui.js"></script>
 <script type="text/javascript" src="js/atvspot-util.js"></script>
+<script type="text/javascript" src="/js/locator.js"></script>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
