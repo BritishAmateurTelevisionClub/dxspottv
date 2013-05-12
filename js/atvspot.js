@@ -154,7 +154,8 @@ function createSpotLine(spot_data) {
 	spotLine.primary_id = spot_data['primary_id'];
 	spotLine.primary_callsign = primary_callsign;
 	spotLine.secondary_id = spot_data['secondary_id'];
-	spotLine.secondary_cakksugb = secondary_callsign;
+	spotLine.secondary_callsign = secondary_callsign;
+	spotLine.secondary_isrepeater = spot_data['secondary_isrepeater']
 	spotLine.time = spot_data['time'];
 	spotLine.comments = spot_data['comments'];
 	
