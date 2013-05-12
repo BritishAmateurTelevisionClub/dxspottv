@@ -123,11 +123,11 @@ function createRepeaterMarker(repeater_data) {
 function createSpotLine(spot_data) {
 
 	var primary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['primary_id']; });
-	var primary_latlon = user_markers[primary_search].position;
-	var primary_callsign = user_markers[primary_search].callsign;
+	var primary_latlon = primary_search.position;
+	var primary_callsign = primary_search.callsign;
 	var secondary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['secondary_id']; });
-	var secondary_latlon = user_markers[secondary_search].position;
-	var secondary_callsign = user_markers[secondary_search].callsign;
+	var secondary_latlon = secondary_search.position;
+	var secondary_callsign = secondary_search.callsign;
 	
 	var spotLineCoordinates = [
 		primary_latlon,
