@@ -9,6 +9,21 @@ function updateMap() {
 	getSpots();
 }
 
+function doLogin() {
+	$.ajax({
+		url: "/login.php",
+		type: "GET",
+		data: {
+			callsign: $("#callsign_input").val(),
+			passwd: $('#passwd_input').val()
+		},
+		success: function( data ) {
+			//console.log(data);
+			location.reload(true);
+		}
+	});
+}
+
 function getRepeaters() {
 	$.ajax({
 		url: "/ajax/repeaters.php",

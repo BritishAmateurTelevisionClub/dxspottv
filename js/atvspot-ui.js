@@ -126,7 +126,7 @@ $(window).load(function () {
 //
 $(document).ready(function() {
 	$('#login_button').button().click( function() {
-    	$('#login_form').submit();
+    	doLogin();
 	});
 	$('#logout_button').button().click( function() {
     	window.location.href = "/logout.php";

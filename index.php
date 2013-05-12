@@ -134,11 +134,10 @@ if($logged_in) {
 <?
 } else {
 ?>
-<form id=login_form action="login.php" method="post">
 Callsign: <input type=text name="callsign" id="callsign_input" <?php if($user_known) { print 'value="' . $callsign . '"'; } ?>/>
 Password: <input type=password name="passwd" id="passwd_input" />
 <button class="login-button reduce-font-size" id="login_button">Log In</button>
-</form>
+&nbsp;&nbsp;<button class="register-button reduce-font-size" id="register_button">Register</button>
 <?php
 if ($auth_error==1) {
 ?>
@@ -147,11 +146,7 @@ if ($auth_error==1) {
 		<strong>Alert:</strong>&nbsp;<?php print $auth_error_text; ?></p>
 </div>
 <?php
-} else if ($logged_in==0) {
-?>
-&nbsp;&nbsp;<button class="register-button reduce-font-size" id="register_button">Register</button>
-<?php
-} // End of auth_error/register link.
+} // End of auth_error.
 } // End of greeting/login form
 ?>
 <div id="tabs">
