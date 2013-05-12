@@ -123,16 +123,16 @@ function createGlobalSpotLog(spotLog) {
 	var spot = new Array();
 	for(spot in spotLog){
 		var primary_search = $.grep(user_markers, function(e){
-			return e.user_id == spot_lines[i].primary_id;
+			return e.user_id == spot.primary_id;
 		});
 		// find our secondary marker
-		if(spot_lines[i].secondary_isrepeater==1) { // if its a repeater
+		if(spot.secondary_isrepeater==1) { // if its a repeater
 			var secondary_search = $.grep(repeater_markers, function(e){
-				return e.repeater_id == spot_lines[i].secondary_id;
+				return e.repeater_id == spot.secondary_id;
 			});
 		} else { // or a user
 			var secondary_search = $.grep(user_markers, function(e){
-				return e.user_id == spot_lines[i].secondary_id;
+				return e.user_id == spot.secondary_id;
 			});
 		}
 		spotLogDivContent+=spot['time'].substr(11,8);
