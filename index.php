@@ -181,7 +181,6 @@ if ($auth_error==1) {
 		13cm: <input type="checkbox" id="listen_13cm_box" /><span id='listen_13cm_options' style="display: none">&nbsp;<input type="text" id="listen_13cm_freq" value="" />MHz</span>
 		</form>
 		<b>New Spot</b>
-		<form id='spot_form'>
 		<label class="spot_form_labels">Frequency:&nbsp;</label><input type=text name="spot_freq" id="spot_freq" class="spot_box_med" />Mhz<br>
 		<label class="spot_form_labels">Mode:&nbsp;</label><select id="spot_mode_select">
 		<option value="analogtv">Analog TV</option>
@@ -193,7 +192,6 @@ if ($auth_error==1) {
 		<label class="spot_form_labels">Locator:&nbsp;</label><input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
 		<label class="spot_form_labels">Comments:&nbsp;</label><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>
-		</form>
 	</div>
 	<?php } ?>
 	<div id="spotLog" class="reduce-tab-padding">
