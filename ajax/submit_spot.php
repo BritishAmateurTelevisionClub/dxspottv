@@ -24,7 +24,9 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 		
 		$check_existing_user = mysqli_query($dbc, "SELECT id FROM users WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
 		if(mysqli_num_rows ($check_existing_user)==0) { // End User doesn't exist, so add them
+			print 'Adding new unknown callsign.';
 			$new_callsign_query = "INSERT into users (callsign, locator, lat, lon, known) VALUES ('{$r_callsign}', '{$r_locator}', '{$r_lat}', '{$r_lon}', '0');";
+			print $new_callsign_query;
 			mysqli_query($dbc, $new_callsign_query) or die(mysqli_error($dbc));
 			$check_existing_user = mysqli_query($dbc, "SELECT id FROM users WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
 		}
@@ -32,6 +34,7 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 		$r_userid = $check_existing_user_row['id'];
 		$add_spot_query = "INSERT into spots (mode_id, frequency, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$freq}', '{$user_id}', '{$r_userid}', '{$comments}');";
 		mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
+		print 'Spot Added!';
 	} else {
         print 'Session doesnt match.';
 	}
