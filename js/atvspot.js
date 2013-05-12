@@ -137,7 +137,8 @@ function createSpotLine(spot_data) {
     	path: spotLineCoordinates,
     	strokeColor: "#FF0000",
     	strokeOpacity: 1.0,
-    	strokeWeight: 2
+    	strokeWeight: 2,
+    	geodesic: true
 	});
 	
 	spotLine.frequency = spot_data['frequency'];
