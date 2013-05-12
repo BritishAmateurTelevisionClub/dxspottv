@@ -65,8 +65,8 @@ function submitSpot() {
 			mode: $("#spot_mode_select").val(),
 			r_callsign: $("#remote_callsign").val(),
 			r_locator: $("#remote_loc").val(),
-			r_lat: latlon[0],
-			r_lon: latlon[1],
+			r_lat: rlatlon[0],
+			r_lon: rlatlon[1],
 			comments: $("#spot_comments").val()
 		},
 		success: function( data ) {
