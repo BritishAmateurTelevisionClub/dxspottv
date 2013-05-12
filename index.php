@@ -90,7 +90,7 @@ var irc_frame_source = "http://webchat.freenode.net/?channels=#atvspot"
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
-<h2>ATV DXSpot</h2>
+<h2>ATV DXSpot - <font color="red">Alpha</font></h2>
 <table
 style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
 border="0" cellpadding="0" cellspacing="0">
