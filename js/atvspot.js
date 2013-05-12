@@ -69,7 +69,7 @@ function createUserMarker(user_data) {
 	}
 	if(user_data['known']==0) {
 		var toBeIcon = userUnknownIcon;
-	} else if(user_data['minutes_active']>60) {
+	} else if(user_data['seconds_active']>3600) { // 1 hour
 		var toBeIcon = userAwayIcon;
 	} else {
 		var toBeIcon = userActiveIcon;
