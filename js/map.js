@@ -71,7 +71,7 @@ function checkSpots() {
 			});
 		}
 		// if both ends are visible then show(), else hide()
-		if((primary_search[0].is(":visible")==true) && (secondary_search[0].is(":visible")==true)) {
+		if((primary_search[0].('visible')==true) && (secondary_search[0].('visible')==true)) {
 			spot_lines[i].show();
 		} else {
 			spot_lines[i].hide();
