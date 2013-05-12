@@ -4,7 +4,7 @@ include('../spot_login.php');
 
 $output = array();
 $i=1;
-$user_result = mysqli_query($dbc, "SELECT id,callsign,name,lat,lon FROM users;") or die(mysqli_error($dbc));
+$user_result = mysqli_query($dbc, "SELECT id,callsign,name,lat,lon,known FROM users;") or die(mysqli_error($dbc));
 while($user_row = mysqli_fetch_array($user_result))
 {
 	// Get session activity data
@@ -20,6 +20,7 @@ while($user_row = mysqli_fetch_array($user_result))
 	$output[$i]['latitude'] = $user_row['lat'];
 	$output[$i]['longitude'] = $user_row['lon'];
 	$output[$i]['longitude'] = $user_row['lon'];
+	$output[$i]['known'] = $user_row['known'];
 	$listen_result = mysqli_query($dbc, "SELECT * FROM listening WHERE user_id='{$user_id}';") or die(mysqli_error($dbc));
 	$listen_row = mysqli_fetch_array($listen_result);
 	$output[$i]['is70cm'] = $listen_row['70cm_listen'];

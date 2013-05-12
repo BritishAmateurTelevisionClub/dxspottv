@@ -66,9 +66,16 @@ function createUserMarker(user_data) {
 	} else {
 		contentString = 'Currently Active.'
 	}
+	if(user_data['known']==0) {
+		var toBeIcon = userUnknownIcon;
+	} else if(user_data['minutes_active']>60) {
+		var toBeIcon = userAwayIcon;
+	} else {
+		var toBeIcon = userActiveIcon;
+	}
 	var marker = new google.maps.Marker({
         position: lat_lon,
-		icon: userActiveIcon,
+		icon: toBeIcon,
         map: map,
         title: user_data['callsign']
     });
