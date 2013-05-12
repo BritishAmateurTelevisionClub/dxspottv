@@ -136,7 +136,7 @@ if($logged_in) {
 ?>
 Callsign: <input type=text name="callsign" id="callsign_input" <?php if($user_known) { print 'value="' . $callsign . '"'; } ?>/>
 Password: <input type=password name="passwd" id="passwd_input" />
-<button class="login-button reduce-font-size" id="login_button">Log In</button>
+&nbsp;&nbsp;<button class="login-button reduce-font-size" id="login_button">Log In</button>
 &nbsp;&nbsp;<button class="register-button reduce-font-size" id="register_button">Register</button>
 <?php
 if ($auth_error==1) {

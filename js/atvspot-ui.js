@@ -125,6 +125,17 @@ $(window).load(function () {
 // Set up login/logout buttons
 //
 $(document).ready(function() {
+	// submit form if enter is pressed
+	$('#callsign_input').keypress(function(e) {
+            if(e.which == 10 || e.which == 13) {
+                doLogin();
+            }
+    });
+    $('#passwd_input').keypress(function(e) {
+            if(e.which == 10 || e.which == 13) {
+                doLogin();
+            }
+    });
 	$('#login_button').button().click( function() {
     	doLogin();
 	});
