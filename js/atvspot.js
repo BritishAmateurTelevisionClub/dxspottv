@@ -141,6 +141,7 @@ function createSpotLine(spot_data) {
     	geodesic: true
 	});
 	
+	spotLine.spot_id = spot_data['id'];
 	spotLine.frequency = spot_data['frequency'];
 	spotLine.mode_id = spot_data['mode_id'];
 	
@@ -188,7 +189,7 @@ function parseSpots(JSONinput) {
 	var s_id = new Array();
 	for(s_id in JSONinput){
 		var spot = JSONinput[s_id];
-		var spot_search = $.grep(spot_lines, function(e){ return e.id == spot['id']; });
+		var spot_search = $.grep(spot_lines, function(e){ return e.spot_id == spot['id']; });
 		if(spot_search.length==0) {
 			createSpotLine(spot);
 		}
