@@ -4,7 +4,7 @@ include('../spot_login.php');
 
 $output = array();
 $i=1;
-$user_result = mysqli_query($dbc, "SELECT callsign,name,lat,lon FROM users;") or die(mysqli_error($dbc));
+$user_result = mysqli_query($dbc, "SELECT id,callsign,name,lat,lon FROM users;") or die(mysqli_error($dbc));
 while($user_row = mysqli_fetch_array($user_result))
 {
 	// Get session activity data
