@@ -121,7 +121,8 @@ $(document).ready(function() {
 function createGlobalSpotLog(spotLog) {
 	var spotLogDivContent = "";
 	var spot = new Array();
-	for(spot in spotLog){
+	for(s_id in spotLog){
+		var spot = spotLog[s_id];
 		var primary_search = $.grep(user_markers, function(e){
 			return e.user_id == spot.primary_id;
 		});
