@@ -6,6 +6,7 @@ $repeater_result = mysqli_query($dbc, "SELECT * FROM repeaters;") or die(mysqli_
 
 while($row = mysqli_fetch_array($repeater_result))
 {
+	$repeater['id'] = $row['callsign'];
 	$repeater['callsign'] = $row['callsign'];
 	$repeater['description'] = $row['Description'];
 	$repeater['latitude'] = $row['lat'];

@@ -13,6 +13,7 @@ while($spots_row = mysqli_fetch_array($spots_result))
 	$output[$i]['frequency'] = $spots_row['frequency'];
 	$output[$i]['primary_id'] = $spots_row['primary_id'];
 	$output[$i]['secondary_id'] = $spots_row['secondary_id'];
+	$output[$i]['secondary_isrepeater'] = $spots_row['secondary_isrepeater'];
 	$output[$i]['time'] = $spots_row['time'];
 	$output[$i]['comments'] = $spots_row['comments'];
 	$output[$i]['minutes_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['time'])), '%i'); // Used for icons

@@ -107,6 +107,7 @@ function createRepeaterMarker(repeater_data) {
         map: map,
         title: repeater_data['callsign']
 	});
+	marker.repeater_id = repeater_data['id'];
     marker.callsign = repeater_data['callsign'];
     marker.is70cm = repeater_data['is_70cm'];
     marker.is23cm = repeater_data['is_23cm'];
@@ -125,7 +126,11 @@ function createSpotLine(spot_data) {
 	var primary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['primary_id']; });
 	var primary_latlon = primary_search[0].position;
 	var primary_callsign = primary_search[0].callsign;
-	var secondary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['secondary_id']; });
+	if(spot_data['secondary_isrepeater']==0) {
+		var secondary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['secondary_id']; });
+	} else {
+		var secondary_search = $.grep(repeater_markers, function(e){ return e.repeater_id == spot_data['secondary_id']; });
+	
 	var secondary_latlon = secondary_search[0].position;
 	var secondary_callsign = secondary_search[0].callsign;
 	
@@ -153,9 +158,7 @@ function createSpotLine(spot_data) {
 	spotLine.comments = spot_data['comments'];
 	
 	google.maps.event.addListener(spotLine, 'click', function() {
-		infowindow.setContent("<b>"+
-			primary_callsign+"</b><br>"+"<b>"+
-			secondary_callsign+"</b>");
+		infowindow.setContent("<b>"+primary_callsign+"</b><br>"+"<b>"+secondary_callsign+"</b>");
     	infowindow.open(map,spotLine);
    	});
 	
