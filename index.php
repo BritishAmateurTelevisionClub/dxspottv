@@ -65,7 +65,15 @@ if (isset($_COOKIE["auth_error"])) {
 <link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
-<?php include_once("g_analytics.php") ?>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37815608-6', 'dxspot.tv');
+  ga('send', 'pageview');
+</script>
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
