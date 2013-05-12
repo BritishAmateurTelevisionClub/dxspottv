@@ -11,10 +11,10 @@ while($user_row = mysqli_fetch_array($user_result))
 	$user_id = $user_row['id'];
 	$session_result = mysqli_query($dbc, "SELECT activity FROM sessions WHERE user_id='{$user_id}';") or die(mysqli_error($dbc));
 	$session_row = mysqli_fetch_array($session_result);
-	$seconds_diff = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%U'); // Used for icons
-	$months_diff = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%n');
-	$hours_diff = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%G');
-	$days_diff = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%j');
+	$seconds_diff = date_format(date_create(), '%U') - date_format(date_create($session_row['activity']),'%U'); // Used for icons
+	$months_diff = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%m');
+	$hours_diff = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%h');
+	$days_diff = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%d');
 	$output[$i] = array();
 	$output[$i]['id'] = $user_id;
 	$output[$i]['callsign'] = $user_row['callsign'];
