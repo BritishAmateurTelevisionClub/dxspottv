@@ -22,14 +22,14 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 		$r_lat = mysqli_real_escape_string($dbc, $_REQUEST["r_lat"]);
 		$r_lon = mysqli_real_escape_string($dbc, $_REQUEST["r_lon"]);
 		
-		$check_existing_user = mysqli_query($dbc, "SELECT user_id FROM users WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
+		$check_existing_user = mysqli_query($dbc, "SELECT id FROM users WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
 		if(mysqli_num_rows ($check_existing_user)==0) { // End User doesn't exist, so add them
 			$new_callsign_query = "INSERT into users (callsign, locator, lat, lon, known) VALUES ('{$r_callsign}', '{$r_locator}', '{$r_lat}', '{$r_lon}', '0');";
 			mysqli_query($dbc, $new_callsign_query) or die(mysqli_error($dbc));
-			$check_existing_user = mysqli_query($dbc, "SELECT user_id FROM users WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
+			$check_existing_user = mysqli_query($dbc, "SELECT id FROM users WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
 		}
 		$check_existing_user_row = mysqli_fetch_array($check_existing_user);
-		$r_userid = $check_existing_user_row['user_id'];
+		$r_userid = $check_existing_user_row['id'];
 		$add_spot_query = "INSERT into spots (mode_id, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$user_id}', '{$r_userid}', '{$comments}');";
 	} else {
         print 'Session doesnt match.';
