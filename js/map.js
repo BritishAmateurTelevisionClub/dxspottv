@@ -115,6 +115,7 @@ function changeUsersBandSelect(select_val) {
 		}
 		break;
 	}
+	checkSpots();
 }
 
 function changeRepeatersBandSelect(select_val) {
@@ -153,6 +154,7 @@ function changeRepeatersBandSelect(select_val) {
 		}
 		break;
 	}
+	checkSpots();
 }
 
 function myclick(i) {
