@@ -1,12 +1,13 @@
 // Set up refresh functions
 //
-var mapRefresh=self.setInterval(function(){updateMap()},3000);
+var mapRefresh=self.setInterval(function(){updateMap()},5000);
 
 function updateMap() {
 	console.log("Updating map..");
 	getUsers();
 	getRepeaters();
 	getSpots();
+	ga('send', 'event', 'refresh', 'Map Data');
 }
 
 function doLogin() {
@@ -70,6 +71,7 @@ function getSpots() {
 function submitSpot() {
 	var rlatlon = [];
 	rlatlon = LoctoLatLon($("#remote_loc").val());
+	ga('send', 'event', 'action', 'Submit Spot');
 	$.ajax({
 		url: "/ajax/submit_spot.php",
 		type: "GET",
@@ -107,6 +109,7 @@ function updateListening() {
 	} else {
 		active70cm = 0;
 	}
+	ga('send', 'event', 'action', 'Update Listening');
 	$.ajax({
 		url: "/ajax/update_listening.php",
 		type: "GET",
