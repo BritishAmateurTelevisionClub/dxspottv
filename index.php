@@ -77,9 +77,9 @@ if (isset($_COOKIE["auth_error"])) {
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-var irc_frame_source = "https://kiwiirc.com/client/chat.freenode.net/?nick=<?php print $callsign; ?>#atvspot";
+var irc_frame_source = "https://kiwiirc.com/client/chat.freenode.net/?nick=<?php print $callsign; ?>#atvspot?theme=mini";
 <?php } else { ?>
-var irc_frame_source = "https://kiwiirc.com/client/chat.freenode.net/?nick=type_callsign#atvspot";
+var irc_frame_source = "https://kiwiirc.com/client/chat.freenode.net/?nick=type_callsign#atvspot?theme=mini";
 <?php } ?> // End of callsign as nick for irc
 </script>
 <script type="text/javascript" src="js/atvspot.js"></script>
