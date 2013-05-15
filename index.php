@@ -212,7 +212,6 @@ if ($auth_error==1) {
 </tbody>
 </table>
 <br>
-<a href="#spotLog" class="reduce-font-size">Global Spot Log</a>
 Copyright 2013 Phil Crump <a href='https://www.thecraag.com/' target='_blank'>thecraag.com</a>
 </div>
 </body>
