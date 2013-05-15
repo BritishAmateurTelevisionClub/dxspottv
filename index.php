@@ -77,9 +77,9 @@ if (isset($_COOKIE["auth_error"])) {
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-var irc_frame_source = "https://kiwiirc.com/client/chat.freenode.net/?theme=mini&nick=<?php print $callsign; ?>#atvspot";
+var irc_frame_source = "https://kiwiirc.com/client/chat.freenode.net/?theme=mini&nick=<?php print $callsign; ?>#dxspottv";
 <?php } else { ?>
-var irc_frame_source = "https://kiwiirc.com/client/chat.freenode.net/?theme=mini&nick=your_callsign_perhaps#atvspot";
+var irc_frame_source = "https://kiwiirc.com/client/chat.freenode.net/?theme=mini&nick=your_callsign_perhaps#dxspottv";
 <?php } ?> // End of callsign as nick for irc
 </script>
 <script type="text/javascript" src="js/atvspot.js"></script>
@@ -171,7 +171,7 @@ if ($auth_error==1) {
 	</ul>
 	<div id="webIRC" class="reduce-tab-padding">
 		<iframe id='irc_frame' frameborder="0"></iframe><br>
-		<span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#atvspot">click here</a>.
+		<span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#dxspottv">click here</a>.
 	</div>
 	<?php
 		if($logged_in) { // If logged in, show spot form
