@@ -175,14 +175,14 @@ function createSpotLine(spot_data) {
 	
 	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+spotLine.frequency+"&nbsp;MHz";
 	
-	var startProject = projection.fromLatLngToPoint(primary_latlon); 
-	var endProject = projection.fromLatLngToPoint(secondary_latlon);
+	var startProject = google.maps.projection.fromLatLngToPoint(primary_latlon); 
+	var endProject = google.maps.projection.fromLatLngToPoint(secondary_latlon);
 	
 	var midProject = new google.maps.Point( 
     (startProject.x + endProject.x) / 2, 
     (startProject.y + endProject.y) / 2); 
 	
-	var midLatLng = projection.fromPointToLatLng(midProject);
+	var midLatLng = google.maps.projection.fromPointToLatLng(midProject);
 	
 	google.maps.event.addListener(spotLine, 'click', function() {
 		infowindow.setContent(infoContent);
