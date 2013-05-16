@@ -145,8 +145,11 @@ function createGlobalSpotLog(spotLog) {
 		}
 		spotLogDivContent+=spot['time'].substr(11,8);
 		spotLogDivContent+=":&nbsp<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
-		spotLogDivContent+="<br>";
 		spotLogDivContent+="Frequency:&nbsp;"+spot['frequency']+"MHz";
+		if(spot['comments'].length != 0) {
+			spotLogDivContent+="<br>";
+			spotLogDivContent+="Comment:&nbsp;"+spot['comments'];
+		}
 		spotLogDivContent+="<br><br>";
 	}
 	$('#spotLog').html(spotLogDivContent);
