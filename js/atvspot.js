@@ -35,9 +35,6 @@ function initialize() {
 		infowindow.close();
 	});
 
-	blueIcon = new google.maps.MarkerImage("https://www.google.com/intl/en_us/mapfiles/ms/micons/blue-dot.png");
-	redIcon = new google.maps.MarkerImage("https://www.google.com/intl/en_us/mapfiles/ms/micons/red-dot.png");
-
 	userActiveIcon = new google.maps.MarkerImage("/images/active_user.ico");
 	userAwayIcon = new google.maps.MarkerImage("/images/away_user.ico");
 	userUnknownIcon = new google.maps.MarkerImage("/images/unknown_user.ico");
