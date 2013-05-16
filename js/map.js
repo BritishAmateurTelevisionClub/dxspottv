@@ -79,7 +79,7 @@ function checkSpots() {
 	}
 }
 
-function changeUsersBandSelect(select_val) {
+function changeUsersSelect(select_val) {
 	switch(select_val)
 	{
 	case "70cm":
@@ -157,18 +157,6 @@ function changeRepeatersBandSelect(select_val) {
 			repeater_markers[i].setVisible(true);
 		}
 		break;
-	}
-	checkSpots();
-}
-
-function changeTimeSpan() {
-	
-	for (var i=0; i<user_markers.length; i++) {
-		if(user_markers[i].activity<=valTimeSpan) {
-			user_markers[i].setVisible(true);
-		} else {
-			user_markers[i].setVisible(false);
-		}
 	}
 	checkSpots();
 }
