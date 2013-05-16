@@ -132,7 +132,7 @@ border="0" cellpadding="0" cellspacing="0">
 </form>
 <div id="map_canvas"></div>
 <div id="spotLogDiv">
-	<b>Global Spot Log</b><br>
+	<h5>Global Spot Log</h5>
 	<span id="spotLog">Loading...</span>
 </div>
 </td>
@@ -195,7 +195,7 @@ if ($auth_error==1) {
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>
 	</div>
 	<div id="editStation" class="reduce-tab-padding">
-		<b>I'm listening on:</b>
+		<h4>I'm listening on:</h4>
 		<form id=listening>
 		70cm: <input type="checkbox" id="listen_70cm_box" /><br>
 		23cm: <input type="checkbox" id="listen_23cm_box" /><br>
