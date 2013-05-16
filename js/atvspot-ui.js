@@ -1,8 +1,11 @@
 // Set up Time/Band dropdowns
 //
+
 $(document).ready(function() {
+	var valTimeSpan = $('#time_select').val();
 	$('#time_select').change(function() {
-		var nuTimeSpan = timespan_select.value;
+		valTimeSpan = $('#time_select').val();
+		changeTimeSpan(valTimeSpan);
 	});
 	$('#band_select').change(function() {
 		changeUsersBandSelect($('#band_select').val());

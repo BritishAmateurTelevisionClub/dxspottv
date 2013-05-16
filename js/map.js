@@ -157,6 +157,73 @@ function changeRepeatersBandSelect(select_val) {
 	checkSpots();
 }
 
+function changeTimeSpan(select_val) {
+	switch(select_val)
+	{
+	case "year":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].activity<=31557600) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "6months":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].activity<=15778800) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "1month":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].activity<=2678400) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "1week":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].activity<=604800) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "24hours":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].activity<=86400) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "12hours":
+		for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].activity<=43200) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
+		}
+		break;
+	default: // All
+		for (var i=0; i<user_markers.length; i++) {
+			user_markers[i].setVisible(true);
+		}
+		break;
+	}
+	// Need to check timing of spots
+	checkSpots();
+}
+
 function myclick(i) {
 	google.maps.event.trigger(gmarkers[i],"click");
 }
