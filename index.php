@@ -131,8 +131,9 @@ border="0" cellpadding="0" cellspacing="0">
 </tr></table>
 </form>
 <div id="map_canvas"></div>
-<div id="spotLog">
-		Loading...
+<div id="spotLogDiv">
+	<b>Global Spot Log</b><br>
+	<span id="spotLog">Loading...</span>
 </div>
 </td>
 <td width="40%" style="padding: 5px; vertical-align: top;">
