@@ -167,6 +167,7 @@ if ($auth_error==1) {
 		if($logged_in) { // If logged in, show spot form
 		?>
 		<li><a href="#spotForm" class="reduce-font-size">Submit Spots</a></li>
+		<li><a href="#editStation" class="reduce-font-size">My Station</a></li>
 		<?php } ?>
 		<li><a href="#helpTab" class="reduce-font-size">Help</a></li>
 		<li><a href="#aboutTab" class="reduce-font-size">About</a></li>
@@ -179,12 +180,6 @@ if ($auth_error==1) {
 		if($logged_in) { // If logged in, show spot form
 		?>
 	<div id="spotForm" class="reduce-tab-padding">
-		<b>I'm currently listening on:</b>
-		<form id=listening>
-		70cm: <input type="checkbox" id="listen_70cm_box" /><span id='listen_70cm_options' style="display: none">&nbsp;<input type="text" id="listen_70cm_freq" value="" />MHz</span><br>
-		23cm: <input type="checkbox" id="listen_23cm_box" /><span id='listen_23cm_options' style="display: none">&nbsp;<input type="text" id="listen_23cm_freq" value="" />MHz</span><br>
-		13cm: <input type="checkbox" id="listen_13cm_box" /><span id='listen_13cm_options' style="display: none">&nbsp;<input type="text" id="listen_13cm_freq" value="" />MHz</span>
-		</form>
 		<b>New Spot</b>
 		<label class="spot_form_labels">Frequency:&nbsp;</label><input type=text name="spot_freq" id="spot_freq" class="spot_box_med" />Mhz<br>
 		<label class="spot_form_labels">Mode:&nbsp;</label><select id="spot_mode_select">
@@ -197,6 +192,14 @@ if ($auth_error==1) {
 		<label class="spot_form_labels">Locator:&nbsp;</label><input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
 		<label class="spot_form_labels">Comments:&nbsp;</label><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>
+	</div>
+	<div id="editStation" class="reduce-tab-padding">
+		<b>I'm listening on:</b>
+		<form id=listening>
+		70cm: <input type="checkbox" id="listen_70cm_box" /><br>
+		23cm: <input type="checkbox" id="listen_23cm_box" /><br>
+		13cm: <input type="checkbox" id="listen_13cm_box" />
+		</form>
 	</div>
 	<?php } ?>
 	<div id="helpTab" class="reduce-tab-padding">
