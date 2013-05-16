@@ -123,11 +123,8 @@ function updateListening() {
 		type: "GET",
 		data: {
 			l70cm: active70cm,
-			l70cm_freq: $('#listen_70cm_freq').val(),
 			l23cm: active23cm,
-			l23cm_freq: $('#listen_23cm_freq').val(),
 			l13cm: active13cm,
-			l13cm_freq: $('#listen_13cm_freq').val()
 		},
 		success: function( data ) {
 			//console.log(data);
