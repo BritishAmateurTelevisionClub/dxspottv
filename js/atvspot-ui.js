@@ -1,4 +1,4 @@
-var months = ["January", "February", "March", "April", "June", "July", "August", "September", "October", "November", "December"];
+var months = ["_dummy_", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 // Set up Time/Band dropdowns
 //
 var valTimeSpan;
