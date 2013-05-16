@@ -1,14 +1,15 @@
 // Set up Time/Band dropdowns
 //
-
+var valTimeSpan;
 $(document).ready(function() {
-	var valTimeSpan = $('#time_select').val();
+	valTimeSpan = setTimeSpan($('#time_select').val());
+	
 	$('#time_select').change(function() {
-		valTimeSpan = $('#time_select').val();
-		changeTimeSpan(valTimeSpan);
+		valTimeSpan = setTimeSpan($('#time_select').val());
+		changeUsersSelect($('#band_select').val());
 	});
 	$('#band_select').change(function() {
-		changeUsersBandSelect($('#band_select').val());
+		changeUsersSelect($('#band_select').val());
 		changeRepeatersBandSelect($('#band_select').val());
 	});
 });
@@ -149,4 +150,31 @@ function createGlobalSpotLog(spotLog) {
 		spotLogDivContent+="<br><br>";
 	}
 	$('#spotLog').html(spotLogDivContent);
+}
+
+function setTimeSpan(timeSpan) {
+	switch(timeSpan)
+	{
+	case "year":
+		valTimeSpan = 31557600;
+		break;
+	case "6months":
+		valTimeSpan = 15778800;
+		break;
+	case "1month":
+		valTimeSpan = 2678400;
+		break;
+	case "1week":
+		valTimeSpan = 604800;
+		break;
+	case "24hours":
+		valTimeSpan = 86400;
+		break;
+	case "12hours":
+		valTimeSpan = 43200;
+		break;
+	default: // All
+		valTimeSpan = 315576000; // 10 years, should do for now!
+		break;
+	}
 }

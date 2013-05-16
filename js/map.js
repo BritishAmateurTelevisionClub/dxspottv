@@ -84,7 +84,7 @@ function changeUsersBandSelect(select_val) {
 	{
 	case "70cm":
 		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].is70cm==1) {
+			if(user_markers[i].is70cm==1 && user_markers[i].activity<=valTimeSpan) {
 				user_markers[i].setVisible(true);
 			} else {
 				user_markers[i].setVisible(false);
@@ -93,7 +93,7 @@ function changeUsersBandSelect(select_val) {
 		break;
 	case "23cm":
 		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].is23cm==1) {
+			if(user_markers[i].is23cm==1 && user_markers[i].activity<=valTimeSpan) {
 				user_markers[i].setVisible(true);
 			} else {
 				user_markers[i].setVisible(false);
@@ -102,7 +102,7 @@ function changeUsersBandSelect(select_val) {
 		break;
 	case "13cm":
 		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].is13cm==1 || user_markers[i].is3cm==1) {
+			if((user_markers[i].is13cm==1 || user_markers[i].is3cm==1) && user_markers[i].activity<=valTimeSpan) {
 				user_markers[i].setVisible(true);
 			} else {
 				user_markers[i].setVisible(false);
@@ -111,7 +111,11 @@ function changeUsersBandSelect(select_val) {
 		break;
 	default: // All
 		for (var i=0; i<user_markers.length; i++) {
-			user_markers[i].setVisible(true);
+			if(user_markers[i].activity<=valTimeSpan) {
+				user_markers[i].setVisible(true);
+			} else {
+				user_markers[i].setVisible(false);
+			}
 		}
 		break;
 	}
@@ -157,70 +161,15 @@ function changeRepeatersBandSelect(select_val) {
 	checkSpots();
 }
 
-function changeTimeSpan(select_val) {
-	switch(select_val)
-	{
-	case "year":
-		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].activity<=31557600) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "6months":
-		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].activity<=15778800) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "1month":
-		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].activity<=2678400) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "1week":
-		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].activity<=604800) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "24hours":
-		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].activity<=86400) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "12hours":
-		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].activity<=43200) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
-			}
-		}
-		break;
-	default: // All
-		for (var i=0; i<user_markers.length; i++) {
+function changeTimeSpan() {
+	
+	for (var i=0; i<user_markers.length; i++) {
+		if(user_markers[i].activity<=valTimeSpan) {
 			user_markers[i].setVisible(true);
+		} else {
+			user_markers[i].setVisible(false);
 		}
-		break;
 	}
-	// Need to check timing of spots
 	checkSpots();
 }
 
