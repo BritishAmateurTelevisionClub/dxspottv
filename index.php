@@ -109,7 +109,7 @@ border="0" cellpadding="0" cellspacing="0">
   <option value="6months">Last 6 months</option>
   <option value="1month">Last Month</option>
   <option value="1week">Last Week</option>
-  <option value="24hours">Last 24 Hours</option>
+  <option value="24hours" selected="selected">Last 24 Hours</option>
   <option value="12hours">Last 12 Hours</option>
 </select>
 </td>
