@@ -1,3 +1,4 @@
+var months = ["January", "February", "March", "April", "June", "July", "August", "September", "October", "November", "December"];
 // Set up Time/Band dropdowns
 //
 var valTimeSpan;
@@ -143,7 +144,7 @@ function createGlobalSpotLog(spotLog) {
 				return e.user_id == spot.secondary_id;
 			});
 		}
-		spotLogDivContent+=spot['time'].substr(11,8);
+		spotLogDivContent+=parseInt(spot['time'].substr(8,2))+"&nbsp;"+months[parseInt(spot['time'].substr(5,2))]+"&nbsp;"+spot['time'].substr(11,8);
 		spotLogDivContent+=":&nbsp<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
 		spotLogDivContent+="Frequency:&nbsp;"+spot['frequency']+"MHz";
 		if(spot['comments'].length != 0) {
