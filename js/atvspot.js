@@ -114,7 +114,7 @@ function createRepeaterMarker(repeater_data) {
     marker.is3cm = repeater_data['is_3cm'];
     repeater_markers.push(marker);
     
-    var infoContent = '<div id="tabs">',
+    var infoContent = ['<div id="tabs">',
       '<ul>',
         '<li><a href="#repeaterInfoTab"><span>Info</span></a></li>',
         '<li><a href="#repeaterDescTab"><span>Description</span></a></li>',
@@ -125,7 +125,7 @@ function createRepeaterMarker(repeater_data) {
       '<div id="repeaterDescTab">',
        '<p>', repeater_data['description'], '</p>',
       '</div>',
-      '</div>';
+      '</div>'].join('');
 
 	google.maps.event.addListener(marker, 'click', function() {
 		infowindow.setContent(infoContent);
