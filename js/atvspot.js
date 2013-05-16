@@ -113,9 +113,22 @@ function createRepeaterMarker(repeater_data) {
     marker.is13cm = repeater_data['is_13cm'];
     marker.is3cm = repeater_data['is_3cm'];
     repeater_markers.push(marker);
+    
+    var infoContent = '<div id="tabs">',
+      '<ul>',
+        '<li><a href="#repeaterInfoTab"><span>Info</span></a></li>',
+        '<li><a href="#repeaterDescTab"><span>Description</span></a></li>',
+      '</ul>',
+      '<div id="repeaterInfoTab">',
+        '<p><b>', repeater_data['callsign'], '</b></p>',
+      '</div>',
+      '<div id="repeaterDescTab">',
+       '<p>', repeater_data['description'], '</p>',
+      '</div>',
+      '</div>';
 
 	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent("<b>"+repeater_data['callsign']+"</b><br>"+repeater_data['description']);
+		infowindow.setContent(infoContent);
         infowindow.open(map,marker);
   	});
 }
