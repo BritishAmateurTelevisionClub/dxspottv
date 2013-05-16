@@ -71,7 +71,7 @@ function checkSpots() {
 			});
 		}
 		// if both ends are visible then show(), else hide()
-		if((primary_search[0].visible==true) && (secondary_search[0].visible==true)) {
+		if((primary_search[0].visible==true) && (secondary_search[0].visible==true) && (spot_lines[i].ago<=valTimeSpan)) {
 			spot_lines[i].setVisible(true);
 		} else {
 			spot_lines[i].setVisible(false);

@@ -158,6 +158,7 @@ function createSpotLine(spot_data) {
 	spotLine.secondary_callsign = secondary_callsign;
 	spotLine.secondary_isrepeater = spot_data['secondary_isrepeater']
 	spotLine.time = spot_data['time'];
+	spotLine.ago = spot_data['seconds_ago'];
 	spotLine.comments = spot_data['comments'];
 	
 	google.maps.event.addListener(spotLine, 'click', function() {
