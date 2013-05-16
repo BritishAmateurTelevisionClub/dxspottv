@@ -19,6 +19,7 @@ $(document).ready(function() {
 // Callback from Google Maps Script Load
 //
 function initialize() {
+	google.maps.visualRefresh = true;
 	var mapOptions = {
 		zoom: 6,
 		center: new google.maps.LatLng(51.5, -1.39),
