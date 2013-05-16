@@ -2,10 +2,10 @@
 //
 var valTimeSpan;
 $(document).ready(function() {
-	valTimeSpan = setTimeSpan($('#time_select').val());
+	setTimeSpan($('#time_select').val());
 	
 	$('#time_select').change(function() {
-		valTimeSpan = setTimeSpan($('#time_select').val());
+		setTimeSpan($('#time_select').val());
 		changeUsersSelect($('#band_select').val());
 	});
 	$('#band_select').change(function() {
