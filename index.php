@@ -192,7 +192,7 @@ if ($auth_error==1) {
 		<label class="spot_form_labels">Callsign:&nbsp;</label><input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" /><br>
 		<label class="spot_form_labels">Locator:&nbsp;</label><input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
 		<label class="spot_form_labels">Comments:&nbsp;</label><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
-		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>
+		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 	</div>
 	<div id="editStation" class="reduce-tab-padding">
 		<h4>I'm listening on:</h4>

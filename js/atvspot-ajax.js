@@ -72,6 +72,8 @@ function submitSpot() {
 	var rlatlon = [];
 	rlatlon = LoctoLatLon($("#remote_loc").val());
 	ga('send', 'event', 'action', 'Submit Spot');
+	$('#submitStatus').val("Submitting...");
+	$('#submitStatus').show();
 	$.ajax({
 		url: "/ajax/submit_spot.php",
 		type: "GET",
@@ -86,6 +88,12 @@ function submitSpot() {
 		},
 		success: function( data ) {
 			//console.log(data);
+			$('#submitStatus').val("Submitted."); // Clear status
+			$('#submitStatus').hide(800);
+			// Now clear all the boxes
+			$('#remote_callsign').val("");
+			$('#remote_loc').val("");
+			$('#spot_comments').val("");
 		}
 	});
 }
