@@ -145,8 +145,8 @@ function createGlobalSpotLog(spotLog) {
 			});
 		}
 		spotLogDivContent+=parseInt(spot['time'].substr(8,2))+"&nbsp;"+months[parseInt(spot['time'].substr(5,2))]+"&nbsp;"+spot['time'].substr(11,8);
-		spotLogDivContent+=":&nbsp<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
-		spotLogDivContent+="Frequency:&nbsp;"+spot['frequency']+"MHz";
+		spotLogDivContent+=":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
+		spotLogDivContent+="&nbsp;Frequency:&nbsp;"+spot['frequency']+"MHz";
 		if(spot['comments'].length != 0) {
 			spotLogDivContent+="<br>";
 			spotLogDivContent+="Comment:&nbsp;"+spot['comments'];
