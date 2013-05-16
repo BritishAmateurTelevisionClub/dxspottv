@@ -181,14 +181,14 @@ if ($auth_error==1) {
 		if($logged_in) { // If logged in, show spot form
 		?>
 	<div id="spotForm" class="reduce-tab-padding">
-		<b>New Spot</b>
+		<h4>New Spot</h4>
 		<label class="spot_form_labels">Frequency:&nbsp;</label><input type=text name="spot_freq" id="spot_freq" class="spot_box_med" />Mhz<br>
 		<label class="spot_form_labels">Mode:&nbsp;</label><select id="spot_mode_select">
 		<option value="analogtv">Analog TV</option>
 		<option value="digitaltv">Digital TV</option>
 		</select>
 		<br>
-		<b>Remote Station</b><br>
+		<h4>Remote Station</h4>
 		<label class="spot_form_labels">Callsign:&nbsp;</label><input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" /><br>
 		<label class="spot_form_labels">Locator:&nbsp;</label><input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
 		<label class="spot_form_labels">Comments:&nbsp;</label><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
