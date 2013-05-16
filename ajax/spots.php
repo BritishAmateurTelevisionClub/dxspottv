@@ -4,7 +4,7 @@ include('../spot_login.php');
 
 $output = array();
 $i=1;
-$spots_result = mysqli_query($dbc, "SELECT * FROM spots;") or die(mysqli_error($dbc));
+$spots_result = mysqli_query($dbc, "SELECT * FROM spots ORDER BY id DESC;") or die(mysqli_error($dbc));
 while($spots_row = mysqli_fetch_array($spots_result))
 {
 	$output[$i] = array();
