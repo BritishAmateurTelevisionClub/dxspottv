@@ -131,6 +131,9 @@ border="0" cellpadding="0" cellspacing="0">
 </tr></table>
 </form>
 <div id="map_canvas"></div>
+<div id="spotLog">
+		Loading...
+</div>
 </td>
 <td width="40%" style="padding: 5px; vertical-align: top;">
 <?php
@@ -165,7 +168,6 @@ if ($auth_error==1) {
 		?>
 		<li><a href="#spotForm" class="reduce-font-size">Submit Spots</a></li>
 		<?php } ?>
-		<li><a href="#spotLog" class="reduce-font-size">Global Spot Log</a></li>
 		<li><a href="#helpTab" class="reduce-font-size">Help</a></li>
 		<li><a href="#aboutTab" class="reduce-font-size">About</a></li>
 	</ul>
@@ -197,9 +199,6 @@ if ($auth_error==1) {
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>
 	</div>
 	<?php } ?>
-	<div id="spotLog" class="reduce-tab-padding">
-		Coming soon.
-	</div>
 	<div id="helpTab" class="reduce-tab-padding">
 		You need to be registered to submit spots.
 	</div>
