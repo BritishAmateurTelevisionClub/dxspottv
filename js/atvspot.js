@@ -176,9 +176,9 @@ function createSpotLine(spot_data) {
 	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+spotLine.frequency+"&nbsp;MHz";
 	
 	
-	google.maps.event.addListener(spotLine, 'mouseover', function() {
+	google.maps.event.addListener(spotLine, 'mouseover', function(e) {
 		infowindow.setContent(infoContent);
-		infowindow.position = MouseEvent.latLng;
+		infowindow.position = e.latLng;
     	infowindow.open(map,spotLine);
    	});
    	
