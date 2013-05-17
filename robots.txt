@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /
 Disallow: /ajax/
 Disallow: /js/
 Disallow: /css/
