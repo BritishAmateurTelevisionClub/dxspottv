@@ -1,7 +1,7 @@
 var repeater_markers = [];
 var user_markers = [];
 var spot_lines = [];
-var map;
+var map, overlay;
 
 var infowindow;
 var session_id;
@@ -30,6 +30,10 @@ function initialize() {
 	infowindow = new google.maps.InfoWindow( {
 			size: new google.maps.Size(150,50)
 	});
+	
+	overlay = new google.maps.OverlayView();
+	overlay.draw = function() {};
+	overlay.setMap(map);
 
 	google.maps.event.addListener(map, 'click', function() {
 		infowindow.close();
@@ -175,14 +179,14 @@ function createSpotLine(spot_data) {
 	
 	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+spotLine.frequency+"&nbsp;MHz";
 	
-	var startProject = google.maps.projection.fromLatLngToPoint(primary_latlon); 
-	var endProject = google.maps.projection.fromLatLngToPoint(secondary_latlon);
+	var startProject = overlay.getProjection().fromLatLngToPoint(primary_latlon); 
+	var endProject = overlay.getProjection().fromLatLngToPoint(secondary_latlon);
 	
 	var midProject = new google.maps.Point( 
     (startProject.x + endProject.x) / 2, 
     (startProject.y + endProject.y) / 2); 
 	
-	var midLatLng = google.maps.projection.fromPointToLatLng(midProject);
+	var midLatLng = overlay.getProjection().fromPointToLatLng(midProject);
 	
 	google.maps.event.addListener(spotLine, 'click', function() {
 		infowindow.setContent(infoContent);
