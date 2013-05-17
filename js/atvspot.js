@@ -199,7 +199,7 @@ function parseRepeaters(JSONinput) {
 	for(r_id in JSONinput){
 		var repeater = JSONinput[r_id];
 		var marker_search = $.grep(repeater_markers, function(e){ return e.callsign == repeater['callsign']; });
-		if(marker_search.length==0) {
+		if(marker_search.length==0 && repeater.length!=0) {
 			createRepeaterMarker(repeater);
 		}
 	}
@@ -210,7 +210,7 @@ function parseUsers(JSONinput) {
 	for(u_id in JSONinput){
 		var user = JSONinput[u_id];
 		var marker_search = $.grep(user_markers, function(e){ return e.callsign == user['callsign']; });
-		if(marker_search.length==0) {
+		if(marker_search.length==0 && user.length!=0) {
 			createUserMarker(user);
 		}
 	}
@@ -221,7 +221,7 @@ function parseSpots(JSONinput) {
 	for(s_id in JSONinput){
 		var spot = JSONinput[s_id];
 		var spot_search = $.grep(spot_lines, function(e){ return e.spot_id == spot['id']; });
-		if(spot_search.length==0) {
+		if(spot_search.length==0 && spot.length!=0) {
 			createSpotLine(spot);
 		}
 	}
