@@ -178,7 +178,7 @@ function createSpotLine(spot_data) {
 	
 	google.maps.event.addListener(spotLine, 'mouseover', function() {
 		infowindow.setContent(infoContent);
-		infowindow.position = new google.maps.LatLng((primary_latlon.lat() + primary_latlon.lat())/2, (secondary_latlon.lng() + secondary_latlon.lng())/2);
+		infowindow.position = new google.maps.LatLng((primary_latlon.lat() + primary_latlon.lat())/2, (secondary_latlon.lon() + secondary_latlon.lon())/2);
     	infowindow.open(map,spotLine);
    	});
    	
