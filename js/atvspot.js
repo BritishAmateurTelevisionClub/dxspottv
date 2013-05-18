@@ -176,10 +176,9 @@ function createSpotLine(spot_data) {
 	
 	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+spotLine.frequency+"&nbsp;MHz";
 	
-	
-	google.maps.event.addListener(spotLine, 'mouseover', function(e) {
+	google.maps.event.addListener(spotLine, 'mouseover', function() {
 		infowindow.setContent(infoContent);
-		infowindow.position = e.latLng;
+		infowindow.position = new google.maps.LatLng((primary_latlon.lat() + primary_latlon.lat())/2, (secondary_latlon.lon() + secondary_latlon.lon())/2);
     	infowindow.open(map,spotLine);
    	});
    	
