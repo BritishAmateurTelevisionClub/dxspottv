@@ -179,7 +179,7 @@ function createSpotLine(spot_data) {
 	
 	google.maps.event.addListener(spotLine, 'mouseover', function() {
 		infowindow.setContent(infoContent);
-		infowindow.setPosition(new google.maps.LatLng((primary_latlon.lat() + primary_latlon.lat())/2, (secondary_latlon.lng() + secondary_latlon.lng())/2));
+		infowindow.setPosition(new google.maps.LatLng((primary_latlon.lat() + secondary_latlon.lat())/2, (primary_latlon.lng() + secondary_latlon.lng())/2));
     	infowindow.open(map);
    	});
    	
