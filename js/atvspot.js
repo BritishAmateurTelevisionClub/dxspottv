@@ -180,7 +180,7 @@ function createSpotLine(spot_data) {
 	google.maps.event.addListener(spotLine, 'mouseover', function(e) {
 		infowindow.setContent(infoContent);
 		infowindow.setPosition(e.latLng);
-    	infowindow.open(map,spotLine);
+    	infowindow.open(map);
    	});
    	
    	google.maps.event.addListener(spotLine, 'mouseout', function() {
