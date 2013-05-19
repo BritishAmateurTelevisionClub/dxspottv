@@ -175,7 +175,6 @@ if ($auth_error==1) {
 	</ul>
 	<div id="webIRC" class="reduce-tab-padding">
 		<iframe id='irc_frame' frameborder="0"></iframe><br>
-		<span id='irc_shown_blurb'>To open the channel in your native IRC client, <a href="irc://chat.freenode.net:6667/#dxspottv">click here</a>.
 	</div>
 	<?php
 		if($logged_in) { // If logged in, show spot form
