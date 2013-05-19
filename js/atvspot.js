@@ -173,7 +173,7 @@ function createSpotLine(spot_data) {
 	spotLine.ago = spot_data['seconds_ago'];
 	spotLine.comments = spot_data['comments'];
 	spotLine.date = parseInt(spot_data['time'].substr(8,2))+"&nbsp;"+months[parseInt(spot_data['time'].substr(5,2))]+"&nbsp;"+spot_data['time'].substr(11,8);	
-	spotLine.distance = google.maps.geometry.spherical.computeDistanceBetween(primary_latlon, secondary_latlon);
+	spotLine.distance = Math.round((google.maps.geometry.spherical.computeDistanceBetween(primary_latlon, secondary_latlon)/1000)*10)/10;
 	
 	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+spotLine.distance+"&nbsp;km&nbsp;"+spotLine.frequency+"&nbsp;MHz";
 	
