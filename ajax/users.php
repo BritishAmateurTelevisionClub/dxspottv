@@ -13,7 +13,6 @@ while($user_row = mysqli_fetch_array($user_result))
 	$output[$i]['callsign'] = $user_row['callsign'];
 	$output[$i]['latitude'] = $user_row['lat'];
 	$output[$i]['longitude'] = $user_row['lon'];
-	$output[$i]['longitude'] = $user_row['lon'];
 	// Get User activity Data
 	$session_result = mysqli_query($dbc, "SELECT activity FROM sessions WHERE user_id='{$user_id}';") or die(mysqli_error($dbc));
 	$session_row = mysqli_fetch_array($session_result);
