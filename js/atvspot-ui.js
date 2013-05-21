@@ -37,13 +37,11 @@ $(document).ready(function() {
 	// So show all to start! (done in map load callback)
 	// Then functions for if changed
 	$('#userBox').change(function() {
-		if ($('#userBox').is(":checked")) {
-			usersShow();
-		} else {
-			usersHide();
-		}
+	    infowindow.close();
+		checkUsers();
 	});
 	$('#repeaterBox').change(function() {
+	    infowindow.close();
 		if ($('#repeaterBox').is(":checked")) {
 			repeatersShow();
 		} else {

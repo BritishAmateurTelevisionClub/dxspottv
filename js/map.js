@@ -28,19 +28,6 @@
         infowindow.close();
       }
 
-function usersShow() {
-	changeUsersBandSelect($('#band_select').val());
-	checkSpots();
-	infowindow.close();
-}
-function usersHide() {
-	for (var i=0; i<user_markers.length; i++) {
-		user_markers[i].setVisible(false);
-	}
-	checkSpots();
-	infowindow.close();
-}
-
 function repeatersShow() {
 	changeRepeatersBandSelect($('#band_select').val());
 	checkSpots();
