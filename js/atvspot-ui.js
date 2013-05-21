@@ -4,11 +4,8 @@ var months = ["_dummy_", "January", "February", "March", "April", "May", "June",
 var valTimeSpan;
 //var bandDict = {70cm: 1, 23cm: 2, 13cm: 3, 3cm: 4};
 var valBandChoice = {}; // Gets setup on .ready()
+var spotAutocomplete = [];
 $(document).ready(function() {
-	setTimeSpan($('#time_select').val());
-	setBandChoice($('#band_select').val());
-	checkSpots();
-	checkUsers();
 	$('#time_select').change(function() {
 		setTimeSpan($('#time_select').val());
 		checkSpots();
@@ -20,6 +17,14 @@ $(document).ready(function() {
 		checkUsers();
 		changeRepeatersBandSelect($('#band_select').val());
 	});
+	
+	$("#remote_callsign").autocomplete({
+      source: spotAutocomplete
+    });
+    setTimeSpan($('#time_select').val());
+	setBandChoice($('#band_select').val());
+	checkSpots();
+	checkUsers();
 });
 
 // Spot Form
@@ -132,4 +137,15 @@ function createGlobalSpotLog(spotLog) {
 	    spotLogDivContent="No spots found.";
 	}
 	$('#spotLog').html(spotLogDivContent);
+}
+
+function loadSpotAutocomplete() {
+    var callsigns = new Array();
+    for (var i=0; i<user_markers.length; i++) {
+        callsigns.push(user_markers[i].callsign);
+    }
+    for (var i=0; i<repeater_markers.length; i++) {
+        callsigns.push(repeater_markers[i].callsign);
+    }
+    spotAutocomplete = callsigns;
 }

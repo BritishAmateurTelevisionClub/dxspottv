@@ -70,13 +70,14 @@ function getSpots() {
 	});
 }
 
-function updateActivity() {	
+function updateActivity() {
 	$.ajax({
 		url: "/ajax/update_activity.php",
 		success: function( data ) {
 			//console.log(data);
 		}
 	});
+	loadSpotAutocomplete();
 }
 
 function submitSpot() {
