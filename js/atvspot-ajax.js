@@ -89,7 +89,7 @@ function submitSpot() {
 		url: "/ajax/submit_spot.php",
 		type: "GET",
 		data: {
-			freq: $("#spot_freq").val(),
+			band_id: $("#spot_band_select").val(),
 			mode: $("#spot_mode_select").val(),
 			r_callsign: $("#remote_callsign").val(),
 			r_locator: $("#remote_loc").val(),
