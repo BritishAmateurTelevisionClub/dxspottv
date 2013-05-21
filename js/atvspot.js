@@ -85,7 +85,6 @@ function updateUserMarker(user_data, user_index) {
 		user_markers[user_index].setIcon(userActiveIcon);
 	}
 
-    user_markers[user_index].setIcon(toBeIcon);
     user_markers[user_index].activity = user_data['seconds_active'];
     
     var contentString = activityString(user_data);

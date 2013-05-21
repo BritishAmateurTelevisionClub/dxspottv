@@ -2,8 +2,8 @@ var months = ["_dummy_", "January", "February", "March", "April", "May", "June",
 // Set up Time/Band dropdowns
 //
 var valTimeSpan;
-var bandDict = { 70cm: 1, 23cm: 2, 13cm: 3, 3cm: 4};
-var valBandChoice = { 1: false, 2: false, 3: false, 4: false};
+//var bandDict = {70cm: 1, 23cm: 2, 13cm: 3, 3cm: 4};
+var valBandChoice = {}; // Gets setup on .ready()
 $(document).ready(function() {
 	setTimeSpan($('#time_select').val());
 	setBandChoice($('#band_select').val());
@@ -120,7 +120,7 @@ function createGlobalSpotLog(spotLog) {
 				return e.user_id == spot.secondary_id;
 			});
 		}
-		spotLogDivContent+=parseInt(spot['time'].substr(8,2))+"&nbsp;"+months[parseInt(spot['time'].substr(5,2))]+"&nbsp;"+spot['time'].substr(11,8)+":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
+		spotLogDivContent+=parseInt(spot['spot_time'].substr(8,2))+"&nbsp;"+months[parseInt(spot['spot_time'].substr(5,2))]+"&nbsp;"+spot['spot_time'].substr(11,8)+":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
 		spotLogDivContent+="&nbsp;"+spot['frequency']+"MHz";
 		if(spot['comments'].length != 0) {
 			spotLogDivContent+="<br>";
