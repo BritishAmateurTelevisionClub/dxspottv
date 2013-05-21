@@ -24,49 +24,6 @@ function doLogin() {
 	});
 }
 
-function getRepeaters() {
-	$.ajax({
-		url: "/ajax/repeaters.php",
-		type: "GET",
-		data: {
-			bands: $("band_select").val()
-		},
-		success: function( data ) {
-			//console.log(data);
-			myJSONObject = eval('(' + data + ')');
-    		parseRepeaters(myJSONObject);
-		}
-	});
-}
-
-function getUsers() {
-	$.ajax({
-		url: "/ajax/users.php",
-		type: "GET",
-		data: {
-			timespan: $("time_select").val(),
-			bands: $("band_select").val()
-		},
-		success: function( data ) {
-			//console.log(data);
-			myJSONObject = eval('(' + data + ')');
-    		parseUsers(myJSONObject);
-		}
-	});
-}
-
-function getSpots() {	
-	$.ajax({
-		url: "/ajax/spots.php",
-		success: function( data ) {
-			//console.log(data);
-			myJSONObject = eval('(' + data + ')');
-    		parseSpots(myJSONObject);
-    		createGlobalSpotLog(myJSONObject);
-		}
-	});
-}
-
 function getMapData() {
 	$.ajax({
 		url: "/ajax/mapData.php",
@@ -76,6 +33,7 @@ function getMapData() {
     		parseRepeaters(myJSONObject['repeaters']);
     		parseSpots(myJSONObject['spots']);
     		createGlobalSpotLog(myJSONObject['spots']);
+    		loadSpotAutocomplete();
 		}
 	});
 }
@@ -87,7 +45,6 @@ function updateActivity() {
 			//console.log(data);
 		}
 	});
-	loadSpotAutocomplete();
 }
 
 function submitSpot() {
