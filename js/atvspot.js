@@ -91,7 +91,7 @@ function updateUserMarker(user_data, user_index) {
     google.maps.event.clearListeners(user_markers[user_index], 'click');
 	google.maps.event.addListener(user_markers[user_index], 'click', function() {
 		infowindow.setContent("<b>"+user_data['callsign']+"</b><br>"+contentString);
-        infowindow.open(map,marker);
+        infowindow.open(map,user_markers[user_index]);
    	});
 }
 
