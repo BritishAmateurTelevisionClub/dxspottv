@@ -131,6 +131,7 @@ border="0" cellpadding="0" cellspacing="0">
 </tr></table>
 </form>
 <div id="map_canvas"></div>
+<?php if($logged_in) { // If logged in, show spot form ?>
 <table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
 border="0" cellpadding="0" cellspacing="0">
 <tr>
@@ -139,9 +140,35 @@ border="0" cellpadding="0" cellspacing="0">
 	<h4>Global Spot Log</h4>
 	<span id="spotLog" class="reduce-font-size">Loading...</span>
 </div>
-</td><td width="50%">
-<h4>Submit Spot Form..</h4>
+</td><td style="width: 50%; margin-left: 5px;">
+<div id="spotForm" class="reduce-tab-padding">
+		<h4>New Spot</h4>
+		<label class="spot_form_labels">Band:&nbsp;</label>
+		<select id="spot_band_select">
+		<option value=1>70cm</option>
+		<option value=2>23cm</option>
+		<option value=3>13cm</option>
+		<option value=4>3cm</option>
+		</select>
+		<label class="spot_form_labels">Mode:&nbsp;</label>
+		<select id="spot_mode_select">
+		<option value="analogtv">Analog TV</option>
+		<option value="digitaltv">Digital TV</option>
+		</select>
+		<br>
+		<h4>Remote Station</h4>
+		<label class="spot_form_labels">Callsign:&nbsp;</label><input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" /><br>
+		<label class="spot_form_labels">Locator:&nbsp;</label><input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
+		<label class="spot_form_labels">Comments:&nbsp;</label><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
+		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
+	</div>
 </td></tr></table>
+<?php } else { ?>
+<div id="spotLogDiv">
+	<h4>Global Spot Log</h4>
+	<span id="spotLog" class="reduce-font-size">Loading...</span>
+</div>
+<?php } ?>
 </td>
 <td width="45%" style="padding: 5px; vertical-align: top;">
 <?php
@@ -150,7 +177,7 @@ if($logged_in) {
 ?>
 &nbsp;&nbsp;<button class="logout-button reduce-font-size" id="logout_button">Logout</button>
 <br><br>
-<?
+<?php
 } else {
 ?>
 Callsign: <input type=text name="callsign" id="callsign_input" <?php if($user_known) { print 'value="' . $callsign . '"'; } ?>/>
@@ -174,8 +201,7 @@ if ($auth_error==1) {
 		<?php
 		if($logged_in) { // If logged in, show spot form
 		?>
-		<li><a href="#spotForm" class="reduce-font-size">Submit Spots</a></li>
-		<li><a href="#editStation" class="reduce-font-size">My Station</a></li>
+		<li><a href="#editStation" class="reduce-font-size">Edit My Station</a></li>
 		<?php } ?>
 		<li><a href="#helpTab" class="reduce-font-size">Help</a></li>
 		<li><a href="#aboutTab" class="reduce-font-size">About</a></li>
@@ -186,20 +212,6 @@ if ($auth_error==1) {
 	<?php
 		if($logged_in) { // If logged in, show spot form
 		?>
-	<div id="spotForm" class="reduce-tab-padding">
-		<h4>New Spot</h4>
-		<label class="spot_form_labels">Frequency:&nbsp;</label><input type=text name="spot_freq" id="spot_freq" class="spot_box_med" />Mhz<br>
-		<label class="spot_form_labels">Mode:&nbsp;</label><select id="spot_mode_select">
-		<option value="analogtv">Analog TV</option>
-		<option value="digitaltv">Digital TV</option>
-		</select>
-		<br>
-		<h4>Remote Station</h4>
-		<label class="spot_form_labels">Callsign:&nbsp;</label><input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" /><br>
-		<label class="spot_form_labels">Locator:&nbsp;</label><input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
-		<label class="spot_form_labels">Comments:&nbsp;</label><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
-		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
-	</div>
 	<div id="editStation" class="reduce-tab-padding">
 		<h4>My Station Description:</h4>
 		text box here..

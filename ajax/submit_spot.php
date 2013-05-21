@@ -1,7 +1,7 @@
 <?php
 session_start();
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
-$got_variables = (isset($_REQUEST["freq"]) && isset($_REQUEST["mode"]));
+$got_variables = (isset($_REQUEST["band_id"]) && isset($_REQUEST["mode"]));
 if($got_cookies && $got_variables) {
 include_once("login_functions.php");
 include('spot_login.php');
@@ -14,7 +14,7 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 	if ($_COOKIE["session_key"]==$target_row["session_id"]) {
 		// Session matches, so is logged in!
 		$user_id = $_COOKIE["user_id"];
-		$freq = mysqli_real_escape_string($dbc, $_REQUEST["freq"]);
+		$band_id = mysqli_real_escape_string($dbc, $_REQUEST["band_id"]);
 		$mode_id = mysqli_real_escape_string($dbc, $_REQUEST["mode"]);
 		$comments = mysqli_real_escape_string($dbc, $_REQUEST["comments"]);
 		$r_callsign = mysqli_real_escape_string($dbc, $_REQUEST["r_callsign"]);
@@ -28,7 +28,7 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 		
 			$check_existing_user_row = mysqli_fetch_array($check_existing_user);
 			$r_userid = $check_existing_user_row['id'];
-			$add_spot_query = "INSERT into spots (mode_id, frequency, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$freq}', '{$user_id}', '{$r_userid}', '{$comments}');";
+			$add_spot_query = "INSERT into spots (mode_id, band_id, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$band_id}', '{$user_id}', '{$r_userid}', '{$comments}');";
 			mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
 			// Add activity for remote callsign
 			updateRemoteUserActivity($user_id);
@@ -37,7 +37,7 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 			
 			$check_existing_repeater_row = mysqli_fetch_array($check_existing_repeater);
 			$r_userid = $check_existing_repeater_row['id'];
-			$add_spot_query = "INSERT into spots (mode_id, frequency, primary_id, secondary_id, secondary_isrepeater, comments) VALUES ('{$mode_id}', '{$freq}', '{$user_id}', '{$r_userid}', '1', '{$comments}');";
+			$add_spot_query = "INSERT into spots (mode_id, band_id, primary_id, secondary_id, secondary_isrepeater, comments) VALUES ('{$mode_id}', '{$band_id}', '{$user_id}', '{$r_userid}', '1', '{$comments}');";
 			mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
 			
 		} else { // New unknown user
@@ -49,7 +49,7 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 			$check_existing_user = mysqli_query($dbc, "SELECT id FROM users WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
 			$check_existing_user_row = mysqli_fetch_array($check_existing_user);
 			$r_userid = $check_existing_user_row['id'];
-			$add_spot_query = "INSERT into spots (mode_id, frequency, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$freq}', '{$user_id}', '{$r_userid}', '{$comments}');";
+			$add_spot_query = "INSERT into spots (mode_id, band_id, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$band_id}', '{$user_id}', '{$r_userid}', '{$comments}');";
 			mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
 			// Add activity for remote callsign
 			updateRemoteUserActivity($user_id);
