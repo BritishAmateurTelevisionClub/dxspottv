@@ -4,7 +4,6 @@ var spot_lines = [];
 var map;
 
 var infowindow;
-var infoBubble;
 var session_id;
 var logged_in;
 
@@ -32,13 +31,9 @@ function initialize() {
 	infowindow = new google.maps.InfoWindow( {
 			size: new google.maps.Size(150,50)
 	});
-	infoBubble = new InfoBubble({
-        maxWidth: 250
-    });
 
 	google.maps.event.addListener(map, 'click', function() {
 		infowindow.close();
-		infoBubble.close();
 	});
 
 	userActiveIcon = new google.maps.MarkerImage("/images/active_user.ico");
@@ -123,6 +118,10 @@ function createRepeaterMarker(repeater_data) {
     
     var tabA = ['<p><b>', repeater_data['callsign'], '</b></p>'].join('');
     var tabB = ['<p>', repeater_data['description'], '</p>'].join('');
+    
+    var infoBubble = new InfoBubble({
+        maxWidth: 250
+    });
   	
     infoBubble.addTab('Info', tabA);
     infoBubble.addTab('Description', tabB);
