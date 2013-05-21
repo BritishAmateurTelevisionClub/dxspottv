@@ -142,7 +142,7 @@ border="0" cellpadding="0" cellspacing="0">
 </div>
 </td><td style="width: 50%; margin-left: 5px;">
 <div id="spotForm">
-		<b style="line-height: 1.5">New Spot</b>
+		<b style="line-height: 1.5">New Spot</b><br>
 		<select id="spot_band_select">
 		<option value=1>70cm</option>
 		<option value=2>23cm</option>
@@ -154,8 +154,8 @@ border="0" cellpadding="0" cellspacing="0">
 		<option value="analogtv">Analog TV</option>
 		<option value="digitaltv">Digital TV</option>
 		</select><br>
-		<b>Remote</b>&nbsp;<span class="spotFormLabel">Callsign:</span>&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />
-		<br><span class="spotFormLabel">Locator:</span>&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
+		<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />
+		<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
 		Freq / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 	</div>
