@@ -209,7 +209,8 @@ function parseUsers(JSONinput) {
 			if(marker_search.length==0) {
 				createUserMarker(user);
 			} else {
-				updateUserMarker(user, marker_search);
+			    user_index = $.inArray(marker_search[0], user_markers);
+				updateUserMarker(user, user_index);
 			}
 		}
 	}

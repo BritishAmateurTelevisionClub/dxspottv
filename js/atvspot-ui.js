@@ -14,7 +14,9 @@ $(document).ready(function() {
 		checkUsers();
 	});
 	$('#band_select').change(function() {
-		changeUsersSelect($('#band_select').val());
+	    setBandChoice($('#band_select').val());
+	    checkSpots();
+		checkUsers();
 		changeRepeatersBandSelect($('#band_select').val());
 	});
 });
