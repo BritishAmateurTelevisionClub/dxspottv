@@ -7,7 +7,7 @@ html, body {
 }
 
 #irc_frame {
-  height: 550px;
+  height: 600px;
   width: 100%;
  }
  
@@ -46,6 +46,6 @@ html, body {
 }
 
 #spotLogDiv {
-	height:180px;
+	height:230px;
 	overflow: auto;
 }

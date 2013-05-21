@@ -96,7 +96,7 @@ style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
 border="0" cellpadding="0" cellspacing="0">
 <tbody>
 <tr>
-<td width="60%" style="padding: 5px; vertical-align: top;">
+<td width="55%" style="padding: 5px; vertical-align: top;">
 
 <form action="#">
 <table border="0" cellspacing="3" cellpadding="0" width="100%" >
@@ -131,12 +131,19 @@ border="0" cellpadding="0" cellspacing="0">
 </tr></table>
 </form>
 <div id="map_canvas"></div>
+<table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
+border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td width="50%">
 <div id="spotLogDiv">
 	<h4>Global Spot Log</h4>
 	<span id="spotLog" class="reduce-font-size">Loading...</span>
 </div>
+</td><td width="50%">
+<h4>Submit Spot Form..</h4>
+</td></tr></table>
 </td>
-<td width="40%" style="padding: 5px; vertical-align: top;">
+<td width="45%" style="padding: 5px; vertical-align: top;">
 <?php
 if($logged_in) {
   print "Hi " . $callsign . "!";
