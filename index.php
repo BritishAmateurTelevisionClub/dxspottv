@@ -143,23 +143,20 @@ border="0" cellpadding="0" cellspacing="0">
 </td><td style="width: 50%; margin-left: 5px;">
 <div id="spotForm" class="reduce-tab-padding">
 		<h4>New Spot</h4>
-		<label class="spot_form_labels">Band:&nbsp;</label>
 		<select id="spot_band_select">
 		<option value=1>70cm</option>
 		<option value=2>23cm</option>
 		<option value=3>13cm</option>
 		<option value=4>3cm</option>
 		</select>
-		<label class="spot_form_labels">Mode:&nbsp;</label>
+		&nbsp;
 		<select id="spot_mode_select">
 		<option value="analogtv">Analog TV</option>
 		<option value="digitaltv">Digital TV</option>
-		</select>
-		<br>
-		<h4>Remote Station</h4>
-		<label class="spot_form_labels">Callsign:&nbsp;</label><input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" /><br>
-		<label class="spot_form_labels">Locator:&nbsp;</label><input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
-		<label class="spot_form_labels">Comments:&nbsp;</label><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
+		</select><br>
+		<b>Remote</b>&nbsp;Callsign:&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />&nbsp;
+		Locator:&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
+		Comments:&nbsp;<input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 	</div>
 </td></tr></table>
@@ -214,7 +211,7 @@ if ($auth_error==1) {
 		?>
 	<div id="editStation" class="reduce-tab-padding">
 		<h4>My Station Description:</h4>
-		text box here..
+		<input type=text name="station_description_edit" id="station_description_edit" />
 	</div>
 	<?php } ?>
 	<div id="helpTab" class="reduce-tab-padding">
