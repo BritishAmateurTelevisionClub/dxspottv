@@ -7,7 +7,8 @@ var valBandChoice = {}; // Gets setup on .ready()
 $(document).ready(function() {
 	setTimeSpan($('#time_select').val());
 	setBandChoice($('#band_select').val());
-	
+	checkSpots();
+	checkUsers();
 	$('#time_select').change(function() {
 		setTimeSpan($('#time_select').val());
 		checkSpots();
