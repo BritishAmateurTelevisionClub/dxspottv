@@ -95,20 +95,6 @@ $(document).ready(function() {
 	$( "#tabs" ).tabs();
 });
 
-
-// Show/Hide webIRC
-//
-function hideIRC() {
-	$('#irc_frame').hide();
-	$('#irc_shown_blurb').hide();
-	$('#irc_hidden_blurb').show();
-}
-function showIRC() {
-	$('#irc_hidden_blurb').hide();
-	$('#irc_frame').show();
-	$('#irc_shown_blurb').show();
-}
-
 function createGlobalSpotLog(spotLog) {
 	var spotLogDivContent = "";
 	if(spotLog.length!=0) {
