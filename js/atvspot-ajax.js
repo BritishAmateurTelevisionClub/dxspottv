@@ -2,7 +2,7 @@
 //
 var mapRefresh=self.setInterval(function(){updateMap()},5000);
 
-var activityRefresh=self.setInterval(function(){updateActivity()},20000);
+var activityRefresh=self.setInterval(function(){updateActivity()},18000);
 
 function updateMap() {
 	console.log("Updating map..");
