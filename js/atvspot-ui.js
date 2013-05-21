@@ -104,29 +104,33 @@ function showIRC() {
 
 function createGlobalSpotLog(spotLog) {
 	var spotLogDivContent = "";
-	var spot = new Array();
-	for(s_id in spotLog){
-		var spot = spotLog[s_id];
-		var primary_search = $.grep(user_markers, function(e){
-			return e.user_id == spot.primary_id;
-		});
-		// find our secondary marker
-		if(spot.secondary_isrepeater==1) { // if its a repeater
-			var secondary_search = $.grep(repeater_markers, function(e){
-				return e.repeater_id == spot.secondary_id;
-			});
-		} else { // or a user
-			var secondary_search = $.grep(user_markers, function(e){
-				return e.user_id == spot.secondary_id;
-			});
-		}
-		spotLogDivContent+=parseInt(spot['spot_time'].substr(8,2))+"&nbsp;"+months[parseInt(spot['spot_time'].substr(5,2))]+"&nbsp;"+spot['spot_time'].substr(11,8)+":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
-		spotLogDivContent+="&nbsp;"+spot['frequency']+"MHz";
-		if(spot['comments'].length != 0) {
-			spotLogDivContent+="<br>";
-			spotLogDivContent+="Comment:&nbsp;"+spot['comments'];
-		}
-		spotLogDivContent+="<br><br>";
+	if(spotLog.length!=0) {
+	    var spot = new Array();
+	    for(s_id in spotLog){
+		    var spot = spotLog[s_id];
+		    var primary_search = $.grep(user_markers, function(e){
+			    return e.user_id == spot.primary_id;
+		    });
+		    // find our secondary marker
+		    if(spot.secondary_isrepeater==1) { // if its a repeater
+			    var secondary_search = $.grep(repeater_markers, function(e){
+				    return e.repeater_id == spot.secondary_id;
+			    });
+		    } else { // or a user
+			    var secondary_search = $.grep(user_markers, function(e){
+				    return e.user_id == spot.secondary_id;
+			    });
+		    }
+		    spotLogDivContent+=parseInt(spot['spot_time'].substr(8,2))+"&nbsp;"+months[parseInt(spot['spot_time'].substr(5,2))]+"&nbsp;"+spot['spot_time'].substr(11,8)+":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
+		    spotLogDivContent+="&nbsp;"+spot['frequency']+"MHz";
+		    if(spot['comments'].length != 0) {
+			    spotLogDivContent+="<br>";
+			    spotLogDivContent+="Comment:&nbsp;"+spot['comments'];
+		    }
+		    spotLogDivContent+="<br><br>";
+	    }
+	} else {
+	    spotLogDivContent="No spots found.";
 	}
 	$('#spotLog').html(spotLogDivContent);
 }
