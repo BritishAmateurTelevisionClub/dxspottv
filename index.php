@@ -201,12 +201,8 @@ if ($auth_error==1) {
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 	</div>
 	<div id="editStation" class="reduce-tab-padding">
-		<h4>I'm listening on:</h4>
-		<form id=listening>
-		70cm: <input type="checkbox" id="listen_70cm_box" /><br>
-		23cm: <input type="checkbox" id="listen_23cm_box" /><br>
-		13cm: <input type="checkbox" id="listen_13cm_box" />
-		</form>
+		<h4>My Station Description:</h4>
+		text box here..
 	</div>
 	<?php } ?>
 	<div id="helpTab" class="reduce-tab-padding">

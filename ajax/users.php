@@ -22,21 +22,7 @@ while($user_row = mysqli_fetch_array($user_result))
 	$output[$i]['days_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%d');
 	if($user_row['known']=='1') {
 		$output[$i]['known'] = '1';
-		// Get User Listening Data
-		$listen_result = mysqli_query($dbc, "SELECT * FROM listening WHERE user_id='{$user_id}';") or die(mysqli_error($dbc));
-		$listen_row = mysqli_fetch_array($listen_result);
-		$output[$i]['is70cm'] = $listen_row['70cm_listen'];
-		if($output[$i]['is70cm']==1) {
-			$output[$i]['70cmFreq'] = $listen_row['70cm_freq'];
-		}
-		$output[$i]['is23cm'] = $listen_row['23cm_listen'];
-		if($output[$i]['is23cm']==1) {
-			$output[$i]['23cmFreq'] = $listen_row['23cm_freq'];
-		}
-		$output[$i]['is13cm'] = $listen_row['13cm_listen'];
-		if($output[$i]['is13cm']==1) {
-			$output[$i]['13cmFreq'] = $listen_row['13cm_freq'];
-		}
+		// TODO: Load Station Description Text
 	} else {
 		$output[$i]['known'] = '0';
 	}
