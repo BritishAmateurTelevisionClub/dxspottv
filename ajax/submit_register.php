@@ -27,7 +27,7 @@ include_once("spot_login.php");
 $callsign = mysqli_real_escape_string($dbc, strtoupper($_REQUEST["callsign"]));
 $passwd = mysqli_real_escape_string($dbc, $_REQUEST["passwd"]);
 $email = mysqli_real_escape_string($dbc, $_REQUEST["email"]);
-$locator = mysqli_real_escape_string($dbc, $_REQUEST["locator"]);
+$locator = mysqli_real_escape_string($dbc, strtoupper($_REQUEST["locator"]));
 $lat = mysqli_real_escape_string($dbc, $_REQUEST["lat"]);
 $lon = mysqli_real_escape_string($dbc, $_REQUEST["lon"]);
 $name = mysqli_real_escape_string($dbc, $_REQUEST["fname"]);
