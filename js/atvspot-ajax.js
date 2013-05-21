@@ -5,10 +5,7 @@ var mapRefresh=self.setInterval(function(){updateMap()},5000);
 var activityRefresh=self.setInterval(function(){updateActivity()},18000);
 
 function updateMap() {
-	//console.log("Updating map..");
-	getUsers();
-	getRepeaters();
-	getSpots();
+	getMapData();
 	ga('send', 'event', 'refresh', 'Map Data');
 }
 
@@ -66,6 +63,19 @@ function getSpots() {
 			myJSONObject = eval('(' + data + ')');
     		parseSpots(myJSONObject);
     		createGlobalSpotLog(myJSONObject);
+		}
+	});
+}
+
+function getMapData() {
+	$.ajax({
+		url: "/ajax/mapData.php",
+		success: function( data ) {
+			myJSONObject = eval('(' + data + ')');
+    		parseUsers(myJSONObject['users']);
+    		parseRepeaters(myJSONObject['repeaters']);
+    		parseSpots(myJSONObject['spots']);
+    		createGlobalSpotLog(myJSONObject['spots']);
 		}
 	});
 }
