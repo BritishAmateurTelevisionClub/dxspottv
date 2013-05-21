@@ -14,8 +14,8 @@ html, body {
 #spot_form {
 	margin: 5px;
 }
-.spot_form_labels {
-	width:120px;
+.spotFormLabel {
+	margin-left:80px;
     float:left;
 }
 .spot_box_long {
