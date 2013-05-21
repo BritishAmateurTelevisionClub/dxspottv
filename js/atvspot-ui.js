@@ -17,10 +17,6 @@ $(document).ready(function() {
 		checkUsers();
 		changeRepeatersBandSelect($('#band_select').val());
 	});
-	
-	$("#remote_callsign").autocomplete({
-      source: spotAutocomplete
-    });
     setTimeSpan($('#time_select').val());
 	setBandChoice($('#band_select').val());
 	checkSpots();
@@ -29,6 +25,11 @@ $(document).ready(function() {
 
 // Spot Form
 $(document).ready(function() {
+    $('#remote_loc').click( function() {
+    	if($.inArray($('#remote_callsign').val(),spotAutocomplete)>=0) {
+    	    //Grab locator from user marker
+    	}
+	});
 	$('#spot_button').button().click( function() {
     	submitSpot();
 	});
@@ -148,4 +149,7 @@ function loadSpotAutocomplete() {
         callsigns.push(repeater_markers[i].callsign);
     }
     spotAutocomplete = callsigns;
+    $("#remote_callsign").autocomplete({
+      source: spotAutocomplete
+    });
 }
