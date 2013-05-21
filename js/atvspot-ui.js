@@ -121,7 +121,7 @@ function createGlobalSpotLog(spotLog) {
 			    });
 		    }
 		    spotLogDivContent+=parseInt(spot['time'].substr(8,2))+"&nbsp;"+months[parseInt(spot['time'].substr(5,2))]+"&nbsp;"+spot['time'].substr(11,8)+":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
-		    spotLogDivContent+="&nbsp;"+bandFromID(spotLine.band_id);
+		    spotLogDivContent+="&nbsp;"+bandFromID(spot.band_id);
 		    if(spot['comments'].length != 0) {
 			    spotLogDivContent+="<br>";
 			    spotLogDivContent+=">&nbsp;"+spot['comments'];
