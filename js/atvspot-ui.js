@@ -2,12 +2,16 @@ var months = ["_dummy_", "January", "February", "March", "April", "May", "June",
 // Set up Time/Band dropdowns
 //
 var valTimeSpan;
+var bandDict = { 70cm: 1, 23cm: 2, 13cm: 3, 3cm: 4};
+var valBandChoice = { 1: false, 2: false, 3: false, 4: false};
 $(document).ready(function() {
 	setTimeSpan($('#time_select').val());
+	setBandChoice($('#band_select').val());
 	
 	$('#time_select').change(function() {
 		setTimeSpan($('#time_select').val());
-		changeUsersSelect($('#band_select').val());
+		checkSpots();
+		checkUsers();
 	});
 	$('#band_select').change(function() {
 		changeUsersSelect($('#band_select').val());
@@ -148,6 +152,24 @@ function setTimeSpan(timeSpan) {
 		break;
 	default: // All
 		valTimeSpan = 315576000; // 10 years, should do for now!
+		break;
+	}
+}
+
+function setBandChoice(bandChoice) {
+	switch(bandChoice)
+	{
+	case "70cm":
+		valBandChoice = { 1: true, 2: false, 3: false, 4: false};
+		break;
+	case "23cm":
+		valBandChoice = { 1: false, 2: true, 3: false, 4: false};
+		break;
+	case "13cm":
+		valBandChoice = { 1: false, 2: false, 3: true, 4: true};
+		break;
+	default: // All
+		valBandChoice = { 1: true, 2: true, 3: true, 4: true};
 		break;
 	}
 }

@@ -163,7 +163,7 @@ function createSpotLine(spot_data) {
 	});
 	
 	spotLine.spot_id = spot_data['id'];
-	spotLine.frequency = spot_data['frequency'];
+	spotLine.band_id = spot_data['band_id'];
 	spotLine.mode_id = spot_data['mode_id'];
 	
 	spotLine.primary_id = spot_data['primary_id'];

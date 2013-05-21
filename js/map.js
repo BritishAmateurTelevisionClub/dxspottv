@@ -56,22 +56,7 @@ function repeatersHide() {
 
 function checkSpots() {
 	for (var i=0; i<spot_lines.length; i++) {
-		// find our primary user marker
-		var primary_search = $.grep(user_markers, function(e){
-			return e.user_id == spot_lines[i].primary_id;
-		});
-		// find our secondary marker
-		if(spot_lines[i].secondary_isrepeater==1) { // if its a repeater
-			var secondary_search = $.grep(repeater_markers, function(e){
-				return e.repeater_id == spot_lines[i].secondary_id;
-			});
-		} else { // or a user
-			var secondary_search = $.grep(user_markers, function(e){
-				return e.user_id == spot_lines[i].secondary_id;
-			});
-		}
-		// if both ends are visible then show(), else hide()
-		if((primary_search[0].visible==true) && (secondary_search[0].visible==true) && (spot_lines[i].ago<=valTimeSpan)) {
+		if(valBandChoice[spot_lines[i].band_id] && (spot_lines[i].ago<=valTimeSpan)) {
 			spot_lines[i].setVisible(true);
 		} else {
 			spot_lines[i].setVisible(false);
@@ -79,47 +64,30 @@ function checkSpots() {
 	}
 }
 
-function changeUsersSelect(select_val) {
-	switch(select_val)
-	{
-	case "70cm":
-		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].is70cm==1 && user_markers[i].activity<=valTimeSpan) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
+
+function checkUsers() {
+    var show_online_users = $('#userBox').is(":checked");
+    for (var i=0; i<user_markers.length; i++) {
+			if(user_markers[i].activity<=60 && show_online_users) { // Online (in last minute) and online is ticked
+				user_markers[i].setVisible(true); // then show
+			} else { // Are they part of a shown spot?
+			    // Grep spot lines for user_id
+			    var spot_search = $.grep(spot_lines, function(e){
+				    return (e.primary_id == user_markers[i].user_id || e.secondary_id == user_markers[i].user_id);
+			    });
+			    var visibleToBe = false;
+			    for (var j=0; j<spot_search.length; j++) {
+			        if (spot_search[j].is(":visible")) {
+			            visibleToBe = true;
+			        }
+			    }
+			    if(visibleToBe) {
+			        user_markers[i].setVisible(true);
+			    } else {
+			        user_markers[i].setVisible(false);
+			    }
 			}
-		}
-		break;
-	case "23cm":
-		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].is23cm==1 && user_markers[i].activity<=valTimeSpan) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "13cm":
-		for (var i=0; i<user_markers.length; i++) {
-			if((user_markers[i].is13cm==1 || user_markers[i].is3cm==1) && user_markers[i].activity<=valTimeSpan) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
-			}
-		}
-		break;
-	default: // All
-		for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].activity<=valTimeSpan) {
-				user_markers[i].setVisible(true);
-			} else {
-				user_markers[i].setVisible(false);
-			}
-		}
-		break;
 	}
-	checkSpots();
 }
 
 function changeRepeatersBandSelect(select_val) {
