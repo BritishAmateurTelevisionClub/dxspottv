@@ -49,8 +49,7 @@ function initialize() {
 
 	getRepeaters();
 	getUsers();
-
-	mapShow("user");
+	getSpots();
 }
 
 function createUserMarker(user_data) {
