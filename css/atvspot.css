@@ -15,11 +15,11 @@ html, body {
 	margin: 5px;
 }
 .spotFormLabel {
-	margin-left:80px;
+	margin-left:70px;
     float:left;
 }
 .spot_box_long {
-	width: 250px;
+	width: 320px;
 }
 .spot_box_med {
 	width: 120px;

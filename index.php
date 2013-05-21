@@ -140,9 +140,9 @@ border="0" cellpadding="0" cellspacing="0">
 	<h4>Global Spot Log</h4>
 	<span id="spotLog" class="reduce-font-size">Loading...</span>
 </div>
-</td><td style="width: 50%; margin-left: 5px;">
+</td><td style="width: 50%; margin-left: 5px; line-height: 1.3">
 <div id="spotForm">
-		<b style="line-height: 1.5">New Spot</b><br>
+		<b>New Spot</b><br>
 		<select id="spot_band_select">
 		<option value=1>70cm</option>
 		<option value=2>23cm</option>
