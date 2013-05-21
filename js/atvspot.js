@@ -50,25 +50,11 @@ function initialize() {
 
 function createUserMarker(user_data) {
 	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
-	var contentString;
-	if(user_data['months_active']>1) {
-		contentString = 'Last active ' + user_data['months_active'] + ' months ago.';
-	} else if(user_data['months_active']>0) {
-		contentString = 'Last active ' + user_data['months_active'] + ' month ago.';
-	} else if (user_data['days_active']>1) {
-		contentString = 'Last active ' + user_data['days_active'] + ' days ago.';
-	} else if (user_data['days_active']>0) {
-		contentString = 'Last active ' + user_data['days_active'] + ' day ago.';
-	} else if (user_data['hours_active']>1) {
-		contentString = 'Last active ' + user_data['hours_active'] + ' hours ago.';
-	} else if (user_data['hours_active']>0) {
-		contentString = 'Last active ' + user_data['hours_active'] + ' hour ago.';
-	} else {
-		contentString = 'Currently Active.'
-	}
+	var contentString = activityString(user_data);
+	
 	if(user_data['known']==0) {
 		var toBeIcon = userUnknownIcon;
-	} else if(user_data['seconds_active']>3600) { // 1 hour
+	} else if(user_data['seconds_active']>60) { // 1 minute, should check in every 20 seconds
 		var toBeIcon = userAwayIcon;
 	} else {
 		var toBeIcon = userActiveIcon;
@@ -81,14 +67,30 @@ function createUserMarker(user_data) {
     });
     marker.user_id = user_data['id']
     marker.callsign = user_data['callsign'];
-    marker.is70cm = user_data['is_70cm'];
-    marker.is23cm = user_data['is_23cm'];
-    marker.is13cm = user_data['is_13cm'];
-    marker.is3cm = user_data['is_3cm'];
     marker.activity = user_data['seconds_active'];
     user_markers.push(marker);
 
 	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent("<b>"+user_data['callsign']+"</b><br>"+contentString);
+        infowindow.open(map,marker);
+   	});
+}
+
+function updateUserMarker(user_data, user_index) {
+	if(user_data['known']==0) {
+		user_markers[user_index].setIcon(userUnknownIcon);
+	} else if(user_data['seconds_active']>60) { // 1 minute, should check in every 20 seconds
+		user_markers[user_index].setIcon(userAwayIcon);
+	} else {
+		user_markers[user_index].setIcon(userActiveIcon);
+	}
+
+    user_markers[user_index].setIcon(toBeIcon);
+    user_markers[user_index].activity = user_data['seconds_active'];
+    
+    var contentString = activityString(user_data);
+    google.maps.event.clearListeners(user_markers[user_index], 'click');
+	google.maps.event.addListener(user_markers[user_index], 'click', function() {
 		infowindow.setContent("<b>"+user_data['callsign']+"</b><br>"+contentString);
         infowindow.open(map,marker);
    	});
@@ -202,9 +204,13 @@ function parseUsers(JSONinput) {
 	var u_id = new Array();
 	for(u_id in JSONinput){
 		var user = JSONinput[u_id];
-		var marker_search = $.grep(user_markers, function(e){ return e.callsign == user['callsign']; });
-		if(marker_search.length==0 && user.length!=0) {
-			createUserMarker(user);
+		if(user.length!=0) {
+			var marker_search = $.grep(user_markers, function(e){ return e.callsign == user['callsign']; });
+			if(marker_search.length==0) {
+				createUserMarker(user);
+			} else {
+				updateUserMarker(user, marker_search);
+			}
 		}
 	}
 }
@@ -218,4 +224,24 @@ function parseSpots(JSONinput) {
 			createSpotLine(spot);
 		}
 	}
+}
+
+function activityString(user_data) {
+    var activeString;
+	if(user_data['months_active']>1) {
+		activeString = 'Last active ' + user_data['months_active'] + ' months ago.';
+	} else if(user_data['months_active']>0) {
+		activeString = 'Last active ' + user_data['months_active'] + ' month ago.';
+	} else if (user_data['days_active']>1) {
+		activeString = 'Last active ' + user_data['days_active'] + ' days ago.';
+	} else if (user_data['days_active']>0) {
+		activeString = 'Last active ' + user_data['days_active'] + ' day ago.';
+	} else if (user_data['hours_active']>1) {
+		activeString = 'Last active ' + user_data['hours_active'] + ' hours ago.';
+	} else if (user_data['hours_active']>0) {
+		activeString = 'Last active ' + user_data['hours_active'] + ' hour ago.';
+	} else {
+		activeString = 'Currently Active.';
+	}
+	return activeString;
 }
