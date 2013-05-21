@@ -96,36 +96,6 @@ function showIRC() {
 	$('#irc_shown_blurb').show();
 }
 
-
-// "I'm Listening" Frequency Boxes
-//
-$(document).ready(function() {
-	$('#listen_70cm_box').change(function() {
-		if ($('#listen_70cm_box').is(":checked")) {
-			$('#listen_70cm_options').show(50);
-		} else {
-			$('#listen_70cm_options').hide(50);
-		}
-		updateListening();
-	});
-	$('#listen_23cm_box').change(function() {
-		if ($('#listen_23cm_box').is(":checked")) {
-			$('#listen_23cm_options').show(50);
-		} else {
-			$('#listen_23cm_options').hide(50);
-		}
-		updateListening();
-	});
-	$('#listen_13cm_box').change(function() {
-		if ($('#listen_13cm_box').is(":checked")) {
-			$('#listen_13cm_options').show(50);
-		} else {
-			$('#listen_13cm_options').hide(50);
-		}
-		updateListening();
-	});
-});
-
 function createGlobalSpotLog(spotLog) {
 	var spotLogDivContent = "";
 	var spot = new Array();
