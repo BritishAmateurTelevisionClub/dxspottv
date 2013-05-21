@@ -141,7 +141,7 @@ border="0" cellpadding="0" cellspacing="0">
 	<span id="spotLog" class="reduce-font-size">Loading...</span>
 </div>
 </td><td style="width: 50%; margin-left: 5px;">
-<div id="spotForm" class="reduce-tab-padding">
+<div id="spotForm">
 		<h4>New Spot</h4>
 		<select id="spot_band_select">
 		<option value=1>70cm</option>
@@ -156,7 +156,7 @@ border="0" cellpadding="0" cellspacing="0">
 		</select><br>
 		<b>Remote</b>&nbsp;Callsign:&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />&nbsp;
 		Locator:&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
-		Comments:&nbsp;<input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
+		Freq / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 	</div>
 </td></tr></table>
