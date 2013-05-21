@@ -120,7 +120,7 @@ function createRepeaterMarker(repeater_data) {
     var tabB = ['<p>', repeater_data['description'], '</p>'].join('');
     
     var infoBubble = new InfoBubble({
-        maxWidth: 250
+        maxWidth: 300
     });
   	
     infoBubble.addTab('Info', tabA);
