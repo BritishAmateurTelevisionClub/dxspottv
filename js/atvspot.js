@@ -4,6 +4,7 @@ var spot_lines = [];
 var map;
 
 var infowindow;
+var infoBubble;
 var session_id;
 var logged_in;
 
@@ -31,9 +32,13 @@ function initialize() {
 	infowindow = new google.maps.InfoWindow( {
 			size: new google.maps.Size(150,50)
 	});
+	infoBubble = new InfoBubble({
+        maxWidth: 250
+    });
 
 	google.maps.event.addListener(map, 'click', function() {
 		infowindow.close();
+		infoBubble.close();
 	});
 
 	userActiveIcon = new google.maps.MarkerImage("/images/active_user.ico");
@@ -117,23 +122,17 @@ function createRepeaterMarker(repeater_data) {
     marker.is3cm = repeater_data['is_3cm'];
     repeater_markers.push(marker);
     
-    var infoContent = ['<div id="tabs">',
-      '<ul>',
-        '<li><a href="#repeaterInfoTab"><span>Info</span></a></li>',
-        '<li><a href="#repeaterDescTab"><span>Description</span></a></li>',
-      '</ul>',
-      '<div id="repeaterInfoTab">',
-        '<p><b>', repeater_data['callsign'], '</b></p>',
-      '</div>',
-      '<div id="repeaterDescTab">',
-       '<p>', repeater_data['description'], '</p>',
-      '</div>',
-      '</div>'].join('');
+    var tabA = ['<p><b>', repeater_data['callsign'], '</b></p>'].join('');
+    var tabB = ['<p>', repeater_data['description'], '</p>'].join('');
+  	
+    infoBubble.addTab('Info', tabA);
+    infoBubble.addTab('Description', tabB);
 
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(infoContent);
-        infowindow.open(map,marker);
-  	});
+    google.maps.event.addListener(marker, 'click', function() {
+        if (!infoBubble.isOpen()) {
+            infoBubble.open(map, marker);
+        }
+    });
 }
 
 function createSpotLine(spot_data) {

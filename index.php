@@ -82,11 +82,12 @@ var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php p
 var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv";
 <?php } ?> // End of callsign as nick for irc
 </script>
-<script type="text/javascript" src="js/atvspot.js"></script>
-<script type="text/javascript" src="js/atvspot-ajax.js"></script>
-<script type="text/javascript" src="js/atvspot-ui.js"></script>
-<script type="text/javascript" src="js/atvspot-util.js"></script>
+<script type="text/javascript" src="/js/atvspot.js"></script>
+<script type="text/javascript" src="/js/atvspot-ajax.js"></script>
+<script type="text/javascript" src="/js/atvspot-ui.js"></script>
+<script type="text/javascript" src="/js/atvspot-util.js"></script>
 <script type="text/javascript" src="/js/locator.js"></script>
+<script type="text/javascript" src="/js/infobubble.js"></script>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
