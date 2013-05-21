@@ -26,8 +26,10 @@ $(document).ready(function() {
 // Spot Form
 $(document).ready(function() {
     $('#remote_loc').click( function() {
-    	if($.inArray($('#remote_callsign').val(),spotAutocomplete)>=0) {
-    	    //Grab locator from user marker
+        var remoteCallsign = $('#remote_callsign').val();
+    	if($.inArray(remoteCallsign,spotAutocomplete)>=0) {
+    	    var locator_search = $.grep(user_markers, function(e){ return e.callsign == remoteCallsign; });
+    	    $('#remote_loc').val(locator_search[0].locator);
     	}
 	});
 	$('#spot_button').button().click( function() {

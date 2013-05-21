@@ -67,6 +67,7 @@ function createUserMarker(user_data) {
     });
     marker.user_id = user_data['id']
     marker.callsign = user_data['callsign'];
+    marker.locator = user_data['locator'];
     marker.activity = user_data['seconds_active'];
     user_markers.push(marker);
 
