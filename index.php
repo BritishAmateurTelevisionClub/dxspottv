@@ -132,8 +132,8 @@ border="0" cellpadding="0" cellspacing="0">
 </form>
 <div id="map_canvas"></div>
 <?php if($logged_in) { // If logged in, show spot form ?>
-<table style="width: 100%; text-align: left; margin-left: auto; border="1"margin-right: auto;"
-border="0" cellpadding="0" cellspacing="0">
+<table style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
+border="1" cellpadding="0" cellspacing="0">
 <tr>
 <td width="50%">
 <div id="spotLogDiv">
