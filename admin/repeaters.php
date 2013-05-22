@@ -1,9 +1,12 @@
 <?php
 //session_start();
 ?>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
+<meta charset="utf-8">
 <title>Repeater Management</title>
+<script src="/js/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 <h1>Admin</h1>

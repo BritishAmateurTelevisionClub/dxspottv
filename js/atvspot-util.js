@@ -25,6 +25,9 @@ function setTimeSpan(timeSpan) {
 	case "12hours":
 		valTimeSpan = 43200;
 		break;
+	case "6hours":
+		valTimeSpan = 21600;
+		break;
 	default: // All
 		valTimeSpan = 315576000; // 10 years, should do for now!
 		break;
