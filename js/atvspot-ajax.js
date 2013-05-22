@@ -1,8 +1,8 @@
 // Set up refresh functions
 //
-var mapRefresh=self.setInterval(function(){getMapData()},2000+Math.round(Math.random()*200)); // Add from 0-200ms randomly
+var mapRefresh=self.setInterval(function(){getMapData()},3000+Math.round(Math.random()*200)); // Add from 0-200ms randomly
 
-var activityRefresh=self.setInterval(function(){updateActivity()},18000);
+var activityRefresh=self.setInterval(function(){updateActivity()},8000+Math.round(Math.random()*400)); // Add from 0-400ms randomly
 
 function doLogin() {
 	$.ajax({
