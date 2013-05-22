@@ -1,13 +1,8 @@
 // Set up refresh functions
 //
-var mapRefresh=self.setInterval(function(){updateMap()},5000);
+var mapRefresh=self.setInterval(function(){getMapData()},5000);
 
 var activityRefresh=self.setInterval(function(){updateActivity()},18000);
-
-function updateMap() {
-	getMapData();
-	ga('send', 'event', 'refresh', 'Map Data');
-}
 
 function doLogin() {
 	$.ajax({
@@ -33,9 +28,16 @@ function getMapData() {
     		parseRepeaters(myJSONObject['repeaters']);
     		parseSpots(myJSONObject['spots']);
     		createGlobalSpotLog(myJSONObject['spots']);
+    		
+    		setTimeSpan($('#time_select').val());
+		setBandChoice($('#band_select').val());
+		checkSpots();
+		checkUsers();
+		
     		loadSpotAutocomplete();
 		}
 	});
+	ga('send', 'event', 'refresh', 'Map Data');
 }
 
 function updateActivity() {
