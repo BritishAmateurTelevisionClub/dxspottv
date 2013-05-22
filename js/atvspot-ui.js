@@ -118,7 +118,7 @@ function createGlobalSpotLog(spotLog) {
 		    spotLogDivContent+="&nbsp;"+bandFromID(spot.band_id);
 		    if(spot['comments'].length != 0) {
 			    spotLogDivContent+="<br>";
-			    spotLogDivContent+=">&nbsp;"+spot['comments'];
+			    spotLogDivContent+="<i>"+spot['comments']+"</i>";
 		    }
 		    spotLogDivContent+="<br><br>";
 	    }
