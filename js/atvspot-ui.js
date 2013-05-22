@@ -2,7 +2,7 @@ var months = ["_dummy_", "January", "February", "March", "April", "May", "June",
 // Set up Time/Band dropdowns
 //
 var valTimeSpan;
-//var bandDict = {70cm: 1, 23cm: 2, 13cm: 3, 3cm: 4};
+//var bandDict = {70cm: 1, 23cm: 2, 13cm: 3, 9cm: 5, 6cm: 6, 3cm: 4};
 var valBandChoice = {}; // Gets setup on .ready()
 var spotAutocomplete = [];
 $(document).ready(function() {

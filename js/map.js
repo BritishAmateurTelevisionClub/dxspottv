@@ -70,7 +70,34 @@ function changeRepeatersBandSelect(select_val) {
 		break;
 	case "13cm":
 		for (var i=0; i<repeater_markers.length; i++) {
-			if(repeater_markers[i].is13cm==1 || repeater_markers[i].is3cm==1) {
+			if(repeater_markers[i].is13cm==1) {
+				repeater_markers[i].setVisible(true);
+			} else {
+				repeater_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "9cm":
+		for (var i=0; i<repeater_markers.length; i++) {
+			if(repeater_markers[i].is9cm==1) {
+				repeater_markers[i].setVisible(true);
+			} else {
+				repeater_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "6cm":
+		for (var i=0; i<repeater_markers.length; i++) {
+			if(repeater_markers[i].is6cm==1) {
+				repeater_markers[i].setVisible(true);
+			} else {
+				repeater_markers[i].setVisible(false);
+			}
+		}
+		break;
+	case "3cm":
+		for (var i=0; i<repeater_markers.length; i++) {
+			if(repeater_markers[i].is3cm==1) {
 				repeater_markers[i].setVisible(true);
 			} else {
 				repeater_markers[i].setVisible(false);

@@ -120,7 +120,10 @@ border="0" cellpadding="0" cellspacing="0">
   <option value="all">All Bands</option>
   <option value="70cm">70cm</option>
   <option value="23cm">23cm</option>
-  <option value="13cm">13cm & above</option>
+  <option value="13cm">13cm</option>
+  <option value="9cm">9cm</option>
+  <option value="6cm">6cm</option>
+  <option value="3cm">3cm</option>
 </select>
 <td><p align="center">
 <strong>Users:</strong>&nbsp;<input type="checkbox" id="userBox" /></p></td>
@@ -147,6 +150,8 @@ border="1" cellpadding="2" cellspacing="0">
 		<option value=1>70cm</option>
 		<option value=2>23cm</option>
 		<option value=3>13cm</option>
+		<option value=5>9cm</option>
+		<option value=6>6cm</option>
 		<option value=4>3cm</option>
 		</select>
 		&nbsp;

@@ -47,6 +47,8 @@ if(apc_exists('mapData')) {
 		$repeater['is_70cm'] = $row['is_70cm'];
 		$repeater['is_23cm'] = $row['is_23cm'];
 		$repeater['is_13cm'] = $row['is_13cm'];
+		$repeater['is_9cm'] = $row['is_9cm'];
+		$repeater['is_6cm'] = $row['is_6cm'];
 		$repeater['is_3cm'] = $row['is_3cm'];
 		$repeater['active'] = $row['active'];
 		$output[] = $repeater;
