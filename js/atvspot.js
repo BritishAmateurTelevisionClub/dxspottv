@@ -66,6 +66,7 @@ function createUserMarker(user_data) {
     marker.callsign = user_data['callsign'];
     marker.locator = user_data['locator'];
     marker.activity = user_data['seconds_active'];
+    marker.known = user_data['known'];
     user_markers.push(marker);
 
 	google.maps.event.addListener(marker, 'click', function() {
