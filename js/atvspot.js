@@ -22,7 +22,7 @@ function initialize() {
 	google.maps.visualRefresh = true;
 	var mapOptions = {
 		zoom: 6,
-		center: new google.maps.LatLng(51.5, -1.39),
+		center: new google.maps.LatLng(52.5, -1.25),
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		streetViewControl: false
 	};
