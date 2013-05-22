@@ -156,7 +156,7 @@ border="0" cellpadding="0" cellspacing="0">
 		</select><br>
 		<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />
 		<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
-		Freq / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
+		Frequncy / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 	</div>
 </td></tr></table>
