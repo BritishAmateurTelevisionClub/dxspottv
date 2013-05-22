@@ -51,7 +51,7 @@ function createUserMarker(user_data) {
 	
 	if(user_data['known']==0) {
 		var toBeIcon = userUnknownIcon;
-	} else if(user_data['seconds_active']>60) { // 1 minute, should check in every 20 seconds
+	} else if(user_data['seconds_active']>40) { // 40 seconds, should check in every 8 seconds
 		var toBeIcon = userAwayIcon;
 	} else {
 		var toBeIcon = userActiveIcon;
@@ -78,7 +78,7 @@ function createUserMarker(user_data) {
 function updateUserMarker(user_data, user_index) {
 	if(user_data['known']==0) {
 		user_markers[user_index].setIcon(userUnknownIcon);
-	} else if(user_data['seconds_active']>60) { // 1 minute, should check in every 20 seconds
+	} else if(user_data['seconds_active']>40) { // 40 seconds, should check in every 8 seconds
 		user_markers[user_index].setIcon(userAwayIcon);
 	} else {
 		user_markers[user_index].setIcon(userActiveIcon);
