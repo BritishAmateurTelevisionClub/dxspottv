@@ -7,9 +7,20 @@ var infowindow;
 var session_id;
 var logged_in;
 
+var gaDebug = true;
+var pageLoadStart = new Date().getTime();
+var mapLoadStart;
+var mapDataStart;
+
 // Load Google Maps Script
 //
 $(document).ready(function() {
+	if(gaDebug) {
+		var endTime = new Date().getTime();
+  		var timeSpent = endTime - pageLoadStart;
+  		ga('send', 'timing', 'page', 'toReady', timeSpent);
+  	}
+  	mapLoadStart = new Date().getTime();
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry&sensor=false&callback=initialize'; // callback: initialize()
@@ -19,6 +30,11 @@ $(document).ready(function() {
 // Callback from Google Maps Script Load
 //
 function initialize() {
+	if(gaDebug) {
+		var endTime = new Date().getTime();
+  		var timeSpent = endTime - mapLoadStart;
+  		ga('send', 'timing', 'loadScript', 'gmaps', timeSpent);
+  	}
 	google.maps.visualRefresh = true;
 	var mapOptions = {
 		zoom: 6,

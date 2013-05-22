@@ -20,9 +20,16 @@ function doLogin() {
 }
 
 function getMapData() {
+	mapDataStart = new Date().getTime();
 	$.ajax({
 		url: "/ajax/mapData.php",
 		success: function( data ) {
+			if(gaDebug) {
+				var retTime = new Date().getTime();
+  				var timeSpent = retTime - mapDataStart;
+  				ga('send', 'timing', 'ajax', 'mapData', timeSpent);
+  			}
+  			
 			myJSONObject = eval('(' + data + ')');
     		parseUsers(myJSONObject['users']);
     		parseRepeaters(myJSONObject['repeaters']);
@@ -30,11 +37,16 @@ function getMapData() {
     		createGlobalSpotLog(myJSONObject['spots']);
     		
     		setTimeSpan($('#time_select').val());
-		setBandChoice($('#band_select').val());
-		checkSpots();
-		checkUsers();
+			setBandChoice($('#band_select').val());
+			checkSpots();
+			checkUsers();
 		
     		loadSpotAutocomplete();
+    		if(gaDebug) {
+				var endTime = new Date().getTime();
+  				var timeSpent = endTime - retTime;
+  				ga('send', 'timing', 'function', 'parseMapData', timeSpent);
+  			}
 		}
 	});
 	ga('send', 'event', 'refresh', 'Map Data');
