@@ -69,11 +69,11 @@ if(apc_exists('mapData')) {
 		$output[$i]['secondary_isrepeater'] = $spots_row['secondary_isrepeater'];
 		$output[$i]['time'] = $spots_row['spot_time'];
 		$output[$i]['comments'] = $spots_row['comments'];
-		$output[$i]['seconds_ago'] = time() - date_format(date_create($spots_row['time']),'U');
-		$output[$i]['minutes_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['time'])), '%i');
-		$output[$i]['hours_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['time'])), '%H');
-		$output[$i]['days_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['time'])), '%d');
-		$output[$i]['months_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['time'])), '%m');
+		$output[$i]['seconds_ago'] = time() - date_format(date_create($spots_row['spot_time']),'U');
+		$output[$i]['minutes_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['spot_time'])), '%i');
+		$output[$i]['hours_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['spot_time'])), '%H');
+		$output[$i]['days_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['spot_time'])), '%d');
+		$output[$i]['months_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['spot_time'])), '%m');
 		$i++;
 	}
 	mysql_end($dbc);
