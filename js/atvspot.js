@@ -68,9 +68,15 @@ function createUserMarker(user_data) {
     marker.activity = user_data['seconds_active'];
     marker.known = user_data['known'];
     user_markers.push(marker);
+    
+    if(marker.known=="1") {
+    	var contentString = "<b>"+user_data['callsign']+"</b><br>"+activityString(user_data);
+    } else {
+    	var contentString = "<b>"+user_data['callsign']+"</b><br>";
+    }
 
 	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent("<b>"+user_data['callsign']+"</b><br>"+contentString);
+		infowindow.setContent(contentString);
         infowindow.open(map,marker);
    	});
 }
@@ -86,10 +92,14 @@ function updateUserMarker(user_data, user_index) {
 
     user_markers[user_index].activity = user_data['seconds_active'];
     
-    var contentString = activityString(user_data);
+    if(user_data.known=="1") {
+    	var contentString = "<b>"+user_data['callsign']+"</b><br>"+activityString(user_data);
+    } else {
+    	var contentString = "<b>"+user_data['callsign']+"</b><br>";
+    }
     google.maps.event.clearListeners(user_markers[user_index], 'click');
 	google.maps.event.addListener(user_markers[user_index], 'click', function() {
-		infowindow.setContent("<b>"+user_data['callsign']+"</b><br>"+contentString);
+		infowindow.setContent(contentString);
         infowindow.open(map,user_markers[user_index]);
    	});
 }
@@ -237,6 +247,8 @@ function activityString(user_data) {
 		activeString = 'Last active ' + user_data['hours_active'] + ' hours ago.';
 	} else if (user_data['hours_active']>0) {
 		activeString = 'Last active ' + user_data['hours_active'] + ' hour ago.';
+	} else if (user_data['seconds_active']>300) {
+		activeString = 'Last active ' + Math.round(user_data['seconds_active']/60) + ' minutes ago.';
 	} else {
 		activeString = 'Currently Active.';
 	}
