@@ -34,7 +34,7 @@ function checkUsers() {
 			    });
 			    var visibleToBe = false;
 			    for (var j=0; j<spot_search.length; j++) {
-			        if (spot_search[j].is(":visible")) {
+			        if (spot_search[j].visible) {
 			            visibleToBe = true;
 			        }
 			    }
