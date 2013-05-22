@@ -2,7 +2,6 @@
 session_start();
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
 if($got_cookies) {
-	include_once("login_functions.php");
 	include('spot_login.php');
 
 	$sessions_result = mysqli_query($dbc, "SELECT session_id FROM sessions WHERE user_id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));  
@@ -18,6 +17,7 @@ if($got_cookies) {
 			print 'Session doesnt match.';
 		}
 	}
+	mysql_end($dbc);
 } else { // Not got cookies
 	print 'Access Denied.';
 }
