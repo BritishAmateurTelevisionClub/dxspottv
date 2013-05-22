@@ -62,8 +62,7 @@ if (isset($_COOKIE["auth_error"])) {
 <title>DXSpot.TV</title>
 <link href="css/atvspot.css" rel="stylesheet">
 <link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
-<script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/js/jquery-plus-ui.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
