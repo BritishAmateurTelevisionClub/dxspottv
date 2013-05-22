@@ -47,6 +47,7 @@ function updateActivity() {
 			//console.log(data);
 		}
 	});
+	ga('send', 'event', 'update', 'Activity Data');
 }
 
 function submitSpot() {
