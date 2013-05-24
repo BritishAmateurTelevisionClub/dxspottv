@@ -38,7 +38,7 @@ html, body {
 	padding-left: 10px;
 	border-style:solid;
 	border-top-width: 1px;
-	border-right-width: 1px;
+	border-right-width: 0px;
 	border-bottom-width: 1px;
 	border-left-width: 1px;
 	border-spacing: 0px;
