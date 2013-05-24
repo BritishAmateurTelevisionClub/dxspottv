@@ -128,7 +128,7 @@ border="0" cellpadding="0" cellspacing="0">
 </select>
 
 <td><p align="center">
-<strong>Repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterBox" /></p></td>
+<strong>Show repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterBox" /></p></td>
 
 </tr></table>
 </form>
