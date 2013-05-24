@@ -102,6 +102,7 @@ border="0" cellpadding="0" cellspacing="0">
 <tr>
 
 <td><p align="center">
+<strong>Timespan:</strong>&nbsp;
 <select id="time_select">
   <option value="all">All Spots</option>
   <option value="year">Last year</option>
