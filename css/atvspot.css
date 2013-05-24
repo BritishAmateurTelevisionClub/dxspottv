@@ -12,7 +12,6 @@ html, body {
  }
  
 #spot_wide_log_div {
-	width: 100%;
 	text-align: left;
 	border-style:solid;
 	border-top-width: 1px;
@@ -20,8 +19,8 @@ html, body {
 	border-bottom-width: 1px;
 	border-left-width: 1px;
 	border-spacing: 0px;
-	padding-top: 2px;
-	height:230px;
+	margin-top: 2px;
+	height: 252px;
 	overflow: auto;
 	padding-left: 10px;
 }
