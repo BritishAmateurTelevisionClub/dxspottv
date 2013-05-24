@@ -11,15 +11,38 @@ html, body {
   width: 100%;
  }
  
-#spot_form {
-	margin: 15px;
+#spot_table {
+	width: 100%;
+	text-align: left;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-spacing: 0px;
+	padding-left: 2px;
 }
+
+#spot_log_cell {
+	width: 50%;
+	height:230px;
+	overflow: auto;
+	padding-left: 10px;
+}
+
+#spot_form_cell {
+	width: 50%;
+	margin: 15px;
+	margin-left: 5px;
+	line-height: 1.9;
+	padding-left: 10px;
+}
+
 .spotFormLabel {
 	margin-left:69px;
     float:left;
 }
 .spot_box_long {
-	width: 350px;
+	width: 340px;
 }
 .spot_box_med {
 	width: 120px;
@@ -43,11 +66,6 @@ html, body {
 }
 #login_form {
 	margin-bottom: .2em;
-}
-
-#spotLogDiv {
-	height:230px;
-	overflow: auto;
 }
 
 #map_canvas {

@@ -135,16 +135,12 @@ border="0" cellpadding="0" cellspacing="0">
 </form>
 <div id="map_canvas"></div>
 <?php if($logged_in) { // If logged in, show spot form ?>
-<table style="width: 100%; text-align: left; margin-left = "5" "; margin-right: auto;"
-border="1" cellpadding="2" cellspacing="0">
+<table id="spot_table">
 <tr>
-<td width="50%">
-<div id="spotLogDiv">
+<td id="spot_log_cell">
 	<h4>Global Spot Log</h4>
 	<span id="spotLog" class="reduce-font-size">Loading...</span>
-</div>
-</td><td style="width: 50%; margin-left: 5px; line-height: 1.8">
-<div id="spotForm">
+</td><td id="spot_form_cell">
 		<b>New Spot</b><br>
 		<select id="spot_band_select">
 		<option value=1>70cm</option>
@@ -163,7 +159,6 @@ border="1" cellpadding="2" cellspacing="0">
 		<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
 		Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
-	</div>
 </td></tr></table>
 <?php } else { ?>
 <div id="spotLogDiv">
