@@ -29,13 +29,13 @@ Please enter the following information to register for ATV DxSpot<br>
 <br>
 <br>Entering your lat and long or a 6 digit QRA will give greater location accuracy<br>
 <br>
-<label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() class="required" minlength="4" /> Maidenhead eg. IO91HW (Use either 4 or 6 characters)
+<label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() class="required" minlength="4" /> Maidenhead QRA eg. IO91HW (Use either 4 or 6 characters)
 <br>
-<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" /> (Will fill in automatically from Locator)
+<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" /> (Will fill in automatically if QRA locator entered)
 <br>
-<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" /> (likewise)
+<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" /> (Will fill in automatically if QRA locator entered)
 <br>
-<label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" /> Just for administrator contact in case of issues. Not publicly disclosed.
+<label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" /> Will only be used for administrator contact in case of issues. It will not be publicly disclosed.
 <br><br>
 <?php
 require_once('recaptchalib.php');
