@@ -29,12 +29,6 @@ html, body {
 #spot_table {
 	width: 100%;
 	text-align: left;
-	border-style:solid;
-	border-top-width: 1px;
-	border-right-width: 1px;
-	border-bottom-width: 1px;
-	border-left-width: 1px;
-	border-spacing: 0px;
 	padding-top: 2px;
 }
 
@@ -42,6 +36,12 @@ html, body {
 	width: 50%;
 	overflow: auto;
 	padding-left: 10px;
+	border-style:solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-spacing: 0px;
 }
 
 #spot_log_div {
@@ -54,6 +54,12 @@ html, body {
 	margin-left: 5px;
 	line-height: 1.9;
 	padding-left: 10px;
+	border-style:solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-spacing: 0px;
 }
 
 .spotFormLabel {
