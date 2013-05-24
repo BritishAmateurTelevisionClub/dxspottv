@@ -34,22 +34,23 @@ function checkUsers() {
 }
 
 function checkRepeaters() {
+	var repeater_select = $('#repeaterBox').is(":checked");
 	var band_select = $('#band_select').val();
     for (var i=0; i<repeater_markers.length; i++) {
     		var visibleToBe = false;
-			if(band_select=="all") {
+			if(band_select=="all" && repeater_select) {
 				visibleToBe = true;
-			} else if(repeater_markers[i].is70cm==1 && band_select=="70cm") {
+			} else if(repeater_markers[i].is70cm==1 && band_select=="70cm" && repeater_select) {
 				visibleToBe = true;
-			} else if(repeater_markers[i].is23cm==1 && band_select=="23cm") {
+			} else if(repeater_markers[i].is23cm==1 && band_select=="23cm" && repeater_select) {
 				visibleToBe = true;
-			} else if(repeater_markers[i].is13cm==1 && band_select=="13cm") {
+			} else if(repeater_markers[i].is13cm==1 && band_select=="13cm" && repeater_select) {
 				visibleToBe = true;
-			} else if(repeater_markers[i].is9cm==1 && band_select=="9cm") {
+			} else if(repeater_markers[i].is9cm==1 && band_select=="9cm" && repeater_select) {
 				visibleToBe = true;
-			} else if(repeater_markers[i].is6cm==1 && band_select=="6cm") {
+			} else if(repeater_markers[i].is6cm==1 && band_select=="6cm" && repeater_select) {
 				visibleToBe = true;
-			} else if(repeater_markers[i].is3cm==1 && band_select=="3cm") {
+			} else if(repeater_markers[i].is3cm==1 && band_select=="3cm" && repeater_select) {
 				visibleToBe = true;
 			} else { // Are they part of a shown spot?
 			    // Grep spot lines for user_id
