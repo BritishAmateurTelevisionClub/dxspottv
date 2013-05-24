@@ -126,8 +126,6 @@ border="0" cellpadding="0" cellspacing="0">
   <option value="6cm">6cm</option>
   <option value="3cm">3cm</option>
 </select>
-<td><p align="center">
-<strong>Users:</strong>&nbsp;<input type="checkbox" id="userBox" /></p></td>
 
 <td><p align="center">
 <strong>Repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterBox" /></p></td>

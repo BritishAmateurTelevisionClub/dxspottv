@@ -40,14 +40,9 @@ $(document).ready(function() {
 //
 $(document).ready(function() {
 	// Both checkboxes checked
-	$('#userBox').prop('checked', true);
 	$('#repeaterBox').prop('checked', true);
 	// So show all to start! (done in map load callback)
 	// Then functions for if changed
-	$('#userBox').change(function() {
-	    infowindow.close();
-		checkUsers();
-	});
 	$('#repeaterBox').change(function() {
 	    infowindow.close();
 		if ($('#repeaterBox').is(":checked")) {

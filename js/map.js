@@ -23,9 +23,8 @@ function checkSpots() {
 
 
 function checkUsers() {
-    var show_online_users = $('#userBox').is(":checked");
     for (var i=0; i<user_markers.length; i++) {
-			if(user_markers[i].known=="1" && user_markers[i].activity<=60 && show_online_users) { // Online (in last minute) and online is ticked
+			if(user_markers[i].known=="1" && user_markers[i].activity<=60) { // Online (in last minute)
 				user_markers[i].setVisible(true); // then show
 			} else { // Are they part of a shown spot?
 			    // Grep spot lines for user_id
