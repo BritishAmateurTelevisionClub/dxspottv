@@ -16,7 +16,7 @@ session_start();
 <div id="first_form">
 <h2>New User Registration</h2><br>
 Please enter the following information to register for ATV DxSpot<br>
-Entering your lat and long or a 6 digit QRA will give greater location accuracy<br>
+<br>
 <form id='register_form'>
 	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
 	<input type=text name='fname' id='fname' class="required" minlength="2" />
@@ -26,7 +26,7 @@ Entering your lat and long or a 6 digit QRA will give greater location accuracy<
 <br>
 	<label class="register_labels"><b>Password:</b>&nbsp;</label>
 	<input type=password name='passwd' id='passwd' class="required" minlength="5" />
-<br><br>
+<br>Entering your lat and long or a 6 digit QRA will give greater location accuracy<br><br>
 <label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() class="required" minlength="4" /> Maidenhead eg. IO91HW (Use either 4 or 6 characters)
 <br>
 <label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" /> (Will fill in automatically from Locator)
