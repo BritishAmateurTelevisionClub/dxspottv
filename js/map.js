@@ -1,16 +1,3 @@
-function repeatersShow() {
-	changeRepeatersBandSelect($('#band_select').val());
-	checkSpots();
-	infowindow.close();
-}
-function repeatersHide() {
-	for (var i=0; i<repeater_markers.length; i++) {
-		repeater_markers[i].setVisible(false);
-	}
-	checkSpots();
-	infowindow.close();
-}
-
 function checkSpots() {
 	for (var i=0; i<spot_lines.length; i++) {
 		if(valBandChoice[spot_lines[i].band_id] && (spot_lines[i].ago<=valTimeSpan)) {
@@ -46,73 +33,39 @@ function checkUsers() {
 	}
 }
 
-function changeRepeatersBandSelect(select_val) {
-	switch(select_val)
-	{
-	case "70cm":
-		for (var i=0; i<repeater_markers.length; i++) {
-			if(repeater_markers[i].is70cm==1) {
-				repeater_markers[i].setVisible(true);
-			} else {
-				repeater_markers[i].setVisible(false);
+function checkRepeaters() {
+	var band_select = $('#band_select').val();
+    for (var i=0; i<repeater_markers.length; i++) {
+    		var visibleToBe = false;
+			if(band_select=="all") {
+				visibleToBe = true;
+			} else if(repeater_markers[i].is70cm==1 && band_select=="70cm") {
+				visibleToBe = true;
+			} else if(repeater_markers[i].is23cm==1 && band_select=="23cm") {
+				visibleToBe = true;
+			} else if(repeater_markers[i].is13cm==1 && band_select=="13cm") {
+				visibleToBe = true;
+			} else if(repeater_markers[i].is9cm==1 && band_select=="9cm") {
+				visibleToBe = true;
+			} else if(repeater_markers[i].is6cm==1 && band_select=="6cm") {
+				visibleToBe = true;
+			} else if(repeater_markers[i].is3cm==1 && band_select=="3cm") {
+				visibleToBe = true;
+			} else { // Are they part of a shown spot?
+			    // Grep spot lines for user_id
+			    var spot_search = $.grep(spot_lines, function(e){
+				    return (e.secondary_isrepeater && e.secondary_id == repeater_markers[i].repeater_id);
+			    });
+			    for (var j=0; j<spot_search.length; j++) {
+			        if (spot_search[j].visible) {
+			            visibleToBe = true;
+			        }
+			    }
 			}
-		}
-		break;
-	case "23cm":
-		for (var i=0; i<repeater_markers.length; i++) {
-			if(repeater_markers[i].is23cm==1) {
-				repeater_markers[i].setVisible(true);
-			} else {
-				repeater_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "13cm":
-		for (var i=0; i<repeater_markers.length; i++) {
-			if(repeater_markers[i].is13cm==1) {
-				repeater_markers[i].setVisible(true);
-			} else {
-				repeater_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "9cm":
-		for (var i=0; i<repeater_markers.length; i++) {
-			if(repeater_markers[i].is9cm==1) {
-				repeater_markers[i].setVisible(true);
-			} else {
-				repeater_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "6cm":
-		for (var i=0; i<repeater_markers.length; i++) {
-			if(repeater_markers[i].is6cm==1) {
-				repeater_markers[i].setVisible(true);
-			} else {
-				repeater_markers[i].setVisible(false);
-			}
-		}
-		break;
-	case "3cm":
-		for (var i=0; i<repeater_markers.length; i++) {
-			if(repeater_markers[i].is3cm==1) {
-				repeater_markers[i].setVisible(true);
-			} else {
-				repeater_markers[i].setVisible(false);
-			}
-		}
-		break;
-	default: // All
-		for (var i=0; i<repeater_markers.length; i++) {
-			repeater_markers[i].setVisible(true);
-		}
-		break;
+			if(visibleToBe) {
+		        repeater_markers[i].setVisible(true);
+		    } else {
+		        repeater_markers[i].setVisible(false);
+		    }
 	}
-	checkSpots();
 }
-
-function myclick(i) {
-	google.maps.event.trigger(gmarkers[i],"click");
-}
-

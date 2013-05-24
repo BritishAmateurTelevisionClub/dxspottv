@@ -10,17 +10,19 @@ $(document).ready(function() {
 		setTimeSpan($('#time_select').val());
 		checkSpots();
 		checkUsers();
+		checkRepeaters();
 	});
 	$('#band_select').change(function() {
 	    setBandChoice($('#band_select').val());
 	    checkSpots();
 		checkUsers();
-		changeRepeatersBandSelect($('#band_select').val());
+		checkRepeaters();
 	});
     setTimeSpan($('#time_select').val());
 	setBandChoice($('#band_select').val());
 	checkSpots();
 	checkUsers();
+	checkRepeaters();
 });
 
 // Spot Form
@@ -45,11 +47,7 @@ $(document).ready(function() {
 	// Then functions for if changed
 	$('#repeaterBox').change(function() {
 	    infowindow.close();
-		if ($('#repeaterBox').is(":checked")) {
-			repeatersShow();
-		} else {
-			repeatersHide();
-		}
+		checkRepeaters();
 	});
 });
 

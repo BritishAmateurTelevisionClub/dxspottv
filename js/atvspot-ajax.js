@@ -30,9 +30,10 @@ function getMapData() {
     		createGlobalSpotLog(myJSONObject['spots']);
     		
     		setTimeSpan($('#time_select').val());
-		setBandChoice($('#band_select').val());
-		checkSpots();
-		checkUsers();
+			setBandChoice($('#band_select').val());
+			checkSpots();
+			checkUsers();
+			checkRepeaters();
 		
     		loadSpotAutocomplete();
 		}
