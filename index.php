@@ -138,29 +138,29 @@ border="0" cellpadding="0" cellspacing="0">
 <table id="spot_table">
 <tr>
 <td id="spot_log_cell">
-	<h4>Global Spot Log</h4>
-	<span id="spotLog" class="reduce-font-size">Loading...</span>
-</td><td id="spot_form_cell">
 	<div id="spot_log_div">
-		<b>New Spot</b><br>
-		<select id="spot_band_select">
-		<option value=1>70cm</option>
-		<option value=2>23cm</option>
-		<option value=3>13cm</option>
-		<option value=5>9cm</option>
-		<option value=6>6cm</option>
-		<option value=4>3cm</option>
-		</select>
-		&nbsp;
-		<select id="spot_mode_select">
-		<option value="analogtv">Analog TV</option>
-		<option value="digitaltv">Digital TV</option>
-		</select><br>
-		<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />
-		<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
-		Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
-		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
+		<h4>Global Spot Log</h4>
+		<span id="spotLog" class="reduce-font-size">Loading...</span>
 	</div>
+</td><td id="spot_form_cell">
+	<b>New Spot</b><br>
+	<select id="spot_band_select">
+	<option value=1>70cm</option>
+	<option value=2>23cm</option>
+	<option value=3>13cm</option>
+	<option value=5>9cm</option>
+	<option value=6>6cm</option>
+	<option value=4>3cm</option>
+	</select>
+	&nbsp;
+	<select id="spot_mode_select">
+	<option value="analogtv">Analog TV</option>
+	<option value="digitaltv">Digital TV</option>
+	</select><br>
+	<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />
+	<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
+	Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
+	<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 </td></tr></table>
 <?php } else { ?>
 <div id="spot_wide_log_div">
