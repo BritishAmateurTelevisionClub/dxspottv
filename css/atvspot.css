@@ -11,7 +11,7 @@ html, body {
   width: 100%;
  }
  
-#spot_table {
+#spotLogDiv {
 	width: 100%;
 	text-align: left;
 	border-top-width: 1px;
@@ -19,12 +19,26 @@ html, body {
 	border-bottom-width: 1px;
 	border-left-width: 1px;
 	border-spacing: 0px;
-	padding-left: 2px;
+	padding-top: 2px;
+	height:230px;
+	overflow: auto;
+	padding-left: 10px;
+}
+ 
+#spot_table {
+	width: 100%;
+	height: 230px;
+	text-align: left;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-spacing: 0px;
+	padding-top: 2px;
 }
 
 #spot_log_cell {
 	width: 50%;
-	height:230px;
 	overflow: auto;
 	padding-left: 10px;
 }
