@@ -141,6 +141,7 @@ border="0" cellpadding="0" cellspacing="0">
 	<h4>Global Spot Log</h4>
 	<span id="spotLog" class="reduce-font-size">Loading...</span>
 </td><td id="spot_form_cell">
+	<div id="spot_log_div">
 		<b>New Spot</b><br>
 		<select id="spot_band_select">
 		<option value=1>70cm</option>
@@ -159,9 +160,10 @@ border="0" cellpadding="0" cellspacing="0">
 		<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
 		Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 		<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
+	</div>
 </td></tr></table>
 <?php } else { ?>
-<div id="spotLogDiv">
+<div id="spot_wide_log_div">
 	<h4>Global Spot Log</h4>
 	<span id="spotLog" class="reduce-font-size">Loading...</span>
 </div>
