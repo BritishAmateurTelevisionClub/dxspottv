@@ -63,7 +63,6 @@ if (isset($_COOKIE["auth_error"])) {
 <link href="css/atvspot.css" rel="stylesheet">
 <link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script src="/js/jquery-plus-ui.js"></script>
-<script src="/js/jquery.validate.min.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -157,7 +156,7 @@ border="0" cellpadding="0" cellspacing="0">
 	<option value="analogtv">Analog TV</option>
 	<option value="digitaltv">Digital TV</option>
 	</select><br>
-	<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short required" minlength="4" />
+	<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />
 	<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
 	Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 	<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>

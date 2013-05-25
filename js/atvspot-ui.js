@@ -36,7 +36,7 @@ $(document).ready(function() {
     	}
 	});
 	$('#spot_button').button().click( function() {
-		if($('#remote_callsign').is('.success')) {
+		if($('#remote_callsign').val().length>=4) {
     		submitSpot();
     	} else {
     		$('#submitStatus').val("<font color=red>Need callsign.</font>");
