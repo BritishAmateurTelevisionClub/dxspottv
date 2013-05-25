@@ -10,7 +10,10 @@ foreach($html->find('table.mix tr') as $row) {
 	$output[$i]['band'] = $row->find('td.minil', 1)->plaintext;
 	$output[$i]['tx_freq'] = $row->find('td.minil', 2)->plaintext;
 	$output[$i]['rx_freq1'] = $row->find('td.minil', 3)->plaintext;
-	$output[$i]['rx_freq2'] = $row->find('td.minil', 4)->plaintext;
+	$secondary_rx_freq = $row->find('td.minil', 4)->plaintext;
+	if($secondary_rx_freq!=" ") {
+		$output[$i]['rx_freq2'] = $secondary_rx_freq;
+	}
 	$output[$i]['qthr'] = $row->find('td.minil', 5)->plaintext;
 	$output[$i]['qth'] = $row->find('td.minil', 6)->plaintext;
 	$output[$i]['ngr'] = $row->find('td.minil', 7)->plaintext;
