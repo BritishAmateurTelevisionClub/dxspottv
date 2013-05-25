@@ -26,6 +26,7 @@ $(document).ready(function() {
 });
 
 // Spot Form
+var validSpotForm;
 $(document).ready(function() {
     $('#remote_loc').click( function() {
         var remoteCallsign = $('#remote_callsign').val();
@@ -34,8 +35,11 @@ $(document).ready(function() {
     	    $('#remote_loc').val(locator_search[0].locator);
     	}
 	});
+	validSpotForm = $('#spotForm').validate();
 	$('#spot_button').button().click( function() {
-    	submitSpot();
+		if(validSpotForm.valid()==true) {
+    		submitSpot();
+    	}
 	});
 });
 // Set up Users/Repeaters checkboxes
