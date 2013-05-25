@@ -71,7 +71,7 @@ function submitSpot() {
 		},
 		success: function( data ) {
 			//console.log(data);
-			$('#submitStatus').val("Submitted."); // Clear status
+			$('#submitStatus').html("Submitted."); // Clear status
 			$('#submitStatus').hide(800);
 			// Now clear all the boxes
 			$('#remote_callsign').val("");

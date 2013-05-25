@@ -39,7 +39,8 @@ $(document).ready(function() {
 		if($('#remote_callsign').val().length>=4) {
     		submitSpot();
     	} else {
-    		$('#submitStatus').val("<font color=red>Need callsign.</font>");
+    		$('#submitStatus').show();
+    		$('#submitStatus').html("<font color=red>Need callsign.</font>");
     	}
 	});
 });
