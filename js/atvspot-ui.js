@@ -28,7 +28,7 @@ $(document).ready(function() {
 // Spot Form
 var validSpotForm;
 $(document).ready(function() {
-    $('#remote_loc').click( function() {
+    $('#remote_callsign').focusout(function() {
         var remoteCallsign = $('#remote_callsign').val();
     	if($.inArray(remoteCallsign,spotAutocomplete)>=0) {
     	    var locator_search = $.grep(user_markers, function(e){ return e.callsign == remoteCallsign; });
