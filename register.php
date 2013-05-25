@@ -7,7 +7,7 @@ session_start();
 <link href="/css/atvspot-register.css" rel="stylesheet">
 <link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script src="/js/jquery-plus-ui.js"></script>
-<script src="/js/jquery.validate.js"></script>
+<script src="/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/js/register.js"></script>
 <script type="text/javascript" src="/js/locator.js"></script>
 </head>
