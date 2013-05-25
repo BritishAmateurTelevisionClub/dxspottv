@@ -36,6 +36,9 @@ $(document).ready(function() {
     	}
 	});
 	validSpotForm = $('#spotForm').validate();
+	$('#spotForm').submit(function() {
+  		return false;
+	});
 	$('#spot_button').button().click( function() {
 		if(validSpotForm.valid()==true) {
     		submitSpot();
