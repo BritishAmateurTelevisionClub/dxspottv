@@ -40,8 +40,6 @@ $(document).ready(function() {
 					}
 				}
 			});
-		} else { // Form failed validation
-			$("#validationFailDialog").dialog("open");
 		}
 	});
 	$('#return_button').button().click( function() {
