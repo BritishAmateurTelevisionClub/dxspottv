@@ -35,10 +35,6 @@ $(document).ready(function() {
     	    $('#remote_loc').val(locator_search[0].locator);
     	}
 	});
-	validSpotForm = $('#spotForm').validate();
-	$('#spotForm').submit(function() {
-  		return false;
-	});
 	$('#spot_button').button().click( function() {
 		if(validSpotForm.valid()==true) {
     		submitSpot();
