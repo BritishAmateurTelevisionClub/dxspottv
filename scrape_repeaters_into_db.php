@@ -36,7 +36,7 @@ foreach($html->find('table.mix tr') as $row) {
 		if($rx_freq_2==" ") {
 			$rx_freq_2=NULL;
 		}
-		$update_query = "UPDATE scraped_repeaters set is_{$band_str}='1', alt_tx_freq={$tx_freq}, alt_rx_freq={$rx_freq}, alt_rx_freq_2={$rx_freq_2} where callsign = '{$callsign}';";
+		$update_query = "UPDATE scraped_repeaters set is_{$band_str}='1', alt_tx_freq='{$tx_freq}', alt_rx_freq='{$rx_freq}', alt_rx_freq_2='{$rx_freq_2}' where callsign = '{$callsign}';";
 		print $update_query . "<br>";
 		mysqli_query($dbc, $update_query) or die(mysqli_error($dbc));
 	} else { // New repeater, add to db..
