@@ -41,7 +41,7 @@ if(apc_exists('mapData')) {
 	{
 		$repeater['id'] = $row['id'];
 		$repeater['callsign'] = $row['callsign'];
-		$repeater['description'] = $row['Description'];
+		$repeater['description'] = $row['description'];
 		$repeater['latitude'] = $row['lat'];
 		$repeater['longitude'] = $row['lon'];
 		$repeater['is_70cm'] = $row['is_70cm'];
