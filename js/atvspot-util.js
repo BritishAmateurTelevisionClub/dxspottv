@@ -87,3 +87,11 @@ function bandFromID(bandID) {
 		break;
 	}
 }
+
+function convertHeading(input) {
+	if (input >=0) {
+		return input;
+	} else {
+		return 360+input;
+	}
+}
