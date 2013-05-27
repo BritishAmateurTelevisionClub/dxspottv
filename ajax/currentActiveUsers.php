@@ -5,7 +5,7 @@ if(apc_exists('currentActiveUsersStatus')) {
 	$output = apc_fetch('currentActiveUsers');
 } else {
 	apc_store('currentActiveUsers','Refreshing',1);
-	include('spot_login.php');
+	require_once('spot_login.php');
 
 	$count = 0;
 	$times = array();

@@ -19,8 +19,8 @@ if($got_variables) {
 		die ();
 	}
 
-	include_once("login_functions.php");
-	include_once("spot_login.php");
+	require_once("login_functions.php");
+	require_once("spot_login.php");
 	
 	$insert_statement = $dbc->prepare("INSERT into users (name, callsign, password, salt, locator, email, lat, lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
 	

@@ -5,7 +5,7 @@ if(apc_exists('mapDataStatus')) {
 	$final_output = apc_fetch('mapData');
 } else {
 	apc_store('mapDataStatus','Refreshing',1);
-	include('../spot_login.php');
+	require_once('spot_login.php');
 	$full_output = array();
 	$output = array();
 	$i=1;
