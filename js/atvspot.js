@@ -129,8 +129,8 @@ function updateUserMarker(user_data, user_index) {
     google.maps.event.clearListeners(user_markers[user_index], 'click');
     
 	var infoTab = '<div class="user_bubble_info">'+
-        '<h3>'+marker.callsign+'</h3>'+
-        '<b>'+marker.locator+'</b>';
+        '<h3>'+user_markers[user_index].callsign+'</h3>'+
+        '<b>'+user_markers[user_index].locator+'</b>';
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
     	infoTab+='<br><br>'+
