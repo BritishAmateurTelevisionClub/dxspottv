@@ -62,7 +62,26 @@ if (isset($_COOKIE["auth_error"])) {
 <title>DXSpot.TV</title>
 <link href="css/atvspot.css" rel="stylesheet">
 <link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<script type="text/javascript">
+<?php if($user_known) { ?> // Do we fill in callsign as nick for irc
+	var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php print $callsign; ?>";
+<?php } else { ?>
+	var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv";
+<?php } // End of callsign as nick for irc
+if($logged_in) { ?>
+	var logged_in = true;
+<?php } else { ?>
+	var logged_in = false;
+<?php } ?>
+</script>
 <script src="/js/jquery-plus-ui.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="/js/atvspot.js"></script>
+<script type="text/javascript" src="/js/atvspot-ajax.js"></script>
+<script type="text/javascript" src="/js/atvspot-ui.js"></script>
+<script type="text/javascript" src="/js/atvspot-util.js"></script>
+<script type="text/javascript" src="/js/locator.js"></script>
+<script type="text/javascript" src="/js/infobubble.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -72,20 +91,6 @@ if (isset($_COOKIE["auth_error"])) {
   ga('create', 'UA-37815608-6', 'dxspot.tv');
   ga('send', 'pageview');
 </script>
-<script type="text/javascript" src="js/map.js"></script>
-<script type="text/javascript">
-<?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php print $callsign; ?>";
-<?php } else { ?>
-var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv";
-<?php } ?> // End of callsign as nick for irc
-</script>
-<script type="text/javascript" src="/js/atvspot.js"></script>
-<script type="text/javascript" src="/js/atvspot-ajax.js"></script>
-<script type="text/javascript" src="/js/atvspot-ui.js"></script>
-<script type="text/javascript" src="/js/atvspot-util.js"></script>
-<script type="text/javascript" src="/js/locator.js"></script>
-<script type="text/javascript" src="/js/infobubble.js"></script>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">

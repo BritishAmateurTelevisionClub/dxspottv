@@ -127,10 +127,16 @@ function createRepeaterMarker(repeater_data) {
     marker.is3cm = repeater_data['is_3cm'];
     repeater_markers.push(marker);
     
-    var tabA = '<div id="content">'+
+    var infoTab = '<div id="content">'+
+        '<h4>'+marker.callsign+'</h4>'+
+        '<b>Locator_</b><br>';
+    if(logged_in) {
+    	infoTab+='Calculate Bearing/Distance here';
+    infoTab += '</div>';
+    var freqTab = '<div id="content">'+
         '<h1>content</h1>'+
         '</div>';
-    var tabB = '<div id="content">'+
+    var descTab = '<div id="content">'+
         '<h1>content2</h1>'+
         '</div>';
     
@@ -152,8 +158,9 @@ function createRepeaterMarker(repeater_data) {
 		arrowStyle: 0
     });
   	
-    infoBubble.addTab('Info', tabA);
-    infoBubble.addTab('Description', tabB);
+    infoBubble.addTab('Info', infoTab);
+    infoBubble.addTab('In/Out', freqTab);
+    infoBubble.addTab('Description', descTab);
 
     google.maps.event.addListener(marker, 'click', function() {
         if (!infoBubble.isOpen()) {
