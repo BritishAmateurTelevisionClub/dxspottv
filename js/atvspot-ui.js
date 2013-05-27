@@ -94,6 +94,14 @@ $(document).ready(function() {
 	$( "#tabs" ).tabs();
 });
 
+// Station Description Edit Function
+$(document).ready(function() {
+	$('#station_description_edit').val(user_desc);
+	$('#desc_button').button().click( function() {
+		doChangeDesc($('#station_description_edit').val());
+	});
+});
+
 function createGlobalSpotLog(spotLog) {
 	var spotLogDivContent = "";
 	if(spotLog.length!=0) {

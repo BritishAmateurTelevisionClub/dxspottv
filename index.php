@@ -13,7 +13,7 @@ if (isset($_COOKIE["auth_error"])) {
     $auth_error_text = $_COOKIE["auth_error_text"];
   } else {
     include('spot_login.php');
-    $callsign_result = mysqli_query($dbc, "SELECT callsign,lat,lon FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
+    $callsign_result = mysqli_query($dbc, "SELECT callsign,lat,lon,station_desc FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
     $callsign_row = mysqli_fetch_array($callsign_result);
     $callsign = $callsign_row["callsign"];
     // Logged in, but check session id is valid
@@ -32,6 +32,7 @@ if (isset($_COOKIE["auth_error"])) {
         $auth_error = 0;
         $user_lat = $callsign_row["lat"];
         $user_lon = $callsign_row["lon"];
+        $user_desc = $callsign_row["station_desc"];
       } else {
         // Session doesn't match, make them log in again
         $user_known = 1;
@@ -74,6 +75,7 @@ if($logged_in) { ?>
 	var logged_in = true;
 	var user_lat = '<?php print $user_lat; ?>';
 	var user_lon = '<?php print $user_lon; ?>';
+	var user_desc = '<?php print $user_desc; ?>';
 <?php } else { ?>
 	var logged_in = false;
 <?php } ?>
@@ -221,7 +223,8 @@ if ($auth_error==1) {
 		?>
 	<div id="editStation" class="reduce-tab-padding">
 		<h4>My Station Description:</h4>
-		<input type=text name="station_description_edit" id="station_description_edit" />
+		<textarea rows="4" cols="50" id="station_description_edit"></textarea><br>
+		<button class="station-desc-button reduce-font-size" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
 	</div>
 	<?php } ?>
 	<div id="helpTab" class="reduce-tab-padding">

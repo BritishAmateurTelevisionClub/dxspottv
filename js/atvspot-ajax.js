@@ -80,3 +80,18 @@ function submitSpot() {
 		}
 	});
 }
+
+function doChangeDesc(desc) {
+	$.ajax({
+		url: "/changeUserDesc.php",
+		type: "GET",
+		data: {
+			description: desc
+		},
+		success: function( data ) {
+			//console.log(data);
+			$('#changeDescStatus').html("<font color=green>Changed.</font>"); // Clear status
+			$('#changeDescStatus').hide(3000);
+		}
+	});
+}
