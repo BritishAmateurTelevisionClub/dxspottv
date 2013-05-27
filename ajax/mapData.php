@@ -48,13 +48,13 @@ if(apc_exists('mapData')) {
 		$repeater['qth'] = $row['qth'];
 		$repeater['tx_freq'] = $row['tx_freq'];
 		$repeater['rx_freq'] = $row['rx_freq'];
-		if($row['rx_freq_2']!=NULL) {
+		if($row['rx_freq_2']!=0) {
 			$repeater['rx_freq_2'] = $row['rx_freq_2'];
 		}
-		if($row['alt_tx_freq']!=NULL) {
+		if($row['alt_tx_freq']!=0) {
 			$repeater['alt_tx_freq'] = $row['alt_tx_freq'];
 			$repeater['alt_rx_freq'] = $row['alt_rx_freq'];
-			if($row['alt_rx_freq_2']!=NULL) {
+			if($row['alt_rx_freq_2']!=0) {
 				$repeater['alt_rx_freq_2'] = $row['alt_rx_freq_2'];
 			}
 		}
