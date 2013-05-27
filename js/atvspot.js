@@ -132,6 +132,7 @@ function createRepeaterMarker(repeater_data) {
         '<b>Locator_</b><br>';
     if(logged_in) {
     	infoTab+='Calculate Bearing/Distance here';
+    }
     infoTab += '</div>';
     var freqTab = '<div id="content">'+
         '<h1>content</h1>'+
