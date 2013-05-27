@@ -15,7 +15,7 @@ $(document).ready(function() {
     		$('#lastDayCount').val(myJSONObject['lastDay']);
 		}
 	});
-}
+});
 </script>
 </head>
 <body>
