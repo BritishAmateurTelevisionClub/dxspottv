@@ -25,9 +25,11 @@ if(apc_exists('currentActiveUsersStatus')) {
 	foreach($times as $seconds) {
 		if($seconds<60) {
 			$lessThanMinute++;
-		} else if($seconds<3600) {
+		} 
+		if($seconds<3600) {
 			$lessThanHour++;
-		} else if($seconds<86400) {
+		} 
+		if($seconds<86400) {
 			$lessThanDay++;
 		}
 	}
