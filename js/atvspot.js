@@ -142,12 +142,12 @@ function createRepeaterMarker(repeater_data) {
     repeater_markers.push(marker);
     
     var infoTab = '<div id="content">'+
-        '<h4>'+marker.callsign+'</h4>'+
+        '<h3>'+marker.callsign+'</h3>'+
         '<b>'+marker.qth_r+'</b>&nbsp;-&nbsp;'+marker.qth;
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
     	infoTab+='<br><br>'+
-    		'<b>Bearing:</b>&nbsp;'+'<br>'+convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, latlon))+'&deg;';
+    		'<b>Bearing:</b>&nbsp;'+'<br>'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, latlon)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, latlon)/1000)*10)/10+'km';
     }
     infoTab += '</div>';
