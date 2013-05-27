@@ -13,7 +13,7 @@ if (isset($_COOKIE["auth_error"])) {
     $auth_error_text = $_COOKIE["auth_error_text"];
   } else {
     include('spot_login.php');
-    $callsign_result = mysqli_query($dbc, "SELECT callsign FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
+    $callsign_result = mysqli_query($dbc, "SELECT callsign,lat,lon FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
     $callsign_row = mysqli_fetch_array($callsign_result);
     $callsign = $callsign_row["callsign"];
     // Logged in, but check session id is valid
@@ -30,6 +30,8 @@ if (isset($_COOKIE["auth_error"])) {
         $user_known = 1;
         $logged_in = 1;
         $auth_error = 0;
+        $user_lat = $callsign_row["lat"];
+        $user_lon = $callsign_row["lon"];
       } else {
         // Session doesn't match, make them log in again
         $user_known = 1;
@@ -70,6 +72,8 @@ if (isset($_COOKIE["auth_error"])) {
 <?php } // End of callsign as nick for irc
 if($logged_in) { ?>
 	var logged_in = true;
+	var user_lat = '<?php print $user_lat; ?>';
+	var user_lon = '<?php print $user_lon; ?>';
 <?php } else { ?>
 	var logged_in = false;
 <?php } ?>
