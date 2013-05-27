@@ -12,7 +12,7 @@ if(apc_exists('currentActiveUsersStatus')) {
 	while($row = mysqli_fetch_array($session_result))
 	{
 	
-		$activity = time() - date_format(date_create($session_row['activity']),'U');
+		$activity = time() - date_format(date_create($row['activity']),'U');
 		$times[] = $activity;
 		unset($activity);
 	}
