@@ -256,7 +256,7 @@ function createRepeaterMarker(repeater_data) {
     });
   	
     infoBubble.addTab('<span class="bubble_label">Info</span>', infoTab);
-    infoBubble.addTab('<span class="bubble_label">In/Out</span>', freqTab);
+    infoBubble.addTab('<span class="bubble_label">Tx/Rx</span>', freqTab);
     infoBubble.addTab('<span class="bubble_label">Description</span>', descTab);
 
     google.maps.event.addListener(marker, 'click', function() {
