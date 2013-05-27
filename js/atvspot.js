@@ -60,7 +60,7 @@ function createUserMarker(user_data) {
         position: lat_lon,
 		icon: toBeIcon,
         map: map,
-        title: user_data['callsign']
+        title: user_data['callsign'],
         zIndex: 3
     });
     marker.user_id = user_data['id']
@@ -181,7 +181,7 @@ function createRepeaterMarker(repeater_data) {
         position: latlon,
 		icon: toBeIcon,
         map: map,
-        title: repeater_data['callsign']
+        title: repeater_data['callsign'],
         zIndex: 2
 	});
 	marker.repeater_id = repeater_data['id'];
@@ -289,7 +289,7 @@ function createSpotLine(spot_data) {
     	strokeColor: "#FF0000",
     	strokeOpacity: 1.0,
     	strokeWeight: 2,
-    	geodesic: true
+    	geodesic: true,
         zIndex: 1
 	});
 	
