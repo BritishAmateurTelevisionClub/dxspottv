@@ -62,6 +62,8 @@ if (isset($_COOKIE["auth_error"])) {
 <html>
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+<meta name="description" content="Easy to use DX Spotting for ATV contacts on all bands: 70cms - 3cms.">
+<meta name="keywords" content="dxspot,atv,tv,spot,dx,cluster,contacts,ham,amateur,television,chat,irc">
 <title>DXSpot.TV</title>
 <link href="css/atvspot.css" rel="stylesheet">
 <link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
