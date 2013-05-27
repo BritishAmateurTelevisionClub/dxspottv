@@ -83,8 +83,8 @@ function submitSpot() {
 
 function doChangeDesc(desc) {
 	$.ajax({
-		url: "/changeUserDesc.php",
-		type: "GET",
+		url: "/ajax/changeUserDesc.php",
+		type: "POST",
 		data: {
 			description: desc
 		},
