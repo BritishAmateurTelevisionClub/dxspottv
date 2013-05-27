@@ -119,6 +119,20 @@ function createRepeaterMarker(repeater_data) {
 	});
 	marker.repeater_id = repeater_data['id'];
     marker.callsign = repeater_data['callsign'];
+    marker.qth_r = repeater_data['qth_r'];
+    marker.qth = repeater_data['qth'];
+    marker.tx_freq = repeater_data['tx_freq'];
+    marker.rx_freq = repeater_data['rx_freq'];
+    if (typeof repeater_data['rx_freq_2'] != 'undefined') {
+    	marker.rx_freq_2 = repeater_data['rx_freq_2'];
+    }
+    if (typeof repeater_data['alt_tx_freq'] != 'undefined') {
+    	marker.alt_tx_freq = repeater_data['alt_tx_freq'];
+    	marker.alt_rx_freq = repeater_data['alt_rx_freq'];
+    	if (typeof repeater_data['alt_rx_freq_2'] != 'undefined') {
+    		marker.alt_rx_freq_2 = repeater_data['alt_rx_freq_2'];
+    	}
+    }
     marker.is70cm = repeater_data['is_70cm'];
     marker.is23cm = repeater_data['is_23cm'];
     marker.is13cm = repeater_data['is_13cm'];
@@ -129,14 +143,29 @@ function createRepeaterMarker(repeater_data) {
     
     var infoTab = '<div id="content">'+
         '<h4>'+marker.callsign+'</h4>'+
-        '<b>Locator_</b><br>';
+        '<b>'+marker.qth_r+'</b>,&nbsp;'+marker.qth+'<br>';
     if(logged_in) {
     	infoTab+='Calculate Bearing/Distance here';
     }
     infoTab += '</div>';
     var freqTab = '<div id="content">'+
-        '<h1>content</h1>'+
-        '</div>';
+    	'<b>TX:&nbsp;'+marker.tx_freq+'MHz</b><br>';
+    if (typeof marker.rx_freq_2 == 'undefined') {
+    	freqTab += '<b>RX:&nbsp;'+marker.rx_freq+'MHz</b><br>';
+    } else {
+    	freqTab += '<b>RX1:&nbsp;'+marker.rx_freq+'MHz</b><br>'+
+    	'<b>RX2:&nbsp;'+marker.rx_freq_2+'MHz</b><br>';
+    }
+    if (typeof marker.alt_tx_freq != 'undefined') {
+    	freqTab += '<br><b>TX2:&nbsp;'+marker.alt_tx_freq+'MHz</b><br>';
+    	if (typeof marker.rx_freq_2 == 'undefined') {
+			freqTab += '<b>RX3:&nbsp;'+marker.alt_rx_freq+'MHz</b><br>';
+		} else {
+			freqTab += '<b>RX3:&nbsp;'+marker.alt_rx_freq+'MHz</b><br>'+
+			'<b>RX4:&nbsp;'+marker.alt_rx_freq_2+'MHz</b><br>';
+		}
+    }
+    freqTab += '</div>';
     var descTab = '<div id="content">'+
         '<h1>content2</h1>'+
         '</div>';
