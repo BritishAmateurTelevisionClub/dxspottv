@@ -276,7 +276,7 @@ InfoBubble.prototype.buildDom_ = function() {
   this.animationName_ = '_ibani_' + Math.round(Math.random() * 10000);
 
   var css = '.' + this.animationName_ + '{-webkit-animation-name:' +
-      this.animationName_ + ';-webkit-animation-duration:0.5s;' +
+      this.animationName_ + ';-webkit-animation-duration:0.2s;' +
       '-webkit-animation-iteration-count:1;}' +
       '@-webkit-keyframes ' + this.animationName_ + ' {from {' +
       '-webkit-transform: scale(0)}50% {-webkit-transform: scale(1.2)}90% ' +

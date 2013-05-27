@@ -135,14 +135,14 @@ function createRepeaterMarker(repeater_data) {
         '</div>';
     
     var infoBubble = new InfoBubble({
-        maxWidth: 300,
-        minWidth: 300,
+        maxWidth: 200,
+        minWidth: 200,
         maxHeight: 150,
         minHeight: 150,
 		shadowStyle: 0,
-		padding: 5,
+		padding: 8,
 		backgroundColor: '#fff',
-		borderRadius: 5,
+		borderRadius: 8,
 		arrowSize: 10,
 		borderWidth: 1,
 		borderColor: '#ccc',
