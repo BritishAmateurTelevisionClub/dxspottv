@@ -12,7 +12,7 @@ if($got_cookies && $got_variable) {
 		$target_row = mysqli_fetch_array($sessions_result);
 		if ($_COOKIE["session_key"]==$target_row["session_id"]) {
 			// Session matches, so is logged in!
-			$update_query="UPDATE users set station_desc='{$desc}' where user_id = '{$_COOKIE["user_id"]}';";
+			$update_query="UPDATE users set station_desc='{$desc}' WHERE id = '{$_COOKIE["user_id"]}';";
 		    mysqli_query($dbc, $update_query) or die(mysqli_error($dbc));
 		} else {
 			print 'Session doesnt match.';
