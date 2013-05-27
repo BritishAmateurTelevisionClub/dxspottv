@@ -149,20 +149,16 @@ function createRepeaterMarker(repeater_data) {
     }
     infoTab += '</div>';
     var freqTab = '<div id="content">'+
-    	'<b>TX:&nbsp;'+marker.tx_freq+'MHz</b><br>';
-    if (typeof marker.rx_freq_2 == 'undefined') {
-    	freqTab += '<b>RX:&nbsp;'+marker.rx_freq+'MHz</b><br>';
-    } else {
-    	freqTab += '<b>RX1:&nbsp;'+marker.rx_freq+'MHz</b><br>'+
-    	'<b>RX2:&nbsp;'+marker.rx_freq_2+'MHz</b><br>';
+    	'<b>TX:&nbsp;'+marker.tx_freq+'MHz</b><br>'+
+    	'<b>RX:&nbsp;'+marker.rx_freq+'MHz</b><br>';
+    if (typeof marker.rx_freq_2 != 'undefined') {
+    	freqTab += '<b>RX:&nbsp;'+marker.rx_freq_2+'MHz</b><br>';
     }
     if (typeof marker.alt_tx_freq != 'undefined') {
-    	freqTab += '<br><b>TX2:&nbsp;'+marker.alt_tx_freq+'MHz</b><br>';
-    	if (typeof marker.rx_freq_2 == 'undefined') {
-			freqTab += '<b>RX3:&nbsp;'+marker.alt_rx_freq+'MHz</b><br>';
-		} else {
-			freqTab += '<b>RX3:&nbsp;'+marker.alt_rx_freq+'MHz</b><br>'+
-			'<b>RX4:&nbsp;'+marker.alt_rx_freq_2+'MHz</b><br>';
+    	freqTab += '<br><b>TX:&nbsp;'+marker.alt_tx_freq+'MHz</b><br>'+
+    		'<b>RX:&nbsp;'+marker.alt_rx_freq+'MHz</b><br>';
+    	if (typeof marker.rx_freq_2 != 'undefined') {
+			freqTab += '<b>RX:&nbsp;'+marker.alt_rx_freq_2+'MHz</b><br>';
 		}
     }
     freqTab += '</div>';
