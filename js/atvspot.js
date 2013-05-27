@@ -61,6 +61,7 @@ function createUserMarker(user_data) {
 		icon: toBeIcon,
         map: map,
         title: user_data['callsign']
+        zIndex: 3
     });
     marker.user_id = user_data['id']
     marker.callsign = user_data['callsign'];
@@ -116,6 +117,7 @@ function createRepeaterMarker(repeater_data) {
 		icon: toBeIcon,
         map: map,
         title: repeater_data['callsign']
+        zIndex: 2
 	});
 	marker.repeater_id = repeater_data['id'];
     marker.callsign = repeater_data['callsign'];
@@ -223,6 +225,7 @@ function createSpotLine(spot_data) {
     	strokeOpacity: 1.0,
     	strokeWeight: 2,
     	geodesic: true
+        zIndex: 1
 	});
 	
 	spotLine.spot_id = spot_data['id'];
