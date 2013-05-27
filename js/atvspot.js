@@ -103,8 +103,8 @@ function createUserMarker(user_data) {
 		arrowStyle: 0
     });
   	
-    infoBubble.addTab('Info', infoTab);
-    infoBubble.addTab('Description', descTab);
+    infoBubble.addTab('<span class="bubble_label">Info</span>', infoTab);
+    infoBubble.addTab('<span class="bubble_label">Description</span>', descTab);
 
     google.maps.event.addListener(marker, 'click', function() {
         if (!infoBubble.isOpen()) {
@@ -160,8 +160,8 @@ function updateUserMarker(user_data, user_index) {
 		arrowStyle: 0
     });
   	
-    infoBubble.addTab('Info', infoTab);
-    infoBubble.addTab('Description', descTab);
+    infoBubble.addTab('<span class="bubble_label">Info</span>', infoTab);
+    infoBubble.addTab('<span class="bubble_label">Description</span>', descTab);
 
     google.maps.event.addListener(user_markers[user_index], 'click', function() {
         if (!infoBubble.isOpen()) {
