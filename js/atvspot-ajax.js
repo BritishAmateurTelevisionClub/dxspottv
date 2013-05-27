@@ -74,7 +74,7 @@ function submitSpot() {
 		success: function( data ) {
 			//console.log(data);
 			$('#submitStatus').html("<font color=green>Submitted.</font>"); // Clear status
-			$('#submitStatus').hide(1200);
+			$('#submitStatus').fadeOut(1000);
 			// Now clear all the boxes
 			$('#remote_callsign').val("");
 			$('#remote_loc').val("");
@@ -93,7 +93,7 @@ function doChangeDesc(desc) {
 		success: function( data ) {
 			//console.log(data);
 			$('#changeDescStatus').html("<font color=green>Changed.</font>"); // Clear status
-			$('#changeDescStatus').hide(3000);
+			$('#changeDescStatus').fadeOut(1000);
 		}
 	});
 }
