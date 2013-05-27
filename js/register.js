@@ -9,7 +9,7 @@ $(document).ready(function() {
 	$('#register_button').button().click( function() {
 		if($("#register_form").valid()==true) {
 			$.ajax({
-				url: '/ajax/submit_register.php',
+				url: '/ajax/submitRegister.php',
 				type: "GET",
 				data: {
 					fname: $('#fname').val(),
