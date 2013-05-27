@@ -86,10 +86,10 @@ function createUserMarker(user_data) {
         '</div>';
     
     var infoBubble = new InfoBubble({
-        maxWidth: 200,
-        minWidth: 200,
-        maxHeight: 150,
-        minHeight: 150,
+        maxWidth: 150,
+        minWidth: 150,
+        maxHeight: 110,
+        minHeight: 110,
 		shadowStyle: 0,
 		padding: 8,
 		backgroundColor: '#fff',
@@ -143,10 +143,10 @@ function updateUserMarker(user_data, user_index) {
         '</div>';
     
     var infoBubble = new InfoBubble({
-        maxWidth: 200,
-        minWidth: 200,
-        maxHeight: 150,
-        minHeight: 150,
+        maxWidth: 150,
+        minWidth: 150,
+        maxHeight: 110,
+        minHeight: 110,
 		shadowStyle: 0,
 		padding: 8,
 		backgroundColor: '#fff',
@@ -238,10 +238,10 @@ function createRepeaterMarker(repeater_data) {
         '</div>';
     
     var infoBubble = new InfoBubble({
-        maxWidth: 200,
-        minWidth: 200,
-        maxHeight: 150,
-        minHeight: 150,
+        maxWidth: 180,
+        minWidth: 180,
+        maxHeight: 110,
+        minHeight: 110,
 		shadowStyle: 0,
 		padding: 8,
 		backgroundColor: '#fff',
