@@ -68,18 +68,49 @@ function createUserMarker(user_data) {
     marker.locator = user_data['locator'];
     marker.activity = user_data['seconds_active'];
     marker.known = user_data['known'];
+    marker.station_desc = user_data['desc'];
     user_markers.push(marker);
     
-    if(marker.known=="1") {
-    	var contentString = "<b>"+user_data['callsign']+"</b><br>"+activityString(user_data);
-    } else {
-    	var contentString = "<b>"+user_data['callsign']+"</b><br>";
+    var infoTab = '<div class="user_bubble_info">'+
+        '<h3>'+marker.callsign+'</h3>'+
+        '<b>'+marker.locator+'</b>';
+    if(logged_in) {
+    	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
+    	infoTab+='<br><br>'+
+    		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, lat_lon)))+'&deg;<br>'+
+    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, lat_lon)/1000)*10)/10+'km';
     }
+    infoTab += '</div>';
+    var descTab = '<div class="user_bubble_desc">'+
+        marker.station_desc+
+        '</div>';
+    
+    var infoBubble = new InfoBubble({
+        maxWidth: 200,
+        minWidth: 200,
+        maxHeight: 150,
+        minHeight: 150,
+		shadowStyle: 0,
+		padding: 8,
+		backgroundColor: '#fff',
+		borderRadius: 8,
+		arrowSize: 10,
+		borderWidth: 1,
+		borderColor: '#ccc',
+		disableAutoPan: true,
+		hideCloseButton: false,
+		arrowPosition: 50,
+		arrowStyle: 0
+    });
+  	
+    infoBubble.addTab('Info', infoTab);
+    infoBubble.addTab('Description', descTab);
 
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(contentString);
-        infowindow.open(map,marker);
-   	});
+    google.maps.event.addListener(marker, 'click', function() {
+        if (!infoBubble.isOpen()) {
+            infoBubble.open(map, marker);
+        }
+    });
 }
 
 function updateUserMarker(user_data, user_index) {
@@ -92,17 +123,51 @@ function updateUserMarker(user_data, user_index) {
 	}
 
     user_markers[user_index].activity = user_data['seconds_active'];
+    user_markers[user_index].station_desc = user_data['desc'];
     
-    if(user_data.known=="1") {
-    	var contentString = "<b>"+user_data['callsign']+"</b><br>"+activityString(user_data);
-    } else {
-    	var contentString = "<b>"+user_data['callsign']+"</b><br>";
-    }
+    
     google.maps.event.clearListeners(user_markers[user_index], 'click');
-	google.maps.event.addListener(user_markers[user_index], 'click', function() {
-		infowindow.setContent(contentString);
-        infowindow.open(map,user_markers[user_index]);
-   	});
+    
+	var infoTab = '<div class="user_bubble_info">'+
+        '<h3>'+marker.callsign+'</h3>'+
+        '<b>'+marker.locator+'</b>';
+    if(logged_in) {
+    	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
+    	infoTab+='<br><br>'+
+    		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, user_markers[user_index].position)))+'&deg;<br>'+
+    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, user_markers[user_index].position)/1000)*10)/10+'km';
+    }
+    infoTab += '</div>';
+    var descTab = '<div class="user_bubble_desc">'+
+        user_markers[user_index].station_desc+
+        '</div>';
+    
+    var infoBubble = new InfoBubble({
+        maxWidth: 200,
+        minWidth: 200,
+        maxHeight: 150,
+        minHeight: 150,
+		shadowStyle: 0,
+		padding: 8,
+		backgroundColor: '#fff',
+		borderRadius: 8,
+		arrowSize: 10,
+		borderWidth: 1,
+		borderColor: '#ccc',
+		disableAutoPan: true,
+		hideCloseButton: false,
+		arrowPosition: 50,
+		arrowStyle: 0
+    });
+  	
+    infoBubble.addTab('Info', infoTab);
+    infoBubble.addTab('Description', descTab);
+
+    google.maps.event.addListener(user_markers[user_index], 'click', function() {
+        if (!infoBubble.isOpen()) {
+            infoBubble.open(map, user_markers[user_index]);
+        }
+    });
 }
 
 function createRepeaterMarker(repeater_data) {
