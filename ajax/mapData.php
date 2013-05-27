@@ -65,6 +65,7 @@ if(apc_exists('mapData')) {
 		$repeater['is_6cm'] = $row['is_6cm'];
 		$repeater['is_3cm'] = $row['is_3cm'];
 		$repeater['description'] = $row['description'];
+		$repeater['keeper'] = $row['keeper'];
 		$repeater['active'] = $row['active'];
 		$output[] = $repeater;
 		unset($repeater);

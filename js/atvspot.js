@@ -166,7 +166,8 @@ function createRepeaterMarker(repeater_data) {
     }
     freqTab += '</div>';
     var descTab = '<div id="content">'+
-        '<h1>content2</h1>'+
+        '<br>'+
+        '<b>Keeper:</b>&nbsp;'+repeater_data['keeper']+
         '</div>';
     
     var infoBubble = new InfoBubble({
