@@ -132,6 +132,7 @@ function createRepeaterMarker(repeater_data) {
     
     var infoBubble = new InfoBubble({
         maxWidth: 300,
+        minWidth: 200,
         position: new google.maps.LatLng(-35, 151),
 		shadowStyle: 0,
 		padding: 5,
