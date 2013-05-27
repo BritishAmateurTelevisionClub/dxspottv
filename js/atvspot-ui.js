@@ -96,7 +96,7 @@ $(document).ready(function() {
 
 // Station Description Edit Function
 $(document).ready(function() {
-	$('#station_description_edit').val(user_desc);
+	getUserVars();
 	$('#desc_button').button().click( function() {
 		doChangeDesc($('#station_description_edit').val());
 	});

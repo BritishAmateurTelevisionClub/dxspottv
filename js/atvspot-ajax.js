@@ -97,3 +97,18 @@ function doChangeDesc(desc) {
 		}
 	});
 }
+
+function getUserVars() {
+	$.ajax({
+		url: "/ajax/getUserInfo.php",
+		success: function( data ) {
+			//console.log(data);
+			userData = eval('(' + data + ')');
+			user_callsign = userData['callsign'];
+			user_lat = userData['lat'];
+			user_lon = userData['lon'];
+			user_desc = userData['description'];
+			$('#station_description_edit').val(user_desc);
+		}
+	});
+}
