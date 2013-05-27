@@ -21,6 +21,7 @@ if(apc_exists('currentActiveUsersStatus')) {
 	$lessThanMinute = 0;
 	$lessThanHour = 0;
 	$lessThanDay = 0;
+	$lessThanWeek = 0;
 
 	foreach($times as $seconds) {
 		if($seconds<60) {
@@ -32,12 +33,16 @@ if(apc_exists('currentActiveUsersStatus')) {
 		if($seconds<86400) {
 			$lessThanDay++;
 		}
+		if($seconds<604800) {
+			$lessThanWeek++;
+		}
 	}
 
 	$output = array();
 	$output['lastMinute'] = $lessThanMinute;
 	$output['lastHour'] = $lessThanHour;
 	$output['lastDay'] = $lessThanDay;
+	$output['lastWeek'] = $lessThanWeek;
 	
 	apc_store('currentActiveUsers', $output);
 	apc_store('currentActiveUsersStatus','Valid',3);
