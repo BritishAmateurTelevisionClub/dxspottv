@@ -141,7 +141,7 @@ function createRepeaterMarker(repeater_data) {
     marker.is3cm = repeater_data['is_3cm'];
     repeater_markers.push(marker);
     
-    var infoTab = '<div id="content">'+
+    var infoTab = '<div class="repeater_bubble_info">'+
         '<h3>'+marker.callsign+'</h3>'+
         '<b>'+marker.qth_r+'</b>&nbsp;-&nbsp;'+marker.qth;
     if(logged_in) {
@@ -151,7 +151,7 @@ function createRepeaterMarker(repeater_data) {
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, latlon)/1000)*10)/10+'km';
     }
     infoTab += '</div>';
-    var freqTab = '<div id="content">'+
+    var freqTab = '<div class="repeater_bubble_freq">'+
     	'<b>TX:&nbsp;'+marker.tx_freq+'MHz</b><br>'+
     	'<b>RX:&nbsp;'+marker.rx_freq+'MHz</b><br>';
     if (typeof marker.rx_freq_2 != 'undefined') {
@@ -165,7 +165,7 @@ function createRepeaterMarker(repeater_data) {
 		}
     }
     freqTab += '</div>';
-    var descTab = '<div id="content">'+
+    var descTab = '<div class="repeater_bubble_desc">'+
         '<br>'+
         '<b>Keeper:</b>&nbsp;'+repeater_data['keeper']+
         '</div>';
