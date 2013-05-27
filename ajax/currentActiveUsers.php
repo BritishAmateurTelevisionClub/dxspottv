@@ -7,14 +7,13 @@ if(apc_exists('currentActiveUsersStatus')) {
 	apc_store('currentActiveUsers','Refreshing',1);
 	include('spot_login.php');
 
+	$count = 0;
 	$times = array();
 	$session_result = mysqli_query($dbc, "SELECT activity FROM sessions;") or die(mysqli_error($dbc));
 	while($row = mysqli_fetch_array($session_result))
 	{
-	
-		$activity = time() - date_format(date_create($row['activity']),'U');
-		$times[] = $activity;
-		unset($activity);
+		$times[] = time() - date_format(date_create($row['activity']),'U');
+		$count++;
 	}
 	mysql_end($dbc);
 
@@ -43,6 +42,7 @@ if(apc_exists('currentActiveUsersStatus')) {
 	$output['lastHour'] = $lessThanHour;
 	$output['lastDay'] = $lessThanDay;
 	$output['lastWeek'] = $lessThanWeek;
+	$output['totalUsers'] = $count;
 	
 	apc_store('currentActiveUsers', $output);
 	apc_store('currentActiveUsersStatus','Valid',3);
