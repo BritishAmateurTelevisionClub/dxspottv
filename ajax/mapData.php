@@ -1,9 +1,10 @@
 <?php
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
-if(apc_exists('mapData')) {
+if(apc_exists('mapDataStatus')) {
 	$final_output = apc_fetch('mapData');
 } else {
+	apc_store('mapDataStatus','Refreshing',1);
 	include('../spot_login.php');
 	$full_output = array();
 	$output = array();
@@ -99,7 +100,8 @@ if(apc_exists('mapData')) {
 	
 	$full_output['spots'] = $output;
 	$final_output = json_encode($full_output);
-	apc_add('mapData', $final_output, 1);
+	apc_store('mapData', $final_output);
+	apc_store('mapDataStatus','Valid',1);
 }
 print $final_output;
 ?>
