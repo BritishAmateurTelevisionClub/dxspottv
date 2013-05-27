@@ -10,9 +10,9 @@ $(document).ready(function() {
 		url: "/ajax/currentActiveUsers.php",
 		success: function( data ) {
 			myJSONObject = eval('(' + data + ')');
-    		$('#lastMinCount').val(myJSONObject['lastMinute']);
-    		$('#lastHourCount').val(myJSONObject['lastHour']);
-    		$('#lastDayCount').val(myJSONObject['lastDay']);
+    		$('#lastMinCount').html('<b>'+myJSONObject['lastMinute']+'</b>');
+    		$('#lastHourCount').html('<b>'+myJSONObject['lastHour']+'</b>');
+    		$('#lastDayCount').html('<b>'+myJSONObject['lastDay']+'</b>');
 		}
 	});
 });
