@@ -102,18 +102,6 @@ html, body {
   }
 }
 
-#styles, #add-tab {
-	float: left;
-	margin-top: 10px;
-	width: 400px;
-}
-
-#styles label,
-#add-tab label {
-	display: inline-block;
-	width: 130px;
-}
-
 .repeater_bubble_info,
 .repeater_bubble_freq,
 .repeater_bubble_desc {
