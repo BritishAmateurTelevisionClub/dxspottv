@@ -127,8 +127,12 @@ function createRepeaterMarker(repeater_data) {
     marker.is3cm = repeater_data['is_3cm'];
     repeater_markers.push(marker);
     
-    var tabA = ['<b>', repeater_data['callsign'], '</b>'].join('');
-    var tabB = ['', repeater_data['description'], ''].join('');
+    var tabA = '<div id="content">'+
+        '<h1>content</h1>'+
+        '</div>';
+    var tabB = '<div id="content">'+
+        '<h1>content2</h1>'+
+        '</div>';
     
     var infoBubble = new InfoBubble({
         maxWidth: 300,
