@@ -131,7 +131,19 @@ function createRepeaterMarker(repeater_data) {
     var tabB = ['', repeater_data['description'], ''].join('');
     
     var infoBubble = new InfoBubble({
-        maxWidth: 300
+        maxWidth: 300,
+        position: new google.maps.LatLng(-35, 151),
+		shadowStyle: 0,
+		padding: 5,
+		backgroundColor: '#fff',
+		borderRadius: 5,
+		arrowSize: 10,
+		borderWidth: 1,
+		borderColor: '#ccc',
+		disableAutoPan: true,
+		hideCloseButton: false,
+		arrowPosition: 50,
+		arrowStyle: 0
     });
   	
     infoBubble.addTab('Info', tabA);
