@@ -12,6 +12,7 @@ if($got_cookies && $got_variable) {
 	$sessions_statement->fetch();
 	if($sessions_statement->num_rows!=1) { // session doesn't exist on server
 		print 'Session not found.';
+		print $sessions_statement->num_rows;
 	} else {
 		if ($_COOKIE["session_key"]==$sessions_result) {
 			// Session matches, so is logged in!
