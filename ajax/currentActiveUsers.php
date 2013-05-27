@@ -28,7 +28,7 @@ if(apc_exists('currentActiveUsersStatus')) {
 		} else if($seconds<3600) {
 			$lessThanHour++;
 		} else if($seconds<86400) {
-			$lessThanDay++:
+			$lessThanDay++;
 		}
 	}
 
