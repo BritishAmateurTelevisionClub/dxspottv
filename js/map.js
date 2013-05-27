@@ -55,7 +55,7 @@ function checkRepeaters() {
 			} else { // Are they part of a shown spot?
 			    // Grep spot lines for user_id
 			    var spot_search = $.grep(spot_lines, function(e){
-				    return (e.secondary_isrepeater && e.secondary_id == repeater_markers[i].repeater_id);
+				    return ((e.secondary_isrepeater == '1') && e.secondary_id == repeater_markers[i].repeater_id);
 			    });
 			    for (var j=0; j<spot_search.length; j++) {
 			        if (spot_search[j].visible) {
