@@ -105,7 +105,6 @@ html, body {
 .repeater_bubble_info,
 .repeater_bubble_freq,
 .repeater_bubble_desc {
-	font-family: Roboto, Arial, sans-serif;
-	font-size: 13px;
-	font-weight: 300;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
 }
