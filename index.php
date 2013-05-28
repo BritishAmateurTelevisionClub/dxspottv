@@ -211,22 +211,21 @@ if ($auth_error==1) {
 	<div id="editStation" class="reduce-tab-padding">
 		<h4>My Station Description:</h4>
 		<textarea rows="4" cols="50" id="station_description_edit"></textarea><br>
-		No HTML permitted.<br>
 		<button class="station-desc-button reduce-font-size" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
 	</div>
 	<?php } ?>
-	<div id="helpTab" class="reduce-tab-padding" class="reduce-font-size">
-		Online help is avaiable at the dxspot.tv forum at http://www.batc.org.uk/forum/index.php.
-		
+	<div id="helpTab" class="reduce-tab-padding">
+		Online help is avaiable at the dxspot.tv forum at http://www.batc.org.uk/forum/index.php.<br>
+		<br>
 		Or you can email us at dxspottv.feedback@gmail.com
 
 	</div>
 	<div id="aboutTab" class="reduce-tab-padding">
 		DXSpot.TV is an open development environment project using github.  
 		If you would like to contribute please emaill us at 
-		dxspottv.feedback@gmail.com
-		
-		All the hard work so far has been doen by Phil, M0DNY, from an idea by Noel, G8GTZ.
+		dxspottv.feedback@gmail.com<br>
+		<br>
+		All the hard work so far has been done by Phil, M0DNY, from an idea by Noel, G8GTZ.
 
 	</div>
 </div>
