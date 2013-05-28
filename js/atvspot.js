@@ -232,10 +232,12 @@ function createRepeaterMarker(repeater_data) {
 		}
     }
     freqTab += '</div>';
-    var descTab = '<div class="repeater_bubble_desc">'+
-        '<br>'+
-        '<b>Keeper:</b>&nbsp;'+repeater_data['keeper']+
-        '</div>';
+    var descTab = '<div class="repeater_bubble_desc">';
+    descTab += repeater_data['description']+'<br>';
+    if (typeof repeater_data['website'] != 'undefined') {
+    	descTab += '<b>Website:</b>&nbsp;<a href target="_blank" src="'+repeater_data['website']+'">'+repeater_data['website']+'</a><br>';
+    }
+    descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper']+'</div>';
     
     var infoBubble = new InfoBubble({
         maxWidth: 180,
