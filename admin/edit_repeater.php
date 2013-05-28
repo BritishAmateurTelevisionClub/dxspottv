@@ -6,6 +6,7 @@
 <link href="/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script src="/js/jquery-plus-ui.js"></script>
 <script>
+var repeater_id;
 $(document).ready(function() {
 	var parts = window.location.search.substr(1).split("&");
 	var $_GET = {};
@@ -13,6 +14,7 @@ $(document).ready(function() {
 		var temp = parts[i].split("=");
 		$_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
 	}
+	repeater_id = $_GET.id;
 	
 	$('#edit_button').button().click( function() {
     	submitEdit();
@@ -22,7 +24,7 @@ $(document).ready(function() {
 		url: "/admin/ajax/repeaterInfo.php",
 		type: "POST",
 		data: {
-			repeater_id: $_GET.id
+			repeater_id: repeater_id
 		},
 		success: function( data ) {
 			repeaterData = eval('(' + data + ')');
@@ -43,7 +45,7 @@ function submitEdit() {
 		url: "/admin/ajax/editRepeater.php",
 		type: "POST",
 		data: {
-			repeater: $_GET.id,
+			repeater: repeater_id
 			callsign: $('#input_callsign').val(),
 			locator: $('#input_location').val(),
 			location: $('#input_location').val(),
