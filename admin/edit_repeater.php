@@ -56,7 +56,8 @@ function submitEdit() {
 		},
 		success: function( data ) {
 			$('#editStatus').html("<font color=green>Changed.</font>"); // Clear status
-			$('#editStatus').fadeOut(1000);
+			$('#editStatus').show();
+			$('#editStatus').fadeOut(1500);
 		}
 	});
 }
