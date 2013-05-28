@@ -15,9 +15,8 @@ if($got_variables) {
 		htmlentities($_REQUEST["website"]),
 		htmlentities($_REQUEST["keeper"]),
 		htmlentities($_REQUEST["active"]),
-		htmlentities($_REQUEST["repeater"]));
+		$_REQUEST["repeater"]);
 	$update_statement->execute();
-	$update_statement->close();
 	
 	if($update_statement->affected_rows==1) {
 		$output['success'] = 1;
@@ -25,6 +24,7 @@ if($got_variables) {
 		$output['error'] = 2; // MYSQL Error
 		$output['affected'] = $update_statement->affected_rows;
 	}
+	$update_statement->close();
 } else {
 	$output['error'] = 1;
 }
