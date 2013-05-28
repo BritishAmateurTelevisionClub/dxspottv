@@ -23,6 +23,8 @@ if($got_variables) {
 		$output['success'] = 1;
 	} else {
 		$output['error'] = 2; // MYSQL Error
+		$output['affected'] = $update_statement->affected_rows;
+		$output['debug'] = var_dump($update_statement);
 	}
 } else {
 	$output['error'] = 1;
