@@ -68,6 +68,9 @@ if(apc_exists('mapDataStatus')) {
 		$repeater['is_3cm'] = $row['is_3cm'];
 		$repeater['description'] = $row['description'];
 		$repeater['keeper'] = $row['keeper_callsign'];
+		if($row['website']!=0) {
+			$repeater['website'] = $row['website'];
+		}
 		$repeater['active'] = $row['active'];
 		$output[] = $repeater;
 		unset($repeater);
