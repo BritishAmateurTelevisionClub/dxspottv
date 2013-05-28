@@ -235,7 +235,7 @@ function createRepeaterMarker(repeater_data) {
     var descTab = '<div class="repeater_bubble_desc">';
     descTab += repeater_data['description']+'<br>';
     if (typeof repeater_data['website'] != 'undefined') {
-    	descTab += '<b>Website:</b>&nbsp;<a href target="_blank" src="'+repeater_data['website']+'">'+repeater_data['website']+'</a><br>';
+    	descTab += '<a href target="_blank" src="'+repeater_data['website']+'"><b>Link to Website</b></a><br>';
     }
     descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper']+'</div>';
     
