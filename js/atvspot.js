@@ -234,10 +234,11 @@ function createRepeaterMarker(repeater_data) {
     freqTab += '</div>';
     var descTab = '<div class="repeater_bubble_desc">';
     descTab += repeater_data['description']+'<br>';
+    descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper']+'<br><br>';
     if (typeof repeater_data['website'] != 'undefined') {
-    	descTab += '<a href="'+repeater_data['website']+'" target="_blank"><b>Repeater Website</b></a><br><br>';
+    	descTab += '<a href="'+repeater_data['website']+'" target="_blank"><b>Repeater Website</b></a>';
     }
-    descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper']+'</div>';
+    descTab += '</div>';
     
     var infoBubble = new InfoBubble({
         maxWidth: 180,
