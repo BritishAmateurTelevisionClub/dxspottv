@@ -7,7 +7,7 @@
 <script>
 $(document).ready(function() {
 	$.ajax({
-		url: "/ajax/currentActiveUsers.php",
+		url: "/admin/ajax/currentActiveUsers.php",
 		success: function( data ) {
 			activeUserData = eval('(' + data + ')');
     		$('#lastMinCount').html('<b>'+activeUserData['lastMinute']+'</b>');

@@ -13,7 +13,7 @@
 <h2>Repeaters</h2>
 <ul>
 <?php
-include('../spot_login.php');
+require_once('spot_login.php');
 $repeater_result = mysqli_query($dbc, "SELECT id,callsign FROM repeaters;") or die(mysqli_error($dbc));
 while($row = mysqli_fetch_array($repeater_result))
 {

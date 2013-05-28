@@ -4,31 +4,49 @@ if(!(isset($_REQUEST["repeater_id"]))) {
 	print "Error: No ID requested.";
 } else {
 
-include('../../spot_login.php');
+require_once('spot_login.php');
 
 $request_id = mysqli_real_escape_string($dbc, $_REQUEST["repeater_id"]);
 
 $output = array();
-$i=1;
+
 $repeater_result = mysqli_query($dbc, "SELECT * FROM repeaters WHERE id ={$request_id};") or die(mysqli_error($dbc));
-while($repeater_row = mysqli_fetch_array($repeater_result))
+while($row = mysqli_fetch_array($repeater_result))
 {
-	$output[$i] = array();
-	$output[$i]['id'] = $request_id;
-	$output[$i]['callsign'] = $repeater_row['callsign'];
-	$output[$i]['latitude'] = $repeater_row['lat'];
-	$output[$i]['longitude'] = $repeater_row['lon'];
-	$output[$i]['is_70cm'] = $repeater_row['is_70cm'];
-	$output[$i]['is_23cm'] = $repeater_row['is_23cm'];
-	$output[$i]['is_13cm'] = $repeater_row['is_13cm'];
-	$output[$i]['is_13cm'] = $repeater_row['is_13cm'];
-	$output[$i]['active'] = $repeater_row['active'];
-	$output[$i]['description'] = $repeater_row['Description'];
-	$i++;
+	$repeater['id'] = $row['id'];
+	$repeater['callsign'] = $row['callsign'];
+	$repeater['description'] = $row['description'];
+	$repeater['latitude'] = $row['lat'];
+	$repeater['longitude'] = $row['lon'];
+	$repeater['qth_r'] = $row['qth_r'];
+	$repeater['qth'] = $row['qth'];
+	$repeater['tx_freq'] = $row['tx_freq'];
+	$repeater['rx_freq'] = $row['rx_freq'];
+	if($row['rx_freq_2']!=0) {
+		$repeater['rx_freq_2'] = $row['rx_freq_2'];
+	}
+	if($row['alt_tx_freq']!=0) {
+		$repeater['alt_tx_freq'] = $row['alt_tx_freq'];
+		$repeater['alt_rx_freq'] = $row['alt_rx_freq'];
+		if($row['alt_rx_freq_2']!=0) {
+			$repeater['alt_rx_freq_2'] = $row['alt_rx_freq_2'];
+		}
+	}
+	$repeater['is_70cm'] = $row['is_70cm'];
+	$repeater['is_23cm'] = $row['is_23cm'];
+	$repeater['is_13cm'] = $row['is_13cm'];
+	$repeater['is_9cm'] = $row['is_9cm'];
+	$repeater['is_6cm'] = $row['is_6cm'];
+	$repeater['is_3cm'] = $row['is_3cm'];
+	$repeater['description'] = $row['description'];
+	$repeater['keeper'] = $row['keeper_callsign'];
+	$repeater['active'] = $row['active'];
+	$output[] = $repeater;
+	unset($repeater);
 }
 
 $json_output = json_encode($output);
-echo $json_output;
 mysql_end($dbc);
+print $json_output;
 }
 ?>
