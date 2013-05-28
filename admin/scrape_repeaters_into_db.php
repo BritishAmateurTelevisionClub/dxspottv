@@ -1,5 +1,5 @@
 <?php
-include_once 'simple_html_dom.php';
+require_once('simple_html_dom.php');
 
 $html = file_get_html("http://www.ukrepeater.net/repeaterlist5.htm");
 
