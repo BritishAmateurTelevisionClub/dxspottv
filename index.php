@@ -89,7 +89,7 @@ if($logged_in) { ?>
 <script type="text/javascript" src="/js/atvspot-ui.js"></script>
 <script type="text/javascript" src="/js/atvspot-util.js"></script>
 <script type="text/javascript" src="/js/locator.js"></script>
-<script type="text/javascript" src="/js/infobubble.js"></script>
+<script type="text/javascript" src="/js/infobubble.min.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
