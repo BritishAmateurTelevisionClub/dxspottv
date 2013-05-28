@@ -217,13 +217,13 @@ if ($auth_error==1) {
 	<div id="helpTab" class="reduce-tab-padding">
 		Online help is avaiable at the dxspot.tv forum at http://www.batc.org.uk/forum/index.php.<br>
 		<br>
-		Or you can email us at dxspottv.feedback@gmail.com
+		Or you can email us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
 
 	</div>
 	<div id="aboutTab" class="reduce-tab-padding">
 		DXSpot.TV is an open development environment project using github.  
-		If you would like to contribute please emaill us at 
-		dxspottv.feedback@gmail.com<br>
+		If you would like to contribute please email us at 
+		<a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a><br>
 		<br>
 		All the hard work so far has been done by Phil, M0DNY, from an idea by Noel, G8GTZ.
 
