@@ -225,8 +225,6 @@ if ($auth_error==1) {
 </tr>
 </tbody>
 </table>
-<br>
-Copyright 2013 Phil Crump <a href='https://www.thecraag.com/' target='_blank'>thecraag.com</a>
 </div>
 </body>
 </html>
