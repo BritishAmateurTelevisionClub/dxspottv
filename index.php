@@ -1,7 +1,5 @@
 <?php
 session_start();
-//print_r($_COOKIE);
-//print "<br>";
 if (isset($_COOKIE["auth_error"])) {
   if ($_COOKIE["auth_error"]=="1") {
   	// Unset Auth Error
@@ -12,8 +10,8 @@ if (isset($_COOKIE["auth_error"])) {
     $auth_error = 1;
     $auth_error_text = $_COOKIE["auth_error_text"];
   } else {
-    include('spot_login.php');
-    $callsign_result = mysqli_query($dbc, "SELECT callsign,lat,lon,station_desc FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
+    require('spot_login.php');
+    $callsign_result = mysqli_query($dbc, "SELECT callsign FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
     $callsign_row = mysqli_fetch_array($callsign_result);
     $callsign = $callsign_row["callsign"];
     // Logged in, but check session id is valid
@@ -30,9 +28,6 @@ if (isset($_COOKIE["auth_error"])) {
         $user_known = 1;
         $logged_in = 1;
         $auth_error = 0;
-        $user_lat = $callsign_row["lat"];
-        $user_lon = $callsign_row["lon"];
-        $user_desc = $callsign_row["station_desc"];
       } else {
         // Session doesn't match, make them log in again
         $user_known = 1;
@@ -40,11 +35,6 @@ if (isset($_COOKIE["auth_error"])) {
         $auth_error = 1;
         $auth_error_text = "Session not found, please log in.";
       }
-      //print_r($target_row);
-      //print $_COOKIE["session_key"];
-      //print "<br>";
-      //print $target_row["session_id"];
-      //print "<br>";
     }
     mysql_end($dbc);
     $auth_error=0;
