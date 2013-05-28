@@ -1,3 +1,4 @@
+Sitemap: http://www.dxspot.tv/sitemap.xml
 User-agent: *
 Disallow: /ajax/
 Disallow: /js/
