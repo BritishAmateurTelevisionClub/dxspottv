@@ -49,10 +49,9 @@ if (isset($_COOKIE["auth_error"])) {
 //print "Logged In: " . $logged_in;
 //print "Auth Error: " . $auth_error;
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" >
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
 <meta name="description" content="Easy to use DX Spotting for ATV/DATV contacts on all bands: 70cms - 3cms.">
 <meta name="keywords" content="dxspot,atv,tv,spot,dx,cluster,contacts,ham,amateur,television,chat,irc">
 <title>DXSpot.TV</title>
