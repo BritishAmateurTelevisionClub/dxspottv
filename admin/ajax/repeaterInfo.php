@@ -8,8 +8,6 @@ require_once('spot_login.php');
 
 $request_id = mysqli_real_escape_string($dbc, $_REQUEST["repeater_id"]);
 
-$output = array();
-
 $repeater_result = mysqli_query($dbc, "SELECT * FROM repeaters WHERE id ={$request_id};") or die(mysqli_error($dbc));
 while($row = mysqli_fetch_array($repeater_result))
 {
@@ -41,11 +39,9 @@ while($row = mysqli_fetch_array($repeater_result))
 	$repeater['description'] = $row['description'];
 	$repeater['keeper'] = $row['keeper_callsign'];
 	$repeater['active'] = $row['active'];
-	$output[] = $repeater;
-	unset($repeater);
 }
 
-$json_output = json_encode($output);
+$json_output = json_encode($repeater);
 mysql_end($dbc);
 print $json_output;
 }
