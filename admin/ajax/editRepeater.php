@@ -6,7 +6,7 @@ $output = array();
 if($got_variables) {
 	require_once('spot_login.php');
 
-	$update_statement = $dbc->prepare("UPDATE repeaters set callsign=?,qth_r=?,qth=?,description=?,website=?,keeper=?,active=? WHERE id=?;");
+	$update_statement = $dbc->prepare("UPDATE repeaters set callsign=?,qth_r=?,qth=?,description=?,website=?,keeper_callsign=?,active=? WHERE id=?;");
 	$update_statement->bind_param('ssssssi',
 		htmlentities($_REQUEST["callsign"]),
 		htmlentities($_REQUEST["locator"]),
