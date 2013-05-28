@@ -47,7 +47,7 @@ function submitEdit() {
 		data: {
 			repeater: repeater_id,
 			callsign: $('#input_callsign').val(),
-			locator: $('#input_location').val(),
+			locator: $('#input_locator').val(),
 			location: $('#input_location').val(),
 			description: $('#input_description').val(),
 			website: $('#input_website').val(),
