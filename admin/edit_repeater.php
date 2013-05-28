@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <title>Edit Repeater</title>
-<script src="/js/jquery-1.9.1.min.js"></script>
+<link href="/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<script src="/js/jquery-plus-ui.js"></script>
 <script>
 $(document).ready(function() {
 	var parts = window.location.search.substr(1).split("&");
@@ -12,6 +13,11 @@ $(document).ready(function() {
 		var temp = parts[i].split("=");
 		$_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
 	}
+	
+	$('#edit_button').button().click( function() {
+    	submitEdit();
+	});
+	
 	$.ajax({
 		url: "/admin/ajax/repeaterInfo.php",
 		type: "POST",
@@ -28,9 +34,30 @@ $(document).ready(function() {
     			$('#input_website').val(repeaterData['website']);
     		}
     		$('#input_keeper').val(repeaterData['keeper']);
+    		$('#input_active').val(repeaterData['active']);
 		}
 	});
 });
+function submitEdit() {
+	$.ajax({
+		url: "/admin/ajax/editRepeater.php",
+		type: "POST",
+		data: {
+			repeater: $_GET.id,
+			callsign: $('#input_callsign').val(),
+			locator: $('#input_location').val(),
+			location: $('#input_location').val(),
+			description: $('#input_description').val(),
+			website: $('#input_website').val(),
+			keeper: $('#input_keeper').val(),
+			active: $('#input_active').val()
+		},
+		success: function( data ) {
+			$('#editStatus').html("<font color=green>Changed.</font>"); // Clear status
+			$('#editStatus').fadeOut(1000);
+		}
+	});
+}
 </script>
 </head>
 <body>
@@ -42,5 +69,7 @@ $(document).ready(function() {
 <b>Description:</b>&nbsp<input type=text id="input_description"></input><br>
 <b>Website:</b>&nbsp<input type=text id="input_website"></input><br>
 <b>Keeper:</b>&nbsp<input type=text id="input_keeper"></input><br>
+<b>Active:</b>&nbsp<input type=text id="input_active"></input> (1 or 0)<br>
+<button class="edit-button reduce-font-size" id="edit_button">Submit</button>&nbsp;<span id="editStatus"></span>
 </body>
 </html>
