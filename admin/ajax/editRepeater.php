@@ -7,7 +7,7 @@ if($got_variables) {
 	require_once('spot_login.php');
 
 	$update_statement = $dbc->prepare("UPDATE repeaters set callsign=?,qth_r=?,qth=?,description=?,website=?,keeper_callsign=?,active=? WHERE id=?;");
-	$update_statement->bind_param('ssssssi',
+	$update_statement->bind_param('ssssssii',
 		htmlentities($_REQUEST["callsign"]),
 		htmlentities($_REQUEST["locator"]),
 		htmlentities($_REQUEST["location"]),
@@ -24,7 +24,6 @@ if($got_variables) {
 	} else {
 		$output['error'] = 2; // MYSQL Error
 		$output['affected'] = $update_statement->affected_rows;
-		$output['debug'] = var_dump($update_statement);
 	}
 } else {
 	$output['error'] = 1;
