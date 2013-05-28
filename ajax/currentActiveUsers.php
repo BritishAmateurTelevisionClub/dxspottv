@@ -4,7 +4,7 @@ header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 if(apc_exists('currentActiveUsersStatus')) {
 	$output = apc_fetch('currentActiveUsers');
 } else {
-	apc_store('currentActiveUsers','Refreshing',1);
+	apc_store('currentActiveUsersStatus','Refreshing',1);
 	require_once('spot_login.php');
 
 	$count = 0;
