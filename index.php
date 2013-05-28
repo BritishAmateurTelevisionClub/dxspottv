@@ -215,11 +215,19 @@ if ($auth_error==1) {
 		<button class="station-desc-button reduce-font-size" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
 	</div>
 	<?php } ?>
-	<div id="helpTab" class="reduce-tab-padding">
-		You need to be registered to submit spots.
+	<div id="helpTab" class="reduce-tab-padding" class="reduce-font-size">
+		Online help is avaiable at the dxspot.tv forum at http://www.batc.org.uk/forum/index.php.
+		
+		Or you can email us at dxspottv.feedback@gmail.com
+
 	</div>
 	<div id="aboutTab" class="reduce-tab-padding">
-		DXSpot.TV is an ATV Spotting Site...
+		DXSpot.TV is an open development environment project using github.  
+		If you would like to contribute please emaill us at 
+		dxspottv.feedback@gmail.com
+		
+		All the hard work so far has been doen by Phil, M0DNY, from an idea by Noel, G8GTZ.
+
 	</div>
 </div>
 </td>
