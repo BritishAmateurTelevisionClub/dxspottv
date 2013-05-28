@@ -215,7 +215,7 @@ if ($auth_error==1) {
 	</div>
 	<?php } ?>
 	<div id="helpTab" class="reduce-tab-padding">
-		Online help is avaiable at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/index.php">www.batc.org.uk/forum/</a><br>
+		Online help is avaiable at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/index.php" target="_blank">www.batc.org.uk/forum/</a><br>
 		<br>
 		Or you can email us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
 
