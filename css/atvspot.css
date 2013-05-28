@@ -108,7 +108,7 @@ html, body {
 	font-size: 12px;
 }
 .user_bubble_desc {
-	white-space: pre;
+	white-space: pre-wrap;
 }
 
 .bubble_label {
@@ -123,5 +123,5 @@ html, body {
 	font-size: 12px;
 }
 .repeater_bubble_desc {
-	white-space: pre;
+	white-space: pre-wrap;
 }
