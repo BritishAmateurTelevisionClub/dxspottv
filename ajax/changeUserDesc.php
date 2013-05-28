@@ -9,7 +9,7 @@ if($got_cookies && $got_variable) {
 	$sessions_statement->bind_param('i', $_COOKIE["user_id"]);
 	$sessions_statement->execute();
 	$sessions_statement->bind_result($sessions_result);
-	//$sessions_statement->fetch();
+	$sessions_statement->store_result();
 	if($sessions_statement->num_rows!=1) { // session doesn't exist on server
 		print 'Session not found.';
 		print $sessions_statement->num_rows;
