@@ -15,7 +15,7 @@ if($got_variables) {
 		$htmlentities($_REQUEST["website"]),
 		$htmlentities($_REQUEST["keeper"]),
 		$htmlentities($_REQUEST["active"]),
-		$htmlentities($_REQUEST["repeater"]);
+		$htmlentities($_REQUEST["repeater"]));
 	$update_statement->execute();
 	$update_statement->close();
 	
