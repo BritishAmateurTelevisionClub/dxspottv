@@ -1,6 +1,6 @@
 // Set up refresh functions
 //
-var mapRefresh=self.setInterval(function(){getMapData()},2000+Math.round(Math.random()*200)); // Add from 0-200ms randomly
+var mapRefresh=self.setInterval(function(){getMapData()},4000+Math.round(Math.random()*200)); // Add from 0-200ms randomly
 
 if(logged_in) {
 	var activityRefresh=self.setInterval(function(){updateActivity()},5000+Math.round(Math.random()*400)); // Add from 0-400ms randomly
