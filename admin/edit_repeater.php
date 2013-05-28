@@ -55,9 +55,24 @@ function submitEdit() {
 			active: $('#input_active').val()
 		},
 		success: function( data ) {
-			$('#editStatus').html("<font color=green>Changed.</font>"); // Clear status
-			$('#editStatus').show();
-			$('#editStatus').fadeOut(1500);
+			retData = eval('(' + data + ')');
+			if (typeof retData['success'] != 'undefined') {
+				$('#editStatus').html("<font color=green>Changed.</font>");
+				$('#editStatus').show();
+				$('#editStatus').fadeOut(1500);
+			} else {
+				switch(retData['error'])
+				{
+				case "1":
+					$('#editStatus').html("<font color=red>Form Error.</font>");
+					break;
+				case "2":
+					$('#editStatus').html("<font color=red>MySQL Error.</font>");
+					break;
+				}
+				$('#editStatus').show();
+				$('#editStatus').fadeOut(3000);
+			}
 		}
 	});
 }
