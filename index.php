@@ -211,6 +211,7 @@ if ($auth_error==1) {
 	<div id="editStation" class="reduce-tab-padding">
 		<h4>My Station Description:</h4>
 		<textarea rows="4" cols="50" id="station_description_edit"></textarea><br>
+		No HTML permitted.<br>
 		<button class="station-desc-button reduce-font-size" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
 	</div>
 	<?php } ?>
