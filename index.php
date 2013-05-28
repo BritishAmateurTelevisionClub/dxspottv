@@ -215,7 +215,7 @@ if ($auth_error==1) {
 	</div>
 	<?php } ?>
 	<div id="helpTab" class="reduce-tab-padding">
-		You need to be registered to submit spots.
+		For help, please go to the dxspot.tv forum at http://www.batc.org.uk/forum/index.php .
 	</div>
 	<div id="aboutTab" class="reduce-tab-padding">
 		DXSpot.TV is an ATV Spotting Site...
