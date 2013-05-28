@@ -1,0 +1,11 @@
+Note: Currently the author does not permit installation of this software without express written permission.
+
+Dependencies:
+* PHP 5.3+
+** PHP-APC (for caching)
+* MySQL 5.1+
+
+Current System:
+* nginx 1.5.0
+* PHP 5.4.15
+* MariaDB 5.5.31
