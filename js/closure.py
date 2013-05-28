@@ -7,7 +7,7 @@ import httplib, urllib, sys
 
 params = urllib.urlencode([
     ('code_url', sys.argv[1]), # <--- This parameter has a new name!
-    ('compilation_level', 'WHITESPACE_ONLY'),
+    ('compilation_level', 'SIMPLE_OPTIMIZATIONS'),
     ('output_format', 'text'),
     ('output_info', 'compiled_code'),
   ])
