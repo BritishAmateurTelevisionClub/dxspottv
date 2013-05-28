@@ -6,8 +6,18 @@
 <script src="/js/jquery-1.9.1.min.js"></script>
 <script>
 $(document).ready(function() {
+	var parts = window.location.search.substr(1).split("&");
+	var $_GET = {};
+	for (var i = 0; i < parts.length; i++) {
+		var temp = parts[i].split("=");
+		$_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+	}
 	$.ajax({
 		url: "/admin/ajax/repeaterInfo.php",
+		type: "POST",
+		data: {
+			repeater_id: $_GET.id
+		},
 		success: function( data ) {
 			repeaterData = eval('(' + data + ')');
     		$('#input_callsign').val(repeaterData['callsign']);
