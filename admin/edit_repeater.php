@@ -45,7 +45,7 @@ function submitEdit() {
 		url: "/admin/ajax/editRepeater.php",
 		type: "POST",
 		data: {
-			repeater: repeater_id
+			repeater: repeater_id,
 			callsign: $('#input_callsign').val(),
 			locator: $('#input_location').val(),
 			location: $('#input_location').val(),
