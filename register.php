@@ -38,9 +38,8 @@ Please enter the following information to register for DXSpot.TV<br>
 	<label class="register_labels"><b>Password:</b>&nbsp;</label>
 	<input type=password name='passwd' id='passwd' class="required" minlength="5" />
 <br>
-<br>Entering your lat and long or a 6 digit QRA will give greater location accuracy<br>
 <br>
-<label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() class="required" minlength="4" /> Maidenhead QRA eg. IO91HW (Use either 4 or 6 characters)
+<label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' class="required" minlength="6" /> Maidenhead QRA eg. IO91HW (Use 6 characters please)
 <br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" /> Will only be used for administrator contact in case of issues. It will not be publicly disclosed.
 <br><br>
