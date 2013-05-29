@@ -22,13 +22,13 @@ session_start();
 </head>
 <body>
 <div id="first_form">
+<form id='register_form'>
 <table width=100%>
 <tr width=100%>
 <td style="width: auto;">
 <h2>New User Registration</h2>
 Please enter the following information to register for DXSpot.TV<br>
 <br>
-<form id='register_form'>
 	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
 	<input type=text name='fname' id='fname' class="required" minlength="2" /> (IRC nick will be set to <i>firstname_callsign</i>)
 <br><br>
@@ -55,9 +55,9 @@ Click to set location, as accurate as you like.
 <div id="map_canvas"></div>
 </center>
 <br>
-<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" />
+<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" minlength="4" />
 <br>
-<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" />
+<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" minlength="4" />
 </td></tr></table>
 <button id="register_button">Register</button>
 </form>
