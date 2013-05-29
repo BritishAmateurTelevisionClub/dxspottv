@@ -22,8 +22,8 @@ function placeMarker(location) {
 function initialize() {
 	google.maps.visualRefresh = true;
 	var mapOptions = {
-		zoom: 6,
-		center: new google.maps.LatLng(52.5, -1.25),
+		zoom: 4,
+		center: new google.maps.LatLng(50.5, 0),
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		streetViewControl: false
 	};
