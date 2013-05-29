@@ -24,7 +24,7 @@ session_start();
 <div id="first_form">
 <table width=100%>
 <tr width=100%>
-<td width=50%>
+<td style="width: auto;">
 <h2>New User Registration</h2>
 Please enter the following information to register for DXSpot.TV<br>
 <br>
@@ -36,12 +36,10 @@ Please enter the following information to register for DXSpot.TV<br>
 	<input type=text name='callsign' id='callsign' class="required" minlength="4" /> Will be converted to Upper case. eg. M0DNY
 <br>
 	<label class="register_labels"><b>Password:</b>&nbsp;</label>
-	<input type=password name='passwd' id='passwd' class="required" minlength="5" />
+	<input type=password name='passwd' id='passwd' class="required" minlength="5" /> (minimum 5 characters)
 <br>
-<br>
-<label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' class="required" minlength="6" /> Maidenhead QRA eg. IO91HW (Use 6 characters please)
-<br>
-<label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" /> Will only be used for administrator contact in case of issues. It will not be publicly disclosed.
+<label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" />
+<li>Will only be used for administrator contact in case of issues. Will not be publicly disclosed.</li>
 <br><br>
 <?php
 require_once('recaptchalib.php');
@@ -49,20 +47,19 @@ $publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
 echo recaptcha_get_html($publickey);
 ?>
 </td>
-<td width=50%>
+<td style="width: 450px;">
 <center>
 <h3>Station Location</h3>
 Click to set location, as accurate as you like.
+<br>
 <div id="map_canvas"></div>
+</center>
 <br>
 <label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" />
 <br>
 <label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" />
-</center>
 </td></tr></table>
-<center>
 <button id="register_button">Register</button>
-</center>
 </form>
 </div>
 <div id="successMessage" style="display: none">
