@@ -11,9 +11,10 @@ if (isset($_COOKIE["auth_error"])) {
     $auth_error_text = $_COOKIE["auth_error_text"];
   } else {
     require('spot_login.php');
-    $callsign_result = mysqli_query($dbc, "SELECT callsign FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
+    $callsign_result = mysqli_query($dbc, "SELECT callsign,name FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
     $callsign_row = mysqli_fetch_array($callsign_result);
     $callsign = $callsign_row["callsign"];
+    $name = $callsign_row["name"];
     // Logged in, but check session id is valid
     $sessions_result = mysqli_query($dbc, "SELECT session_id FROM sessions WHERE user_id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));  
     if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
@@ -59,7 +60,7 @@ if (isset($_COOKIE["auth_error"])) {
 <link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-	var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php print $callsign; ?>";
+	var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php print $name . "_" . $callsign; ?>";
 <?php } else { ?>
 	var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv";
 <?php } // End of callsign as nick for irc
