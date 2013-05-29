@@ -25,3 +25,8 @@ label.error {
 	height: 300px;
 	width: 500px;
 }
+#map_canvas {
+	height: 300px;
+	width: 400px;
+}
+
