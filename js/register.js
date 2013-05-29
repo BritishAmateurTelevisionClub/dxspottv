@@ -1,3 +1,29 @@
+// Set up map
+//
+$(document).ready(function() {
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry&sensor=false&callback=initialize'; // callback: initialize()
+	document.body.appendChild(script);
+});
+
+function initialize() {
+	google.maps.visualRefresh = true;
+	var mapOptions = {
+		zoom: 6,
+		center: new google.maps.LatLng(52.5, -1.25),
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		streetViewControl: false
+	};
+
+	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+	google.maps.event.addListener(map, 'click', function() {
+		$('#lat').val(event.latLng.lat());
+		$('#lon').val(event.latLng.lng());
+	});
+}
+
 // Set up button
 //
 $(document).ready(function() {

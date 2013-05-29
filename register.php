@@ -23,6 +23,9 @@ session_start();
 <body>
 <div id="first_form">
 <h2>New User Registration</h2><br>
+<table width=100%>
+<tr width=100%>
+<td width=50%>
 Please enter the following information to register for ATV DxSpot<br>
 <br>
 <form id='register_form'>
@@ -39,10 +42,6 @@ Please enter the following information to register for ATV DxSpot<br>
 <br>
 <label class="register_labels"><b>Locator:</b>&nbsp;</label><input type=text name='locator' id='locator' onChange=calc_lat_lon() class="required" minlength="4" /> Maidenhead QRA eg. IO91HW (Use either 4 or 6 characters)
 <br>
-<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" /> (Will fill in automatically if QRA locator entered)
-<br>
-<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" /> (Will fill in automatically if QRA locator entered)
-<br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" /> Will only be used for administrator contact in case of issues. It will not be publicly disclosed.
 <br><br>
 <?php
@@ -50,7 +49,21 @@ require_once('recaptchalib.php');
 $publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
 echo recaptcha_get_html($publickey);
 ?>
+</td>
+<td width=50%>
+<center>
+<h3>Station Location</h3>
+Click to set location, as accurate as you like.
+<div id="map_canvas"></div>
+<br>
+<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" />
+<br>
+<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" />
+</center>
+</td></tr></table>
+<center>
 <button id="register_button">Register</button>
+</center>
 </form>
 </div>
 <div id="successMessage" style="display: none">
