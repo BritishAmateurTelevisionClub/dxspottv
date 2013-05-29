@@ -39,6 +39,7 @@ function initialize() {
 
 // Set up button
 //
+var button_lock=false; // To prevent double-click
 $(document).ready(function() {
 	$("#validationFailDialog").dialog({ autoOpen: false });
 	$("#captchaFailDialog").dialog({ autoOpen: false });
@@ -47,43 +48,52 @@ $(document).ready(function() {
 	});
 	$('#register_button').button().click( function() {
 		if($("#register_form").valid()==true) {
-			$("#submitStatus").html('<font color="green"><b>Submitting...</b></font>');
-			$.ajax({
-				url: '/ajax/submitRegister.php',
-				type: "GET",
-				data: {
-					fname: $('#fname').val(),
-					callsign: $('#callsign').val(),
-					passwd: $('#passwd').val(),
-					email: $('#email').val(),
-					locator: CoordToLoc(parseFloat($('#lat').val()),parseFloat($('#lon').val())),
-					lat: $('#lat').val(),
-					lon: $('#lon').val(),
-					recaptcha_challenge_field: $('[name="recaptcha_challenge_field"]').val(),
-					recaptcha_response_field: $('[name="recaptcha_response_field"]').val()
-				},
-				success: function( data ) {
-					//console.log(data);
-					$("#submitStatus").html('');
-					var returnJSON = eval('(' + data + ')');
-					if(returnJSON['successful']==1) {
-						console.log("Registered!");
-						$('#first_form').hide();
-						$('#successMessage').show();
-						ga('send', 'event', 'registration', 'Successful');
-					} else {
-						$('#first_form').show();
-						Recaptcha.reload();
-						if(returnJSON['error']==1) {
-							$("#captchaFailDialog").dialog("open");
-							ga('send', 'event', 'registration', 'Captcha Failed');
+			if(!button_lock) {
+				button_lock = true;
+				$("#submitStatus").html('<font color="green"><b>Submitting...</b></font>');
+				$.ajax({
+					url: '/ajax/submitRegister.php',
+					type: "GET",
+					data: {
+						fname: $('#fname').val(),
+						callsign: $('#callsign').val(),
+						passwd: $('#passwd').val(),
+						email: $('#email').val(),
+						locator: CoordToLoc(parseFloat($('#lat').val()),parseFloat($('#lon').val())),
+						lat: $('#lat').val(),
+						lon: $('#lon').val(),
+						recaptcha_challenge_field: $('[name="recaptcha_challenge_field"]').val(),
+						recaptcha_response_field: $('[name="recaptcha_response_field"]').val()
+					},
+					success: function( data ) {
+						//console.log(data);
+						button_lock = false;
+						$("#submitStatus").html('');
+						var returnJSON = eval('(' + data + ')');
+						if(returnJSON['successful']==1) {
+							$('#first_form').hide();
+							$('#successMessage').show();
+							ga('send', 'event', 'registration', 'Successful');
 						} else {
-							alert("An unknown error occurred, please try again.");
-							ga('send', 'event', 'registration', 'Unknown Error');
+							$('#first_form').show();
+							Recaptcha.reload();
+							if(returnJSON['error']==1) {
+								ga('send', 'event', 'registration', 'Captcha Failed');
+								$("#captchaFailDialog").dialog("open");
+							} else if(returnJSON['error']==2) {
+								ga('send', 'event', 'registration', 'DB Error');
+								alert("A database error occurred, please try again.");
+							} else if(returnJSON['error']==3) {
+								ga('send', 'event', 'registration', 'Duplicate Account');
+								alert("A User Account already exists for this callsign.");
+							} else {
+								ga('send', 'event', 'registration', 'Unknown Error');
+								alert("An unknown error occurred, please try again.");
+							}
 						}
 					}
-				}
-			});
+				});
+			}
 		}
 	});
 	$('#return_button').button().click( function() {

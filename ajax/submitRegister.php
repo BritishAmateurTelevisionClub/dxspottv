@@ -22,8 +22,6 @@ if($got_variables) {
 	require_once("login_functions.php");
 	require_once("spot_login.php");
 	
-	$insert_statement = $dbc->prepare("INSERT into users (name, callsign, password, salt, locator, email, lat, lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
-	
 	$callsign = htmlentities(strtoupper($_REQUEST["callsign"]));
 	$passwd = $_REQUEST["passwd"];
 	$email = htmlentities($_REQUEST["email"]);
@@ -31,6 +29,21 @@ if($got_variables) {
 	$lat = htmlentities($_REQUEST["lat"]);
 	$lon = htmlentities($_REQUEST["lon"]);
 	$name = htmlentities($_REQUEST["fname"]);
+	
+	$existing_statement = $dbc->prepare("SELECT id FROM users WHERE callsign=?;");
+	$existing_statement->bind_param('s', $callsign);
+	$existing_statement->execute();
+	$existing_statement->bind_result($sessions_result);
+	$existing_statement->store_result();
+	
+	if($existing_statement->num_rows>0) { // Existing User!
+		$output['successful'] = 0;
+		$output['error'] = "3";
+		print json_encode($output);
+		die ();
+	}
+	
+	$insert_statement = $dbc->prepare("INSERT into users (name, callsign, password, salt, locator, email, lat, lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
 
 	$salt = sha256_salt();
 
