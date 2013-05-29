@@ -56,7 +56,7 @@ $(document).ready(function() {
 					callsign: $('#callsign').val(),
 					passwd: $('#passwd').val(),
 					email: $('#email').val(),
-					locator: CoordToLoc($('#lat').val(),$('#lon').val()),
+					locator: CoordToLoc(parseFloat($('#lat').val()),parseFloat($('#lon').val())),
 					lat: $('#lat').val(),
 					lon: $('#lon').val(),
 					recaptcha_challenge_field: $('[name="recaptcha_challenge_field"]').val(),
