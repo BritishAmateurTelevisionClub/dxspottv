@@ -1,5 +1,5 @@
 // Source: http://dauda.at/locator/locator.js
-// Credit: Mike, OE3MDC
+// Credit: (c) 2009 Mike, OE3MDC
 
 function getDeg(arg, base, offset, cmp)
 // convert letters into angles by subtracting the base char code from the input char code
