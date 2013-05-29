@@ -18,9 +18,9 @@ function initialize() {
 
 	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-	google.maps.event.addListener(map, 'click', function() {
-		$('#lat').val(event.latLng.lat());
-		$('#lon').val(event.latLng.lng());
+	google.maps.event.addListener(map, 'click', function(overlay, latLng) {
+		$('#lat').val(latLng.lat());
+		$('#lon').val(latLng.lng());
 	});
 }
 
