@@ -30,14 +30,14 @@ Please enter the following information to register for DXSpot.TV<br>
 <br>
 <form id='register_form'>
 	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
-	<input type=text name='fname' id='fname' class="required" minlength="2" />
-<br>
+	<input type=text name='fname' id='fname' class="required" minlength="2" /> (IRC nick will be set to <i>firstname_callsign</i>)
+<br><br>
 	<label class="register_labels"><b>Callsign:</b>&nbsp;</label>
 	<input type=text name='callsign' id='callsign' class="required" minlength="4" /> Will be converted to Upper case. eg. M0DNY
-<br>
+<br><br>
 	<label class="register_labels"><b>Password:</b>&nbsp;</label>
 	<input type=password name='passwd' id='passwd' class="required" minlength="5" /> (minimum 5 characters)
-<br>
+<br><br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" />
 <li>Will only be used for administrator contact in case of issues. Will not be publicly disclosed.</li>
 <br><br>
@@ -51,7 +51,7 @@ echo recaptcha_get_html($publickey);
 <center>
 <h3>Station Location</h3>
 Click to set location, as accurate as you like.
-<br>
+<br><br>
 <div id="map_canvas"></div>
 </center>
 <br>
