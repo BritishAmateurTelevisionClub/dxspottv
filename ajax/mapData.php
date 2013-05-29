@@ -22,11 +22,15 @@ if(apc_exists('mapDataStatus')) {
 		$output[$i]['desc'] = $user_row['station_desc'];
 		// Get User activity Data
 		$session_result = mysqli_query($dbc, "SELECT activity FROM sessions WHERE user_id='{$user_id}';") or die(mysqli_error($dbc));
-		$session_row = mysqli_fetch_array($session_result);
-		$output[$i]['seconds_active'] = time() - date_format(date_create($session_row['activity']),'U'); // Used for icons
-		$output[$i]['months_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%m');
-		$output[$i]['hours_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%h');
-		$output[$i]['days_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%d');
+		if(mysqli_num_rows($session_result==1) {
+			$session_row = mysqli_fetch_array($session_result);
+			$output[$i]['seconds_active'] = time() - date_format(date_create($session_row['activity']),'U'); // Used for icons
+			$output[$i]['months_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%m');
+			$output[$i]['hours_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%h');
+			$output[$i]['days_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%d');
+		} else { // No session exists
+			$output[$i]['seconds_active'] = 1000; // Large, won't be shown on map.
+		}
 		if($user_row['known']=='1') {
 			$output[$i]['known'] = '1';
 			// TODO: Load Station Description Text
