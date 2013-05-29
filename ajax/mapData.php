@@ -25,9 +25,6 @@ if(apc_exists('mapDataStatus')) {
 		if(mysqli_num_rows($session_result==1) {
 			$session_row = mysqli_fetch_array($session_result);
 			$output[$i]['seconds_active'] = time() - date_format(date_create($session_row['activity']),'U'); // Used for icons
-			$output[$i]['months_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%m');
-			$output[$i]['hours_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%h');
-			$output[$i]['days_active'] = date_interval_format(date_diff(date_create(), date_create($session_row['activity'])), '%d');
 		} else { // No session exists
 			$output[$i]['seconds_active'] = 1000; // Large, won't be shown on map.
 		}
@@ -97,10 +94,6 @@ if(apc_exists('mapDataStatus')) {
 		$output[$i]['time'] = $spots_row['spot_time'];
 		$output[$i]['comments'] = $spots_row['comments'];
 		$output[$i]['seconds_ago'] = time() - date_format(date_create($spots_row['spot_time']),'U');
-		$output[$i]['minutes_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['spot_time'])), '%i');
-		$output[$i]['hours_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['spot_time'])), '%H');
-		$output[$i]['days_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['spot_time'])), '%d');
-		$output[$i]['months_ago'] = date_interval_format(date_diff(date_create(), date_create($spots_row['spot_time'])), '%m');
 		$i++;
 	}
 	mysql_end($dbc);

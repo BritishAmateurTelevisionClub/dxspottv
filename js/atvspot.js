@@ -47,7 +47,6 @@ function initialize() {
 
 function createUserMarker(user_data) {
 	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
-	var contentString = activityString(user_data);
 	
 	if(user_data['known']==0) {
 		var toBeIcon = userUnknownIcon;
@@ -359,26 +358,4 @@ function parseSpots(JSONinput) {
 			createSpotLine(spot);
 		}
 	}
-}
-
-function activityString(user_data) {
-    var activeString;
-	if(user_data['months_active']>1) {
-		activeString = 'Last active ' + user_data['months_active'] + ' months ago.';
-	} else if(user_data['months_active']>0) {
-		activeString = 'Last active ' + user_data['months_active'] + ' month ago.';
-	} else if (user_data['days_active']>1) {
-		activeString = 'Last active ' + user_data['days_active'] + ' days ago.';
-	} else if (user_data['days_active']>0) {
-		activeString = 'Last active ' + user_data['days_active'] + ' day ago.';
-	} else if (user_data['hours_active']>1) {
-		activeString = 'Last active ' + user_data['hours_active'] + ' hours ago.';
-	} else if (user_data['hours_active']>0) {
-		activeString = 'Last active ' + user_data['hours_active'] + ' hour ago.';
-	} else if (user_data['seconds_active']>300) {
-		activeString = 'Last active ' + Math.round(user_data['seconds_active']/60) + ' minutes ago.';
-	} else {
-		activeString = 'Currently Active.';
-	}
-	return activeString;
 }
