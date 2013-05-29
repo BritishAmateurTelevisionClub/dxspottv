@@ -1,9 +1,5 @@
-function calc_lat_lon() {
-	var latlon = [];
-	latlon = LoctoLatLon(document.getElementById("locator").value);
-	document.getElementById("lat").value = latlon[0];
-	document.getElementById("lon").value = latlon[1];
-}
+// Source: http://dauda.at/locator/locator.js
+// Credit: Mike, OE3MDC
 
 function getDeg(arg, base, offset, cmp)
 // convert letters into angles by subtracting the base char code from the input char code
@@ -59,4 +55,25 @@ function LoctoLatLon(maidenhead) {
             x++;
         }
         return [ce_lat, ce_lon];
+}
+
+function CoordToLoc(Lat, Lon) {
+    var Locator = "";
+
+    Lon = Lon + 180; // we want positive values starting from 0
+    Lat = Lat + 90;
+    Lon = Lon / 20 + 0.0000001; // help for rounding
+    Lat = Lat / 10 + 0.0000001;
+    Locator = Locator + String.fromCharCode(65 + Lon) + String.fromCharCode(65 + Lat);
+    Lon = Lon - Math.floor(Lon);
+    Lat = Lat - Math.floor(Lat);
+    Lon = Lon * 10;
+    Lat = Lat * 10;
+    Locator = Locator + String.fromCharCode(48 + Lon) + String.fromCharCode(48 + Lat);
+    Lon = Lon - Math.floor(Lon);
+    Lat = Lat - Math.floor(Lat);
+    Lon = Lon * 24;
+    Lat = Lat * 24;
+    Locator = Locator + String.fromCharCode(65 + Lon) + String.fromCharCode(65 + Lat);
+    return(Locator);
 }
