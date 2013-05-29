@@ -1,11 +1,23 @@
 // Set up map
 //
+var marker;
 $(document).ready(function() {
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry&sensor=false&callback=initialize'; // callback: initialize()
 	document.body.appendChild(script);
 });
+
+function placeMarker(location) {
+  if ( marker ) {
+    marker.setPosition(location);
+  } else {
+    marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  }
+}
 
 function initialize() {
 	google.maps.visualRefresh = true;
@@ -21,6 +33,7 @@ function initialize() {
 	google.maps.event.addListener(map, 'click', function(overlay, latLng) {
 		$('#lat').val(latLng.lat());
 		$('#lon').val(latLng.lng());
+		placeMarker(latLng);
 	});
 }
 
