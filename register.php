@@ -22,11 +22,11 @@ session_start();
 </head>
 <body>
 <div id="first_form">
-<h2>New User Registration</h2><br>
 <table width=100%>
 <tr width=100%>
 <td width=50%>
-Please enter the following information to register for ATV DxSpot<br>
+<h2>New User Registration</h2>
+Please enter the following information to register for DXSpot.TV<br>
 <br>
 <form id='register_form'>
 	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
