@@ -30,10 +30,10 @@ function initialize() {
 
 	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-	google.maps.event.addListener(map, 'click', function(overlay, latLng) {
-		$('#lat').val(latLng.lat());
-		$('#lon').val(latLng.lng());
-		placeMarker(latLng);
+	google.maps.event.addListener(map, 'click', function(event) {
+		$('#lat').val(event.latLng.lat());
+		$('#lon').val(event.latLng.lng());
+		placeMarker(event.latLng);
 	});
 }
 
