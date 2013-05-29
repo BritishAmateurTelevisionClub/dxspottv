@@ -59,7 +59,7 @@ Click to set location, as accurate as you like.
 <br>
 <label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" minlength="4" />
 </td></tr></table>
-<button id="register_button">Register</button>
+<button id="register_button">Register</button><span id="submitStatus"></span>
 </form>
 </div>
 <div id="successMessage" style="display: none">

@@ -47,6 +47,7 @@ $(document).ready(function() {
 	});
 	$('#register_button').button().click( function() {
 		if($("#register_form").valid()==true) {
+			$("#submitStatus").html('<font color="green"><b>Submitting...</b></font>');
 			$.ajax({
 				url: '/ajax/submitRegister.php',
 				type: "GET",
@@ -62,7 +63,8 @@ $(document).ready(function() {
 					recaptcha_response_field: $('[name="recaptcha_response_field"]').val()
 				},
 				success: function( data ) {
-					console.log(data);
+					//console.log(data);
+					$("#submitStatus").html('');
 					var returnJSON = eval('(' + data + ')');
 					if(returnJSON['successful']==1) {
 						console.log("Registered!");
