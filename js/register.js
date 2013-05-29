@@ -68,13 +68,16 @@ $(document).ready(function() {
 						console.log("Registered!");
 						$('#first_form').hide();
 						$('#successMessage').show();
+						ga('send', 'event', 'registration', 'Successful');
 					} else {
 						$('#first_form').show();
 						Recaptcha.reload();
 						if(returnJSON['error']==1) {
 							$("#captchaFailDialog").dialog("open");
+							ga('send', 'event', 'registration', 'Captcha Failed');
 						} else {
 							alert("An unknown error occurred, please try again.");
+							ga('send', 'event', 'registration', 'Unknown Error');
 						}
 					}
 				}
