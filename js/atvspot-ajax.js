@@ -46,7 +46,7 @@ function getMapData() {
 
 function getUserSpotData() {
 	$.ajax({
-		url: "/ajax/mapData.php",
+		url: "/ajax/userSpotData.php",
 		success: function( data ) {
 			myJSONObject = eval('(' + data + ')');
     		parseUsers(myJSONObject['users']);
