@@ -222,6 +222,10 @@ if ($auth_error==1) {
 		No HTML permitted.<br><br>
 		<b>Website:</b><br>
 		http://<input type="text" id="station_website_edit"></input>
+		<br><br>
+		<b>Location</b><br>
+		Latitude: <input type="text" id="station_lat_edit"></input><br>
+		Longitude: <input type="text" id="station_lon_edit"></input><br>
 		<br>
 		<button class="station-desc-button reduce-font-size" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
 	</div>
