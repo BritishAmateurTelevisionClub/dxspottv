@@ -226,8 +226,9 @@ if ($auth_error==1) {
 		<b>Location</b><br>
 		Latitude: <input type="text" id="station_lat_edit"></input><br>
 		Longitude: <input type="text" id="station_lon_edit"></input><br>
+		<button class="reduce-font-size" id="setposition_button">Set With Map</button>&nbsp;<span id="changePosStatus"></span>
 		<br>
-		<button class="station-desc-button reduce-font-size" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
+		<button class="station-desc-button" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
 	</div>
 	<?php } ?>
 	<div id="helpTab" class="reduce-tab-padding">

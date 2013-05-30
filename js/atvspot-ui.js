@@ -95,12 +95,33 @@ $(document).ready(function() {
 });
 
 // Station Description Edit Function
+var pos_marker;
 $(document).ready(function() {
 	getUserVars();
 	$('#desc_button').button().click( function() {
+		google.maps.event.clearListeners(map, 'click');
+		pos_marker.setMap(null);
 		doChangeDesc($('#station_description_edit').val(), $('#station_website_edit').val(), $('#station_lat_edit').val(),$('#station_lon_edit').val());
 	});
+	$('#desc_button').button().click( function() {
+		google.maps.event.addListener(map, 'click', function(event) {
+			$('#station_lat_edit').val(event.latLng.lat());
+			$('#station_lon_edit').val(event.latLng.lng());
+			placeMarker(event.latLng);
+		});
+	});
 });
+
+function placeMarker(location) {
+  if ( pos_marker ) {
+    pos_marker.setPosition(location);
+  } else {
+    pos_marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  }
+}
 
 function createGlobalSpotLog(spotLog) {
 	var spotLogDivContent = "";
