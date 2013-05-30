@@ -20,6 +20,7 @@ if(apc_exists('mapDataStatus')) {
 		$output[$i]['longitude'] = $user_row['lon'];
 		$output[$i]['locator'] = $user_row['locator'];
 		$output[$i]['desc'] = $user_row['station_desc'];
+		$output[$i]['website'] = $user_row['website'];
 		// Get User activity Data
 		$session_result = mysqli_query($dbc, "SELECT activity FROM sessions WHERE user_id='{$user_id}';") or die(mysqli_error($dbc));
 		if(mysqli_num_rows($session_result)==1) {

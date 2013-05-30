@@ -70,6 +70,7 @@ function createUserMarker(user_data) {
     marker.activity = user_data['seconds_active'];
     marker.known = user_data['known'];
     marker.station_desc = user_data['desc'];
+    marker.station_website = user_data['website'];
     user_markers.push(marker);
     
     var infoTab = '<div class="user_bubble_info">'+
@@ -83,8 +84,11 @@ function createUserMarker(user_data) {
     }
     infoTab += '</div>';
     var descTab = '<div class="user_bubble_desc">'+
-        marker.station_desc+
-        '</div>';
+        marker.station_desc;
+    if(marker.station_website!='') {
+    	descTab += '<br><br><a href="'+marker.station_website+'" target="_blank"><b>'+marker.station_website+'</b></a>';
+    }
+    descTab += '</div>';
     
     var infoBubble = new InfoBubble({
         maxWidth: 150,
@@ -125,6 +129,7 @@ function updateUserMarker(user_data, user_index) {
 
     user_markers[user_index].activity = user_data['seconds_active'];
     user_markers[user_index].station_desc = user_data['desc'];
+    user_markers[user_index].station_website = user_data['website'];
     
     
     google.maps.event.clearListeners(user_markers[user_index], 'click');
@@ -140,8 +145,11 @@ function updateUserMarker(user_data, user_index) {
     }
     infoTab += '</div>';
     var descTab = '<div class="user_bubble_desc">'+
-        user_markers[user_index].station_desc+
-        '</div>';
+        user_markers[user_index].station_desc;
+    if(user_markers[user_index].station_website!='') {
+    	descTab += '<br><br><a href="'+user_markers[user_index].station_website+'" target="_blank"><b>'+user_markers[user_index].station_website+'</b></a>';
+    }
+    descTab += '</div>';
     
     var infoBubble = new InfoBubble({
         maxWidth: 150,
