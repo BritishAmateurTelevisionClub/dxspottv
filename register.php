@@ -40,7 +40,10 @@ Please enter the all following information and use the map to set your location<
 <br><br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" />
 <li>Will only be used for administrator contact in case of issues. Will not be publicly disclosed.</li>
-<br><br>
+<br>
+<br>
+<br>
+Once you have entered the information and used the map to set your location, please complete the captcha and press register<br>
 <?php
 require_once('recaptchalib.php');
 $publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
