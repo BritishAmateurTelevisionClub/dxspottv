@@ -1,6 +1,7 @@
 // Set up refresh functions
 //
 var mapRefresh=self.setInterval(function(){getMapData()},4000+Math.round(Math.random()*200)); // Add from 0-200ms randomly
+var repeaterRefresh=self.setInterval(function(){getRepeaterData()},30000+Math.round(Math.random()*2000)); // Add from 0-2s randomly
 
 if(logged_in) {
 	var activityRefresh=self.setInterval(function(){updateActivity()},5000+Math.round(Math.random()*400)); // Add from 0-400ms randomly
@@ -27,7 +28,6 @@ function getMapData() {
 		success: function( data ) {
 			myJSONObject = eval('(' + data + ')');
     		parseUsers(myJSONObject['users']);
-    		parseRepeaters(myJSONObject['repeaters']);
     		parseSpots(myJSONObject['spots']);
     		createGlobalSpotLog(myJSONObject['spots']);
     		
@@ -41,6 +41,25 @@ function getMapData() {
 		}
 	});
 	ga('send', 'event', 'refresh', 'Map Data');
+}
+
+function getRepeaterData() {
+	$.ajax({
+		url: "/ajax/repeaterData.php",
+		success: function( data ) {
+			myJSONObject = eval('(' + data + ')');
+    		parseRepeaters(myJSONObject);
+    		
+    		setTimeSpan($('#time_select').val());
+			setBandChoice($('#band_select').val());
+			checkSpots();
+			checkUsers();
+			checkRepeaters();
+		
+    		loadSpotAutocomplete();
+		}
+	});
+	ga('send', 'event', 'refresh', 'Repeater Data');
 }
 
 function updateActivity() {
