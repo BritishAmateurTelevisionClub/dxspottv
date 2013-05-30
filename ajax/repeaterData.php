@@ -8,9 +8,8 @@ if(apc_exists('repeaterDataStatus')) {
 	require_once('spot_login.php');
 	
 	$output = array();
-	$repeaters_statement = $dbc->prepare("SELECT * FROM repeaters;");
-	$repeaters_statement->execute();
-	while($row = $repeaters_statement->fetch())
+	$repeater_result = mysqli_query($dbc, "SELECT * FROM repeaters;") or die(mysqli_error($dbc));
+	while($row = mysqli_fetch_array($repeater_result))
 	{
 		$repeater['id'] = $row['id'];
 		$repeater['callsign'] = $row['callsign'];
@@ -46,7 +45,7 @@ if(apc_exists('repeaterDataStatus')) {
 		$output[] = $repeater;
 		unset($repeater);
 	}
-	$repeaters_statement->close();
+	mysql_end($dbc);
 	
 	$final_output = json_encode($output);
 	apc_store('repeaterData', $final_output);
