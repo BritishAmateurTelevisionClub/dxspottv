@@ -18,7 +18,7 @@ if($got_cookies && $got_variables) {
 		if ($_COOKIE["session_key"]==$sessions_result) {
 			// Session matches, so is logged in!
 			$update_statement = $dbc->prepare("UPDATE users set station_desc=?,website=? WHERE id=?;");
-			$update_statement->bind_param('si', $desc, $website, $_COOKIE["user_id"]);
+			$update_statement->bind_param('ssi', $desc, $website, $_COOKIE["user_id"]);
 			$update_statement->execute();
 			$update_statement->close();
 		} else {
