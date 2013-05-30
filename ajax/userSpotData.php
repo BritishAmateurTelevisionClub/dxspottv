@@ -9,7 +9,7 @@ if(apc_exists('userSpotDataStatus')) {
 	$full_output = array();
 	$output = array();
 	$i=1;
-	$user_result = mysqli_query($dbc, "SELECT id,callsign,name,lat,lon,locator,known,station_desc FROM users;") or die(mysqli_error($dbc));
+	$user_result = mysqli_query($dbc, "SELECT id,callsign,name,lat,lon,locator,known,station_desc,website FROM users;") or die(mysqli_error($dbc));
 	while($user_row = mysqli_fetch_array($user_result))
 	{
 		$user_id = $user_row['id'];
