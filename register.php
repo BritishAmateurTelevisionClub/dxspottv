@@ -43,7 +43,8 @@ Please enter the all following information and use the map to set your location<
 <br>
 <br>
 <br>
-Once you have entered the information and used the map to set your location, please complete the captcha and press register<br>
+Once you have entered the information and used the map to set your location,<br> please complete the captcha and press register<br>
+<br>
 <?php
 require_once('recaptchalib.php');
 $publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
