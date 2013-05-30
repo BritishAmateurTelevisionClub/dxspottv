@@ -205,11 +205,9 @@ if ($auth_error==1) {
 		<?php if($logged_in) { ?>
 			<iframe id='irc_frame' frameborder="0"></iframe><br>
 		<?php } else { ?>
-			<div id='n_irc_float'>
 			<div id='n_irc_content'>
 				<h2>Welcome to DXSpot.TV</h2>
-				<h2>Please Log In or Register above to use the ATV DXSpot Chat and Submit Spots.</h2>
-			</div>
+				<h2>Please Register and Log In to use the ATV DXSpot Chat and Submit Spots.</h2>
 			</div>
 		<?php } ?>
 	</div>
