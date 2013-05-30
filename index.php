@@ -194,7 +194,7 @@ if ($auth_error==1) {
 ?>
 <div id="tabs">
 	<ul>
-		<li><a href="#webIRC" class="reduce-font-size">IRC Chat</a></li>
+		<li><a href="#webIRC" class="reduce-font-size">DXSpot Chat</a></li>
 		<?php
 		if($logged_in) { // If logged in, show spot form
 		?>
@@ -214,11 +214,14 @@ if ($auth_error==1) {
 		<?php } ?>
 	</div>
 	<?php
-		if($logged_in) { // If logged in, show spot form
+		if($logged_in) { // If logged in, show edit station
 		?>
 	<div id="editStation" class="reduce-tab-padding">
 		<h4>My Station Description:</h4>
 		<textarea rows="4" cols="50" id="station_description_edit"></textarea><br>
+		No HTML permitted.<br>
+		<b>Website:</b><br>
+		<input type="text" id="station_website_edit"></input>
 		<button class="station-desc-button reduce-font-size" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
 	</div>
 	<?php } ?>

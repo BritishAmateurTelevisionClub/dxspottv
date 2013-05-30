@@ -98,7 +98,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	getUserVars();
 	$('#desc_button').button().click( function() {
-		doChangeDesc($('#station_description_edit').val());
+		doChangeDesc($('#station_description_edit').val(), $('#station_website_edit').val());
 	});
 });
 

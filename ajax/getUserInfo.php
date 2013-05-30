@@ -12,10 +12,10 @@ if($got_cookies) {
 		if ($_COOKIE["session_key"]==$target_row["session_id"]) {
 			// Session matches, so is logged in!
 			$output = array();
-			$user_statement = $dbc->prepare("SELECT callsign,lat,lon,locator,station_desc FROM users WHERE id=?;");
+			$user_statement = $dbc->prepare("SELECT callsign,lat,lon,locator,station_desc,website FROM users WHERE id=?;");
 			$user_statement->bind_param('i', $_COOKIE["user_id"]);
 			$user_statement->execute();
-			$user_statement->bind_result($output['callsign'], $output['lat'], $output['lon'], $output['locator'], $output['description']);
+			$user_statement->bind_result($output['callsign'], $output['lat'], $output['lon'], $output['locator'], $output['description'], $output['website']);
 			$user_statement->fetch();
 		} else {
 			$output['error'] = 'No matching session';

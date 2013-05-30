@@ -125,12 +125,13 @@ function submitSpot() {
 	});
 }
 
-function doChangeDesc(desc) {
+function doChangeDesc(desc, website) {
 	$.ajax({
 		url: "/ajax/changeUserDesc.php",
 		type: "POST",
 		data: {
-			description: desc
+			description: desc,
+			website: website
 		},
 		success: function( data ) {
 			//console.log(data);
@@ -151,7 +152,9 @@ function getUserVars() {
 			user_lat = userData['lat'];
 			user_lon = userData['lon'];
 			user_desc = userData['description'];
+			user_website = userData['website'];
 			$('#station_description_edit').val(user_desc);
+			$('#station_website_edit').val(user_website);
 		}
 	});
 }
