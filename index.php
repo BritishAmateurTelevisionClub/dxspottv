@@ -94,7 +94,7 @@ border="0" cellpadding="0" cellspacing="0">
 <tr>
 <td width="55%" style="padding: 5px; vertical-align: top;">
 
-<form action="#">
+<form action="#" style="margin-bottom: 0.5em;">
 <table border="0" cellspacing="3" cellpadding="0" width="100%" >
 <tr>
 
