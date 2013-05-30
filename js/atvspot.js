@@ -42,7 +42,7 @@ function initialize() {
 	repeaterIcon = new google.maps.MarkerImage("/images/active_repeater.ico");
 	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
 
-	getAllMapData();
+	getMapData();
 }
 
 function createUserMarker(user_data) {

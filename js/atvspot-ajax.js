@@ -22,7 +22,7 @@ function doLogin() {
 	});
 }
 
-function getAllMapData() {
+function getMapData() {
 	$.ajax({
 		url: "/ajax/mapData.php",
 		success: function( data ) {
