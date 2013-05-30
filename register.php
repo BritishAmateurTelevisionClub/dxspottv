@@ -27,7 +27,7 @@ session_start();
 <tr width=100%>
 <td style="width: auto;">
 <h2>New User Registration</h2>
-Please enter the following information to register for DXSpot.TV<br>
+Please enter the all following information and use the map to set your location<br>
 <br>
 	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
 	<input type=text name='fname' id='fname' class="required" minlength="2" /> (IRC nick will be set to <i>firstname_callsign</i>)
@@ -50,11 +50,10 @@ echo recaptcha_get_html($publickey);
 <td style="width: 450px;">
 <center>
 <h3>Set Station Location</h3>
-<br>
 <div id="map_canvas"></div>
 </center>
 <br>
-Simply zoom in and click on the map to set your location.<br>
+Simply zoom in and click on the map to set your location.<br><br>
 Your Latitude and Longtitude will be filled in automatically.
 <br>
 <br>
