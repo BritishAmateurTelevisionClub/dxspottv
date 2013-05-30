@@ -1,6 +1,6 @@
 // Set up refresh functions
 //
-var userSpotRefresh=self.setInterval(function(){getUserSpotData()},4000+Math.round(Math.random()*200)); // Add from 0-200ms randomly
+var userSpotRefresh=self.setInterval(function(){getUserSpotData()},3000+Math.round(Math.random()*200)); // Add from 0-200ms randomly
 var repeaterRefresh=self.setInterval(function(){getRepeaterData()},30000+Math.round(Math.random()*2000)); // Add from 0-2s randomly
 
 if(logged_in) {
