@@ -99,16 +99,19 @@ var pos_marker;
 $(document).ready(function() {
 	getUserVars();
 	$('#desc_button').button().click( function() {
+		$('#changePosStatus').fadeOut(500);
 		google.maps.event.clearListeners(map, 'click');
 		pos_marker.setMap(null);
 		doChangeDesc($('#station_description_edit').val(), $('#station_website_edit').val(), $('#station_lat_edit').val(),$('#station_lon_edit').val());
 	});
-	$('#desc_button').button().click( function() {
+	$('#setposition_button').button().click( function() {
 		google.maps.event.addListener(map, 'click', function(event) {
+			$('#changePosStatus').html("<font color=green>You can click again to change, or click 'Save' below to set position.</font>");
 			$('#station_lat_edit').val(event.latLng.lat());
 			$('#station_lon_edit').val(event.latLng.lng());
 			placeMarker(event.latLng);
 		});
+		$('#changePosStatus').html("<font color=green>Now click on the map to set your location.</font>");
 	});
 });
 
