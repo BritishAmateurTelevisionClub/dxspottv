@@ -86,7 +86,7 @@ function createUserMarker(user_data) {
     var descTab = '<div class="user_bubble_desc">'+
         marker.station_desc;
     if(marker.station_website!='') {
-    	descTab += '<br><br><a href="'+marker.station_website+'" target="_blank"><b>'+marker.station_website+'</b></a>';
+    	descTab += '<br><br><a href="http://'+marker.station_website+'" target="_blank"><b>'+marker.station_website+'</b></a>';
     }
     descTab += '</div>';
     
