@@ -30,7 +30,7 @@ session_start();
 Please enter the all following information and use the map to set your location<br>
 <br>
 	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
-	<input type=text name='fname' id='fname' class="required" minlength="2" /> (IRC nick will be set to <i>firstname_callsign</i>)
+	<input type=text name='fname' id='fname' class="required" minlength="2" /> (Your chatroom name will be <i>firstname_callsign</i>)
 <br><br>
 	<label class="register_labels"><b>Callsign:</b>&nbsp;</label>
 	<input type=text name='callsign' id='callsign' class="required" minlength="4" /> Will be converted to Upper case. eg. M0DNY
@@ -58,7 +58,7 @@ echo recaptcha_get_html($publickey);
 </center>
 <br>
 Simply zoom in and click on the map to set your location.<br><br>
-Your Latitude and Longtitude will be filled in automatically.
+<i>Your Latitude and Longtitude will be filled in automatically.<i>
 <br>
 <br>
 <label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" minlength="4" />
