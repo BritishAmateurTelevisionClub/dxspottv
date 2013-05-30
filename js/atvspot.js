@@ -43,6 +43,7 @@ function initialize() {
 	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
 
 	getMapData();
+	getRepeaterData();
 }
 
 function createUserMarker(user_data) {
