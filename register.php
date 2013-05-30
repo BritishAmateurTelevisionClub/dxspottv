@@ -49,11 +49,15 @@ echo recaptcha_get_html($publickey);
 </td>
 <td style="width: 450px;">
 <center>
-<h3>Station Location</h3>
-Click to set location, as accurate as you like.
+<h3>Set Station Location</h3>
+
 <br><br>
 <div id="map_canvas"></div>
 </center>
+<br>
+Simply zoom in and click on the map to set your location.
+Your Latitude and Longtitude will be filled in automatically.
+<br>
 <br>
 <label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" minlength="4" />
 <br>
