@@ -86,7 +86,7 @@ if($logged_in) { ?>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
-<h2>DXSpot.TV - <font color="yellow">Beta</font></h2>
+<img src="/images/DXS8.jpg" style="height: 158px; width: 358px;" />
 <table
 style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
 border="0" cellpadding="0" cellspacing="0">
