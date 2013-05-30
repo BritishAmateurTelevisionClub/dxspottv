@@ -168,9 +168,10 @@ border="0" cellpadding="0" cellspacing="0">
 <td width="45%" style="padding: 5px; vertical-align: top;">
 <?php
 if($logged_in) {
-  print "You are logged in as " . $callsign;
 ?>
-&nbsp;&nbsp;<button class="logout-button reduce-font-size" id="logout_button">Logout</button>
+<div style="padding-bottom: 5px;">
+You are logged in as <?php print $callsign; ?>&nbsp;&nbsp;<button class="logout-button reduce-font-size" id="logout_button">Logout</button>
+</div>
 <br><br>
 <?php
 } else {
