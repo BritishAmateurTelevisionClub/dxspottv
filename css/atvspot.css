@@ -9,8 +9,22 @@ html, body {
 #irc_frame {
   height: 620px;
   width: 100%;
- }
- 
+}
+
+#n_irc_float {
+	float:left;
+	height:50%;
+	width: 100%
+	margin-bottom:-120px;
+}
+
+#n_irc_content {
+	clear:both;
+	height:240px;
+	position:relative;
+	text-align: center;
+}
+
 #spot_wide_log_div {
 	text-align: left;
 	border-style:solid;

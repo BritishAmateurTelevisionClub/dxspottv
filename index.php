@@ -61,8 +61,6 @@ if (isset($_COOKIE["auth_error"])) {
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
 	var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php print $name . "_" . $callsign; ?>";
-<?php } else { ?>
-	var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv";
 <?php } // End of callsign as nick for irc
 if($logged_in) { ?>
 	var logged_in = true;
@@ -204,7 +202,16 @@ if ($auth_error==1) {
 		<li><a href="#aboutTab" class="reduce-font-size">About</a></li>
 	</ul>
 	<div id="webIRC" class="reduce-tab-padding">
-		<iframe id='irc_frame' frameborder="0"></iframe><br>
+		<?php if($logged_in) { ?>
+			<iframe id='irc_frame' frameborder="0"></iframe><br>
+		<?php } else { ?>
+			<div id='n_irc_float'>
+			<div id='n_irc_content'>
+				<h2>Welcome to DXSpot.TV</h2>
+				<h2>Please Log In or Register above to use the ATV DXSpot Chat and Submit Spots.</h2>
+			</div>
+			</div>
+		<?php } ?>
 	</div>
 	<?php
 		if($logged_in) { // If logged in, show spot form
