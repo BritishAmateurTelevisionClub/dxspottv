@@ -119,6 +119,7 @@ function createUserMarker(user_data) {
 }
 
 function updateUserMarker(user_data, user_index) {
+	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
 	if(user_data['known']==0) {
 		user_markers[user_index].setIcon(userUnknownIcon);
 	} else if(user_data['seconds_active']>25) { // 25 seconds, should check in every 5 seconds
@@ -131,6 +132,7 @@ function updateUserMarker(user_data, user_index) {
     user_markers[user_index].station_desc = user_data['desc'];
     user_markers[user_index].station_website = user_data['website'];
     
+    user_markers[user_index].setPosition(lat_lon);
     
     google.maps.event.clearListeners(user_markers[user_index], 'click');
     
