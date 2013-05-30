@@ -224,9 +224,9 @@ if ($auth_error==1) {
 		http://<input type="text" id="station_website_edit"></input>
 		<br><br>
 		<b>Location</b><br>
+		<button class="reduce-font-size" id="setposition_button">Set With Map</button>&nbsp;<span id="changePosStatus"></span><br>
 		Latitude: <input type="text" id="station_lat_edit"></input><br>
 		Longitude: <input type="text" id="station_lon_edit"></input><br>
-		<button class="reduce-font-size" id="setposition_button">Set With Map</button>&nbsp;<span id="changePosStatus"></span>
 		<br>
 		<button class="station-desc-button" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
 	</div>

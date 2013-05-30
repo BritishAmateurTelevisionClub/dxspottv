@@ -106,12 +106,12 @@ $(document).ready(function() {
 	});
 	$('#setposition_button').button().click( function() {
 		google.maps.event.addListener(map, 'click', function(event) {
-			$('#changePosStatus').html("<font color=green>You can click again to change, or click 'Save' below to set position.</font>");
+			$('#changePosStatus').html("<font color=green>Click map again to change, or 'Save' below to set position.</font>");
 			$('#station_lat_edit').val(event.latLng.lat());
 			$('#station_lon_edit').val(event.latLng.lng());
 			placeMarker(event.latLng);
 		});
-		$('#changePosStatus').html("<font color=green>Now click on the map to set your location.</font>");
+		$('#changePosStatus').html("<font color=green>Click on the map to set your location.</font>");
 	});
 });
 
