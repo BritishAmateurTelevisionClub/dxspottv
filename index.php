@@ -207,7 +207,7 @@ if ($auth_error==1) {
 		<?php } else { ?>
 			<div id='n_irc_content'>
 				<h2>Welcome to DXSpot.TV</h2>
-				<h2>Please Register and Log In to use the ATV DXSpot Chat and Submit Spots.</h2>
+				<h3>Please Register and Log In to use the ATV DXSpot Chat and Submit Spots.</h3>
 			</div>
 		<?php } ?>
 	</div>
