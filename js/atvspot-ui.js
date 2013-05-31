@@ -199,7 +199,7 @@ function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRe
 function drawPath(user_station, remote_station) {
 
   // Create a new chart in the elevation_chart DIV.
-  chart = new google.visualization.ColumnChart(document.getElementById('elevationChart'));
+  chart = new google.visualization.AreaChart(document.getElementById('elevationChart'));
 
   var path = [user_station, remote_station];
 
@@ -265,6 +265,7 @@ function plotElevation(results, status) {
     height: 150,
     legend: 'none',
     titleY: 'Elevation (m)',
-    titleX: 'Distance (km)'
+    titleX: 'Distance (km)',
+    series: {0:{color: 'blue', areaOpacity:1.0}, 3:{color: 'red'}}
   });
 }
