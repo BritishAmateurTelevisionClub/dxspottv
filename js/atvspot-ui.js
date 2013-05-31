@@ -250,9 +250,9 @@ function plotElevation(results, status) {
   data.addColumn('number', 'Elevation');
   for (var i = 0; i < results.length; i++) {
   	if(i<(results.length/2)){
-  		distance = i*(profile_distance/numSamples);
+  		distance = ((results.length/2)-i)*(profile_distance/numSamples);
   	} else {
-  		distance = (results.length-i)*(profile_distance/numSamples);
+  		distance = (i-(results.length/2))*(profile_distance/numSamples);
   	}
   	deviation[i] = Math.sqrt(Math.pow(earthRadius,2) - Math.pow(distance,2)) - earthRadius;
     data.addRow(['', elevations[i].elevation]);
