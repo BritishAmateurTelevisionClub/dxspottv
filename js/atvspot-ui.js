@@ -175,7 +175,30 @@ function loadSpotAutocomplete() {
     $("#remote_callsign").autocomplete({
       source: spotAutocomplete
     });
+    $("#search_callsign").autocomplete({
+      source: spotAutocomplete
+    });
 }
+$(document).ready(function() {
+	$('#search_button').button().click( function() {
+		wantedCallsign = $("#search_callsign").val();
+		var user_search = $.grep(user_markers, function(e){ return e.callsign == wantedCallsign; });
+		if(user_search.length==0) {
+			var repeater_search = $.grep(repeater_markers, function(e){ return e.callsign == wantedCallsign; });
+			if(user_search.length==0) {
+				$('#findResults').html('No results found.');
+			} else {
+				repeater_index = $.inArray(repeater_search[0], repeater_markers);
+				repeater_Desc = "<b>"+repeater_markers[repeater_index].callsign+"</b>";
+				$('#findResults').html(repeater_Desc);
+			}
+		} else {
+		    user_index = $.inArray(user_search[0], user_markers);
+			user_Desc = "<b>"+user_markers[user_index].callsign+"</b>";
+			$('#findResults').html(user_Desc);
+		}
+	});
+});
 
 // Elevation Profile Dialog
 var profile_distance;
