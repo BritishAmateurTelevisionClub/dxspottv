@@ -201,6 +201,7 @@ if ($auth_error==1) {
 		?>
 		<li><a href="#editStation" class="reduce-font-size">Edit My Station</a></li>
 		<?php } ?>
+		<li><a href="#findStation" class="reduce-font-size">Find Station</a></li>
 		<li><a href="#helpTab" class="reduce-font-size">Help</a></li>
 		<li><a href="#aboutTab" class="reduce-font-size">About</a></li>
 	</ul>
@@ -232,6 +233,11 @@ if ($auth_error==1) {
 		<button class="station-desc-button" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
 	</div>
 	<?php } ?>
+	<div id="findStation" class="reduce-tab-padding">
+		<b>Search:&nbsp;</b><input type=text id="search_callsign" class="spot_box_short" />
+		<div id="findResults">
+		</div>
+	</div>
 	<div id="helpTab" class="reduce-tab-padding">
 		Download the user guide from here <a href="http://www.dxspot.tv/User_Guide_C.pdf" target="_blank">http://www.dxspot.tv/User_Guide_C.pdf</a><br>
 		<br>
