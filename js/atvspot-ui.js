@@ -268,6 +268,16 @@ function plotElevation(results, status) {
   chart.draw(data, {
     height: 150,
     legend: 'none',
-    series: {0:{color: 'blue', areaOpacity: 0.0}, 1:{color: 'red', areaOpacity: 1.0}, 1:{color: 'green', areaOpacity: 1.0}}
+    series: {
+    	0:{},
+    	1:{
+    		color: 'red',
+    		areaOpacity: 1.0
+    	},
+    	2:{
+    		color: 'green',
+    		areaOpacity: 1.0
+    	}
+    }
   });
 }
