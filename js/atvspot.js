@@ -82,7 +82,7 @@ function createUserMarker(user_data) {
     var infoTab = '<div class="user_bubble_info">'+
         '<h3 style="line-height: 0.3em;">'+marker.callsign+'</h3>'+
         '<b>'+marker.locator+'</b>';
-    if(logged_in) {
+    if(logged_in && (user_callsign!=user_data['callsign'])) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
     	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['latitude']+"','"+user_data['longitude']+"'";
     	infoTab+='<br><br>'+
@@ -147,7 +147,7 @@ function updateUserMarker(user_data, user_index) {
 	var infoTab = '<div class="user_bubble_info">'+
         '<h3 style="line-height: 0.3em;">'+user_markers[user_index].callsign+'</h3>'+
         '<b>'+user_markers[user_index].locator+'</b>';
-    if(logged_in) {
+    if(logged_in && (user_callsign!=user_data['callsign'])) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
     	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['latitude']+"','"+user_data['longitude']+"'";
     	infoTab+='<br><br>'+

@@ -214,6 +214,7 @@ function drawPath(user_station, remote_station) {
 // Takes an array of ElevationResult objects, draws the path on the map
 // and plots the elevation profile on a Visualization API ColumnChart.
 function plotElevation(results, status) {
+  var numSamples = 256;
   if (status != google.maps.ElevationStatus.OK) {
     return;
   }
