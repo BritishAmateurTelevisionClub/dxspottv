@@ -251,11 +251,11 @@ function plotElevation(results, status) {
   data.addColumn('number', 'Elevation');
   for (var i = 0; i < results.length; i++) {
   	if(i<(results.length/2)){
-  		distance = (results.length/2)*(profile_distance/numSamples);
+  		distance = ((results.length/2)-i)*(profile_distance/numSamples);
   	} else {
   		distance = (i-(results.length/2))*(profile_distance/numSamples);
   	}
-  	deviation[i] = max_deviation - (Math.sqrt(Math.pow(earthRadius,2) - Math.pow(distance,2)) - earthRadius);
+  	deviation[i] = max_deviation + (Math.sqrt(Math.pow(earthRadius,2) - Math.pow(distance,2)) - earthRadius);
     data.addRow(['', elevations[i].elevation]);
   }
 	console.log(deviation);
