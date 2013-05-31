@@ -180,6 +180,9 @@ function loadSpotAutocomplete() {
 // Elevation Profile Dialog
 $(document).ready(function() {
 	$( "#elevationDialog" ).dialog({ autoOpen: false, width: 500, height: 250 });
+	$( "#elevationDialog" ).on( "dialogclose", function( event, ui ) {
+		profile_path.setMap(null);
+	});
 });
 
 function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRemote, lonRemote) {
@@ -230,7 +233,7 @@ function plotElevation(results, status) {
     opacity: 0.4,
     map: map
   }
-  polyline = new google.maps.Polyline(pathOptions);
+  profile_path = new google.maps.Polyline(pathOptions);
 
   // Extract the data from which to populate the chart.
   // Because the samples are equidistant, the 'Sample'

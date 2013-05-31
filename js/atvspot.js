@@ -3,6 +3,7 @@ var user_markers = [];
 var spot_lines = [];
 var map;
 var elevator;
+var profile_path;
 
 var infowindow;
 var session_id;
