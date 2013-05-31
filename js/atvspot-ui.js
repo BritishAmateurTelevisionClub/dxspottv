@@ -178,6 +178,7 @@ function loadSpotAutocomplete() {
 }
 
 // Elevation Profile Dialog
+var profile_distance;
 $(document).ready(function() {
 	$( "#elevationDialog" ).dialog({ autoOpen: false, width: 500, height: 250 });
 	$( "#elevationDialog" ).on( "dialogclose", function( event, ui ) {
@@ -188,8 +189,10 @@ $(document).ready(function() {
 function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRemote, lonRemote) {
 	$('#spanChartFrom').val(callsignUser+" ("+latUser+", "+lonUser+")");
 	$('#spanChartTo').val(callsignRemote+" ("+latRemote+", "+lonRemote+")");
-	drawPath(new google.maps.LatLng(latUser, lonUser), new google.maps.LatLng(latRemote, lonRemote));
-	
+	latlng_user = new google.maps.LatLng(latUser, lonUser);
+	latlng_remote = new google.maps.LatLng(latRemote, lonRemote);
+	drawPath(latlng_user, latlng_remote);
+	profile_distance = google.maps.geometry.spherical.computeDistanceBetween(latlng_user, latlng_remote);
 	$( "#elevationDialog" ).dialog( "open" );
 }
 
@@ -215,6 +218,7 @@ function drawPath(user_station, remote_station) {
 // and plots the elevation profile on a Visualization API ColumnChart.
 function plotElevation(results, status) {
   var numSamples = 256;
+  var earthRadius = 6378100; // in metres
   if (status != google.maps.ElevationStatus.OK) {
     return;
   }
@@ -240,13 +244,20 @@ function plotElevation(results, status) {
   // Because the samples are equidistant, the 'Sample'
   // column here does double duty as distance along the
   // X axis.
+  var deviation = new Array();
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Sample');
   data.addColumn('number', 'Elevation');
   for (var i = 0; i < results.length; i++) {
+  	if(i<(results.length/2)){
+  		distance = i*(profile_distance/numSamples);
+  	} else {
+  		distance = (results.length-i)*(profile_distance/numSamples);
+  	}
+  	deviation[i] = Math.sqrt(Math.pow(earthRadius,2) - Math.pow(distance,2)) - earthRadius;
     data.addRow(['', elevations[i].elevation]);
   }
-
+	console.log(deviation);
   // Draw the chart using the data within its DIV.
   document.getElementById('elevationChart').style.display = 'block';
   chart.draw(data, {
