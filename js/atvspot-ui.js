@@ -268,6 +268,8 @@ function plotElevation(results, status) {
   chart.draw(data, {
     height: 150,
     legend: 'none',
+    pointSize: 3,
+    hAxis.gridlines: {color: '#333', count: 4},
     series: {
     	1:{
     		color: 'red',
