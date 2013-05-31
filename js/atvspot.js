@@ -229,13 +229,15 @@ function createRepeaterMarker(repeater_data) {
     repeater_markers.push(marker);
     
     var infoTab = '<div class="repeater_bubble_info">'+
-        '<h3>'+marker.callsign+'</h3>'+
+        '<h3 style="line-height: 0.3em;">'+marker.callsign+'</h3>'+
         '<b>'+marker.qth_r+'</b>&nbsp;-&nbsp;'+marker.qth;
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
+    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+repeater_data['callsign']+"','"+repeater_data['latitude']+"','"+repeater_data['longitude']+"'";
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, latlon)))+'&deg;<br>'+
-    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, latlon)/1000)*10)/10+'km';
+    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, latlon)/1000)*10)/10+'km<br>'+
+    		'<a href="javascript:elevation_profile('+elevation_vars+')"><b>Path Elevation Profile</b></a>';
     }
     infoTab += '</div>';
     var freqTab = '<div class="repeater_bubble_freq">'+
