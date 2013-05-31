@@ -183,8 +183,8 @@ $(document).ready(function() {
 });
 
 function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRemote, lonRemote) {
-	$('#spanChartFrom').val(callsignUser+" ("+latUser+", "+lonUser+")"));
-	$('#spanChartTo').val(callsignRemote+" ("+latRemote+", "+lonRemote+")"));
+	$('#spanChartFrom').val(callsignUser+" ("+latUser+", "+lonUser+")");
+	$('#spanChartTo').val(callsignRemote+" ("+latRemote+", "+lonRemote+")");
 	drawPath(new google.maps.LatLng(latUser, lonUser), new google.maps.LatLng(latRemote, lonRemote));
 	
 	$( "#elevationDialog" ).dialog( "open" );
