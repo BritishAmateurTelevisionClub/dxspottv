@@ -41,7 +41,6 @@ function getMapData() {
     		loadSpotAutocomplete();
 		}
 	});
-	ga('send', 'event', 'refresh', 'All Map Data');
 }
 
 function getUserSpotData() {
@@ -62,7 +61,6 @@ function getUserSpotData() {
     		loadSpotAutocomplete();
 		}
 	});
-	ga('send', 'event', 'refresh', 'User+Spot Data');
 }
 
 function getRepeaterData() {
@@ -81,7 +79,6 @@ function getRepeaterData() {
     		loadSpotAutocomplete();
 		}
 	});
-	ga('send', 'event', 'refresh', 'Repeater Data');
 }
 
 function updateActivity() {
@@ -91,7 +88,6 @@ function updateActivity() {
 			//console.log(data);
 		}
 	});
-	ga('send', 'event', 'update', 'Activity Data');
 }
 
 function submitSpot() {
