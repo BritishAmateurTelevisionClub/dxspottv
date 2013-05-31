@@ -47,7 +47,7 @@ function initialize() {
 
   var mapOptions = {
     zoom: 7,
-    center: google.maps.geometry.spherical.interpolate(user_station. remote_station, 0.5),
+    center: google.maps.geometry.spherical.interpolate(user_station, remote_station, 0.5),
     mapTypeId: 'terrain'
   }
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
