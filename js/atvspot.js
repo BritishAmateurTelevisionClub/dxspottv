@@ -19,6 +19,9 @@ $(document).ready(function() {
 // Callback from Google Maps Script Load
 //
 function initialize() {
+
+	google.load('visualization', '1', {packages: ['columnchart']});
+
 	google.maps.visualRefresh = true;
 	var mapOptions = {
 		zoom: 6,
