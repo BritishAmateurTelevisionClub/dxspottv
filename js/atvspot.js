@@ -21,7 +21,7 @@ $(document).ready(function() {
 //
 function initialize() {
 
-	//google.load('visualization', '1', {packages: ['columnchart']});
+	google.load('visualization', '1', {packages: ['columnchart']});
 
 	google.maps.visualRefresh = true;
 	var mapOptions = {
