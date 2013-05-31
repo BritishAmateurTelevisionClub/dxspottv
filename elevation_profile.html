@@ -32,8 +32,18 @@ function initialize() {
 	}
 	user_station = new google.maps.LatLng($_GET.user_lat, $_GET.user_lon);
 	remote_station = new google.maps.LatLng($_GET.remote_lat, $_GET.remote_lon);
-	document.getElementById('spanFrom').innerHTML($_GET.user_callsign+" ("+$_GET.user_lat+", "+$_GET.user_lon+")");
-	document.getElementById('spanTo').innerHTML($_GET.remote_callsign+" ("+$_GET.remote_lat+", "+$_GET.remote_lon+")");
+	var from_span = document.getElementById('spanFrom');
+	var to_span = document.getElementById('spanTo');
+	
+	while( from_span.firstChild ) {
+    	from_span.removeChild( from_span.firstChild );
+	}
+	while( to_span.firstChild ) {
+    	to_span.removeChild( to_span.firstChild );
+	}
+	.innerHTML($_GET.user_callsign+" ("+$_GET.user_lat+", "+$_GET.user_lon+")");
+	from_span.appendChild( document.createTextNode($_GET.remote_callsign+" ("+$_GET.remote_lat+", "+$_GET.remote_lon+")");
+	to_span.appendChild( document.createTextNode($_GET.remote_callsign+" ("+$_GET.remote_lat+", "+$_GET.remote_lon+")");
 
   var mapOptions = {
     zoom: 7,
