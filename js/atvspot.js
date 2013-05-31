@@ -138,7 +138,7 @@ function updateUserMarker(user_data, user_index) {
 
     user_markers[user_index].activity = user_data['seconds_active'];
     user_markers[user_index].station_desc = user_data['desc'];
-    user_markers[user_index].station_website = user_data['website'];
+    user_markers[user_index].station_website = "http://"+user_data['website'];
     
     user_markers[user_index].setPosition(lat_lon);
     
