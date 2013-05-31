@@ -178,9 +178,7 @@ function loadSpotAutocomplete() {
 }
 
 // Elevation Profile Dialog
-$(document).ready(function() {
-	$( "#profile_dialog" ).dialog({ autoOpen: false });
-});
+$( "#elevationDialog" ).dialog({ autoOpen: false });
 
 function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRemote, lonRemote) {
 		$( "#elevationDialog" ).val('<iframe src="/elevation_profile.html?user_callsign='+callsignUser+'&user_lat='+latUser+'&user_lon='+lonUser+'&remote_callsign='+remoteUser+'&remote_lat='+remoteUser+'&remote_lon='+remoteUser+'" style="height: 350px; width:350px;"></iframe>');
