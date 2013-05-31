@@ -269,7 +269,6 @@ function plotElevation(results, status) {
     height: 150,
     legend: 'none',
     series: {
-    	0:{},
     	1:{
     		color: 'red',
     		areaOpacity: 1.0
