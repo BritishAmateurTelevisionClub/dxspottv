@@ -247,22 +247,24 @@ function plotElevation(results, status) {
   var earthRadiusSquared = Math.pow(earthRadius,2);
   var max_deviation = 0-(Math.sqrt(earthRadiusSquared - Math.pow((results.length/2)*(profile_distance/numSamples),2)) - earthRadius);
   var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Sample');
+  data.addColumn('number', 'Distance');
   data.addColumn('number', 'Elevation');
   for (var i = 0; i < results.length; i++) {
+  	rdistance = ((i/results.length)*profile_distance)/1000;
   	if(i<(results.length/2)){
   		distance = ((results.length/2)-i)*(profile_distance/numSamples);
   	} else {
   		distance = (i-(results.length/2))*(profile_distance/numSamples);
   	}
   	deviation = max_deviation + (Math.sqrt(earthRadiusSquared - Math.pow(distance,2)) - earthRadius);
-    data.addRow(['', elevations[i].elevation+deviation]);
+    data.addRow([rdistance, elevations[i].elevation+deviation]);
   }
   // Draw the chart using the data within its DIV.
   document.getElementById('elevationChart').style.display = 'block';
   chart.draw(data, {
     height: 150,
     legend: 'none',
-    titleY: 'Elevation (m)'
+    titleY: 'Elevation (m)',
+    titleX: 'Distance (km)'
   });
 }
