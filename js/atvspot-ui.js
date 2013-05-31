@@ -101,7 +101,9 @@ $(document).ready(function() {
 	$('#desc_button').button().click( function() {
 		$('#changePosStatus').fadeOut(500);
 		google.maps.event.clearListeners(map, 'click');
-		pos_marker.setMap(null);
+		if (typeof pos_marker != 'undefined') {
+			pos_marker.setMap(null);
+		}
 		doChangeDesc($('#station_description_edit').val(), $('#station_website_edit').val(), $('#station_lat_edit').val(),$('#station_lon_edit').val());
 	});
 	$('#setposition_button').button().click( function() {
