@@ -79,7 +79,7 @@ function createUserMarker(user_data) {
     user_markers.push(marker);
     
     var infoTab = '<div class="user_bubble_info">'+
-        '<h3>'+marker.callsign+'</h3>'+
+        '<h3 style="line-height: 0.3em;">'+marker.callsign+'</h3>'+
         '<b>'+marker.locator+'</b>';
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
@@ -144,7 +144,7 @@ function updateUserMarker(user_data, user_index) {
     google.maps.event.clearListeners(user_markers[user_index], 'click');
     
 	var infoTab = '<div class="user_bubble_info">'+
-        '<h3>'+user_markers[user_index].callsign+'</h3>'+
+        '<h3 style="line-height: 0.3em;">'+user_markers[user_index].callsign+'</h3>'+
         '<b>'+user_markers[user_index].locator+'</b>';
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
