@@ -244,8 +244,8 @@ function plotElevation(results, status) {
   // Because the samples are equidistant, the 'Sample'
   // column here does double duty as distance along the
   // X axis.
-  var deviation = new Array();
-  var max_deviation = 0-(Math.sqrt(Math.pow(earthRadius,2) - Math.pow((results.length/2)*(profile_distance/numSamples),2)) - earthRadius);
+  var earthRadiusSquared = Math.pow(earthRadius,2);
+  var max_deviation = 0-(Math.sqrt(earthRadiusSquared - Math.pow((results.length/2)*(profile_distance/numSamples),2)) - earthRadius);
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Sample');
   data.addColumn('number', 'Elevation');
@@ -255,8 +255,8 @@ function plotElevation(results, status) {
   	} else {
   		distance = (i-(results.length/2))*(profile_distance/numSamples);
   	}
-  	deviation[i] = max_deviation + (Math.sqrt(Math.pow(earthRadius,2) - Math.pow(distance,2)) - earthRadius);
-    data.addRow(['', elevations[i].elevation]);
+  	deviation = max_deviation + (Math.sqrt(earthRadiusSquared - Math.pow(distance,2)) - earthRadius);
+    data.addRow(['', elevations[i].elevation+deviation]);
   }
 	console.log(deviation);
   // Draw the chart using the data within its DIV.
