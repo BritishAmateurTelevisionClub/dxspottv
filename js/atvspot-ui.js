@@ -246,9 +246,12 @@ function plotElevation(results, status) {
   // X axis.
   var earthRadiusSquared = Math.pow(earthRadius,2);
   var max_deviation = 0-(Math.sqrt(earthRadiusSquared - Math.pow((results.length/2)*(profile_distance/numSamples),2)) - earthRadius);
+  var startAlt = elevations[0].elevation; // Set these to user elevation + mast height
+  var endAlt = elevations[results.length-1].elevation; //
   var data = new google.visualization.DataTable();
   data.addColumn('number', 'Distance');
   data.addColumn('number', 'Elevation');
+  data.addColumn('number', 'Path');
   for (var i = 0; i < results.length; i++) {
   	rdistance = ((i/results.length)*profile_distance)/1000;
   	if(i<(results.length/2)){
@@ -257,7 +260,8 @@ function plotElevation(results, status) {
   		distance = (i-(results.length/2))*(profile_distance/numSamples);
   	}
   	deviation = max_deviation + (Math.sqrt(earthRadiusSquared - Math.pow(distance,2)) - earthRadius);
-    data.addRow([rdistance, elevations[i].elevation+deviation]);
+  	pathAlt = startAlt + ((i/results.length)*(endAlt-startAlt));
+    data.addRow([rdistance, elevations[i].elevation+deviation, pathAlt]);
   }
   // Draw the chart using the data within its DIV.
   document.getElementById('elevationChart').style.display = 'block';
@@ -266,6 +270,6 @@ function plotElevation(results, status) {
     legend: 'none',
     titleY: 'Elevation (m)',
     titleX: 'Distance (km)',
-    series: {0:{color: 'blue', areaOpacity:1.0}, 3:{color: 'red'}}
+    series: {0:{color: 'blue', areaOpacity: 0.0}, 1:{color: 'red', areaOpacity: 1.0}, 1:{color: 'green', areaOpacity: 1.0}}
   });
 }
