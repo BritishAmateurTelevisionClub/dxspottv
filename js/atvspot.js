@@ -78,10 +78,11 @@ function createUserMarker(user_data) {
         '<b>'+marker.locator+'</b>';
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
+    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['latitude']+"','"+user_data['longitude']+"'";
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, lat_lon)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, lat_lon)/1000)*10)/10+'km<br>'+
-    		'<a href="javascript:elevation_profile('+user_callsign+','+user_lat+','+user_lon+','+marker.callsign+','+user_data['latitude']+','+user_data['longitude']+')"><b>Path Elevation Profile</b></a>';
+    		'<a href="javascript:elevation_profile('+elevation_vars+')"><b>Path Elevation Profile</b></a>';
     }
     infoTab += '</div>';
     var descTab = '<div class="user_bubble_desc">'+
@@ -142,10 +143,11 @@ function updateUserMarker(user_data, user_index) {
         '<b>'+user_markers[user_index].locator+'</b>';
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
+    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['latitude']+"','"+user_data['longitude']+"'";
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, user_markers[user_index].position)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, user_markers[user_index].position)/1000)*10)/10+'km<br>'+
-    		'<a href="javascript:elevation_profile('+user_callsign+','+user_lat+','+user_lon+','+user_data['callsign']+','+user_data['latitude']+','+user_data['longitude']+')"><b>Path Elevation Profile</b></a>';
+    		'<a href="javascript:elevation_profile('+elevation_vars+')"><b>Path Elevation Profile</b></a>';
     }
     infoTab += '</div>';
     var descTab = '<div class="user_bubble_desc">'+
