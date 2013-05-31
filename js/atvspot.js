@@ -2,6 +2,7 @@ var repeater_markers = [];
 var user_markers = [];
 var spot_lines = [];
 var map;
+var elevator;
 
 var infowindow;
 var session_id;
@@ -34,6 +35,8 @@ function initialize() {
 	infowindow = new google.maps.InfoWindow( {
 			size: new google.maps.Size(150,50)
 	});
+	
+	elevator = new google.maps.ElevationService();
 
 	google.maps.event.addListener(map, 'click', function() {
 		infowindow.close();

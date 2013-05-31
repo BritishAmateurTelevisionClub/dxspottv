@@ -179,10 +179,75 @@ function loadSpotAutocomplete() {
 
 // Elevation Profile Dialog
 $(document).ready(function() {
-	$( "#elevationDialog" ).dialog({ autoOpen: false });
+	$( "#elevationDialog" ).dialog({ autoOpen: false, width: 400, height: 200 });
 });
 
 function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRemote, lonRemote) {
-		$( "#elevationDialog" ).val('<iframe src="/elevation_profile.html?user_callsign='+callsignUser+'&user_lat='+latUser+'&user_lon='+lonUser+'&remote_callsign='+callsignRemote+'&remote_lat='+latRemote+'&remote_lon='+lonRemote+'" style="height: 350px; width:350px;"></iframe>');
-		$( "#elevationDialog" ).dialog( "open" );
-	}
+	$('#spanChartFrom').val(callsignUser+" ("+latUser+", "+lonUser+")"));
+	$('#spanChartTo').val(callsignRemote+" ("+latRemote+", "+lonRemote+")"));
+	drawPath(new google.maps.LatLng(latUser, lonUser), new google.maps.LatLng(latRemote, lonRemote));
+	
+	$( "#elevationDialog" ).dialog( "open" );
+}
+
+function drawPath(user_station, remote_station) {
+
+  // Create a new chart in the elevation_chart DIV.
+  chart = new google.visualization.ColumnChart(document.getElementById('elevationChart'));
+
+  var path = [user_station, remote_station];
+
+  // Create a PathElevationRequest object using this array.
+  // Ask for 256 samples along that path.
+  var pathRequest = {
+    'path': path,
+    'samples': 256
+  }
+
+  // Initiate the path request.
+  elevator.getElevationAlongPath(pathRequest, plotElevation);
+}
+
+// Takes an array of ElevationResult objects, draws the path on the map
+// and plots the elevation profile on a Visualization API ColumnChart.
+function plotElevation(results, status) {
+  if (status != google.maps.ElevationStatus.OK) {
+    return;
+  }
+  var elevations = results;
+
+  // Extract the elevation samples from the returned results
+  // and store them in an array of LatLngs.
+  var elevationPath = [];
+  for (var i = 0; i < results.length; i++) {
+    elevationPath.push(elevations[i].location);
+  }
+
+  // Display a polyline of the elevation path.
+  var pathOptions = {
+    path: elevationPath,
+    strokeColor: '#0000CC',
+    opacity: 0.4,
+    map: map
+  }
+  polyline = new google.maps.Polyline(pathOptions);
+
+  // Extract the data from which to populate the chart.
+  // Because the samples are equidistant, the 'Sample'
+  // column here does double duty as distance along the
+  // X axis.
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Sample');
+  data.addColumn('number', 'Elevation');
+  for (var i = 0; i < results.length; i++) {
+    data.addRow(['', elevations[i].elevation]);
+  }
+
+  // Draw the chart using the data within its DIV.
+  document.getElementById('elevation_chart').style.display = 'block';
+  chart.draw(data, {
+    height: 150,
+    legend: 'none',
+    titleY: 'Elevation (m)'
+  });
+}
