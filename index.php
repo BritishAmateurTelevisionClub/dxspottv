@@ -253,5 +253,6 @@ if ($auth_error==1) {
 </tbody>
 </table>
 </div>
+<div id="elevationDialog" title="Elevation Profile"></div>
 </body>
 </html>

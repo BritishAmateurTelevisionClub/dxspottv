@@ -80,7 +80,8 @@ function createUserMarker(user_data) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, lat_lon)))+'&deg;<br>'+
-    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, lat_lon)/1000)*10)/10+'km';
+    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, lat_lon)/1000)*10)/10+'km<br>'+
+    		'<a href="javascript:elevation_profile('+user_callsign+','+user_lat+','+user_lon','+marker_callsign+','+user_data['latitude']+','+user_data['longitude']+')"><b>Path Elevation Profile</b></a>';
     }
     infoTab += '</div>';
     var descTab = '<div class="user_bubble_desc">'+
@@ -143,7 +144,8 @@ function updateUserMarker(user_data, user_index) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, user_markers[user_index].position)))+'&deg;<br>'+
-    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, user_markers[user_index].position)/1000)*10)/10+'km';
+    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, user_markers[user_index].position)/1000)*10)/10+'km<br>'+
+    		'<a href="javascript:elevation_profile('+user_callsign+','+user_lat+','+user_lon','+user_data['callsign']+','+user_data['latitude']+','+user_data['longitude']+')"><b>Path Elevation Profile</b></a>';
     }
     infoTab += '</div>';
     var descTab = '<div class="user_bubble_desc">'+
