@@ -179,7 +179,7 @@ function loadSpotAutocomplete() {
 
 // Elevation Profile Dialog
 $(document).ready(function() {
-	$( "#profile_dialog" ).dialog({ autoOpen: false });
+	$( "#elevationDialog" ).dialog({ autoOpen: false });
 });
 
 function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRemote, lonRemote) {
