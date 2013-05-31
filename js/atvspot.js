@@ -136,59 +136,8 @@ function updateUserMarker(user_data, user_index) {
 		user_markers[user_index].setIcon(userActiveIcon);
 	}
 
+	user_markers[user_index].setPosition(lat_lon);
     user_markers[user_index].activity = user_data['seconds_active'];
-    user_markers[user_index].station_desc = user_data['desc'];
-    user_markers[user_index].station_website = "http://"+user_data['website'];
-    
-    user_markers[user_index].setPosition(lat_lon);
-    
-    google.maps.event.clearListeners(user_markers[user_index], 'click');
-    
-	var infoTab = '<div class="user_bubble_info">'+
-        '<h3 style="line-height: 0.3em;">'+user_markers[user_index].callsign+'</h3>'+
-        '<b>'+user_markers[user_index].locator+'</b>';
-    if(logged_in && (user_callsign!=user_data['callsign'])) {
-    	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
-    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['latitude']+"','"+user_data['longitude']+"'";
-    	infoTab+='<br><br>'+
-    		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, user_markers[user_index].position)))+'&deg;<br>'+
-    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, user_markers[user_index].position)/1000)*10)/10+'km<br>'+
-    		'<a href="javascript:elevation_profile('+elevation_vars+')"><b>Path Elevation Profile</b></a>';
-    }
-    infoTab += '</div>';
-    var descTab = '<div class="user_bubble_desc">'+
-        user_markers[user_index].station_desc;
-    if(user_markers[user_index].station_website!='') {
-    	descTab += '<br><br><a href="'+user_markers[user_index].station_website+'" target="_blank"><b>'+user_markers[user_index].station_website+'</b></a>';
-    }
-    descTab += '</div>';
-    
-    var infoBubble = new InfoBubble({
-        maxWidth: 150,
-        minWidth: 150,
-        maxHeight: 110,
-        minHeight: 110,
-		shadowStyle: 0,
-		padding: 8,
-		backgroundColor: '#fff',
-		borderRadius: 8,
-		arrowSize: 10,
-		borderWidth: 1,
-		borderColor: '#ccc',
-		disableAutoPan: true,
-		hideCloseButton: false,
-		arrowPosition: 50,
-		arrowStyle: 0
-    });
-  	
-    infoBubble.addTab('<span class="bubble_label">Info</span>', infoTab);
-    infoBubble.addTab('<span class="bubble_label">Description</span>', descTab);
-
-    google.maps.event.addListener(user_markers[user_index], 'click', function() {
-        if (!infoBubble.isOpen()) {
-            infoBubble.open(map, user_markers[user_index]);
-        }
-    });
 }
 
 function createRepeaterMarker(repeater_data) {
