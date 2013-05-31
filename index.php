@@ -236,6 +236,7 @@ if ($auth_error==1) {
 	<div id="findStation" class="reduce-tab-padding">
 		<b>Search:&nbsp;</b><input type=text id="search_callsign" class="spot_box_short" />
 		<div id="findResults">
+		Under development..!
 		</div>
 	</div>
 	<div id="helpTab" class="reduce-tab-padding">
