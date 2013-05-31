@@ -187,8 +187,8 @@ $(document).ready(function() {
 });
 
 function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRemote, lonRemote) {
-	$('#spanChartFrom').val(callsignUser+" ("+latUser+", "+lonUser+")");
-	$('#spanChartTo').val(callsignRemote+" ("+latRemote+", "+lonRemote+")");
+	$('#spanChartFrom').html(callsignUser+" ("+latUser+", "+lonUser+")");
+	$('#spanChartTo').html(callsignRemote+" ("+latRemote+", "+lonRemote+")");
 	latlng_user = new google.maps.LatLng(latUser, lonUser);
 	latlng_remote = new google.maps.LatLng(latRemote, lonRemote);
 	drawPath(latlng_user, latlng_remote);
