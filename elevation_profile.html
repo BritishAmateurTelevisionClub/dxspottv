@@ -58,7 +58,7 @@ function drawPath() {
   // Ask for 256 samples along that path.
   var pathRequest = {
     'path': path,
-    'samples': 256
+    'samples': 512
   }
 
   // Initiate the path request.
@@ -103,7 +103,7 @@ function plotElevation(results, status) {
   // Draw the chart using the data within its DIV.
   document.getElementById('elevation_chart').style.display = 'block';
   chart.draw(data, {
-    height: 150,
+    height: 200,
     legend: 'none',
     titleY: 'Elevation (m)'
   });
