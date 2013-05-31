@@ -182,6 +182,7 @@ var profile_distance;
 $(document).ready(function() {
 	$( "#elevationDialog" ).dialog({ autoOpen: false, width: 900, height: 250 });
 	$( "#elevationDialog" ).on( "dialogclose", function( event, ui ) {
+		chart.clearChart()
 		profile_path.setMap(null);
 	});
 });
