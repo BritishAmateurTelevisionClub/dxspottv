@@ -42,8 +42,8 @@ function initialize() {
 	while( to_span.firstChild ) {
     	to_span.removeChild( to_span.firstChild );
 	}
-	from_span.appendChild( document.createTextNode($_GET.remote_callsign+" ("+$_GET.remote_lat+", "+$_GET.remote_lon+")");
-	to_span.appendChild( document.createTextNode($_GET.remote_callsign+" ("+$_GET.remote_lat+", "+$_GET.remote_lon+")");
+	from_span.appendChild( document.createTextNode($_GET.remote_callsign+" ("+$_GET.remote_lat+", "+$_GET.remote_lon+")"));
+	to_span.appendChild( document.createTextNode($_GET.remote_callsign+" ("+$_GET.remote_lat+", "+$_GET.remote_lon+")"));
 
   var mapOptions = {
     zoom: 7,
