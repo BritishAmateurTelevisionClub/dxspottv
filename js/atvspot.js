@@ -17,12 +17,11 @@ $(document).ready(function() {
 	document.body.appendChild(script);
 });
 
+google.load('visualization', '1', {packages: ['columnchart']});
+
 // Callback from Google Maps Script Load
 //
 function initialize() {
-
-	google.load('visualization', '1', {packages: ['columnchart']});
-
 	google.maps.visualRefresh = true;
 	var mapOptions = {
 		zoom: 6,
