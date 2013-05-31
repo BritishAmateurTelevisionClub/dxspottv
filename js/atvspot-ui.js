@@ -249,9 +249,8 @@ function plotElevation(results, status) {
   var startAlt = elevations[0].elevation; // Set these to user elevation + mast height
   var endAlt = elevations[results.length-1].elevation; //
   var data = new google.visualization.DataTable();
-  data.addColumn('number', 'Distance (km)');
+  data.addColumn('string', 'Distance (km)');
   data.addColumn('number', 'Elevation (m)');
-  data.addColumn('number', 'Path');
   for (var i = 0; i < results.length; i++) {
   	rdistance = ((i/results.length)*profile_distance)/1000;
   	if(i<(results.length/2)){
@@ -261,24 +260,13 @@ function plotElevation(results, status) {
   	}
   	deviation = max_deviation + (Math.sqrt(earthRadiusSquared - Math.pow(distance,2)) - earthRadius);
   	pathAlt = startAlt + ((i/results.length)*(endAlt-startAlt));
-    data.addRow([rdistance, elevations[i].elevation+deviation, pathAlt]);
+    data.addRow(['', elevations[i].elevation+deviation]);
   }
   // Draw the chart using the data within its DIV.
   document.getElementById('elevationChart').style.display = 'block';
   chart.draw(data, {
     height: 150,
     legend: 'none',
-    pointSize: 3,
-    hAxis: {gridlines: {color: '#333', count: 4}},
-    series: {
-    	1:{
-    		color: 'red',
-    		areaOpacity: 1.0
-    	},
-    	2:{
-    		color: 'green',
-    		areaOpacity: 1.0
-    	}
-    }
+    pointSize: 3
   });
 }
