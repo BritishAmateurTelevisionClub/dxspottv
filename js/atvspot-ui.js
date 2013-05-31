@@ -258,7 +258,6 @@ function plotElevation(results, status) {
   	deviation = max_deviation + (Math.sqrt(earthRadiusSquared - Math.pow(distance,2)) - earthRadius);
     data.addRow(['', elevations[i].elevation+deviation]);
   }
-	console.log(deviation);
   // Draw the chart using the data within its DIV.
   document.getElementById('elevationChart').style.display = 'block';
   chart.draw(data, {
