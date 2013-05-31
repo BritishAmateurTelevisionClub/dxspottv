@@ -245,16 +245,17 @@ function plotElevation(results, status) {
   // column here does double duty as distance along the
   // X axis.
   var deviation = new Array();
+  var max_deviation = 0-(Math.sqrt(Math.pow(earthRadius,2) - Math.pow((results.length/2)*(profile_distance/numSamples),2)) - earthRadius);
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Sample');
   data.addColumn('number', 'Elevation');
   for (var i = 0; i < results.length; i++) {
   	if(i<(results.length/2)){
-  		distance = ((results.length/2)-i)*(profile_distance/numSamples);
+  		distance = (results.length/2)*(profile_distance/numSamples);
   	} else {
   		distance = (i-(results.length/2))*(profile_distance/numSamples);
   	}
-  	deviation[i] = Math.sqrt(Math.pow(earthRadius,2) - Math.pow(distance,2)) - earthRadius;
+  	deviation[i] = max_deviation - (Math.sqrt(Math.pow(earthRadius,2) - Math.pow(distance,2)) - earthRadius);
     data.addRow(['', elevations[i].elevation]);
   }
 	console.log(deviation);
