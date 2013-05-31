@@ -60,7 +60,9 @@ $(document).ready(function() {
 // Load IRC (using php-configured url)
 //
 $(window).load(function () {
-	document.getElementById('irc_frame').src = irc_frame_source;
+	if(logged_in) {
+		document.getElementById('irc_frame').src = irc_frame_source;
+	}
 });
 
 // Set up login/logout buttons
