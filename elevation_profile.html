@@ -32,6 +32,8 @@ function initialize() {
 	}
 	user_station = new google.maps.LatLng($_GET.user_lat, $_GET.user_lon);
 	remote_station = new google.maps.LatLng($_GET.remote_lat, $_GET.remote_lon);
+	document.getElementById('spanFrom').innerHTML($_GET.user_callsign+" ("+$_GET.user_lat+", "+$_GET.user_lon+")");
+	document.getElementById('spanTo').innerHTML($_GET.remote_callsign+" ("+$_GET.remote_lat+", "+$_GET.remote_lon+")");
 
   var mapOptions = {
     zoom: 7,
@@ -115,6 +117,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
   </head>
   <body>
     <div>
+      <h4>Elevation Profile</h4>
+      <b>From:</b>&nbsp;<span id='spanFrom'></span><br>
+      <b>To:</b>&nbsp;<span id='spanTo'></span><br>
       <div id="map-canvas" style="height:250px;"></div>
       <div id="elevation_chart"></div>
     </div>
