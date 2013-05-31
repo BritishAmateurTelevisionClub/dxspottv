@@ -255,12 +255,9 @@ if ($auth_error==1) {
 </table>
 </div>
 <div id="elevationDialog" title="Elevation Profile">
-<div style="margin-left: 7px; line-height: 1.5em;">
-      	<b>Elevation Profile</b>
-      	<div style="margin-left: 10px;">
-      	<b>From:</b>&nbsp;<span id='spanChartFrom'></span><br>
-      	<b>To:</b>&nbsp;<span id='spanChartTo'></span><br>
-      	</div>
+<div style="margin-left: 2px; line-height: 1.5em;">
+      <b>From:</b>&nbsp;<span id='spanChartFrom'></span><br>
+      <b>To:</b>&nbsp;<span id='spanChartTo'></span><br>
 </div>
 <div id="elevationChart">
 </div>

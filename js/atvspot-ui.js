@@ -244,7 +244,7 @@ function plotElevation(results, status) {
   }
 
   // Draw the chart using the data within its DIV.
-  document.getElementById('elevation_chart').style.display = 'block';
+  document.getElementById('elevationChart').style.display = 'block';
   chart.draw(data, {
     height: 150,
     legend: 'none',
