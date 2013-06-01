@@ -208,7 +208,7 @@ $(document).ready(function() {
 			user_Desc = "<b>Callsign:</b>&nbsp;"+user_markers[user_index].callsign+"<br>"+
 				"<b>Locator:</b>&nbsp;"+user_markers[user_index].locator+"<br><br>"+
 				"<b>Last Seen:</b>&nbsp;"+activeString+"<br><br>"+
-				"<b>Station Description:</b>&nbsp;"+user_markers[user_index].station_desc+"<br>"+
+				"<b>Station Description:</b><br><pre>"+user_markers[user_index].station_desc+"</pre><br>"+
 				"<b>Website:</b>&nbsp;"+'<a href="'+user_markers[user_index].station_website+'" target="_blank">'+user_markers[user_index].station_website+'</a>';
 			$('#findResults').html(user_Desc);
 		}
