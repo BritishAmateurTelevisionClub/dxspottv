@@ -50,6 +50,7 @@ if (isset($_COOKIE["auth_error"])) {
 //print "Logged In: " . $logged_in;
 //print "Auth Error: " . $auth_error;
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
