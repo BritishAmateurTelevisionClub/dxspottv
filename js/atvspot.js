@@ -273,7 +273,7 @@ function createSpotLine(spot_data) {
     	path: spotLineCoordinates,
     	strokeColor: "#FF0000",
     	strokeOpacity: 1.0,
-    	strokeWeight: 2,
+    	strokeWeight: 3,
     	geodesic: true,
         zIndex: 1
 	});
