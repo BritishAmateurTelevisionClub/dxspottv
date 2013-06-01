@@ -189,12 +189,27 @@ $(document).ready(function() {
 				$('#findResults').html('No results found.');
 			} else {
 				repeater_index = $.inArray(repeater_search[0], repeater_markers);
-				repeater_Desc = "<b>"+repeater_markers[repeater_index].callsign+"</b>";
+				repeater_Desc = "<b>Callsign:</b>&nbsp;"+repeater_markers[repeater_index].callsign+"<br>"+
+					"<b>Locator:</b>&nbsp;"+repeater_markers[repeater_index].locator+"<br>"+
+					"<b>Location:</b>&nbsp;"+repeater_markers[repeater_index].location;
 				$('#findResults').html(repeater_Desc);
 			}
 		} else {
 		    user_index = $.inArray(user_search[0], user_markers);
-			user_Desc = "<b>"+user_markers[user_index].callsign+"</b>";
+		    if (user_markers[user_index].activity>86400) {
+				activeString = Math.round(user_markers[user_index].activity/86400) + ' days ago.';
+			} else if (user_markers[user_index].activity>3600) {
+				activeString = Math.round(user_markers[user_index].activity/3600) + ' hours ago.';
+			} else if (user_markers[user_index].activity>60) {
+				activeString = Math.round(user_markers[user_index].activity/60) + ' minutes ago.';
+			} else {
+				activeString = '<font color="green">Currently Active.</font>'
+			}
+			user_Desc = "<b>Callsign:</b>&nbsp;"+user_markers[user_index].callsign+"<br>"+
+				"<b>Locator:</b>&nbsp;"+user_markers[user_index].locator+"<br><br>"+
+				"<b>Last Seen:</b>&nbsp;"+activeString+"<br><br>"+
+				"<b>Station Description:</b>&nbsp;"+user_markers[user_index].station_desc+"<br>"+
+				"<b>Website:</b>&nbsp;"+'<a href="'+user_markers[user_index].station_website+'" target="_blank">'+user_markers[user_index].station_website+'</a>';
 			$('#findResults').html(user_Desc);
 		}
 	});
