@@ -190,8 +190,8 @@ $(document).ready(function() {
 			} else {
 				repeater_index = $.inArray(repeater_search[0], repeater_markers);
 				repeater_Desc = "<b>Callsign:</b>&nbsp;"+repeater_markers[repeater_index].callsign+"<br>"+
-					"<b>Locator:</b>&nbsp;"+repeater_markers[repeater_index].locator+"<br>"+
-					"<b>Location:</b>&nbsp;"+repeater_markers[repeater_index].location;
+					"<b>Locator:</b>&nbsp;"+repeater_markers[repeater_index].qth_r+"<br>"+
+					"<b>Location:</b>&nbsp;"+repeater_markers[repeater_index].qth;
 				$('#findResults').html(repeater_Desc);
 			}
 		} else {
