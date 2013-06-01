@@ -79,6 +79,7 @@ function getRepeaterData() {
     		loadSpotAutocomplete();
 		}
 	});
+	ga('send', 'event', 'refresh', 'Repeater Data');
 }
 
 function updateActivity() {

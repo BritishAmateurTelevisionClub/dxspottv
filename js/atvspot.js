@@ -50,7 +50,7 @@ function initialize() {
 
 	getMapData();
 	userSpotRefresh=self.setInterval(function(){getUserSpotData()},3000+Math.round(Math.random()*200));
-	repeaterRefresh=self.setInterval(function(){getRepeaterData()},30000+Math.round(Math.random()*2000));
+	repeaterRefresh=self.setInterval(function(){getRepeaterData()},120000+Math.round(Math.random()*2000));
 }
 
 function createUserMarker(user_data) {
