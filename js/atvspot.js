@@ -271,12 +271,34 @@ function createSpotLine(spot_data) {
 	];
 	var spotLine = new google.maps.Polyline({
     	path: spotLineCoordinates,
-    	strokeColor: "#FF0000",
     	strokeOpacity: 1.0,
     	strokeWeight: 3,
     	geodesic: true,
         zIndex: 1
 	});
+	
+	switch(spot_data['mode_id']) {
+		case "0": // Not defined - assume Digital
+			spotLine.setOptions( {
+				strokeColor: "#0404B4" //blue
+			}
+			break;
+		case "1": // Analog TV
+			spotLine.setOptions( {
+				strokeColor: "#FF0000" //red
+			}
+			break;
+		case "2": // Digital TV (WB)
+			spotLine.setOptions( {
+				strokeColor: "#0404B4" //blue
+			}
+			break;
+		case "3": // Beacon
+			spotLine.setOptions( {
+				strokeColor: "#6E6E6E" //grey
+			}
+			break;
+	}
 	
 	spotLine.spot_id = spot_data['id'];
 	spotLine.band_id = spot_data['band_id'];
