@@ -185,7 +185,7 @@ $(document).ready(function() {
 		var user_search = $.grep(user_markers, function(e){ return e.callsign == wantedCallsign; });
 		if(user_search.length==0) {
 			var repeater_search = $.grep(repeater_markers, function(e){ return e.callsign == wantedCallsign; });
-			if(user_search.length==0) {
+			if(repeater_search.length==0) {
 				$('#findResults').html('No results found.');
 			} else {
 				repeater_index = $.inArray(repeater_search[0], repeater_markers);
