@@ -192,6 +192,19 @@ $(document).ready(function() {
 				repeater_Desc = "<b>Callsign:</b>&nbsp;"+repeater_markers[repeater_index].callsign+"<br>"+
 					"<b>Locator:</b>&nbsp;"+repeater_markers[repeater_index].qth_r+"<br>"+
 					"<b>Location:</b>&nbsp;"+repeater_markers[repeater_index].qth;
+				var freqDesc = '<b>TX:</b>&nbsp;'+marker.tx_freq+'MHz<br>'+
+					'<b>RX</b>:&nbsp;'+marker.rx_freq+'MHz<br>';
+				if (typeof marker.rx_freq_2 != 'undefined') {
+					freqDesc += '<b>RX:</b>&nbsp;'+marker.rx_freq_2+'MHz<br>';
+				}
+				if (typeof marker.alt_tx_freq != 'undefined') {
+					freqDesc += '<br><b>TX:</b>&nbsp;'+marker.alt_tx_freq+'MHz<br>'+
+						'<b>RX:</b>&nbsp;'+marker.alt_rx_freq+'MHz<br>';
+					if (typeof marker.rx_freq_2 != 'undefined') {
+						freqDesc += '<b>RX:</b>&nbsp;'+marker.alt_rx_freq_2+'MHz';
+					}
+				}
+				repeater_Desc += "<br><br>"+freqDesc;
 				$('#findResults').html(repeater_Desc);
 			}
 		} else {
