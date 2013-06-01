@@ -201,10 +201,10 @@ $(document).ready(function() {
 					freqDesc += '<br><b>TX:</b>&nbsp;'+repeater_markers[repeater_index].alt_tx_freq+'MHz<br>'+
 						'<b>RX:</b>&nbsp;'+repeater_markers[repeater_index].alt_rx_freq+'MHz<br>';
 					if (typeof repeater_markers[repeater_index].rx_freq_2 != 'undefined') {
-						freqDesc += '<b>RX:</b>&nbsp;'+repeater_markers[repeater_index].alt_rx_freq_2+'MHz';
+						freqDesc += '<b>RX:</b>&nbsp;'+repeater_markers[repeater_index].alt_rx_freq_2+'MHz<br>';
 					}
 				}
-				repeater_Desc += "<br><br>"+freqDesc+
+				repeater_Desc += "<br><br>"+freqDesc+"<br>"+
 					"<b>Repeater Description:</b><br><pre>"+repeater_markers[repeater_index].description+"</pre>"+
 					"<b>Website:</b>&nbsp;"+'<a href="'+repeater_markers[repeater_index].website+'" target="_blank">'+repeater_markers[repeater_index].website+'</a>';
 				$('#findResults').html(repeater_Desc);

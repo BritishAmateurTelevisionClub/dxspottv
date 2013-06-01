@@ -181,7 +181,11 @@ function createRepeaterMarker(repeater_data) {
     marker.is6cm = repeater_data['is_6cm'];
     marker.is3cm = repeater_data['is_3cm'];
     marker.description = repeater_data['description']
-    marker.website = repeater_data['website']
+    if (typeof repeater_data['website'] != 'undefined') {
+    	marker.website = repeater_data['website'];
+    } else {
+    	marker.website = '';
+    }
     repeater_markers.push(marker);
     
     var infoTab = '<div class="repeater_bubble_info">'+
