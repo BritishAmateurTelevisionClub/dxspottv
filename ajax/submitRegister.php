@@ -42,15 +42,13 @@ if($got_variables) {
 		print json_encode($output);
 		die ();
 	}
-	
-	$insert_statement = $dbc->prepare("INSERT into users (name, callsign, password, salt, locator, email, lat, lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+	$existing_statement->close();
 
 	$salt = sha256_salt();
-
 	$crypt = crypt($passwd, $salt);
 	
+	$insert_statement = $dbc->prepare("INSERT into users (name, callsign, password, salt, locator, email, lat, lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
 	$insert_statement->bind_param('ssssssdd', $name, $callsign, $crypt, $salt, $locator, $email, $lat, $lon);
-
 	$insert_statement->execute();
 	
 	if($insert_statement->affected_rows==1) {
@@ -59,6 +57,7 @@ if($got_variables) {
 		$output['successful'] = 0;
 		$output['error'] = "2"; // MYSQL Error
 	}
+	$insert_statement->close();
 } else {
 	$output['successful'] = 0;
 	$output['error'] = "0"; // Lack of stuff Error

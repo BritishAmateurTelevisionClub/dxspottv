@@ -11,18 +11,17 @@ if($got_cookies && $got_variables) {
 	$sessions_statement->execute();
 	$sessions_statement->bind_result($sessions_result);
 	$sessions_statement->store_result();
-	if($sessions_statement->num_rows!=1) { // session doesn't exist on server
+	if($sessions_statement->num_rows==0) { // session doesn't exist on server
 		print 'Session not found.';
 	} else {
-		$sessions_statement->fetch();
-		if ($_COOKIE["session_key"]==$sessions_result) {
-			// Session matches, so is logged in!
-			$update_statement = $dbc->prepare("UPDATE users set lat=?,lon=?,station_desc=?,website=? WHERE id=?;");
-			$update_statement->bind_param('ddssi', $_REQUEST["lat"], $_REQUEST["lon"], $desc, $website, $_COOKIE["user_id"]);
-			$update_statement->execute();
-			$update_statement->close();
-		} else {
-			print 'Session doesnt match.';
+		while ($sessions_statement->fetch()) {
+			if ($_COOKIE["session_key"]==$sessions_result) {
+				// Session matches, so is logged in!
+				$update_statement = $dbc->prepare("UPDATE users set lat=?,lon=?,station_desc=?,website=? WHERE id=?;");
+				$update_statement->bind_param('ddssi', $_REQUEST["lat"], $_REQUEST["lon"], $desc, $website, $_COOKIE["user_id"]);
+				$update_statement->execute();
+				$update_statement->close();
+			}
 		}
 	}
 	$sessions_statement->close();

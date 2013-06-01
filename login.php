@@ -18,15 +18,11 @@ $crypt = crypt($passwd, $salt);
 
 if($crypt==$target) {
 	$session_key = sha256_salt();
-	$sessions_result = mysqli_query($dbc, "SELECT session_id FROM sessions WHERE user_id='" . $user_id . "';") or die(mysqli_error($dbc));
-	if(mysqli_num_rows ($sessions_result)==0) {
-		$insert_query="INSERT into sessions (session_id, user_id) VALUES ('{$session_key}', '{$user_id}');";
-		$ret = mysqli_query($dbc, $insert_query) or die(mysqli_error($dbc));
-	} else {
-		$update_query="UPDATE sessions set session_id='{$session_key}',activity=NOW() where user_id = '{$user_id}';";
-		$ret = mysqli_query($dbc, $update_query) or die(mysqli_error($dbc));
-	}
-        $return_data = array('error' => 0, 'callsign' => $callsign, 'session_key' => $session_key); 
+
+	$insert_query="INSERT into sessions (session_id, user_id) VALUES ('{$session_key}', '{$user_id}');";
+	$ret = mysqli_query($dbc, $insert_query) or die(mysqli_error($dbc));
+
+    $return_data = array('error' => 0, 'callsign' => $callsign, 'session_key' => $session_key); 
 	setcookie("user_id", $user_id, time()+3600000);
 	setcookie("session_key", $session_key, time()+3600000);
 	setcookie("auth_error", "0", time()+3600000);

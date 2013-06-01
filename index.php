@@ -23,13 +23,15 @@ if (isset($_COOKIE["auth_error"])) {
       $auth_error = 1;
       $auth_error_text = "Session not found, please log in.";
     } else {
-      $target_row = mysqli_fetch_array($sessions_result);
-      if ($_COOKIE["session_key"]==$target_row["session_id"]) {
-        // Session matches, so is logged in!
-        $user_known = 1;
-        $logged_in = 1;
-        $auth_error = 0;
-      } else {
+      while($target_row = mysqli_fetch_array($sessions_result)) { // find a matching session
+		  if ($_COOKIE["session_key"]==$target_row["session_id"]) {
+		    // Session matches, so is logged in!
+		    $user_known = 1;
+		    $logged_in = 1;
+		    $auth_error = 0;
+		  }
+      }
+      if($logged_in != 1) {
         // Session doesn't match, make them log in again
         $user_known = 1;
         $logged_in = 0;
