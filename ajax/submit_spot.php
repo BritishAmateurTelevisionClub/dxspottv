@@ -17,8 +17,8 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 			$band_id = mysqli_real_escape_string($dbc, $_REQUEST["band_id"]);
 			$mode_id = mysqli_real_escape_string($dbc, $_REQUEST["mode"]);
 			$comments = mysqli_real_escape_string($dbc, htmlentities($_REQUEST["comments"]));
-			$r_callsign = mysqli_real_escape_string($dbc, htmlentities($_REQUEST["r_callsign"]));
-			$r_locator = mysqli_real_escape_string($dbc, htmlentities($_REQUEST["r_locator"]));
+			$r_callsign = mysqli_real_escape_string($dbc, htmlentities(strtoupper($_REQUEST["r_callsign"])));
+			$r_locator = mysqli_real_escape_string($dbc, htmlentities(strtoupper($_REQUEST["r_locator"])));
 			$r_lat = mysqli_real_escape_string($dbc, $_REQUEST["r_lat"]);
 			$r_lon = mysqli_real_escape_string($dbc, $_REQUEST["r_lon"]);
 		
