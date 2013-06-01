@@ -18,7 +18,7 @@ $(document).ready(function() {
 	document.body.appendChild(script);
 });
 
-google.load('visualization', '1', {packages: ['columnchart']});
+google.load("visualization", "1", {packages:["corechart"]});
 
 // Callback from Google Maps Script Load
 //
