@@ -281,22 +281,22 @@ function createSpotLine(spot_data) {
 		case "0": // Not defined - assume Digital
 			spotLine.setOptions( {
 				strokeColor: "#0404B4" //blue
-			}
+			});
 			break;
 		case "1": // Analog TV
 			spotLine.setOptions( {
 				strokeColor: "#FF0000" //red
-			}
+			});
 			break;
 		case "2": // Digital TV (WB)
 			spotLine.setOptions( {
 				strokeColor: "#0404B4" //blue
-			}
+			});
 			break;
 		case "3": // Beacon
 			spotLine.setOptions( {
 				strokeColor: "#6E6E6E" //grey
-			}
+			});
 			break;
 	}
 	
