@@ -100,7 +100,7 @@ border="0" cellpadding="0" cellspacing="0">
 <table border="0" cellspacing="3" cellpadding="0" width="100%" >
 <tr>
 
-<td><p align="center">
+<td><p class="mapSelecter" align="center">
 <strong>Timespan:</strong>&nbsp;
 <select id="time_select">
   <option value="all">All Spots</option>
@@ -114,7 +114,7 @@ border="0" cellpadding="0" cellspacing="0">
 </select>
 </td>
 
-<td><p align="center">
+<td><p class="mapSelecter" align="center">
 <strong>Band:</strong>&nbsp;
 <select id="band_select">
   <option value="all">All Bands</option>
@@ -126,7 +126,7 @@ border="0" cellpadding="0" cellspacing="0">
   <option value="3cm">3cm</option>
 </select>
 
-<td><p align="center">
+<td><p class="mapSelecter" align="center">
 <strong>Show repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterBox" /></p></td>
 
 </tr></table>

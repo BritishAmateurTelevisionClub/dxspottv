@@ -101,6 +101,11 @@ html, body {
   height: 450px;
 }
 
+.mapSelecter {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
 @media print {
   html, body {
     height: auto;
