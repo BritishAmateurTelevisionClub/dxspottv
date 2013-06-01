@@ -204,7 +204,9 @@ $(document).ready(function() {
 						freqDesc += '<b>RX:</b>&nbsp;'+repeater_markers[repeater_index].alt_rx_freq_2+'MHz';
 					}
 				}
-				repeater_Desc += "<br><br>"+freqDesc;
+				repeater_Desc += "<br><br>"+freqDesc+
+					"<b>Repeater Description:</b><br><pre>"+repeater_markers[repeater_index].description+"</pre>"+
+					"<b>Website:</b>&nbsp;"+'<a href="'+repeater_markers[repeater_index].website+'" target="_blank">'+repeater_markers[repeater_index].website+'</a>';
 				$('#findResults').html(repeater_Desc);
 			}
 		} else {

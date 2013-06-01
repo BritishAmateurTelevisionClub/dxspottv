@@ -180,6 +180,8 @@ function createRepeaterMarker(repeater_data) {
     marker.is9cm = repeater_data['is_9cm'];
     marker.is6cm = repeater_data['is_6cm'];
     marker.is3cm = repeater_data['is_3cm'];
+    marker.description = repeater_data['description']
+    marker.website = repeater_data['website']
     repeater_markers.push(marker);
     
     var infoTab = '<div class="repeater_bubble_info">'+
