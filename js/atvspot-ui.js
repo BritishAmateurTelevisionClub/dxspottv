@@ -210,6 +210,8 @@ $(document).ready(function() {
 				}
 				repeater_Desc += "<b>Website:</b>&nbsp;"+'<a href="'+repeater_markers[repeater_index].website+'" target="_blank">'+repeater_markers[repeater_index].website+'</a>';
 				$('#findResults').html(repeater_Desc);
+				map.panTo(repeater_markers[repeater_index].position);
+          		map.setZoom(7);
 			}
 		} else {
 		    user_index = $.inArray(user_search[0], user_markers);
@@ -228,6 +230,8 @@ $(document).ready(function() {
 				"<b>Station Description:</b><br><pre>"+user_markers[user_index].station_desc+"</pre>"+
 				"<b>Website:</b>&nbsp;"+'<a href="'+user_markers[user_index].station_website+'" target="_blank">'+user_markers[user_index].station_website+'</a>';
 			$('#findResults').html(user_Desc);
+			map.panTo(user_markers[user_index].position);
+          	map.setZoom(7);
 		}
 	});
 });
