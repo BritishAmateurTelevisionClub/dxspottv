@@ -154,8 +154,9 @@ border="0" cellpadding="0" cellspacing="0">
 	</select>
 	&nbsp;
 	<select id="spot_mode_select">
-	<option value="analogtv">Analog TV</option>
-	<option value="digitaltv">Digital TV</option>
+	<option value="1">Analog TV</option>
+	<option value="2">Digital TV</option>
+	<option value="3">Beacon</option>
 	</select><br>
 	<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />
 	<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
