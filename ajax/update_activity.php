@@ -11,7 +11,7 @@ if($got_cookies) {
 		while($target_row = mysqli_fetch_array($sessions_result)) { // find a matching session
 			if ($_COOKIE["session_key"]==$target_row["session_id"]) {
 				// Session matches, so is logged in!
-				$update_query="UPDATE sessions set activity=NOW() where session_id = '{$_COOKIE["session_id"]}';";
+				$update_query="UPDATE sessions set activity=NOW() where session_id = '{$_COOKIE["session_key"]}';";
 				mysqli_query($dbc, $update_query) or die(mysqli_error($dbc));
 			}
 		}
