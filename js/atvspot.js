@@ -209,7 +209,7 @@ function createRepeaterMarker(repeater_data) {
     if (typeof marker.alt_tx_freq != 'undefined') {
     	freqTab += '<br><b>TX:&nbsp;'+marker.alt_tx_freq+'MHz</b><br>'+
     		'<b>RX:&nbsp;'+marker.alt_rx_freq+'MHz</b><br>';
-    	if (typeof marker.rx_freq_2 != 'undefined') {
+    	if (typeof marker.alt_rx_freq_2 != 'undefined') {
 			freqTab += '<b>RX:&nbsp;'+marker.alt_rx_freq_2+'MHz</b><br>';
 		}
     }
