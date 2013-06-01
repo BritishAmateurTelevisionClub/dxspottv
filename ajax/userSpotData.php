@@ -23,7 +23,7 @@ if(apc_exists('userSpotDataStatus')) {
 		$output[$i]['website'] = $user_row['website'];
 		// Get User activity Data
 		$session_result = mysqli_query($dbc, "SELECT activity FROM sessions WHERE user_id='{$user_id}' ORDER BY activity DESC;") or die(mysqli_error($dbc));
-		if(mysqli_num_rows($session_result)==1) {
+		if(mysqli_num_rows($session_result)!=0) {
 			$session_row = mysqli_fetch_array($session_result);
 			$output[$i]['seconds_active'] = time() - date_format(date_create($session_row['activity']),'U'); // Used for icons
 		} else { // No session exists
