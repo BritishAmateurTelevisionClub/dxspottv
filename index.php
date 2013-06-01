@@ -242,7 +242,7 @@ if ($auth_error==1) {
 	<div id="helpTab" class="reduce-tab-padding">
 		Download the user guide from here <a href="http://www.dxspot.tv/User_Guide_C.pdf" target="_blank">http://www.dxspot.tv/User_Guide_C.pdf</a><br>
 		<br>
-		Online help is avaiable at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/index.php" target="_blank">www.batc.org.uk/forum/</a><br>
+		Online help is available at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/index.php" target="_blank">www.batc.org.uk/forum/</a><br>
 		<br>
 		Or you can email us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
 
