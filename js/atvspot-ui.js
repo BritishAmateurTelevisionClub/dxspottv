@@ -215,19 +215,21 @@ $(document).ready(function() {
 			}
 		} else {
 		    user_index = $.inArray(user_search[0], user_markers);
-		    if (user_markers[user_index].activity>86400) {
-				activeString = Math.round(user_markers[user_index].activity/86400) + ' days ago.';
-			} else if (user_markers[user_index].activity>3600) {
-				activeString = Math.round(user_markers[user_index].activity/3600) + ' hours ago.';
-			} else if (user_markers[user_index].activity>60) {
-				activeString = Math.round(user_markers[user_index].activity/60) + ' minutes ago.';
-			} else {
-				activeString = '<font color="green">Currently Active.</font>'
-			}
 			user_Desc = "<b>Callsign:</b>&nbsp;"+user_markers[user_index].callsign+"<br>"+
-				"<b>Locator:</b>&nbsp;"+user_markers[user_index].locator+"<br><br>"+
-				"<b>Last Seen:</b>&nbsp;"+activeString+"<br><br>"+
-				"<b>Station Description:</b><br><pre style='white-space: pre-wrap;'>"+user_markers[user_index].station_desc+"</pre>"+
+				"<b>Locator:</b>&nbsp;"+user_markers[user_index].locator+"<br><br>";
+			if(user_markers[user_index].known==1) {
+			    if (user_markers[user_index].activity>86400) {
+					activeString = Math.round(user_markers[user_index].activity/86400) + ' days ago.';
+				} else if (user_markers[user_index].activity>3600) {
+					activeString = Math.round(user_markers[user_index].activity/3600) + ' hours ago.';
+				} else if (user_markers[user_index].activity>60) {
+					activeString = Math.round(user_markers[user_index].activity/60) + ' minutes ago.';
+				} else {
+					activeString = '<font color="green">Currently Active.</font>'
+				}
+			    user_Desc +="<b>Last Seen:</b>&nbsp;"+activeString+"<br><br>";
+			}
+			user_Desc +="<b>Station Description:</b><br><pre style='white-space: pre-wrap;'>"+user_markers[user_index].station_desc+"</pre>"+
 				"<b>Website:</b>&nbsp;"+'<a href="'+user_markers[user_index].station_website+'" target="_blank">'+user_markers[user_index].station_website+'</a>';
 			$('#findResults').html(user_Desc);
 			map.panTo(user_markers[user_index].position);
