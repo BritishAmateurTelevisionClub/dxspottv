@@ -138,7 +138,7 @@ border="0" cellpadding="0" cellspacing="0">
 <table id="spot_table">
 <tr>
 <td id="spot_log_cell">
-	<div id="spot_log_div">
+	<div id="spot_log_div" style="line-height: 0.9em;">
 		<h4>Global Spot Log</h4>
 		<span id="spotLog" class="reduce-font-size">Loading...</span>
 	</div>
