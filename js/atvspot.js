@@ -282,21 +282,25 @@ function createSpotLine(spot_data) {
 			spotLine.setOptions( {
 				strokeColor: "#0404B4" //blue
 			});
+			spotLine.mode = "Digital ATV";
 			break;
 		case "1": // Analog TV
 			spotLine.setOptions( {
 				strokeColor: "#FF0000" //red
 			});
+			spotLine.mode = "Analog ATV";
 			break;
 		case "2": // Digital TV (WB)
 			spotLine.setOptions( {
 				strokeColor: "#0404B4" //blue
 			});
+			spotLine.mode = "Digital ATV";
 			break;
 		case "3": // Beacon
 			spotLine.setOptions( {
 				strokeColor: "#6E6E6E" //grey
 			});
+			spotLine.mode = "NB Beacon";
 			break;
 	}
 	
@@ -315,7 +319,7 @@ function createSpotLine(spot_data) {
 	spotLine.date = parseInt(spot_data['time'].substr(8,2))+"&nbsp;"+months[parseInt(spot_data['time'].substr(5,2))]+"&nbsp;"+spot_data['time'].substr(11,8);	
 	spotLine.distance = Math.round((google.maps.geometry.spherical.computeDistanceBetween(primary_latlon, secondary_latlon)/1000)*10)/10;
 	
-	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+bandFromID(spotLine.band_id)+"&nbsp;"+spotLine.distance+"&nbsp;km<br><i>"+spotLine.comments+"</i>";
+	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+bandFromID(spotLine.band_id)+"&nbsp;"+spotLine.mode+"<br>"+spotLine.distance+"&nbsp;km<br><i>"+spotLine.comments+"</i>";
 	
 	google.maps.event.addListener(spotLine, 'click', function() {
 		infowindow.setContent(infoContent);
