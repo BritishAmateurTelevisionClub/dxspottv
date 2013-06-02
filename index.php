@@ -164,7 +164,7 @@ border="0" cellpadding="0" cellspacing="0">
 	<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 </td></tr></table>
 <?php } else { ?>
-<div id="spot_wide_log_div">
+<div id="spot_wide_log_div" style="line-height: 0.9em;">
 	<h4>Global Spot Log</h4>
 	<span id="spotLog" class="reduce-font-size">Loading...</span>
 </div>
