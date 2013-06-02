@@ -206,7 +206,7 @@ $(document).ready(function() {
 				}
 				repeater_Desc += "<br><br>"+freqDesc+"<br>";
 				if(repeater_markers[repeater_index].description!='') {
-					repeater_Desc += "<b>Repeater Description:</b><br><pre>"+repeater_markers[repeater_index].description+"</pre>";
+					repeater_Desc += "<b>Repeater Description:</b><br><pre style='white-space: pre-wrap;'>"+repeater_markers[repeater_index].description+"</pre>";
 				}
 				repeater_Desc += "<b>Website:</b>&nbsp;"+'<a href="'+repeater_markers[repeater_index].website+'" target="_blank">'+repeater_markers[repeater_index].website+'</a>';
 				$('#findResults').html(repeater_Desc);
@@ -227,7 +227,7 @@ $(document).ready(function() {
 			user_Desc = "<b>Callsign:</b>&nbsp;"+user_markers[user_index].callsign+"<br>"+
 				"<b>Locator:</b>&nbsp;"+user_markers[user_index].locator+"<br><br>"+
 				"<b>Last Seen:</b>&nbsp;"+activeString+"<br><br>"+
-				"<b>Station Description:</b><br><pre>"+user_markers[user_index].station_desc+"</pre>"+
+				"<b>Station Description:</b><br><pre style='white-space: pre-wrap;'>"+user_markers[user_index].station_desc+"</pre>"+
 				"<b>Website:</b>&nbsp;"+'<a href="'+user_markers[user_index].station_website+'" target="_blank">'+user_markers[user_index].station_website+'</a>';
 			$('#findResults').html(user_Desc);
 			map.panTo(user_markers[user_index].position);
