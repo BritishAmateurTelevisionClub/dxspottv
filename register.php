@@ -39,7 +39,8 @@ Please enter the all following information and use the map to set your location<
 	<input type=password name='passwd' id='passwd' class="required" minlength="5" /> (minimum 5 characters)
 <br><br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" />
-<li>Will only be used for administrator contact in case of issues. Will not be publicly disclosed.</li>
+<li>Will not be publicly disclosed. May be used for Administrator contact in case of issues.</li>
+<li>Also may be used for notifications in the future.. <i>Coming Soon(tm)</i>
 <br>
 <br>
 <br>
