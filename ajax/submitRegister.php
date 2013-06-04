@@ -48,7 +48,7 @@ if($got_variables) {
 			die ();
 		} else { // User was unknown previously
 			$insert_statement = $dbc->prepare("UPDATE users SET name=?, callsign=?, password=?, salt=?, locator=?, email=?, lat=?, lon=?, known=? WHERE id=?;");
-			$insert_statement->bind_param('ssssssddd', $name, $callsign, $crypt, $salt, $locator, $email, $lat, $lon, 1, $existing_id);
+			$insert_statement->bind_param('ssssssdddd', $name, $callsign, $crypt, $salt, $locator, $email, $lat, $lon, 1, $existing_id);
 			$insert_statement->execute();
 		}
 	} else {
