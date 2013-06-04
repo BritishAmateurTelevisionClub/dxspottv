@@ -30,26 +30,33 @@ if($got_variables) {
 	$lon = htmlentities($_REQUEST["lon"]);
 	$name = htmlentities($_REQUEST["fname"]);
 	
-	$existing_statement = $dbc->prepare("SELECT id FROM users WHERE callsign=?;");
+	$existing_statement = $dbc->prepare("SELECT id,known FROM users WHERE callsign=?;");
 	$existing_statement->bind_param('s', $callsign);
 	$existing_statement->execute();
-	$existing_statement->bind_result($sessions_result);
+	$existing_statement->bind_result($existing_id, $existing_result);
 	$existing_statement->store_result();
 	
-	if($existing_statement->num_rows>0) { // Existing User!
-		$output['successful'] = 0;
-		$output['error'] = "3";
-		print json_encode($output);
-		die ();
-	}
-	$existing_statement->close();
-
 	$salt = sha256_salt();
 	$crypt = crypt($passwd, $salt);
 	
-	$insert_statement = $dbc->prepare("INSERT into users (name, callsign, password, salt, locator, email, lat, lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
-	$insert_statement->bind_param('ssssssdd', $name, $callsign, $crypt, $salt, $locator, $email, $lat, $lon);
-	$insert_statement->execute();
+	if($existing_statement->num_rows>0) { // Existing User!
+		$existing_statement->fetch();
+		if($existing_result==1) { //Existing real user
+			$output['successful'] = 0;
+			$output['error'] = "3";
+			print json_encode($output);
+			die ();
+		} else { // User was unknown previously
+			$insert_statement = $dbc->prepare("UPDATE users SET name=?, callsign=?, password=?, salt=?, locator=?, email=?, lat=?, lon=?, known=? WHERE id=?;");
+			$insert_statement->bind_param('ssssssddd', $name, $callsign, $crypt, $salt, $locator, $email, $lat, $lon, 1, $existing_id);
+			$insert_statement->execute();
+		}
+	} else {
+		$insert_statement = $dbc->prepare("INSERT into users (name, callsign, password, salt, locator, email, lat, lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+		$insert_statement->bind_param('ssssssdd', $name, $callsign, $crypt, $salt, $locator, $email, $lat, $lon);
+		$insert_statement->execute();
+	}
+	$existing_statement->close();
 	
 	if($insert_statement->affected_rows==1) {
 		$output['successful'] = 1;
