@@ -56,20 +56,29 @@ function initialize() {
 function createUserMarker(user_data) {
 	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
 	
-	if(user_data['known']==0) {
-		var toBeIcon = userUnknownIcon;
-	} else if(user_data['seconds_active']>25) { // 25 seconds, should check in every 5 seconds
-		var toBeIcon = userAwayIcon;
-	} else {
-		var toBeIcon = userActiveIcon;
-	}
 	var marker = new google.maps.Marker({
         position: lat_lon,
-		icon: toBeIcon,
         map: map,
-        title: user_data['callsign'],
-        zIndex: 3
+        title: user_data['callsign']
     });
+	
+	if(user_data['known']==0) {
+		marker.setOptions( {
+			icon: userUnknownIcon,
+			zIndex: 10
+		});
+	} else if(user_data['seconds_active']>25) { // 25 seconds, should check in every 5 seconds
+		marker.setOptions( {
+			icon: userAwayIcon,
+			zIndex: 11
+		});
+	} else {
+		marker.setOptions( {
+			icon: userActiveIcon,
+			zIndex: 12
+		});
+	}
+	
     marker.user_id = user_data['id']
     marker.callsign = user_data['callsign'];
     marker.locator = user_data['locator'];
@@ -132,12 +141,22 @@ function createUserMarker(user_data) {
 
 function updateUserMarker(user_data, user_index) {
 	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
+	
 	if(user_data['known']==0) {
-		user_markers[user_index].setIcon(userUnknownIcon);
+		user_markers[user_index].setOptions( {
+			icon: userUnknownIcon,
+			zIndex: 10
+		});
 	} else if(user_data['seconds_active']>25) { // 25 seconds, should check in every 5 seconds
-		user_markers[user_index].setIcon(userAwayIcon);
+		user_markers[user_index].setOptions( {
+			icon: userAwayIcon,
+			zIndex: 11
+		});
 	} else {
-		user_markers[user_index].setIcon(userActiveIcon);
+		user_markers[user_index].setOptions( {
+			icon: userActiveIcon,
+			zIndex: 12
+		});
 	}
 
 	user_markers[user_index].setPosition(lat_lon);
@@ -146,18 +165,25 @@ function updateUserMarker(user_data, user_index) {
 
 function createRepeaterMarker(repeater_data) {
 	var latlon = new google.maps.LatLng(repeater_data['latitude'], repeater_data['longitude']);
-	if(repeater_data['active']==1) {
-		var toBeIcon = repeaterIcon;
-	} else {
-		var toBeIcon = repeaterOfflineIcon;
-	}
+	
 	var marker = new google.maps.Marker({
         position: latlon,
-		icon: toBeIcon,
         map: map,
-        title: repeater_data['callsign'],
-        zIndex: 2
+        title: repeater_data['callsign']
 	});
+	
+	if(repeater_data['active']==1) {
+		marker.setOptions( {
+			icon: repeaterIcon,
+			zIndex: 9
+		});
+	} else {
+		marker.setOptions( {
+			icon: repeaterOfflineIcon,
+			zIndex: 8
+		});
+	}
+	
 	marker.repeater_id = repeater_data['id'];
     marker.callsign = repeater_data['callsign'];
     marker.qth_r = repeater_data['qth_r'];
@@ -280,25 +306,29 @@ function createSpotLine(spot_data) {
 	switch(spot_data['mode_id']) {
 		case "0": // Not defined - assume Digital
 			spotLine.setOptions( {
-				strokeColor: "#0404B4" //blue
+				strokeColor: "#0404B4", //blue
+				zIndex: 5
 			});
 			spotLine.mode = "Digital ATV";
 			break;
 		case "1": // Analog TV
 			spotLine.setOptions( {
-				strokeColor: "#FF0000" //red
+				strokeColor: "#FF0000", //red
+				zIndex: 4
 			});
 			spotLine.mode = "Analog ATV";
 			break;
 		case "2": // Digital TV (WB)
 			spotLine.setOptions( {
-				strokeColor: "#0404B4" //blue
+				strokeColor: "#0404B4", //blue
+				zIndex: 5
 			});
 			spotLine.mode = "Digital ATV";
 			break;
 		case "3": // Beacon
 			spotLine.setOptions( {
-				strokeColor: "#6E6E6E" //grey
+				strokeColor: "#6E6E6E", //grey
+				zIndex: 3
 			});
 			spotLine.mode = "NB Beacon";
 			break;
