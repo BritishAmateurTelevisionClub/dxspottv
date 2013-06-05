@@ -156,7 +156,9 @@ function getUserVars() {
 			$('#station_website_edit').val(user_website);
 			$('#station_lat_edit').val(user_lat);
 			$('#station_lon_edit').val(user_lon);
-			map.panTo(new google.maps.LatLng(user_lat, user_lon));
+			if(logged_in) {
+				map.panTo(new google.maps.LatLng(user_lat, user_lon));
+			}
 		}
 	});
 }
