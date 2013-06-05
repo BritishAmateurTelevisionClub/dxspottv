@@ -26,10 +26,11 @@ function initialize() {
 	google.maps.visualRefresh = true;
 	var mapOptions = {
 		zoom: 6,
-		center: new google.maps.LatLng(52.5, -1.25),
 		mapTypeId: google.maps.MapTypeId.TERRAIN,
 		streetViewControl: false
 	};
+	
+	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 	
 	if (typeof user_lat != 'undefined') {
 		map.setOptions({ center: new google.maps.LatLng(user_lat, user_lon) });
@@ -37,7 +38,6 @@ function initialize() {
 		map.setOptions({ center: new google.maps.LatLng(52.5, -1.25) });
 	}
 
-	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 	infowindow = new google.maps.InfoWindow( {
 			size: new google.maps.Size(150,50)
 	});
