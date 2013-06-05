@@ -329,16 +329,16 @@ function plotElevation(results, status) {
   chart.draw(data, {
     height: 150,
     legend: 'none',
-    pointSize: 2,
+    pointSize: 1,
     hAxis: {gridlines: {color: '#333'}, title: "km"},
     series: {
     	1:{
     		color: 'black',
-    		areaOpacity: 1.0
+    		pointSize: 1
     	},
     	2:{
     		color: 'green',
-    		areaOpacity: 1.0
+    		pointSize: 2
     	}
     }
   });
