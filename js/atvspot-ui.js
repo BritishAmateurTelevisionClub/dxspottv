@@ -330,7 +330,7 @@ function plotElevation(results, status) {
     height: 150,
     legend: 'none',
     pointSize: 1,
-    hAxis: {gridlines: {color: '#333'}, title: "km"},
+    hAxis: {gridlines: {color: '#333'}},
     series: {
     	1:{
     		color: 'black',
