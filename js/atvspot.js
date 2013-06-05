@@ -30,6 +30,12 @@ function initialize() {
 		mapTypeId: google.maps.MapTypeId.TERRAIN,
 		streetViewControl: false
 	};
+	
+	if (typeof user_lat != 'undefined') {
+		map.setOptions({ center: new google.maps.LatLng(user_lat, user_lon) });
+	} else {
+		map.setOptions({ center: new google.maps.LatLng(52.5, -1.25) });
+	}
 
 	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 	infowindow = new google.maps.InfoWindow( {

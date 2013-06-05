@@ -67,9 +67,6 @@ if (isset($_COOKIE["auth_error"])) {
 <?php } // End of callsign as nick for irc
 if($logged_in) { ?>
 	var logged_in = true;
-	var user_lat;
-	var user_lon;
-	var user_desc;
 <?php } else { ?>
 	var logged_in = false;
 <?php } ?>
