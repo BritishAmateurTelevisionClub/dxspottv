@@ -241,7 +241,7 @@ $(document).ready(function() {
 // Elevation Profile Dialog
 var profile_distance;
 $(document).ready(function() {
-	$( "#elevationDialog" ).dialog({ autoOpen: false, width: 900, height: 250 });
+	$( "#elevationDialog" ).dialog({ autoOpen: false, width: 900, height: 260 });
 	$( "#elevationDialog" ).on( "dialogclose", function( event, ui ) {
 		profile_path.setMap(null);
 	});
