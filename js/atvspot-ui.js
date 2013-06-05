@@ -322,7 +322,7 @@ function plotElevation(results, status) {
   	}
   	deviation = max_deviation + (Math.sqrt(earthRadiusSquared - Math.pow(distance,2)) - earthRadius);
   	pathAlt = startAlt + ((i/results.length)*(endAlt-startAlt));
-    data.addRow([Math.round(rdistance), Math.round(elevations[i].elevation+deviation), Math.round(pathAlt)]);
+    data.addRow([Math.round(rdistance*10)/10, Math.round(elevations[i].elevation+deviation), Math.round(pathAlt)]);
   }
   // Draw the chart using the data within its DIV.
   document.getElementById('elevationChart').style.display = 'block';
