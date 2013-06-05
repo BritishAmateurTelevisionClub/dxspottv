@@ -260,7 +260,7 @@ function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRe
 function drawPath(user_station, remote_station) {
 
   // Create a new chart in the elevation_chart DIV.
-  chart = new google.visualization.AreaChart(document.getElementById('elevationChart'));
+  chart = new google.visualization.LineChart(document.getElementById('elevationChart'));
 
   var path = [user_station, remote_station];
 
