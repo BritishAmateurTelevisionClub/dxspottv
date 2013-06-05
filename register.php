@@ -40,7 +40,7 @@ Please enter the all following information and use the map to set your location<
 <br><br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" />
 <li>Will not be publicly disclosed. May be used for Administrator contact in case of issues.</li>
-<li>Also may be used for notifications in the future.. <i>Coming Soon(tm)</i>
+<li>Also may be used for configurable notifications in the future.. <i>Coming Soon(tm)</i>
 <br>
 <br>
 <br>
