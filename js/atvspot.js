@@ -68,19 +68,19 @@ function createUserMarker(user_data) {
         title: user_data['callsign']
     });
 	
-	if(user_data['known']==0) {
+	if(user_data['seconds_active']>18) { // 18 seconds, should check in every 5 seconds
 		marker.setOptions( {
-			icon: userUnknownIcon,
-			zIndex: 10
-		});
-	} else if(user_data['seconds_active']>25) { // 25 seconds, should check in every 5 seconds
-		marker.setOptions( {
-			icon: userAwayIcon,
+			icon: userUnknownIcon, // white icon, if shown (spotted)
 			zIndex: 11
+		});
+	} else if(user_data['radio_active']==1) {
+		marker.setOptions( {
+			icon: userActiveIcon, // green
+			zIndex: 13
 		});
 	} else {
 		marker.setOptions( {
-			icon: userActiveIcon,
+			icon: userAwayIcon, // yellow
 			zIndex: 12
 		});
 	}
@@ -148,23 +148,22 @@ function createUserMarker(user_data) {
 function updateUserMarker(user_data, user_index) {
 	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
 	
-	if(user_data['known']==0) {
+	if(user_data['seconds_active']>18) { // 18 seconds, should check in every 5 seconds
 		user_markers[user_index].setOptions( {
-			icon: userUnknownIcon,
-			zIndex: 10
-		});
-	} else if(user_data['seconds_active']>25) { // 25 seconds, should check in every 5 seconds
-		user_markers[user_index].setOptions( {
-			icon: userAwayIcon,
+			icon: userUnknownIcon, // white icon, if shown (spotted)
 			zIndex: 11
+		});
+	} else if(user_data['radio_active']==1) {
+		user_markers[user_index].setOptions( {
+			icon: userActiveIcon, // green
+			zIndex: 13
 		});
 	} else {
 		user_markers[user_index].setOptions( {
-			icon: userActiveIcon,
+			icon: userAwayIcon, // yellow
 			zIndex: 12
 		});
 	}
-
 	user_markers[user_index].setPosition(lat_lon);
     user_markers[user_index].activity = user_data['seconds_active'];
 }
