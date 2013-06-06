@@ -73,7 +73,7 @@ if($logged_in) { ?>
 </script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script src="/js/jquery-plus-ui.js"></script>
-<script src="/js/atvspot-combined.min.js"></script>
+<script src="/js/atvspot-combined.js"></script>
 <script src="/js/infobubble.min.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
