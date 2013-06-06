@@ -151,7 +151,7 @@ function doChangeRadio(status) {
 		success: function( data ) {
 			//console.log(data);
 			$('#changeRadioStatus').html("<font color=green>Changed.</font>");
-    		$('#changeRadioStatus').fadeOut(1500);
+    		$('#changeRadioStatus').fadeOut(500);
 		}
 	});
 }
