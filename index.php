@@ -208,7 +208,6 @@ if ($auth_error==1) {
 	</ul>
 	<div id="webIRC" class="reduce-tab-padding">
 		<?php if($logged_in) { ?>
-			<iframe id='irc_frame' frameborder="0"></iframe><br>
 		<?php } else { ?>
 			<div id='n_irc_content'>
 				<h2>Welcome to DXSpot.TV</h2>
