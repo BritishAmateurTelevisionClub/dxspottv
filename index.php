@@ -221,7 +221,7 @@ if ($auth_error==1) {
 		?>
 	<div id="editStation" class="reduce-tab-padding">
 		<h4>My Station Description:</h4>
-		<b>I am currently active on ATV:</b>&nbsp;<input type="checkbox" id="radioBox" /><span id="changeRadioStatus"></span><br>
+		<b>I am currently active on ATV:</b>&nbsp;<input type="checkbox" id="radioBox" value="false" /><span id="changeRadioStatus"></span><br>
 		<textarea rows="4" cols="50" id="station_description_edit"></textarea><br>
 		No HTML permitted.<br><br>
 		<b>Website:</b><br>
