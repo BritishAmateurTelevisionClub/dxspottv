@@ -108,6 +108,7 @@ $(document).ready(function() {
     	}
     	doChangeRadio(radio_status);
 	});
+});
 
 // Station Description Edit Function
 var pos_marker;
