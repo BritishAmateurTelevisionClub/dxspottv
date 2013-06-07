@@ -266,6 +266,7 @@ if ($auth_error==1) {
 <div style="margin-left: 2px; line-height: 1.5em;">
       <b>From:</b>&nbsp;<span id='spanChartFrom'></span><br>
       <b>To:</b>&nbsp;<span id='spanChartTo'></span><br>
+      <b>Include Earth Curvature:</b>&nbsp;<input type="checkbox" id="curvatureBox" /><br>
 </div>
 <div id="elevationChart">
 </div>

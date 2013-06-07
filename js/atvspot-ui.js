@@ -255,20 +255,25 @@ $(document).ready(function() {
 
 // Elevation Profile Dialog
 var profile_distance;
+var profile_user_latlng;
+var profile_remote_latlng;
 $(document).ready(function() {
-	$( "#elevationDialog" ).dialog({ autoOpen: false, width: 900, height: 260 });
+	$( "#elevationDialog" ).dialog({ autoOpen: false, width: 900, height: 300 });
 	$( "#elevationDialog" ).on( "dialogclose", function( event, ui ) {
 		profile_path.setMap(null);
 	});
+	$('#curvatureBox').change(function() {
+		drawPath(profile_user_latlng, profile_remote_latlng);
+	}
 });
 
 function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRemote, lonRemote) {
 	$('#spanChartFrom').html(callsignUser+" ("+latUser+", "+lonUser+")");
 	$('#spanChartTo').html(callsignRemote+" ("+latRemote+", "+lonRemote+")");
-	latlng_user = new google.maps.LatLng(latUser, lonUser);
-	latlng_remote = new google.maps.LatLng(latRemote, lonRemote);
-	drawPath(latlng_user, latlng_remote);
-	profile_distance = google.maps.geometry.spherical.computeDistanceBetween(latlng_user, latlng_remote);
+	profile_user_latlng = new google.maps.LatLng(latUser, lonUser);
+	profile_remote_latlng = new google.maps.LatLng(latRemote, lonRemote);
+	profile_distance = google.maps.geometry.spherical.computeDistanceBetween(profile_user_latlng, profile_remote_latlng);
+	drawPath(profile_user_latlng, profile_remote_latlng);
 	$( "#elevationDialog" ).dialog( "open" );
 }
 
@@ -335,9 +340,13 @@ function plotElevation(results, status) {
   	} else {
   		distance = (i-(results.length/2))*(profile_distance/numSamples);
   	}
-  	deviation = max_deviation + (Math.sqrt(earthRadiusSquared - Math.pow(distance,2)) - earthRadius);
   	pathAlt = startAlt + ((i/results.length)*(endAlt-startAlt));
-    data.addRow([Math.round(rdistance*10)/10, Math.round(elevations[i].elevation+deviation), Math.round(pathAlt)]);
+  	if ($('#curvatureBox').is(":checked")) {
+  		deviation = max_deviation + (Math.sqrt(earthRadiusSquared - Math.pow(distance,2)) - earthRadius);
+    	data.addRow([Math.round(rdistance*10)/10, Math.round(elevations[i].elevation+deviation), Math.round(pathAlt)]);
+    } else {
+    	data.addRow([Math.round(rdistance*10)/10, Math.round(elevations[i].elevation), Math.round(pathAlt)]);
+    }
   }
   // Draw the chart using the data within its DIV.
   document.getElementById('elevationChart').style.display = 'block';
