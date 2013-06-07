@@ -141,6 +141,22 @@ function doChangeDesc(desc, website, lat, lon) {
 	});
 }
 
+function doChangeRadio(status) {
+	$.ajax({
+		url: "/ajax/changeUserRadio.php",
+		type: "POST",
+		data: {
+			radio_active: status
+		},
+		success: function( data ) {
+			//console.log(data);
+			$('#changeRadioStatus').html("<font color=green>Changed.</font>");
+    		$('#changeRadioStatus').fadeOut(500);
+		}
+	});
+}
+
+
 function getUserVars() {
 	$.ajax({
 		url: "/ajax/getUserInfo.php",
@@ -152,10 +168,16 @@ function getUserVars() {
 			user_lon = userData['lon'];
 			user_desc = userData['description'];
 			user_website = userData['website'];
+			user_radioactive = userData['radio_active'];
 			$('#station_description_edit').val(user_desc);
 			$('#station_website_edit').val(user_website);
 			$('#station_lat_edit').val(user_lat);
 			$('#station_lon_edit').val(user_lon);
+			if(user_radioactive==1) {
+				$('#radioBox').prop('checked',true);
+			} else {
+				$('#radioBox').prop('checked',false);
+			}
 		}
 	});
 }
