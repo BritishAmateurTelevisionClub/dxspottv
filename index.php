@@ -117,12 +117,12 @@ border="0" cellpadding="0" cellspacing="0">
 <strong>Band:</strong>&nbsp;
 <select id="band_select">
   <option value="all">All Bands</option>
-  <option value="70cm">70cm</option>
-  <option value="23cm">23cm</option>
-  <option value="13cm">13cm</option>
-  <option value="9cm">9cm</option>
-  <option value="6cm">6cm</option>
-  <option value="3cm">3cm</option>
+  <option value="70cm" style="background-color: #FF0000; color: white;">70cm</option>
+  <option value="23cm" style="background-color: #FFA500; color: white;">23cm</option>
+  <option value="13cm" style="background-color: #0404B4; color: white;">13cm</option>
+  <option value="9cm" style="background-color: #0404B4; color: white;">9cm</option>
+  <option value="6cm" style="background-color: #0404B4; color: white;">6cm</option>
+  <option value="3cm" style="background-color: #0404B4; color: white;">3cm</option>
 </select>
 
 <td><p class="mapSelecter" align="center">
