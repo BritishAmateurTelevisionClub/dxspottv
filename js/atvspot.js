@@ -392,15 +392,23 @@ function parseRepeaters(JSONinput) {
 	}
 }
 
-function parseUsers(JSONinput) {
+function loadUsers(JSONinput) {
+	var u_id = new Array();
+	for(u_id in JSONinput){
+		var user = JSONinput[u_id];
+		if(user.length!=0) {
+			createUserMarker(user);
+		}
+	}
+}
+
+function updateUsers(JSONinput) {
 	var u_id = new Array();
 	for(u_id in JSONinput){
 		var user = JSONinput[u_id];
 		if(user.length!=0) {
 			var marker_search = $.grep(user_markers, function(e){ return e.callsign == user['callsign']; });
-			if(marker_search.length==0) {
-				createUserMarker(user);
-			} else {
+			if(marker_search.length==1) {
 			    user_index = $.inArray(marker_search[0], user_markers);
 				updateUserMarker(user, user_index);
 			}

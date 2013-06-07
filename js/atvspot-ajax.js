@@ -24,10 +24,10 @@ function doLogin() {
 
 function getMapData() {
 	$.ajax({
-		url: "/ajax/mapData.php",
+		url: "http://api.dxspot.tv/mapData",
 		success: function( data ) {
 			myJSONObject = eval('(' + data + ')');
-    		parseUsers(myJSONObject['users']);
+    		loadUsers(myJSONObject['users']);
     		parseRepeaters(myJSONObject['repeaters']);
     		parseSpots(myJSONObject['spots']);
     		createGlobalSpotLog(myJSONObject['spots']);
@@ -48,7 +48,7 @@ function getUserSpotData() {
 		url: "/ajax/userSpotData.php",
 		success: function( data ) {
 			myJSONObject = eval('(' + data + ')');
-    		parseUsers(myJSONObject['users']);
+    		updateUsers(myJSONObject['users']);
     		parseSpots(myJSONObject['spots']);
     		createGlobalSpotLog(myJSONObject['spots']);
     		
