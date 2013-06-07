@@ -96,6 +96,21 @@ $(document).ready(function() {
 	$( "#tabs" ).tabs();
 });
 
+// Radio active status
+$(document).ready(function() {
+	$('#radioBox').prop('checked', false);
+	$('#radioBox').change(function() {
+		$('#changeRadioStatus').show();
+    	$('#changeRadioStatus').html("<font color=green>Changing..</font>");
+    	if($('#radioBox').val()) {
+    		radio_status = 1;
+    	} else {
+    		radio_status = 0;
+    	}
+    	doChangeRadio(radio_status);
+	});
+});
+
 // Station Description Edit Function
 var pos_marker;
 $(document).ready(function() {

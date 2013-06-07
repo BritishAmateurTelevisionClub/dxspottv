@@ -9,7 +9,7 @@ if(apc_exists('mapDataStatus')) {
 	$full_output = array();
 	$output = array();
 	$i=1;
-	$user_result = mysqli_query($dbc, "SELECT id,callsign,name,lat,lon,locator,known,station_desc,website FROM users;") or die(mysqli_error($dbc));
+	$user_result = mysqli_query($dbc, "SELECT id,callsign,name,lat,lon,locator,known,station_desc,website,radio_active FROM users;") or die(mysqli_error($dbc));
 	while($user_row = mysqli_fetch_array($user_result))
 	{
 		$user_id = $user_row['id'];
@@ -21,6 +21,7 @@ if(apc_exists('mapDataStatus')) {
 		$output[$i]['locator'] = $user_row['locator'];
 		$output[$i]['desc'] = $user_row['station_desc'];
 		$output[$i]['website'] = $user_row['website'];
+		$output[$i]['radio_active'] = $user_row['radio_active'];
 		// Get User activity Data
 		$session_result = mysqli_query($dbc, "SELECT activity FROM sessions WHERE user_id='{$user_id}' ORDER BY activity DESC;") or die(mysqli_error($dbc));
 		if(mysqli_num_rows($session_result)!=0) {

@@ -18,6 +18,13 @@ $crypt = crypt($passwd, $salt);
 
 if($crypt==$target) {
 	$session_key = sha256_salt();
+	
+	// Ugly hack, set radio_active to false on login
+	$radio_active = 0;
+	$update_statement = $dbc->prepare("UPDATE users set radio_active=? WHERE id=?;");
+	$update_statement->bind_param('ii', $radio_active, $user_id);
+	$update_statement->execute();
+	$update_statement->close();
 
 	$insert_query="INSERT into sessions (session_id, user_id) VALUES ('{$session_key}', '{$user_id}');";
 	$ret = mysqli_query($dbc, $insert_query) or die(mysqli_error($dbc));

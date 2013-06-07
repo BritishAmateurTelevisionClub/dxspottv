@@ -221,13 +221,13 @@ if ($auth_error==1) {
 		?>
 	<div id="editStation" class="reduce-tab-padding">
 		<h4>My Station Description:</h4>
+		<b>I am currently active on ATV:</b>&nbsp;<input type="checkbox" id="radioBox" /><span id="changeRadioStatus"></span><br>
 		<textarea rows="4" cols="50" id="station_description_edit"></textarea><br>
 		No HTML permitted.<br><br>
 		<b>Website:</b><br>
 		http://<input type="text" id="station_website_edit"></input>
 		<br><br>
-		<b>Location</b><br>
-		<button class="reduce-font-size" id="setposition_button">Set With Map</button>&nbsp;<span id="changePosStatus"></span><br>
+		<b>Location</b><button class="reduce-font-size" id="setposition_button">Set With Map</button>&nbsp;<span id="changePosStatus"></span><br>
 		Latitude: <input type="text" id="station_lat_edit"></input><br>
 		Longitude: <input type="text" id="station_lon_edit"></input><br>
 		<br>
