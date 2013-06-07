@@ -264,7 +264,7 @@ $(document).ready(function() {
 	});
 	$('#curvatureBox').change(function() {
 		drawPath(profile_user_latlng, profile_remote_latlng);
-	}
+	});
 });
 
 function elevation_profile(callsignUser, latUser, lonUser, callsignRemote, latRemote, lonRemote) {
