@@ -60,7 +60,7 @@ function initialize() {
 }
 
 function createUserMarker(user_data) {
-	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
+	var lat_lon = new google.maps.LatLng(user_data['lat'], user_data['lon']);
 	
 	var marker = new google.maps.Marker({
         position: lat_lon,
@@ -90,7 +90,7 @@ function createUserMarker(user_data) {
     marker.locator = user_data['locator'];
     marker.activity = user_data['seconds_active'];
     marker.known = user_data['known'];
-    marker.station_desc = user_data['desc'];
+    marker.station_desc = user_data['station_desc'];
     if(user_data['website']!='') {
     	marker.station_website = "http://"+user_data['website'];
     } else {
@@ -146,7 +146,7 @@ function createUserMarker(user_data) {
 }
 
 function updateUserMarker(user_data, user_index) {
-	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
+	var lat_lon = new google.maps.LatLng(user_data['lat'], user_data['lon']);
 	
 	if(user_data['seconds_active']>18) { // 18 seconds, should check in every 5 seconds
 		user_markers[user_index].setOptions( {
@@ -169,7 +169,7 @@ function updateUserMarker(user_data, user_index) {
 }
 
 function createRepeaterMarker(repeater_data) {
-	var latlon = new google.maps.LatLng(repeater_data['latitude'], repeater_data['longitude']);
+	var latlon = new google.maps.LatLng(repeater_data['lat'], repeater_data['lon']);
 	
 	var marker = new google.maps.Marker({
         position: latlon,
