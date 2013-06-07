@@ -64,22 +64,22 @@ function setBandChoice(bandChoice) {
 function bandFromID(bandID) {
     switch(bandID)
 	{
-	case "1":
+	case 1:
 		return "70cm";
 		break;
-	case "2":
+	case 2:
 		return "23cm";
 		break;
-	case "3":
+	case 3:
 		return "13cm";
 		break;
-	case "4":
+	case 4:
 		return "3cm";
 		break;
-	case "5":
+	case 5:
 		return "9cm";
 		break;
-	case "6":
+	case 6:
 		return "6cm";
 		break;
 	default:
