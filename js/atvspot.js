@@ -347,7 +347,8 @@ function createSpotLine(spot_data) {
 			break;
 		case "3": // Beacon
 			spotLine.setOptions( {
-				zIndex: 3
+				zIndex: 3,
+				strokeColor: "#6E6E6E" // grey line
 			});
 			spotLine.mode = "NB Beacon";
 			break;
