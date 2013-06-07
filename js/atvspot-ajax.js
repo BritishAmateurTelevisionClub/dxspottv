@@ -26,11 +26,10 @@ function getMapData() {
 	$.ajax({
 		url: "http://api.dxspot.tv/mapData",
 		success: function( data ) {
-			myJSONObject = eval('(' + data + ')');
-    		loadUsers(myJSONObject['users']);
-    		parseRepeaters(myJSONObject['repeaters']);
-    		parseSpots(myJSONObject['spots']);
-    		createGlobalSpotLog(myJSONObject['spots']);
+    		loadUsers(data['users']);
+    		parseRepeaters(data['repeaters']);
+    		parseSpots(data['spots']);
+    		createGlobalSpotLog(data['spots']);
     		
     		setTimeSpan($('#time_select').val());
 			setBandChoice($('#band_select').val());
