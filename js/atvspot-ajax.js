@@ -111,13 +111,39 @@ function submitSpot() {
 		},
 		success: function( data ) {
 			//console.log(data);
-			$('#submitStatus').html("<font color=green>Submitted.</font>"); // Clear status
-			$('#submitStatus').show();
-			$('#submitStatus').fadeOut(1500);
-			// Now clear all the boxes
-			$('#remote_callsign').val("");
-			$('#remote_loc').val("");
-			$('#spot_comments').val("");
+			myJSONObject = eval('(' + data + ')');
+			if(myJSONObject['success']=="1") {
+				$('#submitStatus').html("<font color=green>Submitted.</font>");
+				$('#submitStatus').show();
+				$('#submitStatus').fadeOut(1500);
+				// Now clear all the boxes
+				$('#remote_callsign').val("");
+				$('#remote_loc').val("");
+				$('#spot_comments').val("");
+			} else { // There was an error
+				switch(myJSONObject['error']) {
+					case "1": // Data Missing
+						$('#submitStatus').html("<font color=red>Error: Data Missing.</font>");
+						$('#submitStatus').show();
+						$('#submitStatus').fadeOut(1500);
+						break;
+					case "2": // Session not found
+						$('#submitStatus').html("<font color=red>Error: Session not found.</font>");
+						$('#submitStatus').show();
+						$('#submitStatus').fadeOut(1500);
+						break;
+					case "3": // Spotted yourself
+						$('#submitStatus').html("<font color=red>Error: Can't spot yourself.</font>");
+						$('#submitStatus').show();
+						$('#submitStatus').fadeOut(1500);
+						break;
+					default:
+						$('#submitStatus').html("<font color=red>Unknown Error</font>");
+						$('#submitStatus').show();
+						$('#submitStatus').fadeOut(1500);
+						break;
+				}
+			}
 		}
 	});
 }
