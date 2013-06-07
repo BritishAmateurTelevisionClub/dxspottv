@@ -44,12 +44,11 @@ function getMapData() {
 
 function getUserSpotData() {
 	$.ajax({
-		url: "/ajax/userSpotData.php",
+		url: "http://api.dxspot.tv/userSpotRefresh",
 		success: function( data ) {
-			myJSONObject = eval('(' + data + ')');
-    		updateUsers(myJSONObject['users']);
-    		parseSpots(myJSONObject['spots']);
-    		createGlobalSpotLog(myJSONObject['spots']);
+    		updateUsers(data['users']);
+    		parseSpots(data['spots']);
+    		createGlobalSpotLog(data['spots']);
     		
     		setTimeSpan($('#time_select').val());
 			setBandChoice($('#band_select').val());
