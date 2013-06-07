@@ -142,12 +142,12 @@ border="0" cellpadding="0" cellspacing="0">
 </td><td id="spot_form_cell">
 	<b>New Spot</b><br>
 	<select id="spot_band_select">
-	<option value=1 style="background-color: #FF0000; color: white;">70cm</option>
-	<option value=2 style="background-color: #FFA500; color: white;">23cm</option>
-	<option value=3 style="background-color: #0404B4; color: white;">13cm</option>
-	<option value=5 style="background-color: #0404B4; color: white;">9cm</option>
-	<option value=6 style="background-color: #0404B4; color: white;">6cm</option>
-	<option value=4 style="background-color: #0404B4; color: white;">3cm</option>
+	<option value=1>70cm</option>
+	<option value=2>23cm</option>
+	<option value=3>13cm</option>
+	<option value=5>9cm</option>
+	<option value=6>6cm</option>
+	<option value=4>3cm</option>
 	</select>
 	&nbsp;
 	<select id="spot_mode_select">
