@@ -30,8 +30,6 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 				$r_userid = $check_existing_user_row['id'];
 				$add_spot_query = "INSERT into spots (mode_id, band_id, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$band_id}', '{$user_id}', '{$r_userid}', '{$comments}');";
 				mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
-				// Add activity for remote callsign
-				updateRemoteUserActivity($user_id);
 			
 			} else if(mysqli_num_rows ($check_existing_repeater)!=0) { // Is a repeater
 			
@@ -51,8 +49,6 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 				$r_userid = $check_existing_user_row['id'];
 				$add_spot_query = "INSERT into spots (mode_id, band_id, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$band_id}', '{$user_id}', '{$r_userid}', '{$comments}');";
 				mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
-				// Add activity for remote callsign
-				updateRemoteUserActivity($user_id);
 			}
 			print 'Spot Added!';
 		}
@@ -60,13 +56,5 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 }
 } else { // Not got cookies or variables
 print 'Access Denied.';
-}
-function updateRemoteUserActivity($user_id) {
-	$existing_session_result = mysqli_query($dbc, "SELECT user_id from sessions WHERE user_id='{$user_id}';") or die(mysqli_error($dbc));
-	if(mysqli_num_rows ($existing_session_result)==0) { // No session exists
-		mysqli_query($dbc, "INSERT into sessions (user_id) VALUES ('{$user_id}');") or die(mysqli_error($dbc));
-	} else { // Session exists, update timestamp
-		mysqli_query($dbc, "UPDATE sessions SET activity=NOW() WHERE user_id='{$user_id}';") or die(mysqli_error($dbc));
-	}
 }
 ?>
