@@ -150,6 +150,7 @@ function createGlobalSpotLog(spotLog) {
 	if(spotLog.length!=0) {
 	    var spot = new Array();
 	    for(s_id in spotLog){
+	    	if(s_id=="last") break;
 		    var spot = spotLog[s_id];
 		    var primary_search = $.grep(user_markers, function(e){
 			    return e.user_id == spot.primary_id;
