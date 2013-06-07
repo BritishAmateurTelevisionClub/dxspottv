@@ -102,7 +102,7 @@ $(document).ready(function() {
 	$('#radioBox').change(function() {
 		$('#changeRadioStatus').show();
     	$('#changeRadioStatus').html("<font color=green>Changing..</font>");
-    	if($('#radioBox').val()) {
+    	if ($('#radioBox').is(":checked")) {
     		radio_status = 1;
     	} else {
     		radio_status = 0;
