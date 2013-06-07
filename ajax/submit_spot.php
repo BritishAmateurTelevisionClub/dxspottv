@@ -28,6 +28,9 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 		
 				$check_existing_user_row = mysqli_fetch_array($check_existing_user);
 				$r_userid = $check_existing_user_row['id'];
+				if($r_userid == $user_id) {
+					die("Can't spot yourself!");
+				}
 				$add_spot_query = "INSERT into spots (mode_id, band_id, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$band_id}', '{$user_id}', '{$r_userid}', '{$comments}');";
 				mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
 			
