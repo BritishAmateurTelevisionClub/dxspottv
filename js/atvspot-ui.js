@@ -319,7 +319,11 @@ function plotElevation(results, status) {
     opacity: 0.4,
     map: map
   }
-  profile_path = new google.maps.Polyline(pathOptions);
+  if(profile_path) {
+        profile_path.setOptions(pathOptions);
+	} else {
+  		profile_path = new google.maps.Polyline(pathOptions);
+  	}
 
   // Extract the data from which to populate the chart.
   // Because the samples are equidistant, the 'Sample'
