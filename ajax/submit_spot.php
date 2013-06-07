@@ -1,5 +1,8 @@
 <?php
 session_start();
+$output = array();
+$output['success'] = 0;
+$output['error'] = 0;
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
 $got_variables = (isset($_REQUEST["band_id"]) && isset($_REQUEST["mode"]));
 if($got_cookies && $got_variables) {
@@ -8,7 +11,8 @@ require_once('spot_login.php');
 
 $sessions_result = mysqli_query($dbc, "SELECT session_id FROM sessions WHERE user_id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));  
 if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
-	print 'Session not found.';
+	$output['success'] = 0;
+	$output['error'] = 2;
 } else {
 	while($target_row = mysqli_fetch_array($sessions_result)) { // find a matching session
 		if ($_COOKIE["session_key"]==$target_row["session_id"]) {
@@ -29,7 +33,9 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 				$check_existing_user_row = mysqli_fetch_array($check_existing_user);
 				$r_userid = $check_existing_user_row['id'];
 				if($r_userid == $user_id) {
-					die("Can't spot yourself!");
+					$output['success'] = 0;
+					$output['error'] = 3;
+					die(json_encode($output));
 				}
 				$add_spot_query = "INSERT into spots (mode_id, band_id, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$band_id}', '{$user_id}', '{$r_userid}', '{$comments}');";
 				mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
@@ -53,11 +59,14 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 				$add_spot_query = "INSERT into spots (mode_id, band_id, primary_id, secondary_id, comments) VALUES ('{$mode_id}', '{$band_id}', '{$user_id}', '{$r_userid}', '{$comments}');";
 				mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
 			}
-			print 'Spot Added!';
+			$output['success'] = 1;
+			$output['error'] = 0;
 		}
 	}
 }
 } else { // Not got cookies or variables
-print 'Access Denied.';
+	$output['success'] = 0;
+	$output['error'] = 1;
 }
+print json_encode($output);
 ?>
