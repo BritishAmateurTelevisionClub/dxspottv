@@ -345,17 +345,12 @@ function createSpotLine(spot_data) {
 			});
 			spotLine.mode = "Digital ATV";
 			break;
-<<<<<<< HEAD
-		case "3": // Beacon
+		case 3: // Beacon
 			var lineSymbol = {
 				path: 'M 0,-1 0,1',
 				strokeOpacity: 0.5,
 				scale: 4
 			};
-
-=======
-		case 3: // Beacon
->>>>>>> dev
 			spotLine.setOptions( {
 				strokeOpacity: 0,
 				icons: [{
