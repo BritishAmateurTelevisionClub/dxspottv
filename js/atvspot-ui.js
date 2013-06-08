@@ -98,7 +98,6 @@ $(document).ready(function() {
 
 // Radio active status
 $(document).ready(function() {
-	$('#radioBox').prop('checked', false);
 	$('#radioBox').change(function() {
 		$('#changeRadioStatus').show();
     	$('#changeRadioStatus').html("<font color=green>Changing..</font>");
