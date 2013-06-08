@@ -248,7 +248,7 @@ function createRepeaterMarker(repeater_data) {
     var descTab = '<div class="repeater_bubble_desc">';
     descTab += repeater_data['description']+'<br>';
     descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper_callsign']+'<br><br>';
-    if (typeof repeater_data['website'] != 'undefined') {
+    if (repeater_data['website'] != null) {
     	descTab += '<a href="'+repeater_data['website']+'" target="_blank"><b>Repeater Website</b></a>';
     }
     descTab += '</div>';
