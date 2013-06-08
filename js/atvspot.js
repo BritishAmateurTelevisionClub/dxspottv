@@ -146,8 +146,6 @@ function createUserMarker(user_data) {
 }
 
 function updateUserMarker(user_data, user_index) {
-	var lat_lon = new google.maps.LatLng(user_data['lat'], user_data['lon']);
-	
 	if(user_data['seconds_active']>18) { // 18 seconds, should check in every 5 seconds
 		user_markers[user_index].setOptions( {
 			icon: userUnknownIcon, // white icon, if shown (spotted)
@@ -164,7 +162,6 @@ function updateUserMarker(user_data, user_index) {
 			zIndex: 12
 		});
 	}
-	user_markers[user_index].setPosition(lat_lon);
     user_markers[user_index].activity = user_data['seconds_active'];
 }
 
