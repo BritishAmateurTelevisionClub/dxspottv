@@ -61,7 +61,7 @@ $(document).ready(function() {
 //
 $(window).load(function () {
 	if(logged_in) {
-		//document.getElementById('irc_frame').src = irc_frame_source;
+		document.getElementById('irc_frame').src = irc_frame_source;
 	}
 });
 
