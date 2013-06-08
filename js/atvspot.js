@@ -103,7 +103,7 @@ function createUserMarker(user_data) {
         '<b>'+marker.locator+'</b>';
     if(logged_in && (user_callsign!=user_data['callsign'])) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
-    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['latitude']+"','"+user_data['longitude']+"'";
+    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['lat']+"','"+user_data['lon']+"'";
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, lat_lon)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, lat_lon)/1000)*10)/10+'km<br>'+
@@ -224,7 +224,7 @@ function createRepeaterMarker(repeater_data) {
         '<b>'+marker.qth_r+'</b>&nbsp;-&nbsp;'+marker.qth;
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
-    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+repeater_data['callsign']+"','"+repeater_data['latitude']+"','"+repeater_data['longitude']+"'";
+    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+repeater_data['callsign']+"','"+repeater_data['lat']+"','"+repeater_data['lon']+"'";
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, latlon)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, latlon)/1000)*10)/10+'km<br>'+
