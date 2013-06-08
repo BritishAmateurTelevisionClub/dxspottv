@@ -347,16 +347,16 @@ function createSpotLine(spot_data) {
 			break;
 		case 3: // Beacon
 			var lineSymbol = {
-				path: 'M 0,-1 0,1',
+				path: 'M 0,-0.5 0,0.5',
 				strokeOpacity: 0.5,
-				scale: 4
+				scale: 2
 			};
 			spotLine.setOptions( {
 				strokeOpacity: 0,
 				icons: [{
 					icon: lineSymbol,
 					offset: '0',
-					repeat: '20px'
+					repeat: '10px'
 				}],
 				zIndex: 3
 			});
