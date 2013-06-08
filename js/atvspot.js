@@ -417,7 +417,7 @@ function updateUsers(JSONinput) {
 	for(u_id in JSONinput){
 		var user = JSONinput[u_id];
 		if(user.length!=0) {
-			var marker_search = $.grep(user_markers, function(e){ return e.callsign == user['callsign']; });
+			var marker_search = $.grep(user_markers, function(e){ return e.user_id == user['id']; });
 			if(marker_search.length==1) {
 			    user_index = $.inArray(marker_search[0], user_markers);
 				updateUserMarker(user, user_index);
