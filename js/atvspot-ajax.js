@@ -63,10 +63,9 @@ function getUserSpotData() {
 
 function getRepeaterData() {
 	$.ajax({
-		url: "/ajax/repeaterData.php",
+		url: "http://api.dxspot.tv/repeaterData",
 		success: function( data ) {
-			myJSONObject = eval('(' + data + ')');
-    		parseRepeaters(myJSONObject);
+    		parseRepeaters(data);
     		
     		setTimeSpan($('#time_select').val());
 			setBandChoice($('#band_select').val());
