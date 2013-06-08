@@ -55,7 +55,7 @@ function initialize() {
 	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
 
 	getMapData();
-	userSpotRefresh=self.setInterval(function(){getUserSpotData()},3000+Math.round(Math.random()*200));
+	userSpotRefresh=self.setInterval(function(){getUserSpotData()},2000+Math.round(Math.random()*200));
 	repeaterRefresh=self.setInterval(function(){getRepeaterData()},120000+Math.round(Math.random()*2000));
 }
 
@@ -103,7 +103,7 @@ function createUserMarker(user_data) {
         '<b>'+marker.locator+'</b>';
     if(logged_in && (user_callsign!=user_data['callsign'])) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
-    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['latitude']+"','"+user_data['longitude']+"'";
+    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['lat']+"','"+user_data['lon']+"'";
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, lat_lon)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, lat_lon)/1000)*10)/10+'km<br>'+
@@ -224,7 +224,7 @@ function createRepeaterMarker(repeater_data) {
         '<b>'+marker.qth_r+'</b>&nbsp;-&nbsp;'+marker.qth;
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
-    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+repeater_data['callsign']+"','"+repeater_data['latitude']+"','"+repeater_data['longitude']+"'";
+    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+repeater_data['callsign']+"','"+repeater_data['lat']+"','"+repeater_data['lon']+"'";
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, latlon)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, latlon)/1000)*10)/10+'km<br>'+
@@ -234,21 +234,21 @@ function createRepeaterMarker(repeater_data) {
     var freqTab = '<div class="repeater_bubble_freq">'+
     	'<b>TX:&nbsp;'+marker.tx_freq+'MHz</b><br>'+
     	'<b>RX:&nbsp;'+marker.rx_freq+'MHz</b><br>';
-    if (typeof marker.rx_freq_2 != 'undefined') {
+    if (marker.rx_freq_2 != null && marker.rx_freq_2 != 0) {
     	freqTab += '<b>RX:&nbsp;'+marker.rx_freq_2+'MHz</b><br>';
     }
-    if (typeof marker.alt_tx_freq != 'undefined') {
+    if (marker.alt_tx_freq != null && marker.alt_tx_freq != 0) {
     	freqTab += '<br><b>TX:&nbsp;'+marker.alt_tx_freq+'MHz</b><br>'+
     		'<b>RX:&nbsp;'+marker.alt_rx_freq+'MHz</b><br>';
-    	if (typeof marker.alt_rx_freq_2 != 'undefined') {
+    	if (marker.alt_rx_freq_2 != null && marker.alt_rx_freq_2 != 0) {
 			freqTab += '<b>RX:&nbsp;'+marker.alt_rx_freq_2+'MHz</b><br>';
 		}
     }
     freqTab += '</div>';
     var descTab = '<div class="repeater_bubble_desc">';
     descTab += repeater_data['description']+'<br>';
-    descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper']+'<br><br>';
-    if (typeof repeater_data['website'] != 'undefined') {
+    descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper_callsign']+'<br><br>';
+    if (repeater_data['website'] != null) {
     	descTab += '<a href="'+repeater_data['website']+'" target="_blank"><b>Repeater Website</b></a>';
     }
     descTab += '</div>';
@@ -347,16 +347,16 @@ function createSpotLine(spot_data) {
 			break;
 		case 3: // Beacon
 			var lineSymbol = {
-				path: 'M 0,-1 0,1',
+				path: 'M 0,-0.5 0,0.5',
 				strokeOpacity: 0.5,
-				scale: 4
+				scale: 2
 			};
 			spotLine.setOptions( {
 				strokeOpacity: 0,
 				icons: [{
 					icon: lineSymbol,
 					offset: '0',
-					repeat: '20px'
+					repeat: '10px'
 				}],
 				zIndex: 3
 			});
