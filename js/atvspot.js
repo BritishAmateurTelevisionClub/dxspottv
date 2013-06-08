@@ -234,20 +234,20 @@ function createRepeaterMarker(repeater_data) {
     var freqTab = '<div class="repeater_bubble_freq">'+
     	'<b>TX:&nbsp;'+marker.tx_freq+'MHz</b><br>'+
     	'<b>RX:&nbsp;'+marker.rx_freq+'MHz</b><br>';
-    if (typeof marker.rx_freq_2 != 'undefined') {
+    if (marker.rx_freq_2 != null && marker.rx_freq_2 != 0) {
     	freqTab += '<b>RX:&nbsp;'+marker.rx_freq_2+'MHz</b><br>';
     }
-    if (typeof marker.alt_tx_freq != 'undefined') {
+    if (marker.alt_tx_freq != null && marker.alt_tx_freq != 0) {
     	freqTab += '<br><b>TX:&nbsp;'+marker.alt_tx_freq+'MHz</b><br>'+
     		'<b>RX:&nbsp;'+marker.alt_rx_freq+'MHz</b><br>';
-    	if (typeof marker.alt_rx_freq_2 != 'undefined') {
+    	if (marker.alt_rx_freq_2 != null && marker.alt_rx_freq_2 != 0) {
 			freqTab += '<b>RX:&nbsp;'+marker.alt_rx_freq_2+'MHz</b><br>';
 		}
     }
     freqTab += '</div>';
     var descTab = '<div class="repeater_bubble_desc">';
     descTab += repeater_data['description']+'<br>';
-    descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper']+'<br><br>';
+    descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper_callsign']+'<br><br>';
     if (typeof repeater_data['website'] != 'undefined') {
     	descTab += '<a href="'+repeater_data['website']+'" target="_blank"><b>Repeater Website</b></a>';
     }
