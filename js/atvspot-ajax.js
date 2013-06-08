@@ -4,7 +4,7 @@ var userSpotRefresh;
 var repeaterRefresh;
 
 if(logged_in) {
-	var activityRefresh=self.setInterval(function(){updateActivity()},5000+Math.round(Math.random()*400)); // Add from 0-400ms randomly
+	var activityRefresh=self.setInterval(function(){updateActivity()},3000+Math.round(Math.random()*400)); // Add from 0-400ms randomly
 }
 
 function doLogin() {
