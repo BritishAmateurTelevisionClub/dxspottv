@@ -309,12 +309,12 @@ function createSpotLine(spot_data) {
 	});
 	
 	switch(spot_data['band_id']) {
-		case "1": // 70cm
+		case 1: // 70cm
 			spotLine.setOptions( {
 				strokeColor: "#FF0000" //red
 			});
 			break
-		case "2": // 23cm
+		case 2: // 23cm
 			spotLine.setOptions( {
 				strokeColor: "#FFA500" //orange
 			});
@@ -327,25 +327,25 @@ function createSpotLine(spot_data) {
 	}
 	
 	switch(spot_data['mode_id']) {
-		case "0": // Not defined - assume Digital
+		case 0: // Not defined - assume Digital
 			spotLine.setOptions( {
 				zIndex: 5
 			});
 			spotLine.mode = "Digital ATV";
 			break;
-		case "1": // Analog TV
+		case 1: // Analog TV
 			spotLine.setOptions( {
 				zIndex: 4
 			});
 			spotLine.mode = "Analog ATV";
 			break;
-		case "2": // Digital TV (WB)
+		case 2: // Digital TV (WB)
 			spotLine.setOptions( {
 				zIndex: 5
 			});
 			spotLine.mode = "Digital ATV";
 			break;
-		case "3": // Beacon
+		case 3: // Beacon
 			spotLine.setOptions( {
 				zIndex: 3,
 				strokeColor: "#6E6E6E" // grey line
