@@ -346,9 +346,20 @@ function createSpotLine(spot_data) {
 			spotLine.mode = "Digital ATV";
 			break;
 		case "3": // Beacon
+			var lineSymbol = {
+				path: 'M 0,-1 0,1',
+				strokeOpacity: 0.5,
+				scale: 4
+			};
+
 			spotLine.setOptions( {
-				zIndex: 3,
-				strokeColor: "#6E6E6E" // grey line
+				strokeOpacity: 0,
+				icons: [{
+					icon: lineSymbol,
+					offset: '0',
+					repeat: '20px'
+				}],
+				zIndex: 3
 			});
 			spotLine.mode = "NB Beacon";
 			break;
