@@ -60,7 +60,7 @@ function initialize() {
 }
 
 function createUserMarker(user_data) {
-	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
+	var lat_lon = new google.maps.LatLng(user_data['lat'], user_data['lon']);
 	
 	var marker = new google.maps.Marker({
         position: lat_lon,
@@ -90,7 +90,7 @@ function createUserMarker(user_data) {
     marker.locator = user_data['locator'];
     marker.activity = user_data['seconds_active'];
     marker.known = user_data['known'];
-    marker.station_desc = user_data['desc'];
+    marker.station_desc = user_data['station_desc'];
     if(user_data['website']!='') {
     	marker.station_website = "http://"+user_data['website'];
     } else {
@@ -146,7 +146,7 @@ function createUserMarker(user_data) {
 }
 
 function updateUserMarker(user_data, user_index) {
-	var lat_lon = new google.maps.LatLng(user_data['latitude'], user_data['longitude']);
+	var lat_lon = new google.maps.LatLng(user_data['lat'], user_data['lon']);
 	
 	if(user_data['seconds_active']>18) { // 18 seconds, should check in every 5 seconds
 		user_markers[user_index].setOptions( {
@@ -169,7 +169,7 @@ function updateUserMarker(user_data, user_index) {
 }
 
 function createRepeaterMarker(repeater_data) {
-	var latlon = new google.maps.LatLng(repeater_data['latitude'], repeater_data['longitude']);
+	var latlon = new google.maps.LatLng(repeater_data['lat'], repeater_data['lon']);
 	
 	var marker = new google.maps.Marker({
         position: latlon,
@@ -309,12 +309,12 @@ function createSpotLine(spot_data) {
 	});
 	
 	switch(spot_data['band_id']) {
-		case "1": // 70cm
+		case 1: // 70cm
 			spotLine.setOptions( {
 				strokeColor: "#FF0000" //red
 			});
 			break
-		case "2": // 23cm
+		case 2: // 23cm
 			spotLine.setOptions( {
 				strokeColor: "#FFA500" //orange
 			});
@@ -327,24 +327,25 @@ function createSpotLine(spot_data) {
 	}
 	
 	switch(spot_data['mode_id']) {
-		case "0": // Not defined - assume Digital
+		case 0: // Not defined - assume Digital
 			spotLine.setOptions( {
 				zIndex: 5
 			});
 			spotLine.mode = "Digital ATV";
 			break;
-		case "1": // Analog TV
+		case 1: // Analog TV
 			spotLine.setOptions( {
 				zIndex: 4
 			});
 			spotLine.mode = "Analog ATV";
 			break;
-		case "2": // Digital TV (WB)
+		case 2: // Digital TV (WB)
 			spotLine.setOptions( {
 				zIndex: 5
 			});
 			spotLine.mode = "Digital ATV";
 			break;
+<<<<<<< HEAD
 		case "3": // Beacon
 			var lineSymbol = {
 				path: 'M 0,-1 0,1',
@@ -352,6 +353,9 @@ function createSpotLine(spot_data) {
 				scale: 4
 			};
 
+=======
+		case 3: // Beacon
+>>>>>>> dev
 			spotLine.setOptions( {
 				strokeOpacity: 0,
 				icons: [{
@@ -374,10 +378,10 @@ function createSpotLine(spot_data) {
 	spotLine.secondary_id = spot_data['secondary_id'];
 	spotLine.secondary_callsign = secondary_callsign;
 	spotLine.secondary_isrepeater = spot_data['secondary_isrepeater']
-	spotLine.time = spot_data['time'];
+	spotLine.time = spot_data['spot_time'];
 	spotLine.ago = spot_data['seconds_ago'];
 	spotLine.comments = spot_data['comments'];
-	spotLine.date = parseInt(spot_data['time'].substr(8,2))+"&nbsp;"+months[parseInt(spot_data['time'].substr(5,2))]+"&nbsp;"+spot_data['time'].substr(11,8);	
+	spotLine.date = parseInt(spot_data['spot_time'].substr(8,2))+"&nbsp;"+months[parseInt(spot_data['spot_time'].substr(5,2))]+"&nbsp;"+spot_data['spot_time'].substr(11,8);	
 	spotLine.distance = Math.round((google.maps.geometry.spherical.computeDistanceBetween(primary_latlon, secondary_latlon)/1000)*10)/10;
 	
 	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+bandFromID(spotLine.band_id)+"&nbsp;<i>"+spotLine.mode+"</i><br><i>"+spotLine.comments+"</i><br>"+spotLine.distance+"&nbsp;km";
@@ -403,15 +407,23 @@ function parseRepeaters(JSONinput) {
 	}
 }
 
-function parseUsers(JSONinput) {
+function loadUsers(JSONinput) {
+	var u_id = new Array();
+	for(u_id in JSONinput){
+		var user = JSONinput[u_id];
+		if(user.length!=0) {
+			createUserMarker(user);
+		}
+	}
+}
+
+function updateUsers(JSONinput) {
 	var u_id = new Array();
 	for(u_id in JSONinput){
 		var user = JSONinput[u_id];
 		if(user.length!=0) {
 			var marker_search = $.grep(user_markers, function(e){ return e.callsign == user['callsign']; });
-			if(marker_search.length==0) {
-				createUserMarker(user);
-			} else {
+			if(marker_search.length==1) {
 			    user_index = $.inArray(marker_search[0], user_markers);
 				updateUserMarker(user, user_index);
 			}

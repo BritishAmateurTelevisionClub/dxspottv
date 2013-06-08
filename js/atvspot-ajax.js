@@ -24,13 +24,12 @@ function doLogin() {
 
 function getMapData() {
 	$.ajax({
-		url: "/ajax/mapData.php",
+		url: "http://api.dxspot.tv/mapData",
 		success: function( data ) {
-			myJSONObject = eval('(' + data + ')');
-    		parseUsers(myJSONObject['users']);
-    		parseRepeaters(myJSONObject['repeaters']);
-    		parseSpots(myJSONObject['spots']);
-    		createGlobalSpotLog(myJSONObject['spots']);
+    		loadUsers(data['users']);
+    		parseRepeaters(data['repeaters']);
+    		parseSpots(data['spots']);
+    		createGlobalSpotLog(data['spots']);
     		
     		setTimeSpan($('#time_select').val());
 			setBandChoice($('#band_select').val());
@@ -45,12 +44,11 @@ function getMapData() {
 
 function getUserSpotData() {
 	$.ajax({
-		url: "/ajax/userSpotData.php",
+		url: "http://api.dxspot.tv/userSpotRefresh",
 		success: function( data ) {
-			myJSONObject = eval('(' + data + ')');
-    		parseUsers(myJSONObject['users']);
-    		parseSpots(myJSONObject['spots']);
-    		createGlobalSpotLog(myJSONObject['spots']);
+    		updateUsers(data['users']);
+    		parseSpots(data['spots']);
+    		createGlobalSpotLog(data['spots']);
     		
     		setTimeSpan($('#time_select').val());
 			setBandChoice($('#band_select').val());
