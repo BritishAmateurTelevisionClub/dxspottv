@@ -252,7 +252,7 @@ if ($auth_error==1) {
 		<br>
 		Station Icons:<br>
 		Green = logged in and radio active<br>
-		Yellow = logged in but just watching<br>
+		Yellow = logged in but just watching - set by tick box in "Edit my station" <br>
 		White = Not logged in but spotted on a Dx contact<br>
 		<br>
 		Cyan = Operational repeater<br>
