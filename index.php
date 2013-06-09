@@ -248,7 +248,7 @@ if ($auth_error==1) {
 		Or you can email us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
 		<br>
 		<br>
-		<u>Map key<u><br>
+		Map key<br>
 		<br>
 		Station Icons:<br>
 		Green = logged in and radio active<br>
