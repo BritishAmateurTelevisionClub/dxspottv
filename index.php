@@ -255,7 +255,7 @@ if ($auth_error==1) {
 		Yellow = logged in but just watching<br>
 		White = Not logged in but spotted on a Dx contact<br>
 		<br>
-		Cyan = Operational repeater<br)
+		Cyan = Operational repeater<br>
 		Red = Licensed but non operational repeater <br>
 		<br>
 
