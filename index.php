@@ -248,7 +248,7 @@ if ($auth_error==1) {
 		Or you can email us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
 		<br>
 		<br>
-		Map key<br>
+		<u>Map key</u><br>
 		<br>
 		Station Icons:<br>
 		Green = logged in and radio active<br>
@@ -258,6 +258,13 @@ if ($auth_error==1) {
 		Cyan = Operational repeater<br>
 		Red = Licensed but non operational repeater <br>
 		<br>
+		<u>DxSpot key </u><br>
+		<br>
+		Red = 70cms<br>
+		Orange = 23cms<br>
+		Blue = 13cms and above<br>
+		<br>
+		Dotted line = Narrow band beacon spot<br>
 
 	</div>
 	<div id="aboutTab" class="reduce-tab-padding">
