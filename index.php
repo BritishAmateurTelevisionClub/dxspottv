@@ -246,6 +246,25 @@ if ($auth_error==1) {
 		Online help is available at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/viewforum.php?f=80" target="_blank">BATC Forums</a><br>
 		<br>
 		Or you can email us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
+		<br>
+		<br>
+		<u>Map key</u><br>
+		<br>
+		Station Icons:<br>
+		Green = logged in and radio active<br>
+		Yellow = logged in but just watching - set by tick box in "Edit my station" <br>
+		White = Not logged in but spotted on a Dx contact<br>
+		<br>
+		Cyan = Operational repeater<br>
+		Red = Licensed but non operational repeater <br>
+		<br>
+		<u>DxSpot key </u><br>
+		<br>
+		Red = 70cms<br>
+		Orange = 23cms<br>
+		Blue = 13cms and above<br>
+		<br>
+		Dotted line = Narrow band beacon spot<br>
 
 	</div>
 	<div id="aboutTab" class="reduce-tab-padding">

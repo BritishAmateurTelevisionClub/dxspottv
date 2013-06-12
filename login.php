@@ -19,8 +19,8 @@ $crypt = crypt($passwd, $salt);
 if($crypt==$target) {
 	$session_key = sha256_salt();
 	
-	// Ugly hack, set radio_active to false on login
-	$radio_active = 0;
+	// Ugly hack, set radio_active to true on login
+	$radio_active = 1;
 	$update_statement = $dbc->prepare("UPDATE users set radio_active=? WHERE id=?;");
 	$update_statement->bind_param('ii', $radio_active, $user_id);
 	$update_statement->execute();

@@ -98,7 +98,6 @@ $(document).ready(function() {
 
 // Radio active status
 $(document).ready(function() {
-	$('#radioBox').prop('checked', false);
 	$('#radioBox').change(function() {
 		$('#changeRadioStatus').show();
     	$('#changeRadioStatus').html("<font color=green>Changing..</font>");
@@ -165,7 +164,7 @@ function createGlobalSpotLog(spotLog) {
 				    return e.user_id == spot.secondary_id;
 			    });
 		    }
-		    spotLogDivContent+=parseInt(spot['spot_time'].substr(8,2))+"&nbsp;"+months[parseInt(spot['spot_time'].substr(5,2))]+"&nbsp;"+spot['spot_time'].substr(11,8)+":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
+		    spotLogDivContent+=parseInt(spot['spot_time'].substr(8,2),10)+"&nbsp;"+months[parseInt(spot['spot_time'].substr(5,2))]+"&nbsp;"+spot['spot_time'].substr(11,8)+":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
 		    spotLogDivContent+="&nbsp;"+bandFromID(spot.band_id);
 		    if(spot['comments'].length != 0) {
 			    spotLogDivContent+="<br>";
