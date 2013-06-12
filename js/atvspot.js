@@ -12,10 +12,6 @@ var logged_in;
 // Load Google Maps Script
 //
 $(document).ready(function() {
-	if(!$.support.cors) {
-		console.log("CORS manually enabled.");
-		$.support.cors=true;
-	}
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCEzQiTsZ1Skkf7mS1QTT91C2Y_7Gi7WK0&libraries=geometry&sensor=false&callback=initialize'; // callback: initialize()
