@@ -52,6 +52,7 @@ function initialize() {
 		var randomLoc = CoordToLoc(event.latLng.lat(), event.latLng.lng());
 		infoContent="<h3 style='line-height: 0.3em;'>"+randomLoc+"</h3>";
 		if(logged_in) {
+			var user_latlng = new google.maps.LatLng(user_lat, user_lon);
 			var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+randomLoc+"','"+event.latLng.lat()+"','"+event.latLng.lng()+"'";
     		infoContent+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, event.latLng)))+'&deg;<br>'+
