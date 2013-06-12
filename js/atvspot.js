@@ -329,7 +329,8 @@ function createSpotLine(spot_data) {
 			break
 		case 2: // 23cm
 			spotLine.setOptions( {
-				strokeColor: "#FFA500" //orange
+				strokeColor: "#FFA500", //orange
+				strokeWeight: 5 // thicker line
 			});
 			break
 		default: //13 cm and above
