@@ -25,8 +25,6 @@ function doLogin() {
 function getMapData() {
 	$.ajax({
 		url: "http://api.dxspot.tv/mapData",
-		datatype: "json",
-		cache: false,
 		success: function( data ) {
     		loadUsers(data['users']);
     		parseRepeaters(data['repeaters']);
@@ -47,8 +45,6 @@ function getMapData() {
 function getUserSpotData() {
 	$.ajax({
 		url: "http://api.dxspot.tv/userSpotRefresh",
-		datatype: "json",
-		cache: false,
 		success: function( data ) {
     		updateUsers(data['users']);
     		parseSpots(data['spots']);
@@ -68,8 +64,6 @@ function getUserSpotData() {
 function getRepeaterData() {
 	$.ajax({
 		url: "http://api.dxspot.tv/repeaterData",
-		datatype: "json",
-		cache: false,
 		success: function( data ) {
     		parseRepeaters(data);
     		
