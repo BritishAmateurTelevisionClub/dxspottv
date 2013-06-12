@@ -52,8 +52,9 @@ function initialize() {
 		var randomLoc = CoordToLoc(event.latLng.lat(), event.latLng.lng());
 		infoContent="<h3 style='line-height: 0.3em;'>"+randomLoc+"</h3>";
 		if(logged_in) {
+			var user_latlng = new google.maps.LatLng(user_lat, user_lon);
 			var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+randomLoc+"','"+event.latLng.lat()+"','"+event.latLng.lng()+"'";
-    		infoContent+='<br><br>'+
+    		infoContent+='<br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, event.latLng)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, event.latLng)/1000)*10)/10+'km<br>'+
     		'<a href="javascript:elevation_profile('+elevation_vars+')"><b>Path Elevation Profile</b></a>';
@@ -328,7 +329,8 @@ function createSpotLine(spot_data) {
 			break
 		case 2: // 23cm
 			spotLine.setOptions( {
-				strokeColor: "#FFA500" //orange
+				strokeColor: "#FFA500", //orange
+				strokeWeight: 5 // thicker line
 			});
 			break
 		default: //13 cm and above
