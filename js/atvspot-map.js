@@ -2,6 +2,8 @@ var map;
 
 $(document).ready(function() {
 	initMap(52, 0, 8);
+	
+ 	$("#scenario_info").draggable({containment: '#map_canvas', handle: 'img.handle', snap: '#map_canvas'});
 });
 
 function initMap(centre_lat, centre_lon, zoom_level) {
