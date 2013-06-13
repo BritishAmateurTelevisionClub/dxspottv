@@ -6,10 +6,9 @@ $(document).ready(function() {
 
 function initMap(centre_lat, centre_lon, zoom_level) {
     var latlng = new google.maps.LatLng(centre_lat, centre_lon);
+    google.maps.visualRefresh = true;
     var myOptions = {
 		zoom: zoom_level,
-		scaleControl: true,
-		scaleControlOptions: { position: google.maps.ControlPosition.BOTTOM_LEFT } ,
 		mapTypeId: google.maps.MapTypeId.TERRAIN,
 		center: latlng,
 		streetViewControl: false
