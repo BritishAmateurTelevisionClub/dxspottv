@@ -241,7 +241,7 @@ if ($auth_error==1) {
 		</div>
 	</div>
 	<div id="helpTab" class="reduce-tab-padding">
-		Download the user guide from here <a href="http://www.dxspot.tv/User_Guide_C.pdf" target="_blank">User Guide Issue C (PDF)</a><br>
+		Download the user guide from here <a href="/dxspotguidev1.pdf" target="_blank">User Guide Version 1 (PDF)</a><br>
 		<br>
 		Online help is available at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/viewforum.php?f=80" target="_blank">BATC Forums</a><br>
 		<br>
