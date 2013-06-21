@@ -1,3 +1,4 @@
+var socket = io.connect('http://websocket.dxspot.tv');
 var map;
 
 google.maps.visualRefresh = true;
@@ -23,3 +24,9 @@ function initialize() {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+ 
+socket.on('mapData', function (data) {
+	console.log(data);
+	//socket.emit('my other event', { my: 'data' });
+});
