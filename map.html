@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+<meta charset="utf-8">
 <meta name="description" content="Map-only view of DXSpot.TV">
-<meta name="keywords" content="dxspot,atv,tv,spot,dx,cluster,contacts,ham,amateur,television">
+<meta name="keywords" content="dxspot,tv,atv,map,full,screen">
+<meta name="author" content="BATC">
 <title>DXSpot.TV Map</title>
 <style>
-body {
-	width: 100%; height: 100%; 
-	margin: 0; padding: 0;
-	background-color: #000000;
+html, body, #map-canvas {
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
-#map_canvas { width: 100%; height: 100%; }
-#scenario_info {
+#box-info {
     position: absolute;
     top: 25px;
     right: 0px;
@@ -35,16 +35,23 @@ body {
     background-position:initial initial;
     background-repeat:initial initial;
 }
+img.handle {
+    position: relative;
+    float:left;
+    top:0px;
+    left:0px;
+    z-index:100;
+}
 </style>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script type="text/javascript" src="/js/jquery-plus-ui.js"></script>
 <script type="text/javascript" src="/js/atvspot-map.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCEzQiTsZ1Skkf7mS1QTT91C2Y_7Gi7WK0&sensor=false"></script>
 </head>
 <body>
-<div id="map_canvas"></div>
-<div id="scenario_info" class="box ui-corner-all">
-    <img src="images/drag_handle.png" class="handle" />
-    <h1>Scenario Information</h1>
+<div id="map-canvas"></div>
+<div id="box-info" class="box ui-corner-all">
+    <img src="/images/drag_handle.png" class="handle" />
+    <h1>DXSpot.TV Map</h1>
     <span id="cursor_info">Current mouse position: 
         Lat: <span id="cursor_lat">?</span> 
         Lon: <span id="cursor_lon">?</span>
