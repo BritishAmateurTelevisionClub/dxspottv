@@ -35,7 +35,7 @@ body {
     width: 400px;
     text-align:center;
     padding: 5px;
-    line-height: 130%;
+    line-height: 150%;
 }
 #box-log {
     position: absolute;
@@ -45,6 +45,15 @@ body {
     text-align:center;
     padding: 5px;
     line-height: 100%;
+}
+#box-search {
+    position: absolute;
+    top: 450px;
+    right: 10px;
+    width: 335px;
+    text-align:center;
+    padding: 5px;
+    line-height: 130%;
 }
 #window-login {
     position: absolute;
@@ -144,17 +153,22 @@ img.handle {
     <img src="/images/drag_handle.png" class="handle" /><br>
     <img src="/images/DXS8.jpg" style="height: 79px; width: 179px;" /><br>
     <button class="login-button reduce-font-size" id="loginWindow-button">Log In</button>
-    <span id="cursor_info">Current mouse position:<br>
-        Lat: <span id="cursor_lat">?</span> 
-        Lon: <span id="cursor_lon">?</span>
-        Loc: <b><span id="cursor_loc">?</span></b>
-    </span><br />
 </div>
 <div id="box-log" class="box ui-corner-all">
     <img src="/images/drag_handle.png" class="handle" />
     <h3>Spot Log</h3>
     <span id="spotLog">Loading...</span>
     <br>
+</div>
+<div id="box-search" class="box ui-corner-all">
+    <img src="/images/drag_handle.png" class="handle" />
+    <b>Search for Callsign:</b>&nbsp;<input type=text id="search-callsign" class="search_box_short" /><button class="search-button reduce-font-size" id="search-call-button">Search</button><br>
+    <b>Search for Locator:</b>&nbsp;<input type=text id="search-locator" class="search_box_short" /><button class="search-button reduce-font-size" id="search-loc-button">Search</button><br>
+    <span id="cursor_info">Current mouse position:<br>
+        Lat: <span id="cursor_lat">?</span> 
+        Lon: <span id="cursor_lon">?</span>
+        Loc: <b><span id="cursor_loc">?</span></b>
+    </span><br />
 </div>
 <div id="window-login" class="box ui-corner-all">
 	<h4>Log In to DXSpot.TV</h4>

@@ -18,6 +18,27 @@ $(document).ready(function() {
 	});
 	setTimeSpan($('#time_select').val());
 	setBandChoice($('#band_select').val());
+	$('#search-loc-button').button().click( function() {
+		randomLoc = $('#search-loc').val();
+		latlon = LoctoLatLon(randomLoc);
+		click_latlng = new google.maps.LatLng(latlon[0], latlon[1]);
+		var randomLoc = CoordToLoc(event.latLng.lat(), event.latLng.lng());
+		infoContent="<h3 style='line-height: 0.3em;'>"+randomLoc+"</h3>";
+		if(logged_in) {
+			var user_latlng = new google.maps.LatLng(user_lat, user_lon);
+			var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+randomLoc+"','"+event.latLng.lat()+"','"+event.latLng.lng()+"'";
+			infoContent+='<br>'+
+			'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, event.latLng)))+'&deg;<br>'+
+			'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, event.latLng)/1000)*10)/10+'km<br>'+
+			'<a href="javascript:elevation_profile('+elevation_vars+')"><b>Path Elevation Profile</b></a>';
+		}
+		infowindow.setContent(infoContent);
+		infowindow.setPosition(click_latlng);
+		infowindow.open(map);
+	});
+	$('#search-call-button').button().click( function() {
+		alert("Not yet implemented");
+	});
 	$('#loginWindow-button').button().click( function() {
 		$("#box-info").hide("slide", { direction: "up" }, 500);
 		$("#box-selectors").hide("slide", { direction: "up" }, 500);
