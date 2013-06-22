@@ -31,6 +31,10 @@ function initialize() {
 	});
 
 	elevator = new google.maps.ElevationService();
+	
+	google.maps.event.addListener(map, 'mousemove', function(event) {
+        showMousePos(event.latLng);
+    });
 
 	google.maps.event.addListener(map, 'click', function() {
 		infowindow.close();

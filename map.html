@@ -55,12 +55,19 @@ img.handle {
 <script src="/js/dxspot-websocket.js"></script>
 <script src="/js/dxspot-ui.js"></script>
 <script src="/js/atvspot-util.js"></script>
+<script src="/js/locator.js"></script>
 </head>
 <body>
 <div id="map-canvas"></div>
 <div id="box-info" class="box ui-corner-all">
     <img src="/images/drag_handle.png" class="handle" />
     <h1>DXSpot.TV Map</h1>
+    <span id="cursor_info">Current mouse position: 
+        Lat: <span id="cursor_lat">?</span> 
+        Lon: <span id="cursor_lon">?</span>
+        Alt: <span id="cursor_alt">?</span>
+        Loc: <span id="cursor_loc">?</span>
+    </span><br />
     <table border="0" cellspacing="3" cellpadding="0" width="100%" >
 		<tr>
 		<td><p class="mapSelecter" align="center">

@@ -106,3 +106,11 @@ function checkRepeaters() {
 		    }
 	}
 }
+
+function showMousePos(GLatLng) {
+    var curr_lat = GLatLng.lat().toFixed(4);
+    var curr_lon = GLatLng.lng().toFixed(4);
+    $("#cursor_lat").html(curr_lat);
+    $("#cursor_lon").html(curr_lon);
+    $("#cursor_loc").html(CoordToLoc(curr_lat, curr_lon);
+}
