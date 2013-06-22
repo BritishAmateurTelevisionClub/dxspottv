@@ -2,7 +2,7 @@ var map;
 
 google.maps.visualRefresh = true;
 
-function initialize() {
+function map_init() {
   var mapOptions = {
     zoom: 6,
     center: new google.maps.LatLng(52.5, -1.25),
@@ -55,5 +55,3 @@ function initialize() {
 	repeaterIcon = new google.maps.MarkerImage("/images/active_repeater.ico");
 	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
 }
-
-google.maps.event.addDomListener(window, 'load', initialize);
