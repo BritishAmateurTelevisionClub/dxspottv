@@ -6,6 +6,7 @@ socket.on('mapData', function (data) {
 	loadUsers(dataObject['users']);
     parseRepeaters(dataObject['repeaters']);
     parseSpots(dataObject['spots']);
+    createGlobalSpotLog(dataObject['spots']);
 	//socket.emit('my other event', { my: 'data' });
 	checkSpots();
 	checkUsers();
