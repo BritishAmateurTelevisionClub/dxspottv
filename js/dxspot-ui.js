@@ -1,6 +1,8 @@
 var valTimeSpan;
 var valBandChoice = {};
 
+var cursorLocTimer;
+
 $(document).ready(function() {
 	$('#time_select').change(function() {
 		setTimeSpan($('#time_select').val());
@@ -108,9 +110,11 @@ function checkRepeaters() {
 }
 
 function showMousePos(GLatLng) {
-    var curr_lat = GLatLng.lat().toFixed(4);
-    var curr_lon = GLatLng.lng().toFixed(4);
-    $("#cursor_lat").html(curr_lat);
-    $("#cursor_lon").html(curr_lon);
-    $("#cursor_loc").html(CoordToLoc(parseFloat(curr_lat), parseFloat(curr_lon)));
+    cursorLocTimer=setTimeout(function(){
+    	var curr_lat = GLatLng.lat().toFixed(4);
+		var curr_lon = GLatLng.lng().toFixed(4);
+		$("#cursor_lat").html(curr_lat);
+		$("#cursor_lon").html(curr_lon);
+		$("#cursor_loc").html(CoordToLoc(parseFloat(curr_lat), parseFloat(curr_lon)));
+    },10); // 10ms timeout for mouse to stay still before calculating
 }
