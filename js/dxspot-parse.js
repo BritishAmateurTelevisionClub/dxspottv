@@ -1,3 +1,7 @@
+var repeater_markers = [];
+var user_markers = [];
+var spot_lines = [];
+
 function createUserMarker(user_data) {
 	var lat_lon = new google.maps.LatLng(user_data['lat'], user_data['lon']);
 	

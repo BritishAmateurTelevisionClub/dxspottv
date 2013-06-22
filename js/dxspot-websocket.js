@@ -2,7 +2,7 @@ var socket = io.connect('http://websocket.dxspot.tv');
 
 socket.on('mapData', function (data) {
 	dataObject = JSON.parse(data)
-	console.log(dataObject);
+	//console.log(dataObject);
 	loadUsers(dataObject['users']);
     parseRepeaters(dataObject['repeaters']);
     parseSpots(dataObject['spots']);
