@@ -60,6 +60,9 @@ body {
     padding: 5px;
     line-height: 130%;
 }
+.search_box_short {
+	width: 100px;
+}
 #box-spot {
     position: absolute;
     bottom: 0px;
@@ -176,13 +179,13 @@ img.handle {
 </div>
 <div id="box-search" class="box ui-corner-all">
     <img src="/images/drag_handle.png" class="handle" />
-    <b>Search for Callsign:</b>&nbsp;<input type=text id="search-callsign" class="search_box_short" /><button class="search-button reduce-font-size" id="search-call-button">Search</button><br>
-    <b>Search for Locator:</b>&nbsp;<input type=text id="search-locator" class="search_box_short" /><button class="search-button reduce-font-size" id="search-loc-button">Search</button><br>
     <span id="cursor_info">Current mouse position:<br>
         Lat: <span id="cursor_lat">?</span> 
         Lon: <span id="cursor_lon">?</span>
         Loc: <b><span id="cursor_loc">?</span></b>
-    </span><br />
+    </span><br>
+    <b>Callsign Search:</b>&nbsp;<input type=text id="search-callsign" class="search_box_short" />&nbsp;<button class="search-button reduce-font-size" id="search-call-button">Search</button><br>
+    <b>Locator Search:</b>&nbsp;<input type=text id="search-locator" class="search_box_short" />&nbsp;<button class="search-button reduce-font-size" id="search-loc-button">Search</button>
 </div>
 <div id="box-spot" class="box ui-corner-all">
     <img src="/images/drag_handle.png" class="handle" />
