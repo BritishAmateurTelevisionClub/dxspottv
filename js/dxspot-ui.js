@@ -19,7 +19,7 @@ $(document).ready(function() {
 	setTimeSpan($('#time_select').val());
 	setBandChoice($('#band_select').val());
 	$('#search-loc-button').button().click( function() {
-		randomLoc = $('#search-loc').val();
+		randomLoc = $('#search-locator').val();
 		latlon = LoctoLatLon(randomLoc);
 		click_latlng = new google.maps.LatLng(latlon[0], latlon[1]);
 		var randomLoc = CoordToLoc(event.latLng.lat(), event.latLng.lng());
