@@ -9,6 +9,7 @@ $(document).ready(function() {
 function initUI() {
     // Make UI elements such as windows draggable
     $("#box-info").draggable({containment: '#map-canvas', handle: 'img.handle', snap: '#map-canvas'});
+    $("#box-log").draggable({containment: '#map-canvas', handle: 'img.handle', snap: '#map-canvas'});
     // Activate buttons to jqueryui styling
 }
 
