@@ -62,7 +62,7 @@ body {
     position: absolute;
     bottom: 0px;
     left: 30px;
-    width: 400px;
+    width: 700px;
     text-align:center;
     padding: 5px;
     line-height: 130%;
@@ -185,6 +185,9 @@ img.handle {
 <div id="box-spot" class="box ui-corner-all">
     <img src="/images/drag_handle.png" class="handle" />
     <b>New Spot</b><br>
+    <table>
+    <tr>
+    <td>
 	<select id="spot_band_select">
 	<option value=1>70cm</option>
 	<option value=2>23cm</option>
@@ -193,16 +196,19 @@ img.handle {
 	<option value=6>6cm</option>
 	<option value=4>3cm</option>
 	</select>
-	&nbsp;
+	<br>
 	<select id="spot_mode_select">
 	<option value="1">Analog TV</option>
 	<option value="2">Digital TV</option>
 	<option value="3">Beacon</option>
 	</select>
-	<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />&nbsp;
-	<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" />&nbsp;
+	</td><td>
+	<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" /><br>
+	<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" />
+	</td><td>
 	Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 	<button class="spot-button reduce-font-size" id="spot-button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
+	</td></tr></table>
 </div>
 <div id="window-login" class="box ui-corner-all">
 	<h4>Log In to DXSpot.TV</h4>
