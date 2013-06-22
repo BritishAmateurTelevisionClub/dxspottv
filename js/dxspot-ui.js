@@ -33,12 +33,7 @@ $(document).ready(function() {
 		alert("Not yet implemented");
 	});
 	$('#loginWindow-button').button().click( function() {
-		$("#box-info").hide("slide", { direction: "up" }, 500);
-		$("#box-selectors").hide("slide", { direction: "up" }, 500);
-    	$("#box-log").hide("slide", { direction: "right" }, 500);
-    	$("#box-search").hide("slide", { direction: "right" }, 500);
-    	$("#box-spot").hide("slide", { direction: "down" }, 500);
-    	$("#map-canvas").fadeTo(500, 0.2);
+		fadeToBlack();
     	$("#window-login").show();
 	});
 	$('#login-login-button').button().click( function() {
@@ -55,13 +50,24 @@ $(document).ready(function() {
     	}
     });
 	$('#login-cancel-button').button().click( function() {
-		$("#box-info").show("slide", { direction: "up" }, 250);
-		$("#box-selectors").show("slide", { direction: "up" }, 250);
-    	$("#box-log").show("slide", { direction: "right" }, 250);
-    	$("#box-search").show("slide", { direction: "right" }, 250);
-    	$("#box-spot").show("slide", { direction: "down" }, 250);
-    	$("#map-canvas").fadeTo(500, 1);
+		fadeToUI();
     	$("#window-login").fadeOut(200);
+	});
+	$('#aboutWindow-button').button().click( function() {
+		fadeToBlack();
+    	$("#window-about").show();
+	});
+	$('#about-back-button').button().click( function() {
+		fadeToUI();
+    	$("#window-about").fadeOut(200);
+	});
+	$('#helpWindow-button').button().click( function() {
+		fadeToBlack();
+    	$("#window-help").show();
+	});
+	$('#help-back-button').button().click( function() {
+		fadeToUI();
+    	$("#window-help").fadeOut(200);
 	});
 	// Make UI elements such as windows draggable
     $("#box-info").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
@@ -70,6 +76,24 @@ $(document).ready(function() {
     $("#box-search").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
     $("#box-spot").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
 });
+
+function fadeToBlack() {
+	$("#box-info").hide("slide", { direction: "up" }, 500);
+	$("#box-selectors").hide("slide", { direction: "up" }, 500);
+	$("#box-log").hide("slide", { direction: "right" }, 500);
+	$("#box-search").hide("slide", { direction: "right" }, 500);
+	$("#box-spot").hide("slide", { direction: "down" }, 500);
+	$("#map-canvas").fadeTo(500, 0.2);
+}
+
+function fadeToUI() {
+	$("#box-info").show("slide", { direction: "up" }, 250);
+	$("#box-selectors").show("slide", { direction: "up" }, 250);
+	$("#box-log").show("slide", { direction: "right" }, 250);
+	$("#box-search").show("slide", { direction: "right" }, 250);
+	$("#box-spot").show("slide", { direction: "down" }, 250);
+	$("#map-canvas").fadeTo(500, 1);
+}
 
 function doLogin() {
 	alert("Not yet implemented");
