@@ -2,19 +2,6 @@ var map;
 
 google.maps.visualRefresh = true;
 
-$(document).ready(function() {
-	initUI();
-});
-
-function initUI() {
-    // Make UI elements such as windows draggable
-    $("#box-info").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
-    $("#box-log").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
-    $("#box-selectors").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
-    // Activate buttons to jqueryui styling
-    
-}
-
 function initialize() {
   var mapOptions = {
     zoom: 6,

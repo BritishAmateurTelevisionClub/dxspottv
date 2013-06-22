@@ -55,6 +55,11 @@ $(document).ready(function() {
     	$("#map-canvas").fadeTo(500, 1);
     	$("#window-login").fadeOut(200);
 	});
+	// Make UI elements such as windows draggable
+    $("#box-info").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
+    $("#box-log").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
+    $("#box-selectors").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
+    $("#box-search").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
 });
 
 // Set up Users/Repeaters checkboxes
