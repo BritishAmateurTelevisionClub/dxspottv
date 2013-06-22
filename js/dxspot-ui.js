@@ -25,13 +25,15 @@ $(document).ready(function() {
     	$("#map-canvas").fadeTo(500, 0.2);
     	$("#window-login").show();
 	});
-	$('#login-login-button').button();
+	$('#login-login-button').button().click( function() {
+		alert("Not yet implemented");
+	});
 	$('#login-cancel-button').button().click( function() {
-		$("#box-info").show("slide", { direction: "up" }, 500);
-		$("#box-selectors").show("slide", { direction: "up" }, 500);
-    	$("#box-log").show("slide", { direction: "right" }, 500);
-    	$("#map-canvas").fadeTo(1000, 1);
-    	$("#window-login").fadeOut(250);
+		$("#box-info").show("slide", { direction: "up" }, 250);
+		$("#box-selectors").show("slide", { direction: "up" }, 250);
+    	$("#box-log").show("slide", { direction: "right" }, 250);
+    	$("#map-canvas").fadeTo(500, 1);
+    	$("#window-login").fadeOut(200);
 	});
 });
 
