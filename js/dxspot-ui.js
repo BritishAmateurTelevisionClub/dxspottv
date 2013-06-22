@@ -20,20 +20,18 @@ $(document).ready(function() {
 	setBandChoice($('#band_select').val());
 	$('#loginWindow-button').button().click( function() {
 		$("#box-info").hide("slide", { direction: "up" }, 500);
-		$("#box-selector").hide("slide", { direction: "up" }, 500);
+		$("#box-selectors").hide("slide", { direction: "up" }, 500);
     	$("#box-log").hide("slide", { direction: "right" }, 500);
     	$("#map-canvas").fadeTo(500, 0.2);
     	$("#window-login").show();
-    	doLogin();
 	});
 	$('#login-login-button').button();
 	$('#login-cancel-button').button().click( function() {
 		$("#box-info").show("slide", { direction: "up" }, 500);
-		$("#box-selector").show("slide", { direction: "up" }, 500);
+		$("#box-selectors").show("slide", { direction: "up" }, 500);
     	$("#box-log").show("slide", { direction: "right" }, 500);
     	$("#map-canvas").fadeTo(1000, 1);
     	$("#window-login").fadeOut(250);
-    	doLogin();
 	});
 });
 
