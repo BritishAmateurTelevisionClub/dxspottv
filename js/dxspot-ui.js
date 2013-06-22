@@ -16,11 +16,8 @@ $(document).ready(function() {
 		checkUsers();
 		checkRepeaters();
 	});
-    setTimeSpan($('#time_select').val());
+	setTimeSpan($('#time_select').val());
 	setBandChoice($('#band_select').val());
-	checkSpots();
-	checkUsers();
-	checkRepeaters();
 });
 
 // Set up Users/Repeaters checkboxes

@@ -7,4 +7,7 @@ socket.on('mapData', function (data) {
     parseRepeaters(dataObject['repeaters']);
     parseSpots(dataObject['spots']);
 	//socket.emit('my other event', { my: 'data' });
+	checkSpots();
+	checkUsers();
+	checkRepeaters();
 });
