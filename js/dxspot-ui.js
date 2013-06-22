@@ -110,6 +110,7 @@ function checkRepeaters() {
 }
 
 function showMousePos(GLatLng) {
+	clearTimeout(cursorLocTimer);
     cursorLocTimer=setTimeout(function(){
     	var curr_lat = GLatLng.lat().toFixed(4);
 		var curr_lon = GLatLng.lng().toFixed(4);
