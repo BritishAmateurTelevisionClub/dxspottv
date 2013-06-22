@@ -43,6 +43,18 @@ html, body, #map-canvas {
     padding: 5px;
     line-height: 100%;
 }
+#window-login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 100px;
+    margin-left: -200px;
+    margin-top: -50px;
+    padding: 1em;
+    text-align: center;
+    display: none;
+}
 .box {
     position: absolute; 
     background-color: white; 
@@ -128,6 +140,7 @@ img.handle {
 <div id="box-info" class="box ui-corner-all">
     <img src="/images/drag_handle.png" class="handle" /><br>
     <img src="/images/DXS8.jpg" style="height: 79px; width: 179px;" /><br>
+    <button class="login-button reduce-font-size" id="loginWindow-button">Log In</button>
     <span id="cursor_info">Current mouse position:<br>
         Lat: <span id="cursor_lat">?</span> 
         Lon: <span id="cursor_lon">?</span>
@@ -139,6 +152,13 @@ img.handle {
     <h3>Spot Log</h3>
     <span id="spotLog">Loading...</span>
     <br>
+</div>
+<div id="window-login" class="box ui-corner-all">
+    Callsign: <input type=text name="callsign" id="callsign_input" /><br>
+	Password: <input type=password name="passwd" id="passwd_input" /><br>
+	<button class="login-login-button reduce-font-size" id="login-login-button">Log In</button>
+	&nbsp;&nbsp;
+	<button class="login-cancel-button reduce-font-size" id="login-cancel-button">Cancel</button>
 </div>
 </body>
 </html>
