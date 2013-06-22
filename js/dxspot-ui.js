@@ -22,7 +22,6 @@ $(document).ready(function() {
 		randomLoc = $('#search-locator').val();
 		latlon = LoctoLatLon(randomLoc);
 		click_latlng = new google.maps.LatLng(latlon[0], latlon[1]);
-		var randomLoc = CoordToLoc(event.latLng.lat(), event.latLng.lng());
 		infoContent="<h3 style='line-height: 0.3em;'>"+randomLoc+"</h3>";
 		if(logged_in) {
 			var user_latlng = new google.maps.LatLng(user_lat, user_lon);
