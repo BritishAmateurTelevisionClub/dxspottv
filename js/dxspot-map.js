@@ -16,7 +16,7 @@ function initialize() {
   var mapOptions = {
     zoom: 6,
     center: new google.maps.LatLng(52.5, -1.25),
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
 	streetViewControl: false
   };
   
