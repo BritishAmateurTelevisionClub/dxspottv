@@ -54,6 +54,8 @@ function initialize() {
 	userUnknownIcon = new google.maps.MarkerImage("/images/unknown_user.ico");
 	repeaterIcon = new google.maps.MarkerImage("/images/active_repeater.ico");
 	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
+	
+	webSocket();
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
