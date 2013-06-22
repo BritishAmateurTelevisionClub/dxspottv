@@ -42,6 +42,7 @@ $(document).ready(function() {
 		$("#box-info").hide("slide", { direction: "up" }, 500);
 		$("#box-selectors").hide("slide", { direction: "up" }, 500);
     	$("#box-log").hide("slide", { direction: "right" }, 500);
+    	$("#box-search").hide("slide", { direction: "right" }, 500);
     	$("#map-canvas").fadeTo(500, 0.2);
     	$("#window-login").show();
 	});
@@ -52,6 +53,7 @@ $(document).ready(function() {
 		$("#box-info").show("slide", { direction: "up" }, 250);
 		$("#box-selectors").show("slide", { direction: "up" }, 250);
     	$("#box-log").show("slide", { direction: "right" }, 250);
+    	$("#box-search").show("slide", { direction: "right" }, 250);
     	$("#map-canvas").fadeTo(500, 1);
     	$("#window-login").fadeOut(200);
 	});
