@@ -38,6 +38,9 @@ $(document).ready(function() {
 	$('#search-call-button').button().click( function() {
 		alert("Not yet implemented");
 	});
+	$('#spot-button').button().click( function() {
+		alert("Not yet implemented");
+	});
 	$('#loginWindow-button').button().click( function() {
 		$("#box-info").hide("slide", { direction: "up" }, 500);
 		$("#box-selectors").hide("slide", { direction: "up" }, 500);
@@ -62,6 +65,7 @@ $(document).ready(function() {
     $("#box-log").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
     $("#box-selectors").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
     $("#box-search").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
+    $("#box-spot").draggable({containment: '#map-canvas', handle: 'img.handle', snap: true});
 });
 
 // Set up Users/Repeaters checkboxes
