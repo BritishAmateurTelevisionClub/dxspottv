@@ -18,7 +18,11 @@ function initialize() {
     zoom: 6,
     center: new google.maps.LatLng(52.5, -1.25),
     mapTypeId: google.maps.MapTypeId.TERRAIN,
-	streetViewControl: false
+	streetViewControl: false,
+	mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+      position: google.maps.ControlPosition.TOP_LEFT
+    }
   };
   
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
