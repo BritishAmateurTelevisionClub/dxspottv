@@ -45,19 +45,51 @@ img.handle {
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="http://websocket.dxspot.tv/socket.io/socket.io.js"></script>
+<script src="/js/infobubble.min.js"></script>
 <script src="/js/jquery-plus-ui.js"></script>
-<script src="/js/atvspot-map.js"></script>
+<script src="/js/dxspot-map.js"></script>
+<script src="/js/dxspot-parse.js"></script>
+<script src="/js/dxspot-websocket.js"></script>
 </head>
 <body>
 <div id="map-canvas"></div>
 <div id="box-info" class="box ui-corner-all">
     <img src="/images/drag_handle.png" class="handle" />
     <h1>DXSpot.TV Map</h1>
-    <span id="cursor_info">Current mouse position: 
-        Lat: <span id="cursor_lat">?</span> 
-        Lon: <span id="cursor_lon">?</span>
-        Alt: <span id="cursor_alt">?</span>
-    </span><br />
+    <table border="0" cellspacing="3" cellpadding="0" width="100%" >
+		<tr>
+		<td><p class="mapSelecter" align="center">
+		<strong>Timespan:</strong>&nbsp;
+		<select id="time_select">
+		  <option value="all">All Spots</option>
+		  <option value="year">Last year</option>
+		  <option value="6months">Last 6 months</option>
+		  <option value="1month">Last Month</option>
+		  <option value="1week">Last Week</option>
+		  <option value="24hours" selected="selected">Last 24 Hours</option>
+		  <option value="12hours">Last 12 Hours</option>
+		  <option value="6hours">Last 6 Hours</option>
+		</select>
+		</td>
+
+		<td><p class="mapSelecter" align="center">
+		<strong>Band:</strong>&nbsp;
+		<select id="band_select">
+		  <option value="all">All Bands</option>
+		  <option value="70cm" style="background-color: #FF0000; color: white;">70cm</option>
+		  <option value="23cm" style="background-color: #FFA500; color: white;">23cm</option>
+		  <option value="13cm" style="background-color: #0404B4; color: white;">13cm</option>
+		  <option value="9cm" style="background-color: #0404B4; color: white;">9cm</option>
+		  <option value="6cm" style="background-color: #0404B4; color: white;">6cm</option>
+		  <option value="3cm" style="background-color: #0404B4; color: white;">3cm</option>
+		</select>
+
+		<td><p class="mapSelecter" align="center">
+		<strong>Show repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterBox" /></p></td>
+
+		</tr>
+	</table>
+    <br />
 </div>
 </body>
 </html>
