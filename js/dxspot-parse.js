@@ -5,8 +5,8 @@ var spot_lines = [];
 var months = ["_dummy_", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function initialLoad() {
-	dataObject = JSON.parse(initData);
-	console.log(dataObject);
+	dataObject = initData;
+	//console.log(dataObject);
 	loadUsers(dataObject['users']);
     parseRepeaters(dataObject['repeaters']);
     parseSpots(dataObject['spots']);
