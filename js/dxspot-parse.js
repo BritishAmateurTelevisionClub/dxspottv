@@ -4,6 +4,18 @@ var spot_lines = [];
 
 var months = ["_dummy_", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+function initialLoad() {
+	dataObject = JSON.parse(initData);
+	console.log(dataObject);
+	loadUsers(dataObject['users']);
+    parseRepeaters(dataObject['repeaters']);
+    parseSpots(dataObject['spots']);
+    createGlobalSpotLog(dataObject['spots']);
+	checkSpots();
+	checkUsers();
+	checkRepeaters();
+}
+
 function createUserMarker(user_data) {
 	var lat_lon = new google.maps.LatLng(user_data['lat'], user_data['lon']);
 	
