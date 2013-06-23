@@ -5,12 +5,11 @@ var spot_lines = [];
 var months = ["_dummy_", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function initialLoad() {
-	dataObject = initData;
-	//console.log(dataObject);
-	loadUsers(dataObject['users']);
-    parseRepeaters(dataObject['repeaters']);
-    parseSpots(dataObject['spots']);
-    createGlobalSpotLog(dataObject['spots']);
+	loadUsers(initData['users']);
+    parseRepeaters(initData['repeaters']);
+    parseSpots(initData['spots']);
+    createGlobalSpotLog(initData['spots']);
+    initData = null;
 	checkSpots();
 	checkUsers();
 	checkRepeaters();
