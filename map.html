@@ -17,6 +17,9 @@ html, body, #map-canvas {
 body {
 	background-color: #000000;
 }
+#map-canvas {
+	opacity: 0.2;
+}
 .reduce-font-size {
 	font-size: 85% !important;
 }
@@ -71,6 +74,17 @@ body {
     text-align:center;
     padding: 5px;
     line-height: 130%;
+}
+#window-loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 100px;
+    margin-left: -200px;
+    margin-top: -50px;
+    padding: 1em;
+    text-align: center;
 }
 #window-login {
     position: absolute;
@@ -243,6 +257,9 @@ img.handle {
 	Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 	<button class="spot-button reduce-font-size" id="spot-button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 	</td></tr></table>
+</div>
+<div id="window-loading" class="box ui-corner-all">
+	Loading Map Data...
 </div>
 <div id="window-login" class="box ui-corner-all">
 	<h2>Log In to DXSpot.TV</h2>

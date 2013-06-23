@@ -1,6 +1,7 @@
 var dataSocket = io.connect('http://websocket.dxspot.tv/mapData');
 
 dataSocket.on('mapData', function (data) {
+	$('#window-loading').html("Parsing Map Data...");
 	dataObject = JSON.parse(data);
 	//console.log(dataObject);
 	loadUsers(dataObject['users']);
@@ -11,4 +12,6 @@ dataSocket.on('mapData', function (data) {
 	checkSpots();
 	checkUsers();
 	checkRepeaters();
+	$("#window-loading").fadeOut(100);
+	$("#map-canvas").fadeTo(200, 1);
 });
