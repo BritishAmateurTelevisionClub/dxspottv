@@ -1,1 +1,1 @@
-var dataSocket = io.connect('http://websocket.dxspot.tv/mapData');
+var dataSocket = io.connect('http://websocket.dxspot.tv/');
