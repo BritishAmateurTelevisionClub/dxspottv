@@ -96,7 +96,7 @@ function fadeToUI() {
 }
 
 function doLogin() {
-	dataSocket.emit('login', { callsign: $("#callsign-input").val(), password: $("#password-input").val() });
+	dataSocket.emit('login', { callsign: $("#callsign-input").val(), password: $("#passwd-input").val() });
 }
 
 function searchLocator() {
