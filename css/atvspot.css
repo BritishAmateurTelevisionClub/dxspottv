@@ -9,6 +9,8 @@ html, body {
 #irc_frame {
   height: 620px;
   width: 100%;
+  background-color: #BFBFDF;
+  padding-bottom: 2px;
 }
 
 #n_irc_content {
