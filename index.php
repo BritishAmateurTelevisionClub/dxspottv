@@ -235,7 +235,7 @@ if ($auth_error==1) {
 	</div>
 	<?php } ?>
 	<div id="findStation" class="reduce-tab-padding">
-		<b>Search:&nbsp;</b><input type=text id="search_callsign" class="spot_box_short" /><button class="search-button reduce-font-size" id="search_button">Search</button>
+		<b>Enter station callsign:&nbsp;</b><input type=text id="search_callsign" class="spot_box_short" /><button class="search-button reduce-font-size" id="search_button">Search</button>
 		<br><br>
 		<div id="findResults">
 		</div>
