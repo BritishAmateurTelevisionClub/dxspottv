@@ -268,12 +268,11 @@ if ($auth_error==1) {
 
 	</div>
 	<div id="aboutTab" class="reduce-tab-padding">
-		DXSpot.TV is an open development environment project using github.  
-		If you would like to contribute please email us at 
-		<a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a><br>
-		<br>
-		All the hard work so far has been done by Phil, M0DNY, from an idea by Noel, G8GTZ.
-
+		DXSpot.TV is an open development project, hosted at <a href="https://github.com/BritishAmateurTelevisionClub/dxspottv/">GitHub</a>. Contribution is welcome!
+		<br><br>
+		Most of the development has been done by Phil, M0DNY (aka. craag), from an idea by Noel, G8GTZ.
+		<br><br>
+		Comments/suggestions are welcome, either to us on the Chat, or emailed to us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
 	</div>
 </div>
 </td>
