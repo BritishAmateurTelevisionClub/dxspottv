@@ -247,6 +247,7 @@ $(document).ready(function() {
 			user_Desc +="<b>Station Description:</b><br><pre style='white-space: pre-wrap;'>"+user_markers[user_index].station_desc+"</pre>"+
 				"<b>Website:</b>&nbsp;"+'<a href="'+user_markers[user_index].station_website+'" target="_blank">'+user_markers[user_index].station_website+'</a>';
 			$('#findResults').html(user_Desc);
+			user_markers[user_index].setVisible(true);
 			map.panTo(user_markers[user_index].position);
           	map.setZoom(9);
 		}
