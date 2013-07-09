@@ -36,7 +36,7 @@ $(document).ready(function() {
     	}
 	});
 	$('#spot_button').button().click( function() {
-		if($('#remote_callsign').val().length>=4) {
+		if($('#remote_callsign').val().length>=4 && $('#remote_loc').val().length>=6) {
     		submitSpot();
     	} else {
     		$('#submitStatus').show();
