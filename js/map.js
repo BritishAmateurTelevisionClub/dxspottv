@@ -16,7 +16,7 @@ function checkUsers() {
 			} else { // Are they part of a shown spot?
 			    // Grep spot lines for user_id
 			    var spot_search = $.grep(spot_lines, function(e){
-				    return (e.primary_id == user_markers[i].user_id || e.secondary_id == user_markers[i].user_id);
+				    return (e.primary_id == user_markers[i].user_id || (e.secondary_id == user_markers[i].user_id && e.secondary_isrepeater == 0));
 			    });
 			    var visibleToBe = false;
 			    for (var j=0; j<spot_search.length; j++) {
