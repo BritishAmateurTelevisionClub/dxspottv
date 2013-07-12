@@ -48,8 +48,6 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 				mysqli_query($dbc, $add_spot_query) or die(mysqli_error($dbc));
 			
 			} else { // New unknown user
-		
-				print 'Adding new unknown callsign.';
 				// Insert into users tables
 				mysqli_query($dbc, "INSERT into users (callsign, locator, lat, lon, known) VALUES ('{$r_callsign}', '{$r_locator}', '{$r_lat}', '{$r_lon}', '0');");
 				// Grab allocated user_id
