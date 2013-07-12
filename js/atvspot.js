@@ -102,7 +102,8 @@ function createUserMarker(user_data) {
 		});
 	}
 	
-    marker.user_id = user_data['id']
+    marker.user_id = user_data['id'];
+    marker.revision = user_data['rev'];
     marker.callsign = user_data['callsign'];
     marker.locator = user_data['locator'];
     marker.activity = user_data['seconds_active'];
@@ -204,6 +205,7 @@ function createRepeaterMarker(repeater_data) {
 	}
 	
 	marker.repeater_id = repeater_data['id'];
+	marker.revision = repeater_data['rev'];
     marker.callsign = repeater_data['callsign'];
     marker.qth_r = repeater_data['qth_r'];
     marker.qth = repeater_data['qth'];
