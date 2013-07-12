@@ -22,26 +22,6 @@ function doLogin() {
 	});
 }
 
-function getMapData() {
-	$.ajax({
-		url: "http://ww.dxspot.tv/api/mapData",
-		success: function( data ) {
-    		loadUsers(data['users']);
-    		parseRepeaters(data['repeaters']);
-    		parseSpots(data['spots']);
-    		createGlobalSpotLog(data['spots']);
-    		
-    		setTimeSpan($('#time_select').val());
-			setBandChoice($('#band_select').val());
-			checkSpots();
-			checkUsers();
-			checkRepeaters();
-		
-    		loadSpotAutocomplete();
-		}
-	});
-}
-
 function getUserSpotData() {
 	$.ajax({
 		url: "http://www.dxspot.tv/api/userSpotRefresh",
