@@ -435,6 +435,8 @@ function updateUsers(JSONinput) {
 			if(marker_search.length==1) {
 			    user_index = $.inArray(marker_search[0], user_markers);
 				updateUserMarker(user, user_index);
+			} else if (marker_search.length==0) { // New user
+			    createUserMarker(user);
 			}
 		}
 	}
