@@ -70,7 +70,8 @@ function initialize() {
 	repeaterIcon = new google.maps.MarkerImage("/images/active_repeater.ico");
 	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
 
-	getMapData();
+	parseMapData(initData);
+	initData = null;
 	userSpotRefresh=self.setInterval(function(){getUserSpotData()},2000+Math.round(Math.random()*200));
 	repeaterRefresh=self.setInterval(function(){getRepeaterData()},120000+Math.round(Math.random()*2000));
 }
@@ -403,6 +404,21 @@ function createSpotLine(spot_data) {
 	
 	spotLine.setMap(map);
 	spot_lines.push(spotLine);
+}
+
+function parseMapData(data) {
+    		loadUsers(data['users']);
+    		parseRepeaters(data['repeaters']);
+    		parseSpots(data['spots']);
+    		createGlobalSpotLog(data['spots']);
+    		
+    		setTimeSpan($('#time_select').val());
+			setBandChoice($('#band_select').val());
+			checkSpots();
+			checkUsers();
+			checkRepeaters();
+		
+    		loadSpotAutocomplete();
 }
 
 function parseRepeaters(JSONinput) {
