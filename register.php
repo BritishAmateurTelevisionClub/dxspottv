@@ -28,6 +28,7 @@ session_start();
 <td style="width: auto;">
 <h2>New User Registration</h2>
 Please enter the all following information and use the map to set your location<br>
+<b>Please do not register repeaters on this page.</b><b>
 <br>
 	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
 	<input type=text name='fname' id='fname' class="required" minlength="2" /> (Your chatroom name will be <i>firstname_callsign</i>)
