@@ -270,33 +270,33 @@ function createRepeaterMarker(repeater_data) {
     		'<a href="javascript:elevation_profile('+elevation_vars+')"><b>Path Elevation Profile</b></a>';
     }
     infoTab += '</div>';
-    var freqTab = '<div class="repeater_bubble_freq">'+
+    var freqTab = '<div class="repeater_bubble_freq">';
     
-    if (typeof repeater_data['tx1'] != 'undefined') '<b>TX:&nbsp;'+marker.tx1+'MHz</b><br>';
-    if (typeof repeater_data['tx2'] != 'undefined') '<b>TX:&nbsp;'+marker.tx2+'MHz</b><br>';
-    if (typeof repeater_data['tx3'] != 'undefined') '<b>TX:&nbsp;'+marker.tx3+'MHz</b><br>';
-    if (typeof repeater_data['tx4'] != 'undefined') '<b>TX:&nbsp;'+marker.tx4+'MHz</b><br>';
-    if (typeof repeater_data['tx5'] != 'undefined') '<b>TX:&nbsp;'+marker.tx5+'MHz</b><br>';
-    if (typeof repeater_data['tx6'] != 'undefined') '<b>TX:&nbsp;'+marker.tx6+'MHz</b><br>';
-    if (typeof repeater_data['tx7'] != 'undefined') '<b>TX:&nbsp;'+marker.tx7+'MHz</b><br>';
-    if (typeof repeater_data['tx8'] != 'undefined') '<b>TX:&nbsp;'+marker.tx8+'MHz</b><br>';
-    if (typeof repeater_data['tx9'] != 'undefined') '<b>TX:&nbsp;'+marker.tx9+'MHz</b><br>';
+    if (typeof repeater_data['tx1'] != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx1+'MHz</b><br>';
+    if (typeof repeater_data['tx2'] != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx2+'MHz</b><br>';
+    if (typeof repeater_data['tx3'] != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx3+'MHz</b><br>';
+    if (typeof repeater_data['tx4'] != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx4+'MHz</b><br>';
+    if (typeof repeater_data['tx5'] != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx5+'MHz</b><br>';
+    if (typeof repeater_data['tx6'] != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx6+'MHz</b><br>';
+    if (typeof repeater_data['tx7'] != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx7+'MHz</b><br>';
+    if (typeof repeater_data['tx8'] != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx8+'MHz</b><br>';
+    if (typeof repeater_data['tx9'] != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx9+'MHz</b><br>';
     
-    if (typeof repeater_data['rx1'] != 'undefined') '<br><b>RX:&nbsp;'+marker.rx1+'MHz</b><br>';
-    if (typeof repeater_data['rx2'] != 'undefined') '<b>RX:&nbsp;'+marker.rx2+'MHz</b><br>';
-    if (typeof repeater_data['rx3'] != 'undefined') '<b>RX:&nbsp;'+marker.rx3+'MHz</b><br>';
-    if (typeof repeater_data['rx4'] != 'undefined') '<b>RX:&nbsp;'+marker.rx4+'MHz</b><br>';
-    if (typeof repeater_data['rx5'] != 'undefined') '<b>RX:&nbsp;'+marker.rx5+'MHz</b><br>';
-    if (typeof repeater_data['rx6'] != 'undefined') '<b>RX:&nbsp;'+marker.rx6+'MHz</b><br>';
-    if (typeof repeater_data['rx7'] != 'undefined') '<b>RX:&nbsp;'+marker.rx7+'MHz</b><br>';
-    if (typeof repeater_data['rx8'] != 'undefined') '<b>RX:&nbsp;'+marker.rx8+'MHz</b><br>';
-    if (typeof repeater_data['rx9'] != 'undefined') '<b>RX:&nbsp;'+marker.rx9+'MHz</b><br>';
+    if (typeof repeater_data['rx1'] != 'undefined') freqTab += '<br><b>RX:&nbsp;'+marker.rx1+'MHz</b><br>';
+    if (typeof repeater_data['rx2'] != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx2+'MHz</b><br>';
+    if (typeof repeater_data['rx3'] != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx3+'MHz</b><br>';
+    if (typeof repeater_data['rx4'] != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx4+'MHz</b><br>';
+    if (typeof repeater_data['rx5'] != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx5+'MHz</b><br>';
+    if (typeof repeater_data['rx6'] != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx6+'MHz</b><br>';
+    if (typeof repeater_data['rx7'] != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx7+'MHz</b><br>';
+    if (typeof repeater_data['rx8'] != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx8+'MHz</b><br>';
+    if (typeof repeater_data['rx9'] != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx9+'MHz</b><br>';
     
     freqTab += '</div>';
     
     var descTab = '<div class="repeater_bubble_desc">';
     descTab += marker.desc+'<br>';
-    if (typeof marker.keeper != 'undefined')descTab += '<b>Keeper:</b>&nbsp;'+marker.keeper+'<br><br>';
+    if (typeof marker.keeper != 'undefined') descTab += '<b>Keeper:</b>&nbsp;'+marker.keeper+'<br><br>';
     if (typeof marker.website != 'undefined') descTab += '<a href="'+marker.website+'" target="_blank"><b>Repeater Website</b></a>';
     descTab += '</div>';
     
