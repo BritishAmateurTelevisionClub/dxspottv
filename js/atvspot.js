@@ -188,10 +188,10 @@ function createRepeaterMarker(repeater_data) {
 	var marker = new google.maps.Marker({
         position: latlon,
         map: map,
-        title: repeater_data['callsign']
+        title: repeater_data['qrz']
 	});
 	
-	if(repeater_data['active']==1) {
+	if(typeof repeater_data['op'] != 'undefined') {
 		marker.setOptions( {
 			icon: repeaterIcon,
 			zIndex: 9
@@ -204,41 +204,59 @@ function createRepeaterMarker(repeater_data) {
 	}
 	
 	marker.repeater_id = repeater_data['id'];
-    marker.callsign = repeater_data['callsign'];
-    marker.qth_r = repeater_data['qth_r'];
-    marker.qth = repeater_data['qth'];
-    marker.tx_freq = repeater_data['tx_freq'];
-    marker.rx_freq = repeater_data['rx_freq'];
-    if (typeof repeater_data['rx_freq_2'] != 'undefined') {
-    	marker.rx_freq_2 = repeater_data['rx_freq_2'];
-    }
-    if (typeof repeater_data['alt_tx_freq'] != 'undefined') {
-    	marker.alt_tx_freq = repeater_data['alt_tx_freq'];
-    	marker.alt_rx_freq = repeater_data['alt_rx_freq'];
-    	if (typeof repeater_data['alt_rx_freq_2'] != 'undefined') {
-    		marker.alt_rx_freq_2 = repeater_data['alt_rx_freq_2'];
-    	}
-    }
-    marker.is70cm = repeater_data['is_70cm'];
-    marker.is23cm = repeater_data['is_23cm'];
-    marker.is13cm = repeater_data['is_13cm'];
-    marker.is9cm = repeater_data['is_9cm'];
-    marker.is6cm = repeater_data['is_6cm'];
-    marker.is3cm = repeater_data['is_3cm'];
-    marker.description = repeater_data['description']
-    if (typeof repeater_data['website'] != 'undefined') {
-    	marker.website = repeater_data['website'];
-    } else {
-    	marker.website = '';
-    }
+    marker.callsign = repeater_data['qrz'];
+    if(typeof repeater_data['qth']!='undefined') marker.qth = repeater_data['qth'];
+    marker.loc = repeater_data['loc'];
+    
+    if (typeof repeater_data['tx1'] != 'undefined') marker.tx1 = repeater_data['tx1'];
+    if (typeof repeater_data['tx2'] != 'undefined') marker.tx2 = repeater_data['tx2'];
+    if (typeof repeater_data['tx3'] != 'undefined') marker.tx3 = repeater_data['tx3'];
+    if (typeof repeater_data['tx4'] != 'undefined') marker.tx4 = repeater_data['tx4'];
+    if (typeof repeater_data['tx5'] != 'undefined') marker.tx5 = repeater_data['tx5'];
+    if (typeof repeater_data['tx6'] != 'undefined') marker.tx6 = repeater_data['tx6'];
+    if (typeof repeater_data['tx7'] != 'undefined') marker.tx7 = repeater_data['tx7'];
+    if (typeof repeater_data['tx8'] != 'undefined') marker.tx8 = repeater_data['tx8'];
+    if (typeof repeater_data['tx9'] != 'undefined') marker.tx9 = repeater_data['tx9'];
+    
+    if (typeof repeater_data['rx1'] != 'undefined') marker.rx1 = repeater_data['rx1'];
+    if (typeof repeater_data['rx2'] != 'undefined') marker.rx2 = repeater_data['rx2'];
+    if (typeof repeater_data['rx3'] != 'undefined') marker.rx3 = repeater_data['rx3'];
+    if (typeof repeater_data['rx4'] != 'undefined') marker.rx4 = repeater_data['rx4'];
+    if (typeof repeater_data['rx5'] != 'undefined') marker.rx5 = repeater_data['rx5'];
+    if (typeof repeater_data['rx6'] != 'undefined') marker.rx6 = repeater_data['rx6'];
+    if (typeof repeater_data['rx7'] != 'undefined') marker.rx7 = repeater_data['rx7'];
+    if (typeof repeater_data['rx8'] != 'undefined') marker.rx8 = repeater_data['rx8'];
+    if (typeof repeater_data['rx9'] != 'undefined') marker.rx9 = repeater_data['rx9'];
+    
+    marker.is2m = 0;
+    marker.is70cm = 0;
+    marker.is23cm = 0;
+    marker.is13cm = 0;
+    marker.is9cm = 0;
+    marker.is6cm = 0;
+    marker.is3cm = 0;
+    if (typeof repeater_data['2m']!='undefined') marker.is2m = 1;
+    if (typeof repeater_data['70cm']!='undefined') marker.is70cm = 1;
+    if (typeof repeater_data['23cm']!='undefined') marker.is23cm = 1;
+    if (typeof repeater_data['13cm']!='undefined') marker.is13cm = 1;
+    if (typeof repeater_data['9cm']!='undefined') marker.is9cm = 1;
+    if (typeof repeater_data['6cm']!='undefined') marker.is6cm = 1;
+    if (typeof repeater_data['3cm']!='undefined') marker.is3cm = 1;
+    
+    marker.desc = repeater_data['desc']
+    if (typeof repeater_data['www'] != 'undefined') marker.website = repeater_data['www'] else marker.website = '';
+    if (typeof repeater_data['keep'] != 'undefined') marker.keeper = repeater_data['keep'] else marker.keeper = '';
     repeater_markers.push(marker);
+    
+    repeater_data = null;
     
     var infoTab = '<div class="repeater_bubble_info">'+
         '<h3 style="line-height: 0.3em;">'+marker.callsign+'</h3>'+
-        '<b>'+marker.qth_r+'</b>&nbsp;-&nbsp;'+marker.qth;
+        '<b>'+marker.loc+'</b>';
+    if(typeof marker.qth!='undefined') infoTab += '&nbsp;-&nbsp;'+marker.qth;
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
-    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+repeater_data['callsign']+"','"+repeater_data['lat']+"','"+repeater_data['lon']+"'";
+    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+marker.callsign+"','"+marker.lat+"','"+marker.lon+"'";
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, latlon)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, latlon)/1000)*10)/10+'km<br>'+
@@ -246,25 +264,33 @@ function createRepeaterMarker(repeater_data) {
     }
     infoTab += '</div>';
     var freqTab = '<div class="repeater_bubble_freq">'+
-    	'<b>TX:&nbsp;'+marker.tx_freq+'MHz</b><br>'+
-    	'<b>RX:&nbsp;'+marker.rx_freq+'MHz</b><br>';
-    if (marker.rx_freq_2 != null && marker.rx_freq_2 != 0) {
-    	freqTab += '<b>RX:&nbsp;'+marker.rx_freq_2+'MHz</b><br>';
-    }
-    if (marker.alt_tx_freq != null && marker.alt_tx_freq != 0) {
-    	freqTab += '<br><b>TX:&nbsp;'+marker.alt_tx_freq+'MHz</b><br>'+
-    		'<b>RX:&nbsp;'+marker.alt_rx_freq+'MHz</b><br>';
-    	if (marker.alt_rx_freq_2 != null && marker.alt_rx_freq_2 != 0) {
-			freqTab += '<b>RX:&nbsp;'+marker.alt_rx_freq_2+'MHz</b><br>';
-		}
-    }
+    
+    if (typeof repeater_data['tx1'] != 'undefined') '<b>TX:&nbsp;'+marker.tx1+'MHz</b><br>';
+    if (typeof repeater_data['tx2'] != 'undefined') '<b>TX:&nbsp;'+marker.tx2+'MHz</b><br>';
+    if (typeof repeater_data['tx3'] != 'undefined') '<b>TX:&nbsp;'+marker.tx3+'MHz</b><br>';
+    if (typeof repeater_data['tx4'] != 'undefined') '<b>TX:&nbsp;'+marker.tx4+'MHz</b><br>';
+    if (typeof repeater_data['tx5'] != 'undefined') '<b>TX:&nbsp;'+marker.tx5+'MHz</b><br>';
+    if (typeof repeater_data['tx6'] != 'undefined') '<b>TX:&nbsp;'+marker.tx6+'MHz</b><br>';
+    if (typeof repeater_data['tx7'] != 'undefined') '<b>TX:&nbsp;'+marker.tx7+'MHz</b><br>';
+    if (typeof repeater_data['tx8'] != 'undefined') '<b>TX:&nbsp;'+marker.tx8+'MHz</b><br>';
+    if (typeof repeater_data['tx9'] != 'undefined') '<b>TX:&nbsp;'+marker.tx9+'MHz</b><br>';
+    
+    if (typeof repeater_data['rx1'] != 'undefined') '<br><b>RX:&nbsp;'+marker.rx1+'MHz</b><br>';
+    if (typeof repeater_data['rx2'] != 'undefined') '<b>RX:&nbsp;'+marker.rx2+'MHz</b><br>';
+    if (typeof repeater_data['rx3'] != 'undefined') '<b>RX:&nbsp;'+marker.rx3+'MHz</b><br>';
+    if (typeof repeater_data['rx4'] != 'undefined') '<b>RX:&nbsp;'+marker.rx4+'MHz</b><br>';
+    if (typeof repeater_data['rx5'] != 'undefined') '<b>RX:&nbsp;'+marker.rx5+'MHz</b><br>';
+    if (typeof repeater_data['rx6'] != 'undefined') '<b>RX:&nbsp;'+marker.rx6+'MHz</b><br>';
+    if (typeof repeater_data['rx7'] != 'undefined') '<b>RX:&nbsp;'+marker.rx7+'MHz</b><br>';
+    if (typeof repeater_data['rx8'] != 'undefined') '<b>RX:&nbsp;'+marker.rx8+'MHz</b><br>';
+    if (typeof repeater_data['rx9'] != 'undefined') '<b>RX:&nbsp;'+marker.rx9+'MHz</b><br>';
+    
     freqTab += '</div>';
+    
     var descTab = '<div class="repeater_bubble_desc">';
-    descTab += repeater_data['description']+'<br>';
-    descTab += '<b>Keeper:</b>&nbsp;'+repeater_data['keeper_callsign']+'<br><br>';
-    if (repeater_data['website'] != null) {
-    	descTab += '<a href="'+repeater_data['website']+'" target="_blank"><b>Repeater Website</b></a>';
-    }
+    descTab += marker.desc+'<br>';
+    if (typeof marker.keeper != 'undefined')descTab += '<b>Keeper:</b>&nbsp;'+marker.keeper+'<br><br>';
+    if (typeof marker.website != 'undefined') descTab += '<a href="'+marker.website+'" target="_blank"><b>Repeater Website</b></a>';
     descTab += '</div>';
     
     var infoBubble = new InfoBubble({
