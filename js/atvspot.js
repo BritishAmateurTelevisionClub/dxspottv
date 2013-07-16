@@ -456,11 +456,11 @@ function parseMapData(data) {
 
 function parseRepeaters(JSONinput) {
 	var r_id = new Array();
-	for(r_id in JSONinput){
+	for(r_id in JSONinput) {
 		if(JSONinput[r_id].length!=0) {
 			createRepeaterMarker(JSONinput[r_id]);
 		}
-	});
+	}
 }
 
 function loadUsers(JSONinput) {
