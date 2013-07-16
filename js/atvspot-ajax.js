@@ -1,6 +1,7 @@
 // Set up refresh functions
 //
-var revisionsRefresh;
+var userSpotRefresh;
+var repeaterRefresh;
 
 if(logged_in) {
 	var activityRefresh=self.setInterval(function(){updateActivity()},3000+Math.round(Math.random()*400)); // Add from 0-400ms randomly
@@ -21,56 +22,13 @@ function doLogin() {
 	});
 }
 
-function createNewUserMarker(user_id) {
+function getUserSpotData() {
 	$.ajax({
-		url: "http://www.dxspot.tv/api/userData",
-		type: "GET",
-		data: {
-			id: user_id
-		},
-		success: function(data) {
-			createUserMarker(data);
-
-    		setTimeSpan($('#time_select').val());
-			setBandChoice($('#band_select').val());
-			checkSpots();
-			checkUsers();
-		
-    		loadSpotAutocomplete();
-		}
-	});
-}
-
-function updateUserData(user_id, user_index) {
-	$.ajax({
-		url: "http://www.dxspot.tv/api/userData",
-		type: "GET",
-		data: {
-			id: user_id
-		},
-		success: function(data) {
-    		updateUserMarker(data, user_index);
-
-    		setTimeSpan($('#time_select').val());
-			setBandChoice($('#band_select').val());
-			checkSpots();
-			checkUsers();
-			checkRepeaters();
-		
-    		loadSpotAutocomplete();
-		}
-	});
-}
-
-function createNewRepeaterMarker(repeater_id){
-	$.ajax({
-		url: "http://www.dxspot.tv/api/repeaterData",
-		type: "GET",
-		data: {
-			id: repeater_id
-		},
+		url: "http://www.dxspot.tv/api/userSpotRefresh",
 		success: function( data ) {
-    		createRepeaterMarker(data)
+    		updateUsers(data['users']);
+    		parseSpots(data['spots']);
+    		createGlobalSpotLog(data['spots']);
     		
     		setTimeSpan($('#time_select').val());
 			setBandChoice($('#band_select').val());
@@ -83,36 +41,11 @@ function createNewRepeaterMarker(repeater_id){
 	});
 }
 
-function updateRepeaterData(repeater_id, repeater_index) {
+function getRepeaterData() {
 	$.ajax({
 		url: "http://www.dxspot.tv/api/repeaterData",
-		type: "GET",
-		data: {
-			id: repeater_id
-		},
-		success: function(data) {
-    		updateRepeaterMarker(data, repeater_index);
-
-    		setTimeSpan($('#time_select').val());
-			setBandChoice($('#band_select').val());
-			checkSpots();
-			checkUsers();
-			checkRepeaters();
-		
-    		loadSpotAutocomplete();
-		}
-	});
-}
-
-function createNewSpotLine(spot_id){
-	$.ajax({
-		url: "http://www.dxspot.tv/api/spotData",
-		type: "GET",
-		data: {
-			id: spot_id
-		},
 		success: function( data ) {
-    		createSpotLine(data);
+    		parseRepeaters(data);
     		
     		setTimeSpan($('#time_select').val());
 			setBandChoice($('#band_select').val());
@@ -123,6 +56,7 @@ function createNewSpotLine(spot_id){
     		loadSpotAutocomplete();
 		}
 	});
+	ga('send', 'event', 'refresh', 'Repeater Data');
 }
 
 function updateActivity() {

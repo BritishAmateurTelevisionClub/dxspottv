@@ -72,7 +72,8 @@ function initialize() {
 
 	parseMapData(initData);
 	initData = null;
-	revisionsRefresh=self.setInterval(function(){getRevisions()},2000+Math.round(Math.random()*200));
+	userSpotRefresh=self.setInterval(function(){getUserSpotData()},2000+Math.round(Math.random()*200));
+	repeaterRefresh=self.setInterval(function(){getRepeaterData()},120000+Math.round(Math.random()*2000));
 }
 
 function createUserMarker(user_data) {
@@ -101,8 +102,7 @@ function createUserMarker(user_data) {
 		});
 	}
 	
-    marker.user_id = user_data['id'];
-    marker.revision = user_data['rev'];
+    marker.user_id = user_data['id']
     marker.callsign = user_data['callsign'];
     marker.locator = user_data['locator'];
     marker.activity = user_data['seconds_active'];
@@ -204,7 +204,6 @@ function createRepeaterMarker(repeater_data) {
 	}
 	
 	marker.repeater_id = repeater_data['id'];
-	marker.revision = repeater_data['rev'];
     marker.callsign = repeater_data['callsign'];
     marker.qth_r = repeater_data['qth_r'];
     marker.qth = repeater_data['qth'];
@@ -409,8 +408,8 @@ function createSpotLine(spot_data) {
 
 function parseMapData(data) {
     		loadUsers(data['users']);
-    		loadRepeaters(data['repeaters']);
-    		loadSpots(data['spots']);
+    		parseRepeaters(data['repeaters']);
+    		parseSpots(data['spots']);
     		createGlobalSpotLog(data['spots']);
     		
     		setTimeSpan($('#time_select').val());
@@ -422,6 +421,16 @@ function parseMapData(data) {
     		loadSpotAutocomplete();
 }
 
+function parseRepeaters(JSONinput) {
+	var r_id = new Array();
+	for(r_id in JSONinput){
+		var repeater = JSONinput[r_id];
+		var marker_search = $.grep(repeater_markers, function(e){ return e.callsign == repeater['callsign']; });
+		if(marker_search.length==0 && repeater.length!=0) {
+			createRepeaterMarker(repeater);
+		}
+	}
+}
 
 function loadUsers(JSONinput) {
 	var u_id = new Array();
@@ -433,67 +442,29 @@ function loadUsers(JSONinput) {
 	}
 }
 
-function loadRepeaters(JSONinput) {
-	var r_id = new Array();
-	for(r_id in JSONinput){
-		var repeater = JSONinput[r_id];
-		if(repeater.length!=0) {
-			createRepeaterMarker(repeater);
-		}
-	}
-}
-
-
-function loadSpots(JSONinput) {
-	var s_id = new Array();
-	for(s_id in JSONinput){
-		var spot = JSONinput[s_id];
-		if(spot.length!=0) {
-			createSpotLine(spot);
-		}
-	}
-}
-
-function parseUserRevisions(JSONinput) {
+function updateUsers(JSONinput) {
 	var u_id = new Array();
 	for(u_id in JSONinput){
 		var user = JSONinput[u_id];
 		if(user.length!=0) {
 			var marker_search = $.grep(user_markers, function(e){ return e.user_id == user['id']; });
-			if(marker_search.length==1 && marker.search[0].revision!=user['rev']) {
+			if(marker_search.length==1) {
 			    user_index = $.inArray(marker_search[0], user_markers);
-				updateUserData(user['id'], user_index); // AJAX call to get changed data
+				updateUserMarker(user, user_index);
 			} else if (marker_search.length==0) { // New user
-			    createNewUserMarker(user['id']); // AJAX call to get data
+			    createUserMarker(user);
 			}
 		}
 	}
 }
 
-function parseRepeaterRevisions(JSONinput) {
-	var r_id = new Array();
-	for(r_id in JSONinput){
-		var repeater = JSONinput[r_id];
-		if(repeater.length!=0) {
-			var marker_search = $.grep(repeater_markers, function(e){ return e.repeater_id == repeater['id']; });
-			if(marker_search.length==1 && marker.search[0].revision!=repeater['rev']) {
-			    repeater_index = $.inArray(marker_search[0], repeater_markers);
-				updateRepeaterData(repeater['id'], repeater_index); // AJAX call to get changed data
-			} else if (repeater_search.length==0) { // New repeater
-			    createNewRepeaterMarker(repeater['id']); // AJAX call to get data
-			}
-		}
-	}
-}
-
-function parseSpotRevisions(JSONinput) { // Not really revisions, just check latest id is up to date
+function parseSpots(JSONinput) {
 	var s_id = new Array();
 	for(s_id in JSONinput){
 		var spot = JSONinput[s_id];
-		if(spot.length!=0) {
-			var spot_search = $.grep(spot_lines, function(e){ return e.spot_id == spot['id']; });
-			if(spot_search.length==0) {
-				createNewSpotLine(spot['id']); // AJAX call to get data
-			}
+		var spot_search = $.grep(spot_lines, function(e){ return e.spot_id == spot['id']; });
+		if(spot_search.length==0 && spot.length!=0) {
+			createSpotLine(spot);
 		}
 	}
+}
