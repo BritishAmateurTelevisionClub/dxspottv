@@ -108,6 +108,7 @@ function submitSpot() {
 }
 
 function doChangeDesc(desc, website, lat, lon) {
+	var locator = CoordToLoc(parseFloat(lat),parseFloat(lon));
 	$.ajax({
 		url: "/ajax/changeUserDesc.php",
 		type: "POST",
@@ -115,7 +116,8 @@ function doChangeDesc(desc, website, lat, lon) {
 			description: desc,
 			website: website,
 			lat: lat,
-			lon: lon
+			lon: lon,
+			loc: locator
 		},
 		success: function( data ) {
 			//console.log(data);
