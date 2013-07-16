@@ -455,9 +455,10 @@ function parseMapData(data) {
 }
 
 function parseRepeaters(JSONinput) {
-	JSONinput.forEach(function(repeater) {
-		if(repeater.length!=0) {
-			createRepeaterMarker(repeater);
+	var r_id = new Array();
+	for(r_id in JSONinput){
+		if(JSONinput[r_id].length!=0) {
+			createRepeaterMarker(JSONinput[r_id]);
 		}
 	});
 }
