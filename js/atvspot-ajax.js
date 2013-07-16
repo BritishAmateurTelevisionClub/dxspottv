@@ -1,7 +1,6 @@
 // Set up refresh functions
 //
 var userSpotRefresh;
-var repeaterRefresh;
 
 if(logged_in) {
 	var activityRefresh=self.setInterval(function(){updateActivity()},3000+Math.round(Math.random()*400)); // Add from 0-400ms randomly
@@ -41,23 +40,6 @@ function getUserSpotData() {
 	});
 }
 
-function getRepeaterData() {
-	$.ajax({
-		url: "http://www.dxspot.tv/api/repeaterData",
-		success: function( data ) {
-    		parseRepeaters(data);
-    		
-    		setTimeSpan($('#time_select').val());
-			setBandChoice($('#band_select').val());
-			checkSpots();
-			checkUsers();
-			checkRepeaters();
-		
-    		loadSpotAutocomplete();
-		}
-	});
-	ga('send', 'event', 'refresh', 'Repeater Data');
-}
 
 function updateActivity() {
 	$.ajax({

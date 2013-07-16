@@ -73,7 +73,6 @@ function initialize() {
 	parseMapData(initData);
 	initData = null;
 	userSpotRefresh=self.setInterval(function(){getUserSpotData()},2000+Math.round(Math.random()*200));
-	repeaterRefresh=self.setInterval(function(){getRepeaterData()},120000+Math.round(Math.random()*2000));
 }
 
 function createUserMarker(user_data) {
@@ -450,9 +449,7 @@ function parseMapData(data) {
 function parseRepeaters(JSONinput) {
 	var r_id = new Array();
 	for(r_id in JSONinput){
-		var repeater = JSONinput[r_id];
-		var marker_search = $.grep(repeater_markers, function(e){ return e.callsign == repeater['callsign']; });
-		if(marker_search.length==0 && repeater.length!=0) {
+		if(repeater.length!=0) {
 			createRepeaterMarker(repeater);
 		}
 	}
