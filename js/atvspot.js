@@ -243,8 +243,16 @@ function createRepeaterMarker(repeater_data) {
     if (typeof repeater_data['3cm']!='undefined') marker.is3cm = 1;
     
     marker.desc = repeater_data['desc']
-    if (typeof repeater_data['www'] != 'undefined') marker.website = repeater_data['www'] else marker.website = '';
-    if (typeof repeater_data['keep'] != 'undefined') marker.keeper = repeater_data['keep'] else marker.keeper = '';
+    if (typeof repeater_data['www'] != 'undefined') {
+    	marker.website = repeater_data['www']
+    } else {
+    	marker.website = '';
+    }
+    if (typeof repeater_data['keep'] != 'undefined') {
+   		marker.keeper = repeater_data['keep']
+    } else {
+    	marker.keeper = '';
+    }
     repeater_markers.push(marker);
     
     repeater_data = null;
