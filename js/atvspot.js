@@ -25,7 +25,7 @@ google.load("visualization", "1", {packages:["corechart"]});
 function initialize() {
 	google.maps.visualRefresh = true;
 	var mapOptions = {
-		zoom: 6,
+		zoom: 4,
 		mapTypeId: google.maps.MapTypeId.TERRAIN,
 		streetViewControl: false
 	};
@@ -35,7 +35,7 @@ function initialize() {
 	if (typeof user_lat != 'undefined') {
 		map.setOptions({ center: new google.maps.LatLng(user_lat, user_lon) });
 	} else {
-		map.setOptions({ center: new google.maps.LatLng(52.5, -1.25) });
+		map.setOptions({ center: new google.maps.LatLng(44.7, -55) });
 	}
 
 	infowindow = new google.maps.InfoWindow( {
