@@ -203,6 +203,8 @@ function createRepeaterMarker(repeater_data) {
 	}
 	
 	marker.repeater_id = repeater_data['id'];
+	marker.lat = repeater_data['lat'];
+	marker.lon = repeater_data['lon'];
     marker.callsign = repeater_data['qrz'];
     if(typeof repeater_data['qth']!='undefined') marker.qth = repeater_data['qth'];
     marker.loc = repeater_data['loc'];
