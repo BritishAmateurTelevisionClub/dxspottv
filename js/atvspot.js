@@ -207,7 +207,7 @@ function createRepeaterMarker(repeater_data) {
 	marker.lon = repeater_data['lon'];
     marker.callsign = repeater_data['qrz'];
     if(typeof repeater_data['qth']!='undefined') marker.qth = repeater_data['qth'];
-    marker.loc = repeater_data['loc'];
+    marker.locator = repeater_data['loc'];
     
     if (typeof repeater_data['tx1'] != 'undefined') marker.tx1 = repeater_data['tx1'];
     if (typeof repeater_data['tx2'] != 'undefined') marker.tx2 = repeater_data['tx2'];
@@ -261,7 +261,7 @@ function createRepeaterMarker(repeater_data) {
     
     var infoTab = '<div class="repeater_bubble_info">'+
         '<h3 style="line-height: 0.3em;">'+marker.callsign+'</h3>'+
-        '<b>'+marker.loc+'</b>';
+        '<b>'+marker.locator+'</b>';
     if(typeof marker.qth!='undefined') infoTab += '&nbsp;-&nbsp;'+marker.qth;
     if(logged_in) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
