@@ -33,7 +33,7 @@ function initialize() {
 	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 	
 	if (typeof user_lat != 'undefined') {
-		map.setOptions({ center: new google.maps.LatLng(user_lat, user_lon) });
+		map.setOptions({ zoom: 6, center: new google.maps.LatLng(user_lat, user_lon) });
 	} else {
 		map.setOptions({ center: new google.maps.LatLng(44.7, -46) });
 	}
