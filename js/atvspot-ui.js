@@ -28,11 +28,16 @@ $(document).ready(function() {
 // Spot Form
 var validSpotForm;
 $(document).ready(function() {
-    $('#remote_callsign').focusout(function() {
-        var remoteCallsign = $('#remote_callsign').val();
+    $('#remote_callsign').keyup(function() {
+        var remoteCallsign = $('#remote_callsign').val().toUpperCase();
     	if($.inArray(remoteCallsign,spotAutocomplete)>=0) {
     	    var locator_search = $.grep(user_markers, function(e){ return e.callsign == remoteCallsign; });
-    	    $('#remote_loc').val(locator_search[0].locator);
+    	    if (locator_search.length==0) {
+    	    	var locator_search = $.grep(repeater_markers, function(e){ return e.callsign == remoteCallsign; });
+    	    }
+    	    if (locator_search.length!=0) {
+    	    	$('#remote_loc').val(locator_search[0].locator);
+    	    }
     	}
 	});
 	$('#spot_button').button().click( function() {
