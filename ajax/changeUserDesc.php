@@ -1,7 +1,7 @@
 <?php
 session_start();
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
-$got_variables = (isset($_REQUEST["description"]) && isset($_REQUEST["website"]) && isset($_REQUEST["lat"]) && isset($_REQUEST["lon"]) && isset($_REQUEST["loc"]));
+$got_variables = (isset($_REQUEST["description"]) && isset($_REQUEST["website"]) && isset($_REQUEST["lat"]) && isset($_REQUEST["lon"]) && isset($_REQUEST["locto"]));
 if($got_cookies && $got_variables) {
 	$desc = htmlentities($_REQUEST["description"]);
 	$website = htmlentities($_REQUEST["website"]);
@@ -18,7 +18,7 @@ if($got_cookies && $got_variables) {
 			if ($_COOKIE["session_key"]==$sessions_result) {
 				// Session matches, so is logged in!
 				$update_statement = $dbc->prepare("UPDATE users set lat=?,lon=?,locator=?,station_desc=?,website=? WHERE id=?;");
-				$update_statement->bind_param('ddssi', $_REQUEST["lat"], $_REQUEST["lon"], $_REQUEST["loc"], $desc, $website, $_COOKIE["user_id"]);
+				$update_statement->bind_param('ddsssi', $_REQUEST["lat"], $_REQUEST["lon"], $_REQUEST["loc"], $desc, $website, $_COOKIE["user_id"]);
 				$update_statement->execute();
 				$update_statement->close();
 			}
