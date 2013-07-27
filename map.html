@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Map-only view of DXSpot.TV">
+<meta name="keywords" content="dxspot,tv,atv,map,full,screen">
+<meta name="author" content="BATC">
+<title>DXSpot.TV Map</title>
+<style>
+html, body, #map-canvas {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+body {
+	background-color: #000000;
+}
+.reduce-font-size {
+	font-size: 85% !important;
+}
+#box-selectors {
+    position: absolute;
+    top: 10px;
+    right: 430px;
+    width: 420px;
+    text-align:center;
+    padding: 5px;
+    line-height: 100%;
+}
+.mapSelector {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+#box-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 300px;
+    text-align:center;
+    padding: 5px;
+    line-height: 150%;
+}
+#box-log {
+    position: absolute;
+    top: 200px;
+    right: 10px;
+    width: 335px;
+    text-align:center;
+    padding: 5px;
+    line-height: 100%;
+}
+#box-search {
+    position: absolute;
+    top: 450px;
+    right: 10px;
+    width: 335px;
+    text-align:center;
+    padding: 5px;
+    line-height: 130%;
+}
+.search_box_short {
+	width: 100px;
+}
+#box-spot {
+    position: absolute;
+    bottom: 0px;
+    left: 30px;
+    width: 700px;
+    text-align:center;
+    padding: 5px;
+    line-height: 130%;
+}
+#window-login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 150px;
+    margin-left: -200px;
+    margin-top: -50px;
+    padding: 1em;
+    text-align: center;
+    display: none;
+}
+#window-about {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 190px;
+    margin-left: -200px;
+    margin-top: -50px;
+    padding: 1em;
+    text-align: center;
+    display: none;
+}
+#window-help {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    width: 400px;
+    height: 495px;
+    margin-left: -200px;
+    margin-top: -50px;
+    padding: 1em;
+    text-align: center;
+    display: none;
+}
+.box {
+    position: absolute; 
+    background-color: white; 
+    border: 1px solid #0070a3; 
+    padding: 0.5em;
+    background-attachment:initial;
+    background-clip:initial;
+    background-color:rgb(255, 255, 255);
+    background-color:rgba(255, 255, 255, 0.85);
+    background-image:initial;
+    background-origin:initial;
+    background-position:initial initial;
+    background-repeat:initial initial;
+}
+img.handle {
+    position: relative;
+    float:left;
+    top:0px;
+    left:0px;
+    z-index:100;
+}
+#spotLog {
+	height: 160px;
+	overflow: auto;
+	display: block;
+	font-size: 95%;
+	text-align: left;
+	padding-left: 10px;
+}
+</style>
+<link href="/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<script>
+	var logged_in = false;
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCEzQiTsZ1Skkf7mS1QTT91C2Y_7Gi7WK0&libraries=geometry&sensor=false"></script>
+<script src="http://websocket.dxspot.tv/socket.io/socket.io.js"></script>
+<script src="/api/mapData.js"></script>
+<script src="/js/infobubble.min.js"></script>
+<script src="/js/jquery-plus-ui.js"></script>
+<script src="/js/dxspot-combined.js"></script>
+</head>
+<body>
+<div id="map-canvas"></div>
+<div id="box-selectors" class="box ui-corner-all">
+    <img src="/images/drag_handle.png" class="handle" />
+	<table border="0" cellspacing="0" cellpadding="0" width="100%" >
+		<tr>
+		<td><p class="mapSelector" align="center">
+		<strong>Timespan:</strong>&nbsp;
+		<select id="time_select">
+		  <option value="all">All Spots</option>
+		  <option value="year">Last year</option>
+		  <option value="6months">Last 6 months</option>
+		  <option value="1month">Last Month</option>
+		  <option value="1week">Last Week</option>
+		  <option value="24hours" selected="selected">Last 24 Hours</option>
+		  <option value="12hours">Last 12 Hours</option>
+		  <option value="6hours">Last 6 Hours</option>
+		</select>
+		</td>
+
+		<td><p class="mapSelector" align="center">
+		<strong>Band:</strong>&nbsp;
+		<select id="band_select">
+		  <option value="all">All Bands</option>
+		  <option value="70cm" style="background-color: #FF0000; color: white;">70cm</option>
+		  <option value="23cm" style="background-color: #FFA500; color: white;">23cm</option>
+		  <option value="13cm" style="background-color: #0404B4; color: white;">13cm</option>
+		  <option value="9cm" style="background-color: #0404B4; color: white;">9cm</option>
+		  <option value="6cm" style="background-color: #0404B4; color: white;">6cm</option>
+		  <option value="3cm" style="background-color: #0404B4; color: white;">3cm</option>
+		</select>
+
+		<td><p class="mapSelector" align="center">
+		<strong>Show repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterBox" /></p></td>
+
+		</tr>
+	</table>
+</div>
+<div id="box-info" class="box ui-corner-all">
+    <img src="/images/drag_handle.png" class="handle" />
+    <table><tr><td>
+    	<img src="/images/DXS8.jpg" style="height: 79px; width: 179px;" />
+    </td><td>
+    	<button class="about-button reduce-font-size" id="aboutWindow-button">About</button><br>
+    	<button class="help-button reduce-font-size" id="helpWindow-button">Help</button>
+    </td></tr></table>
+    <button class="login-button reduce-font-size" id="loginWindow-button">Log In</button>
+</div>
+<div id="box-log" class="box ui-corner-all">
+    <img src="/images/drag_handle.png" class="handle" />
+    <h3>Spot Log</h3>
+    <span id="spotLog">Loading...</span>
+</div>
+<div id="box-search" class="box ui-corner-all">
+    <img src="/images/drag_handle.png" class="handle" />
+    <span id="cursor_info">Current mouse position:<br>
+        Lat: <span id="cursor_lat">?</span> 
+        Lon: <span id="cursor_lon">?</span>
+        Loc: <b><span id="cursor_loc">?</span></b>
+    </span><br>
+    <b>Callsign Search:</b>&nbsp;<input type=text id="search-callsign" class="search_box_short" />&nbsp;<button class="search-button reduce-font-size" id="search-call-button">Search</button><br>
+    <b>Locator Search:</b>&nbsp;<input type=text id="search-locator" class="search_box_short" />&nbsp;<button class="search-button reduce-font-size" id="search-loc-button">Search</button>
+</div>
+<div id="box-spot" class="box ui-corner-all">
+    <img src="/images/drag_handle.png" class="handle" />
+    <b>New Spot</b><br>
+    <table>
+    <tr>
+    <td>
+	<select id="spot_band_select">
+	<option value=1>70cm</option>
+	<option value=2>23cm</option>
+	<option value=3>13cm</option>
+	<option value=5>9cm</option>
+	<option value=6>6cm</option>
+	<option value=4>3cm</option>
+	</select>
+	<br>
+	<select id="spot_mode_select">
+	<option value="1">Analog TV</option>
+	<option value="2">Digital TV</option>
+	<option value="3">Beacon</option>
+	</select>
+	</td><td>
+	<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" /><br>
+	<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" />
+	</td><td>
+	Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
+	<button class="spot-button reduce-font-size" id="spot-button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
+	</td></tr></table>
+</div>
+<div id="window-login" class="box ui-corner-all">
+	<h2>Log In to DXSpot.TV</h2>
+    Callsign: <input type=text name="callsign" id="callsign-input" /><br>
+	Password: <input type=password name="passwd" id="passwd-input" /><br>
+	<button class="login-login-button reduce-font-size" id="login-login-button">Log In</button>
+	&nbsp;&nbsp;
+	<button class="login-cancel-button reduce-font-size" id="login-cancel-button">Cancel</button>
+</div>
+<div id="window-about" class="box ui-corner-all">
+	<h3>About</h3>
+	DXSpot.TV is an open development environment project using github.  
+	If you would like to contribute please email us at 
+	<a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a><br>
+	<br>
+	All the hard work so far has been done by Phil, M0DNY, from an idea by Noel, G8GTZ.
+	<br><br>
+	<button class="back-button reduce-font-size" id="about-back-button">Back</button>
+</div>
+<div id="window-help" class="box ui-corner-all">
+	<h3>Help</h3>
+	Download the user guide from here <a href="/dxspotguidev1.pdf" target="_blank">User Guide Version 1 (PDF)</a><br>
+	<br>
+	Online help is available at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/viewforum.php?f=80" target="_blank">BATC Forums</a><br>
+	<br>
+	Or you can email us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
+	<br>
+	<br>
+	<u>Map key</u><br>
+	<br>
+	Station Icons:<br>
+	Green = logged in and radio active<br>
+	Yellow = logged in but just watching - set by tick box in "Edit my station" <br>
+	White = Not logged in but spotted on a Dx contact<br>
+	<br>
+	Cyan = Operational repeater<br>
+	Red = Licensed but non operational repeater <br>
+	<br>
+	<u>DxSpot key </u><br>
+	<br>
+	Red = 70cms<br>
+	Orange = 23cms<br>
+	Blue = 13cms and above<br>
+	<br>
+	Dotted line = Narrow band beacon spot
+	<br>
+	<button class="back-button reduce-font-size" id="help-back-button">Back</button>
+</div>
+</body>
+</html>
