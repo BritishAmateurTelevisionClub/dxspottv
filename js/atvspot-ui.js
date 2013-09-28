@@ -154,6 +154,7 @@ function createGlobalSpotLog(spotLog) {
 	if(spotLog.length!=0) {
 	    var spot = new Array();
 	    for(s_id in spotLog){
+	        if(spotLog[s_id].seconds_ago>604800) break;
 	    	if(s_id=="last") break;
 		    var spot = spotLog[s_id];
 		    var primary_search = $.grep(user_markers, function(e){
