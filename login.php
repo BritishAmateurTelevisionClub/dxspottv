@@ -1,19 +1,18 @@
 <?php
 session_start();
-include('dxspottv_login.php');
+include('dxspottv_pdo.php');
 
 if(isset($_REQUEST['callsign'])&&isset($_REQUEST['passwd'])) { // Start Login
-
-require_once('dxspottv_login_functions.php');
 
 $callsign = escape($dbc, strtoupper($_REQUEST['callsign']));
 $passwd = escape($dbc, $_REQUEST['passwd']);
 
-$user_id_result = mysqli_query($dbc, "SELECT id,salt,password FROM users WHERE callsign='" . $callsign . "';") or die(mysqli_error($dbc));
-$target_row = mysqli_fetch_array($user_id_result);
-$user_id = $target_row['id'];
-$target = $target_row['password'];
-$salt = $target_row['salt'];
+$user_statement = $dbc->prepare("SELECT id,salt,password FROM users WHERE callsign=?;");
+$user_statement->bind_param('i', $callsign);
+$user_statement->execute();
+$user_statement->bind_result($user_id, $salt, $target);
+$user_statement->fetch();
+$user_statement->close();
 $crypt = crypt($passwd, $salt);
 
 if($crypt==$target) {
@@ -26,10 +25,12 @@ if($crypt==$target) {
 	$update_statement->execute();
 	$update_statement->close();
 
-	$insert_query="INSERT into sessions (session_id, user_id) VALUES ('{$session_key}', '{$user_id}');";
-	$ret = mysqli_query($dbc, $insert_query) or die(mysqli_error($dbc));
+	$session_statement = $dbc->prepare("INSERT into sessions (session_id, user_id) VALUES (?,?);");
+	$session_statement->bind_param('ii', $session_key, $user_id);
+	$session_statement->execute();
+	$session_statement->close();
 
-    $return_data = array('error' => 0, 'callsign' => $callsign, 'session_key' => $session_key); 
+   $return_data = array('error' => 0, 'callsign' => $callsign, 'session_key' => $session_key); 
 	setcookie("user_id", $user_id, time()+3600000);
 	setcookie("session_key", $session_key, time()+3600000);
 	setcookie("auth_error", "0", time()+3600000);
@@ -38,7 +39,6 @@ if($crypt==$target) {
 	setcookie("auth_error", "1", time()+3600000);
 	setcookie("auth_error_text", "Login Failed", time()+3600000);
 }
-mysql_end($dbc);
 //echo json_encode($return_data);
 } // End Login
 header( 'Location: http://www.dxspot.tv/' ) 
