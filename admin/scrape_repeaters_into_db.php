@@ -4,7 +4,7 @@ require_once('simple_html_dom.php');
 $html = file_get_html("http://www.ukrepeater.net/repeaterlist5.htm");
 
 $last_callsign = "NULL";
-include('spot_login.php');
+include('dxspottv_login.php');
 foreach($html->find('table.mix tr') as $row) {
 	$callsign_array = explode("-",$row->find('td.minil', 0)->plaintext);
 	$callsign = $callsign_array[0];

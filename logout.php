@@ -3,7 +3,7 @@ session_start();
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
 
 if($got_cookies) {
-	require_once('spot_login.php');
+	require_once('dxspottv_login.php');
 	$logout_statement = $dbc->prepare("DELETE FROM sessions WHERE session_id=? LIMIT 1;");
 	$logout_statement->bind_param('s', $_COOKIE["session_key"]);
 	$logout_statement->execute();

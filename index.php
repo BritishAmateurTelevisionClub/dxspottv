@@ -10,7 +10,7 @@ if (isset($_COOKIE["auth_error"])) {
     $auth_error = 1;
     $auth_error_text = $_COOKIE["auth_error_text"];
   } else {
-    require('spot_login.php');
+    require('dxspottv_login.php');
     $callsign_result = mysqli_query($dbc, "SELECT callsign,name FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
     $callsign_row = mysqli_fetch_array($callsign_result);
     $callsign = $callsign_row["callsign"];

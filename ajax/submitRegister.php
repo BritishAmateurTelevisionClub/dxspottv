@@ -19,8 +19,8 @@ if($got_variables) {
 		die ();
 	}
 
-	require_once("login_functions.php");
-	require_once("spot_login.php");
+	require_once("dxspottv_login_functions.php");
+	require_once("dxspottv_login.php.php");
 	
 	$callsign = htmlentities(strtoupper($_REQUEST["callsign"]));
 	$passwd = $_REQUEST["passwd"];

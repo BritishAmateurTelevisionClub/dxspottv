@@ -4,7 +4,7 @@ if(!(isset($_REQUEST["repeater_id"]))) {
 	print "Error: No ID requested.";
 } else {
 
-require_once('spot_login.php');
+require_once('dxspottv_login.php');
 
 $request_id = mysqli_real_escape_string($dbc, $_REQUEST["repeater_id"]);
 

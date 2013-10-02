@@ -1,10 +1,10 @@
 <?php
 session_start();
-include('spot_login.php');
+include('dxspottv_login.php');
 
 if(isset($_REQUEST['callsign'])&&isset($_REQUEST['passwd'])) { // Start Login
 
-require_once('login_functions.php');
+require_once('dxspottv_login_functions.php');
 
 $callsign = escape($dbc, strtoupper($_REQUEST['callsign']));
 $passwd = escape($dbc, $_REQUEST['passwd']);

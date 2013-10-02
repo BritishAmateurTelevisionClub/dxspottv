@@ -2,7 +2,7 @@
 session_start();
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
 if($got_cookies) {
-	require_once('spot_login.php');
+	require_once('dxspottv_login.php');
 	$output = array();
 	$user_statement = $dbc->prepare("SELECT callsign,lat,lon,locator,station_desc,website,radio_active FROM users WHERE id=?;");
 	$user_statement->bind_param('i', $_COOKIE["user_id"]);

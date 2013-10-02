@@ -5,7 +5,7 @@ if(apc_exists('currentActiveUsersStatus')) {
 	$output = apc_fetch('currentActiveUsers');
 } else {
 	apc_store('currentActiveUsersStatus','Refreshing',1);
-	require_once('spot_login.php');
+	require_once('dxspottv_login.php');
 
 	$count = 0;
 	$times = array();

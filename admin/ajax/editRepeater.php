@@ -4,7 +4,7 @@ $got_variables = (isset($_REQUEST["repeater"]) && isset($_REQUEST["callsign"]) &
 
 $output = array();
 if($got_variables) {
-	require_once('spot_login.php');
+	require_once('dxspottv_login.php');
 
 	$update_statement = $dbc->prepare("UPDATE repeaters set callsign=?,qth_r=?,qth=?,description=?,website=?,keeper_callsign=?,active=? WHERE id=?;");
 	$update_statement->bind_param('ssssssii',
