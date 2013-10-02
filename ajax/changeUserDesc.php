@@ -5,7 +5,7 @@ $got_variables = (isset($_REQUEST["description"]) && isset($_REQUEST["website"])
 if($got_cookies && $got_variables) {
 	$desc = htmlentities($_REQUEST["description"]);
 	$website = htmlentities($_REQUEST["website"]);
-	require_once('dxspottv_login.php');
+	require_once('dxspottv_pdo.php');
 	$sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
 	$sessions_statement->bind_param('i', $_COOKIE["user_id"]);
 	$sessions_statement->execute();
@@ -25,7 +25,6 @@ if($got_cookies && $got_variables) {
 		}
 	}
 	$sessions_statement->close();
-	mysql_end($dbc);
 } else { // Not got cookies
 	print 'Access Denied.';
 }
