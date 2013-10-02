@@ -12,13 +12,14 @@ if (isset($_COOKIE["auth_error"])) {
   } else {
     require('dxspottv_pdo.php');
     $callsign_statement = $dbc->prepare("SELECT callsign,name FROM users WHERE id=?;");
-    $callsign_statement->bindParam('i', $_COOKIE["user_id"]);
+    $callsign_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
     $callsign_statement->execute();
-    $callsign_statement->bindColumn($callsign, $name);
+    $callsign_statement->bindColumn(1, $callsign);
+    $callsign_statement->bindColumn(2, $name);
 	$callsign_statement->fetch();
     // Logged in, but check session id is valid
     $sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
-    $sessions_statement->bindParam('i', $_COOKIE["user_id"]);
+    $sessions_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
     $sessions_statement->execute();
     $sessions_statement->bindColumn($sessions_result);
     if($sessions_statement->num_rows==0) { // session doesn't exist on server
