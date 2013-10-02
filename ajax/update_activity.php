@@ -3,19 +3,24 @@ session_start();
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
 if($got_cookies) {
 	require_once('dxspottv_login.php');
-
-	$sessions_result = mysqli_query($dbc, "SELECT session_id FROM sessions WHERE user_id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));  
-	if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
+	$sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
+	$sessions_statement->bind_param('i', $_COOKIE["user_id"]);
+	$sessions_statement->execute();
+	$sessions_statement->bind_result($sessions_result);
+	$sessions_statement->store_result();
+	if($sessions_statement->num_rows==0) { // session doesn't exist on server
 		print 'Session not found.';
 	} else {
-		while($target_row = mysqli_fetch_array($sessions_result)) { // find a matching session
-			if ($_COOKIE["session_key"]==$target_row["session_id"]) {
+		while ($sessions_statement->fetch()) {
+			if ($_COOKIE["session_key"]==$sessions_result) {
 				// Session matches, so is logged in!
-				$update_query="UPDATE sessions set activity=NOW() where session_id = '{$_COOKIE["session_key"]}';";
-				mysqli_query($dbc, $update_query) or die(mysqli_error($dbc));
-			}
+				$update_statement = $dbc->prepare("UPDATE sessions set activity=NOW() where session_id=?;");
+				$update_statement->bind_param('i', $_COOKIE["session_key"]);
+				$update_statement->execute();
+				$update_statement->close();
 		}
 	}
+	$sessions_statement->close();
 	mysql_end($dbc);
 } else { // Not got cookies
 	print 'Access Denied.';
