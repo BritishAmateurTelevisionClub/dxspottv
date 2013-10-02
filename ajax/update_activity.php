@@ -2,7 +2,7 @@
 session_start();
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
 if($got_cookies) {
-	require_once('dxspottv_login.php');
+	require_once('dxspottv_pdo.php');
 	$sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
 	$sessions_statement->bind_param('i', $_COOKIE["user_id"]);
 	$sessions_statement->execute();
@@ -21,7 +21,6 @@ if($got_cookies) {
 		}
 	}
 	$sessions_statement->close();
-	mysql_end($dbc);
 } else { // Not got cookies
 	print 'Access Denied.';
 }
