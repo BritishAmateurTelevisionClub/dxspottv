@@ -10,22 +10,27 @@ if (isset($_COOKIE["auth_error"])) {
     $auth_error = 1;
     $auth_error_text = $_COOKIE["auth_error_text"];
   } else {
-    require('dxspottv_login.php');
-    $callsign_result = mysqli_query($dbc, "SELECT callsign,name FROM users WHERE id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));
-    $callsign_row = mysqli_fetch_array($callsign_result);
-    $callsign = $callsign_row["callsign"];
-    $name = $callsign_row["name"];
+    require('dxspottv_pdo.php');
+    $callsign_statement = $dbc->prepare("SELECT callsign,name FROM users WHERE id=?;");
+    $callsign_statement->bind_param('i', $_COOKIE["user_id"]);
+    $callsign_statement->execute();
+    $callsign_statement->bind_result($callsign, $name);
+	 $callsign_statement->fetch();
+	 $callsign_statement->close();
     // Logged in, but check session id is valid
-    $sessions_result = mysqli_query($dbc, "SELECT session_id FROM sessions WHERE user_id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));  
-    if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
+    $sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
+    $sessions_statement->bind_param('i', $_COOKIE["user_id"]);
+    $sessions_statement->execute();
+    $sessions_statement->bind_result($sessions_result);
+	 $sessions_statement->store_result();
+    if($sessions_statement->num_rows==0) { // session doesn't exist on server
       $user_known = 1;
       $logged_in = 0;
       $auth_error = 1;
       $auth_error_text = "Session not found, please log in.";
     } else {
-      while($target_row = mysqli_fetch_array($sessions_result)) { // find a matching session
-		  if ($_COOKIE["session_key"]==$target_row["session_id"]) {
-		    // Session matches, so is logged in!
+      while ($sessions_statement->fetch()) {
+		  if ($_COOKIE["session_key"]==$sessions_result) { // Session matches, so is logged in!
 		    $user_known = 1;
 		    $logged_in = 1;
 		    $auth_error = 0;
@@ -39,7 +44,7 @@ if (isset($_COOKIE["auth_error"])) {
         $auth_error_text = "Session not found, please log in.";
       }
     }
-    mysql_end($dbc);
+    $sessions_statement->close();
     $auth_error=0;
   }
 } else {
