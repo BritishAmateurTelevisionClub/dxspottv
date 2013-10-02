@@ -12,14 +12,14 @@ if (isset($_COOKIE["auth_error"])) {
   } else {
     require('dxspottv_pdo.php');
     $callsign_statement = $dbc->prepare("SELECT callsign,name FROM users WHERE id=?;");
-    $callsign_statement->bind_param('i', $_COOKIE["user_id"]);
+    $callsign_statement->bindParam('i', $_COOKIE["user_id"]);
     $callsign_statement->execute();
     $callsign_statement->bind_result($callsign, $name);
 	 $callsign_statement->fetch();
 	 $callsign_statement->close();
     // Logged in, but check session id is valid
     $sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
-    $sessions_statement->bind_param('i', $_COOKIE["user_id"]);
+    $sessions_statement->bindParam('i', $_COOKIE["user_id"]);
     $sessions_statement->execute();
     $sessions_statement->bind_result($sessions_result);
 	 $sessions_statement->store_result();
