@@ -64,8 +64,8 @@ if (isset($_COOKIE["auth_error"])) {
 <meta name="description" content="Easy to use DX Spotting for ATV/DATV contacts on all bands: 70cms - 3cms.">
 <meta name="keywords" content="dxspot,atv,tv,spot,dx,cluster,contacts,ham,amateur,television,chat,irc">
 <title>DXSpot.TV</title>
-<link href="css/atvspot.css" rel="stylesheet">
-<link href="css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<link href="/css/atvspot.css" rel="stylesheet">
+<link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
 	var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php print $name . "_" . $callsign; ?>";
@@ -77,9 +77,9 @@ if($logged_in) { ?>
 <?php } ?>
 </script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script src="/js/jquery-plus-ui.js"></script>
+<script src="/static/js/jquery-plus-ui.js"></script>
+<script src="/static/js/infobubble.min.js"></script>
 <script src="/js/atvspot-combined.js"></script>
-<script src="/js/infobubble.min.js"></script>
 <script src="/api/mapData.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
