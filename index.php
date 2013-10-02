@@ -14,15 +14,13 @@ if (isset($_COOKIE["auth_error"])) {
     $callsign_statement = $dbc->prepare("SELECT callsign,name FROM users WHERE id=?;");
     $callsign_statement->bindParam('i', $_COOKIE["user_id"]);
     $callsign_statement->execute();
-    $callsign_statement->bind_result($callsign, $name);
-	 $callsign_statement->fetch();
-	 $callsign_statement->close();
+    $callsign_statement->bindColumn($callsign, $name);
+	$callsign_statement->fetch();
     // Logged in, but check session id is valid
     $sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
     $sessions_statement->bindParam('i', $_COOKIE["user_id"]);
     $sessions_statement->execute();
-    $sessions_statement->bind_result($sessions_result);
-	 $sessions_statement->store_result();
+    $sessions_statement->bindColumn($sessions_result);
     if($sessions_statement->num_rows==0) { // session doesn't exist on server
       $user_known = 1;
       $logged_in = 0;
@@ -44,7 +42,6 @@ if (isset($_COOKIE["auth_error"])) {
         $auth_error_text = "Session not found, please log in.";
       }
     }
-    $sessions_statement->close();
     $auth_error=0;
   }
 } else {
