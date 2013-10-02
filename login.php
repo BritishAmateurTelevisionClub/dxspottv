@@ -4,8 +4,8 @@ include('dxspottv_pdo.php');
 
 if(isset($_REQUEST['callsign'])&&isset($_REQUEST['passwd'])) { // Start Login
 
-$callsign = escape($dbc, strtoupper($_REQUEST['callsign']));
-$passwd = escape($dbc, $_REQUEST['passwd']);
+$callsign = escape(strtoupper($_REQUEST['callsign']));
+$passwd = escape($_REQUEST['passwd']);
 
 $user_statement = $dbc->prepare("SELECT id,salt,password FROM users WHERE callsign=?;");
 $user_statement->bind_param('i', $callsign);
