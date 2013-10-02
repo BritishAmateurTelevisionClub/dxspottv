@@ -18,6 +18,7 @@ if($got_cookies) {
 				$update_statement->bind_param('i', $_COOKIE["session_key"]);
 				$update_statement->execute();
 				$update_statement->close();
+			}
 		}
 	}
 	$sessions_statement->close();
