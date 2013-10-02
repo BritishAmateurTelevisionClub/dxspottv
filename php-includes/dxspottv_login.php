@@ -1,5 +1,5 @@
 <?php
-$dbc = mysqli_connect('localhost', 'dxspottv', 'RQ5nDCbRHPnQsKaN', 'dxspottv') or die('Error connecting to mysql!:' . mysqli_error($dbc));
+$dbc = mysqli_connect('localhost', 'dxspottv', 'tCzjqTdLd3PvsyJF', 'dxspottv') or die('Error connecting to mysql!:' . mysqli_error($dbc));
 
 function mysql_die()
 {
