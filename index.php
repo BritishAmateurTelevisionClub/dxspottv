@@ -21,8 +21,8 @@ if (isset($_COOKIE["auth_error"])) {
     $sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
     $sessions_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
     $sessions_statement->execute();
-    $sessions_statement->bindColumn($sessions_result);
-    if($sessions_statement->num_rows==0) { // session doesn't exist on server
+    $sessions_statement->bindColumn(1, $sessions_result);
+    if($sessions_statement->rowCount()==0) { // session doesn't exist on server
       $user_known = 1;
       $logged_in = 0;
       $auth_error = 1;
