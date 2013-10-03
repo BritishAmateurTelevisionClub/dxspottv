@@ -298,8 +298,8 @@ function createRepeaterMarker(repeater_data) {
     
     var descTab = '<div class="repeater_bubble_desc">';
     descTab += marker.desc+'<br>';
-    if (typeof marker.keeper != 'undefined') descTab += '<b>Keeper:</b>&nbsp;'+marker.keeper+'<br><br>';
-    if (typeof marker.website != 'undefined') descTab += '<a href="'+marker.website+'" target="_blank"><b>Repeater Website</b></a>';
+    if (marker.keeper != '') descTab += '<b>Keeper:</b>&nbsp;'+marker.keeper+'<br><br>';
+    if (marker.website != '') descTab += '<a href="'+marker.website+'" target="_blank"><b>Repeater Website</b></a>';
     descTab += '</div>';
     
     var infoBubble = new InfoBubble({
