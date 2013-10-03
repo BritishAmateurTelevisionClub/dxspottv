@@ -78,20 +78,22 @@ $(document).ready(function() {
 });
 
 function fadeToBlack() {
-	$("#box-info").hide("slide", { direction: "up" }, 500);
-	$("#box-selectors").hide("slide", { direction: "up" }, 500);
-	$("#box-log").hide("slide", { direction: "right" }, 500);
-	$("#box-search").hide("slide", { direction: "right" }, 500);
-	$("#box-spot").hide("slide", { direction: "down" }, 500);
+	$("#box-info").hide();
+	$("#box-selectors").hide();
+	$("#box-log").hide();
+	$("#box-search").hide();
+	$("#box-spot").hide();
+	$("#box-multi").hide();
 	$("#map-canvas").fadeTo(500, 0.2);
 }
 
 function fadeToUI() {
-	$("#box-info").show("slide", { direction: "up" }, 250);
-	$("#box-selectors").show("slide", { direction: "up" }, 250);
-	$("#box-log").show("slide", { direction: "right" }, 250);
-	$("#box-search").show("slide", { direction: "right" }, 250);
-	$("#box-spot").show("slide", { direction: "down" }, 250);
+	$("#box-info").show();
+	$("#box-selectors").show();
+	$("#box-log").show();
+	$("#box-search").show();
+	$("#box-spot").show();
+	$("#box-multi").show();
 	$("#map-canvas").fadeTo(500, 1);
 }
 
