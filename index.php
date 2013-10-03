@@ -28,6 +28,7 @@ if (isset($_COOKIE["auth_error"])) {
       $auth_error = 1;
       $auth_error_text = "Session not found, please log in.";
     } else {
+      $logged_in = 0;
       while ($sessions_statement->fetch()) {
 		  if ($_COOKIE["session_key"]==$sessions_result) { // Session matches, so is logged in!
 		    $user_known = 1;
@@ -38,7 +39,6 @@ if (isset($_COOKIE["auth_error"])) {
       if($logged_in != 1) {
         // Session doesn't match, make them log in again
         $user_known = 1;
-        $logged_in = 0;
         $auth_error = 1;
         $auth_error_text = "Session not found, please log in.";
       }
