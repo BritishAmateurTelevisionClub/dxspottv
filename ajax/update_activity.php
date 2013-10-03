@@ -12,7 +12,7 @@ if(isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"])) {
 		while ($sessions_statement->fetch()) {
 			if ($_COOKIE["session_key"]==$sessions_result) { // Session matches, so is logged in!
 				$update_statement = $dbc->prepare("UPDATE sessions set activity=NOW() where session_id=?;");
-				$update_statement->bindValue(1, $_COOKIE["session_key"], PDO::PARAM_str);
+				$update_statement->bindValue(1, $_COOKIE["session_key"], PDO::PARAM_STR);
 				$update_statement->execute();
 			}
 		}
