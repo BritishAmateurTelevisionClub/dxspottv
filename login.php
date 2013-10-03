@@ -26,7 +26,7 @@ if($crypt==$target) {
 	$update_statement->execute();
 
 	$session_statement = $dbc->prepare("INSERT into sessions (session_id, user_id) VALUES (?,?);");
-	$update_statement->bindValue(1, $session_key, PDO::PARAM_str);
+	$update_statement->bindValue(1, $session_key, PDO::PARAM_STR);
 	$update_statement->bindValue(2, $user_id, PDO::PARAM_INT);
 	$session_statement->execute();
 
