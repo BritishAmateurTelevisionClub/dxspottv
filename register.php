@@ -1,7 +1,8 @@
 <?php
 session_start();
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <title>DXSpot.TV - Register</title>
 <link href="/css/atvspot-register.css" rel="stylesheet">

@@ -56,7 +56,7 @@ if (isset($_COOKIE["auth_error"])) {
 //print "Auth Error: " . $auth_error;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
 <meta name="description" content="Easy to use DX Spotting for ATV/DATV contacts on all bands: 70cms - 3cms.">
