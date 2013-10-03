@@ -44,8 +44,8 @@ body {
 }
 #box-log {
     position: absolute;
-    top: 200px;
-    right: 10px;
+    bottom: 0;
+    left: 10px;
     width: 335px;
     text-align:center;
     padding: 5px;
@@ -66,8 +66,17 @@ body {
 #box-spot {
     position: absolute;
     bottom: 0px;
-    left: 30px;
-    width: 700px;
+    left: 370px;
+    width: 600px;
+    text-align:center;
+    padding: 5px;
+    line-height: 130%;
+}
+#box-multi {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    width: 250px;
     text-align:center;
     padding: 5px;
     line-height: 130%;
@@ -130,7 +139,7 @@ img.handle {
     z-index:100;
 }
 #spotLog {
-	height: 160px;
+	height: 140px;
 	overflow: auto;
 	display: block;
 	font-size: 95%;
@@ -238,6 +247,10 @@ img.handle {
 	Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
 	<button class="spot-button reduce-font-size" id="spot-button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 	</td></tr></table>
+</div>
+<div id="box-multi" class="box ui-corner-all">
+    <img src="/images/drag_handle.png" class="handle" />
+    <h3>Multibox</h3>
 </div>
 <div id="window-login" class="box ui-corner-all">
 	<h2>Log In to DXSpot.TV</h2>
