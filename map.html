@@ -74,9 +74,10 @@ body {
 }
 #box-multi {
     position: absolute;
-    bottom: 5px;
+    top: 150px;
     right: 10px;
-    width: 250px;
+    height: 400px;
+    width: 350px;
     text-align:center;
     padding: 5px;
     line-height: 130%;
@@ -148,13 +149,16 @@ img.handle {
 }
 </style>
 <link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+<script src="/static/js/jquery-plus-ui.js"></script>
+<script src="/static/js/infobubble.min.js"></script>
 <script>
 	var logged_in = false;
+    $(function() {
+        $("#buttons-multibox").buttonset();
+    });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCEzQiTsZ1Skkf7mS1QTT91C2Y_7Gi7WK0&libraries=geometry&sensor=false"></script>
 <script src="/api/mapData.js"></script>
-<script src="/static/js/infobubble.min.js"></script>
-<script src="/static/js/jquery-plus-ui.js"></script>
 <script src="/js/dxspot-combined.js"></script>
 </head>
 <body>
@@ -250,7 +254,23 @@ img.handle {
 </div>
 <div id="box-multi" class="box ui-corner-all">
     <img src="/images/drag_handle.png" class="handle" />
-    <h3>Multibox</h3>
+    <div id="multibox-notlogged">
+        <h2>Welcome to DXSpot.TV</h2>
+		<h3>Please Register and Log In to use the ATV DXSpot Chat and Submit Spots.</h3>
+    </div>
+    <div id="multibox-loggedin">
+        <div id="radio">
+            <input type="radio" id="multibox-chat-btn" name="radio" checked="checked" /><label for="multibox-chat-btn">WebChat</label>
+            <input type="radio" id="multibox-edit-btn" name="radio" /><label for="multibox-edit-btn">Edit Station</label>
+        </div>
+        <div id="multibox-chat">
+            Chat here..
+        </div>
+        <div id="multibox-edit">
+            Edit my station here..
+        </div>
+    </div>
+        
 </div>
 <div id="window-login" class="box ui-corner-all">
 	<h2>Log In to DXSpot.TV</h2>
