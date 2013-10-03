@@ -5,7 +5,7 @@ $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
 if($got_cookies) {
 	require_once('dxspottv_pdo.php');
 	$logout_statement = $dbc->prepare("DELETE FROM sessions WHERE session_id=? LIMIT 1;");
-	$logout_statement->bindValue(1, $_COOKIE["session_key"], PDO::PARAM_str);
+	$logout_statement->bindValue(1, $_COOKIE["session_key"], PDO::PARAM_STR);
 	$logout_statement->execute();
 }
 	
