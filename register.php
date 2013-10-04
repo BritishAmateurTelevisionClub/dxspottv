@@ -1,9 +1,11 @@
 <?php
 session_start();
 ?>
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 <head>
+<meta charset="utf-8">
 <title>DXSpot.TV - Register</title>
 <link href="/css/atvspot-register.css" rel="stylesheet">
 <link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
