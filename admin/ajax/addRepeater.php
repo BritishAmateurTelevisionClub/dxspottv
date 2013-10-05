@@ -19,25 +19,97 @@ if(isset($_REQUEST["callsign"]) && isset($_REQUEST["locator"]) && isset($_REQUES
 	$insert_statement->bindValue(11, $_REQUEST["is_6cm"], PDO::PARAM_INT); // 6cm
 	$insert_statement->bindValue(12, $_REQUEST["is_3cm"], PDO::PARAM_INT); // 3cm
 	
-	$insert_statement->bindValue(13, $_REQUEST["tx1"]);
-	$insert_statement->bindValue(14, $_REQUEST["tx2"]);
-	$insert_statement->bindValue(15, $_REQUEST["tx3"]);
-	$insert_statement->bindValue(16, $_REQUEST["tx4"]);
-	$insert_statement->bindValue(17, $_REQUEST["tx5"]);
-	$insert_statement->bindValue(18, $_REQUEST["tx6"]);
-	$insert_statement->bindValue(19, $_REQUEST["tx7"]);
-	$insert_statement->bindValue(20, $_REQUEST["tx8"]);
-	$insert_statement->bindValue(21, $_REQUEST["tx9"]);
-	
-	$insert_statement->bindValue(22, $_REQUEST["rx1"]);
-	$insert_statement->bindValue(23, $_REQUEST["rx2"]);
-	$insert_statement->bindValue(24, $_REQUEST["rx3"]);
-	$insert_statement->bindValue(25, $_REQUEST["rx4"]);
-	$insert_statement->bindValue(26, $_REQUEST["rx5"]);
-	$insert_statement->bindValue(27, $_REQUEST["rx6"]);
-	$insert_statement->bindValue(28, $_REQUEST["rx7"]);
-	$insert_statement->bindValue(29, $_REQUEST["rx8"]);
-	$insert_statement->bindValue(30, $_REQUEST["rx9"]);
+	if($_REQUEST["tx1"]=='') {
+	    $insert_statement->bindValue(13, NULL);
+	} else {
+	    $insert_statement->bindValue(13, $_REQUEST["tx1"]);
+	}
+	if($_REQUEST["tx2"]=='') {
+	    $insert_statement->bindValue(14, NULL);
+	} else {
+	    $insert_statement->bindValue(14, $_REQUEST["tx2"]);
+	}
+	if($_REQUEST["tx3"]=='') {
+	    $insert_statement->bindValue(15, NULL);
+	} else {
+	    $insert_statement->bindValue(15, $_REQUEST["tx3"]);
+	}
+	if($_REQUEST["tx4"]=='') {
+	    $insert_statement->bindValue(16, NULL);
+	} else {
+	    $insert_statement->bindValue(16, $_REQUEST["tx4"]);
+	}
+	if($_REQUEST["tx5"]=='') {
+	    $insert_statement->bindValue(17, NULL);
+	} else {
+	    $insert_statement->bindValue(17, $_REQUEST["tx5"]);
+	}
+	if($_REQUEST["tx6"]=='') {
+	    $insert_statement->bindValue(18, NULL);
+	} else {
+	    $insert_statement->bindValue(18, $_REQUEST["tx6"]);
+	}
+	if($_REQUEST["tx7"]=='') {
+	    $insert_statement->bindValue(19, NULL);
+	} else {
+	    $insert_statement->bindValue(19, $_REQUEST["tx7"]);
+	}
+	if($_REQUEST["tx8"]=='') {
+	    $insert_statement->bindValue(20, NULL);
+	} else {
+	    $insert_statement->bindValue(20, $_REQUEST["tx8"]);
+	}
+	if($_REQUEST["tx9"]=='') {
+	    $insert_statement->bindValue(21, NULL);
+	} else {
+	    $insert_statement->bindValue(21, $_REQUEST["tx9"]);
+	}
+
+    if($_REQUEST["rx1"]=='') {
+	    $insert_statement->bindValue(22, NULL);
+	} else {
+	    $insert_statement->bindValue(22, $_REQUEST["rx1"]);
+	}
+	if($_REQUEST["rx2"]=='') {
+	    $insert_statement->bindValue(23, NULL);
+	} else {
+	    $insert_statement->bindValue(23, $_REQUEST["rx2"]);
+	}
+	if($_REQUEST["rx3"]=='') {
+	    $insert_statement->bindValue(24, NULL);
+	} else {
+	    $insert_statement->bindValue(24, $_REQUEST["rx3"]);
+	}
+	if($_REQUEST["rx4"]=='') {
+	    $insert_statement->bindValue(25, NULL);
+	} else {
+	    $insert_statement->bindValue(25, $_REQUEST["rx4"]);
+	}
+	if($_REQUEST["rx5"]=='') {
+	    $insert_statement->bindValue(26, NULL);
+	} else {
+	    $insert_statement->bindValue(26, $_REQUEST["rx5"]);
+	}
+	if($_REQUEST["rx6"]=='') {
+	    $insert_statement->bindValue(27, NULL);
+	} else {
+	    $insert_statement->bindValue(27, $_REQUEST["rx6"]);
+	}
+	if($_REQUEST["rx7"]=='') {
+	    $insert_statement->bindValue(28, NULL);
+	} else {
+	    $insert_statement->bindValue(28, $_REQUEST["rx7"]);
+	}
+	if($_REQUEST["rx8"]=='') {
+	    $insert_statement->bindValue(29, NULL);
+	} else {
+	    $insert_statement->bindValue(29, $_REQUEST["rx8"]);
+	}
+	if($_REQUEST["rx9"]=='') {
+	    $insert_statement->bindValue(30, NULL);
+	} else {
+	    $insert_statement->bindValue(30, $_REQUEST["rx9"]);
+	}
 	
 	$insert_statement->bindValue(31, htmlentities($_REQUEST["description"]), PDO::PARAM_STR);
 	$insert_statement->bindValue(32, htmlentities($_REQUEST["website"]), PDO::PARAM_STR);
