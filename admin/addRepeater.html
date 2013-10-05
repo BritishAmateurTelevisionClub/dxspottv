@@ -6,6 +6,12 @@
 <link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script src="/static/js/jquery-plus-ui.js"></script>
 <script>
+$(document).ready(function() {
+    $('#edit_button').button().click( function() {
+    	submitEdit();
+	});
+});
+
 function submitAdd() {
     var add_latlon = LoctoLatLon($('#input_locator').val());
     var is_2m=0;
