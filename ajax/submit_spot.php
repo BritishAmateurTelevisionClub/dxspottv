@@ -27,7 +27,7 @@ if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server
 			$r_lon = mysqli_real_escape_string($dbc, $_REQUEST["r_lon"]);
 		
 			$check_existing_user = mysqli_query($dbc, "SELECT id FROM users WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
-			$check_existing_repeater = mysqli_query($dbc, "SELECT id FROM repeaters WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
+			$check_existing_repeater = mysqli_query($dbc, "SELECT id FROM all_repeaters WHERE callsign='{$r_callsign}';") or die(mysqli_error($dbc));
 			if(mysqli_num_rows ($check_existing_user)!=0) { // End user exists
 		
 				$check_existing_user_row = mysqli_fetch_array($check_existing_user);
