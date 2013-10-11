@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DXSpot.TV Mobile Map</title>
+    <style>
+        body {
+                padding: 0;
+                margin: 0;
+        }
+        html, body, #map {
+                height: 100%;
+        }
+        .box {
+                 position: absolute; 
+                 background-color: white; 
+                 border: 1px solid #0070a3; 
+                 padding: 0.5em;
+                 background-attachment:initial;
+                 background-clip:initial;
+                 background-color:rgb(255, 255, 255);
+                 background-color:rgba(255, 255, 255, 0.85);
+                 background-image:initial;
+                 background-origin:initial;
+                 background-position:initial initial;
+                 background-repeat:initial initial;
+        }
+        #box-status {
+                 position: absolute;
+                 top: 10px;
+                 right: 10px;
+                 width: 200px;
+                 text-align:center;
+                 padding: 5px;
+                 line-height: 150%;
+        }
+        </style>
+        <link rel="stylesheet" href="/static/css/leaflet.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="/static/css/leaflet.ie.css" /><![endif]-->
+</head>
+<body>
+        <div id="map"></div>
+        <div id="box-status" class="box">
+                <h2>UKHAS Listeners</h2>
+                <br>
+                <b><span id='startTime'></span></b><br>
+                to<br>
+                <b><span id='endTime'></span></b>
+                
+        </div>
+</body>
+    <script src="/static/js/leaflet.js"></script>
+    <script src="/static/js/jquery-plus-ui.js"></script>
+    <script>
+        var repeater_markers = [];
+        var user_markers = [];
+        var spot_lines = [];
+        var months = ["_dummy_", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+          
+        var map = L.map('map').setView([50.673, -1.286], 4);
+    
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        
+        lIcon = L.icon({
+                iconUrl: 'antenna-green.png', // As example
+                iconSize:     [26, 32], // size of the icon
+                iconAnchor:   [13, 32] // point of the icon which will correspond to marker's location
+        });
+        
+        lIcon = L.icon({
+                iconUrl: 'antenna-green.png', // As example
+                iconSize:     [26, 32], // size of the icon
+                iconAnchor:   [13, 32] // point of the icon which will correspond to marker's location
+        });
+        
+        
+        
+        /// DXSPOT CODE END
+
+        function loadData() {  
+          $.ajax({  
+           url: 'parsed_listeners.json',
+           dataType: 'json',  
+           success: function(Json) {
+                listeners = Json;
+                animation = setInterval(function() {
+                    start_time = moment(interval_time);
+                    if(interval_time>=moment.utc().subtract('days', 1)) {
+                        interval_time=moment.utc();
+                        clearInterval(animation);
+                    } else {
+                        interval_time.add('days', 1);
+                    }
+                    console.log("Loading: "+start_time.format("YYYY-MM-DD")+" - "+interval_time.format("YYYY-MM-DD"));
+                    addMarkers(start_time.unix(), interval_time.unix());
+                    $("#startTime").html(start_time.format("DD MMMM YYYY"));
+                    $("#endTime").html(interval_time.format("DD MMMM YYYY"));
+                },100)
+           }
+          });
+        }
+        
+        function addMarkers(start_stamp, end_stamp) {
+            var to_add;
+            var listener;
+            to_add = $.grep(Object.keys(listeners), function (k) {
+                return (listeners[k].t>start_stamp && listeners[k].t<end_stamp);
+                });
+            for(entry in to_add) {
+                listener = listeners[to_add[entry]];
+                markers[listener.c] = L.marker([listener.l,listener.o], {
+                    title: listener.c,
+                    icon: lIcon
+                }).addTo(map);
+                markers[listener.c].bindPopup("<h4>"+listener.c+"</h4>"+"First Seen:<br>"+moment.unix(listener.t).format("DD/MM/YYYY"));
+            }
+        }
+    </script>
+    <script src="/api/mapData.js"></script>
+    <script src="/js/mobile.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-44620544-1', 'dxspot.tv');
+      ga('send', 'pageview');
+    </script>
+</html>
+
