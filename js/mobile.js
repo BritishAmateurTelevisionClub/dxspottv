@@ -151,18 +151,7 @@ function createSpotLine(spot_data) {
 	if(spot_data['mode_id']==3) { // Beacon
 		spot_lines[spot_data['id']].setStyle({dashArray:"5, 1"});
 	}
-	
-	spotLine.date = parseInt(spot_data['spot_time'].substr(8,2))+"&nbsp;"+months[parseInt(spot_data['spot_time'].substr(5,2))]+"&nbsp;"+spot_data['spot_time'].substr(11,8);	
-	spotLine.distance = Math.round((google.maps.geometry.spherical.computeDistanceBetween(primary_latlon, secondary_latlon)/1000)*10)/10;
-	
-	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+bandFromID(spotLine.band_id)+"&nbsp;<i>"+spotLine.mode+"</i><br><i>"+spotLine.comments+"</i><br>"+spotLine.distance+"&nbsp;km";
-	
-	google.maps.event.addListener(spotLine, 'click', function() {
-		infowindow.setContent(infoContent);
-		infowindow.setPosition(new google.maps.LatLng((primary_latlon.lat() + secondary_latlon.lat())/2, (primary_latlon.lng() + secondary_latlon.lng())/2));
-    	infowindow.open(map);
-   	});
-	
+
 	var infoHTML = '<h3 style="line-height: 0.3em;">'+user_markers[spot_data['primary_id']].title+"</b>&nbsp;->&nbsp;<b>"+secondary_callsign+'</h3>';
     
 	spot_lines[spot_data['id']].bindPopup(infoHTML);
