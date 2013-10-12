@@ -82,7 +82,7 @@ function createRepeaterMarker(repeater_data) {
     	infoHTML += '<br><br><a href="'+"http://"+repeater_data['www']+'" target="_blank"><b>'+"http://"+repeater_data['www']+'</b></a>';
     }
     
-	user_markers[user_data['callsign']].bindPopup(infoHTML);
+	repeater_markers[repeater_data['qrz']].bindPopup(infoHTML);
     /*
     if (typeof repeater_data['tx1'] != 'undefined') marker.tx1 = repeater_data['tx1'];
     if (typeof repeater_data['tx2'] != 'undefined') marker.tx2 = repeater_data['tx2'];
