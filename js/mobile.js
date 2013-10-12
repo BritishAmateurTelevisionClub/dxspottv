@@ -164,7 +164,6 @@ function createSpotLine(spot_data) {
    	});
 	
 	var infoHTML = '<h3 style="line-height: 0.3em;">'+user_markers[spot_data['primary_id']].title+"</b>&nbsp;->&nbsp;<b>"+secondary_callsign+'</h3>';
-    }
     
 	spot_lines[spot_data['id']].bindPopup(infoHTML);
 }
