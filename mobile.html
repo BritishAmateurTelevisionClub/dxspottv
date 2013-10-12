@@ -42,12 +42,7 @@
 <body>
         <div id="map"></div>
         <div id="box-status" class="box">
-                <h2>UKHAS Listeners</h2>
-                <br>
-                <b><span id='startTime'></span></b><br>
-                to<br>
-                <b><span id='endTime'></span></b>
-                
+                <h2>DXSpot.TV</h2>
         </div>
 </body>
     <script src="/static/js/leaflet.js"></script>
@@ -64,60 +59,11 @@
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
         
-        lIcon = L.icon({
-                iconUrl: 'antenna-green.png', // As example
-                iconSize:     [26, 32], // size of the icon
-                iconAnchor:   [13, 32] // point of the icon which will correspond to marker's location
-        });
-        
-        lIcon = L.icon({
-                iconUrl: 'antenna-green.png', // As example
-                iconSize:     [26, 32], // size of the icon
-                iconAnchor:   [13, 32] // point of the icon which will correspond to marker's location
-        });
-        
-        
-        
-        /// DXSPOT CODE END
-
-        function loadData() {  
-          $.ajax({  
-           url: 'parsed_listeners.json',
-           dataType: 'json',  
-           success: function(Json) {
-                listeners = Json;
-                animation = setInterval(function() {
-                    start_time = moment(interval_time);
-                    if(interval_time>=moment.utc().subtract('days', 1)) {
-                        interval_time=moment.utc();
-                        clearInterval(animation);
-                    } else {
-                        interval_time.add('days', 1);
-                    }
-                    console.log("Loading: "+start_time.format("YYYY-MM-DD")+" - "+interval_time.format("YYYY-MM-DD"));
-                    addMarkers(start_time.unix(), interval_time.unix());
-                    $("#startTime").html(start_time.format("DD MMMM YYYY"));
-                    $("#endTime").html(interval_time.format("DD MMMM YYYY"));
-                },100)
-           }
-          });
-        }
-        
-        function addMarkers(start_stamp, end_stamp) {
-            var to_add;
-            var listener;
-            to_add = $.grep(Object.keys(listeners), function (k) {
-                return (listeners[k].t>start_stamp && listeners[k].t<end_stamp);
-                });
-            for(entry in to_add) {
-                listener = listeners[to_add[entry]];
-                markers[listener.c] = L.marker([listener.l,listener.o], {
-                    title: listener.c,
-                    icon: lIcon
-                }).addTo(map);
-                markers[listener.c].bindPopup("<h4>"+listener.c+"</h4>"+"First Seen:<br>"+moment.unix(listener.t).format("DD/MM/YYYY"));
-            }
-        }
+        userActiveIcon = L.icon({ iconUrl: '/images/active_user.ico' });
+        userAwayIcon = L.icon({ iconUrl: '/images/away_user.ico' });
+        userUnknownIcon = L.icon({ iconUrl: '/images/unknown_user.ico' });
+        repeaterIcon = L.icon({ iconUrl: '/images/active_repeater.ico' });
+        repeaterOfflineIcon = L.icon({ iconUrl: '/images/inactive_repeater.ico' });
     </script>
     <script src="/api/mapData.js"></script>
     <script src="/js/mobile.js"></script>
