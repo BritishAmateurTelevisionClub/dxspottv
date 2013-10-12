@@ -48,7 +48,6 @@ if($got_variables) {
 		} else { // User was unknown previously
 			$known = 1;
 			$insert_statement = $dbc->prepare("UPDATE users SET name=?, callsign=?, password=?, salt=?, locator=?, email=?, lat=?, lon=?, known=? WHERE id=?;");
-			$insert_statement->bind_param('ssssssdddd', $name, $callsign, $crypt, $salt, $locator, $email, $lat, $lon, $known, $existing_id);
 			$insert_statement->bindValue(1, $name, PDO::PARAM_STR);
 			$insert_statement->bindValue(2, $callsign, PDO::PARAM_STR);
 			$insert_statement->bindValue(3, $crypt, PDO::PARAM_STR);
@@ -63,7 +62,6 @@ if($got_variables) {
 		}
 	} else {
 		$insert_statement = $dbc->prepare("INSERT into users (name, callsign, password, salt, locator, email, lat, lon) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
-		$insert_statement->bind_param('ssssssdd', $name, $callsign, $crypt, $salt, $locator, $email, $lat, $lon);
 		$insert_statement->bindValue(1, $name, PDO::PARAM_STR);
 		$insert_statement->bindValue(2, $callsign, PDO::PARAM_STR);
 		$insert_statement->bindValue(3, $crypt, PDO::PARAM_STR);
