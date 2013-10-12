@@ -63,13 +63,13 @@ function updateUserMarker(user_data, user_index) {
 function createRepeaterMarker(repeater_data) {
 	
 	if(typeof repeater_data['op'] != 'undefined') {
-		repeater_markers[repeater_data['qrz']] = L.marker([repeater_data['lat'],repeater_data['lon']], {
+		repeater_markers[repeater_data['id']] = L.marker([repeater_data['lat'],repeater_data['lon']], {
             title: repeater_data['qrz'],
             icon: repeaterIcon,
             zIndexOffset: 9
         }).addTo(map);
 	} else {
-		repeater_markers[repeater_data['qrz']] = L.marker([repeater_data['lat'],repeater_data['lon']], {
+		repeater_markers[repeater_data['id']] = L.marker([repeater_data['lat'],repeater_data['lon']], {
             title: repeater_data['qrz'],
             icon: repeaterOfflineIcon,
             zIndexOffset: 8
@@ -82,7 +82,7 @@ function createRepeaterMarker(repeater_data) {
     	infoHTML += '<br><br><a href="'+"http://"+repeater_data['www']+'" target="_blank"><b>'+"http://"+repeater_data['www']+'</b></a>';
     }
     
-	repeater_markers[repeater_data['qrz']].bindPopup(infoHTML);
+	repeater_markers[repeater_data['id']].bindPopup(infoHTML);
     /*
     if (typeof repeater_data['tx1'] != 'undefined') marker.tx1 = repeater_data['tx1'];
     if (typeof repeater_data['tx2'] != 'undefined') marker.tx2 = repeater_data['tx2'];
@@ -104,20 +104,20 @@ function createRepeaterMarker(repeater_data) {
     if (typeof repeater_data['rx8'] != 'undefined') marker.rx8 = repeater_data['rx8'];
     if (typeof repeater_data['rx9'] != 'undefined') marker.rx9 = repeater_data['rx9'];
     */
-    repeater_markers[repeater_data['qrz']].is2m = 0;
-    repeater_markers[repeater_data['qrz']].is70cm = 0;
-    repeater_markers[repeater_data['qrz']].is23cm = 0;
-    repeater_markers[repeater_data['qrz']].is13cm = 0;
-    repeater_markers[repeater_data['qrz']].is9cm = 0;
-    repeater_markers[repeater_data['qrz']].is6cm = 0;
-    repeater_markers[repeater_data['qrz']].is3cm = 0;
-    if (typeof repeater_data['2m']!='undefined') repeater_markers[repeater_data['qrz']].is2m = 1;
-    if (typeof repeater_data['70cm']!='undefined') repeater_markers[repeater_data['qrz']].is70cm = 1;
-    if (typeof repeater_data['23cm']!='undefined') repeater_markers[repeater_data['qrz']].is23cm = 1;
-    if (typeof repeater_data['13cm']!='undefined') repeater_markers[repeater_data['qrz']].is13cm = 1;
-    if (typeof repeater_data['9cm']!='undefined') repeater_markers[repeater_data['qrz']].is9cm = 1;
-    if (typeof repeater_data['6cm']!='undefined') repeater_markers[repeater_data['qrz']].is6cm = 1;
-    if (typeof repeater_data['3cm']!='undefined') repeater_markers[repeater_data['qrz']].is3cm = 1;
+    repeater_markers[repeater_data['id']].is2m = 0;
+    repeater_markers[repeater_data['id']].is70cm = 0;
+    repeater_markers[repeater_data['id']].is23cm = 0;
+    repeater_markers[repeater_data['id']].is13cm = 0;
+    repeater_markers[repeater_data['id']].is9cm = 0;
+    repeater_markers[repeater_data['id']].is6cm = 0;
+    repeater_markers[repeater_data['id']].is3cm = 0;
+    if (typeof repeater_data['2m']!='undefined') repeater_markers[repeater_data['id']].is2m = 1;
+    if (typeof repeater_data['70cm']!='undefined') repeater_markers[repeater_data['id']].is70cm = 1;
+    if (typeof repeater_data['23cm']!='undefined') repeater_markers[repeater_data['id']].is23cm = 1;
+    if (typeof repeater_data['13cm']!='undefined') repeater_markers[repeater_data['id']].is13cm = 1;
+    if (typeof repeater_data['9cm']!='undefined') repeater_markers[repeater_data['id']].is9cm = 1;
+    if (typeof repeater_data['6cm']!='undefined') repeater_markers[repeater_data['id']].is6cm = 1;
+    if (typeof repeater_data['3cm']!='undefined') repeater_markers[repeater_data['id']].is3cm = 1;
 }
 
 function createSpotLine(spot_data) {
