@@ -10,19 +10,19 @@ checkRepeaters();
 function createUserMarker(user_data) {    
 
 	if(user_data['seconds_active']>18) { // 18 seconds, should check in every 5 seconds
-	    user_markers[user_data['callsign']] = L.marker([user_data['lat'],user_data['lon']], {
+	    user_markers[user_data['id']] = L.marker([user_data['lat'],user_data['lon']], {
             title: user_data['callsign'],
             icon: userUnknownIcon,
             zIndexOffset: 11
         }).addTo(map);
-	} else if(user_data['radio_active']==1) {
-	    user_markers[user_data['callsign']] = L.marker([user_data['lat'],user_data['lon']], {
+	} else if(user_data['id']==1) {
+	    user_markers[user_data['id']] = L.marker([user_data['lat'],user_data['lon']], {
             title: user_data['callsign'],
             icon: userActiveIcon,
             zIndexOffset: 13
         }).addTo(map);
 	} else {
-	    user_markers[user_data['callsign']] = L.marker([user_data['lat'],user_data['lon']], {
+	    user_markers[user_data['id']] = L.marker([user_data['lat'],user_data['lon']], {
             title: user_data['callsign'],
             icon: userAwayIcon,
             zIndexOffset: 12
@@ -35,7 +35,7 @@ function createUserMarker(user_data) {
     	infoHTML += '<br><br><a href="'+"http://"+user_data['website']+'" target="_blank"><b>'+"http://"+user_data['website']+'</b></a>';
     }
     
-	user_markers[user_data['callsign']].bindPopup(infoHTML);
+	user_markers[user_data['id']].bindPopup(infoHTML);
 }
 
 /*
@@ -61,13 +61,6 @@ function updateUserMarker(user_data, user_index) {
 */
 
 function createRepeaterMarker(repeater_data) {
-	var latlon = new google.maps.LatLng(repeater_data['lat'], repeater_data['lon']);
-	
-	var marker = new google.maps.Marker({
-        position: latlon,
-        map: map,
-        title: repeater_data['qrz']
-	});
 	
 	if(typeof repeater_data['op'] != 'undefined') {
 		repeater_markers[repeater_data['qrz']] = L.marker([repeater_data['lat'],repeater_data['lon']], {
@@ -83,9 +76,14 @@ function createRepeaterMarker(repeater_data) {
         }).addTo(map);
 	}
 	
-    if(typeof repeater_data['qth']!='undefined') marker.qth = repeater_data['qth'];
-    marker.locator = repeater_data['loc'];
+	var infoHTML = '<h3 style="line-height: 0.3em;">'+repeater_data['qrz']+'</h3>'+
+                    '<b>'+repeater_data['loc']+'</b>';
+    if(repeater_data['www']!='') {
+    	infoHTML += '<br><br><a href="'+"http://"+repeater_data['www']+'" target="_blank"><b>'+"http://"+repeater_data['www']+'</b></a>';
+    }
     
+	user_markers[user_data['callsign']].bindPopup(infoHTML);
+    /*
     if (typeof repeater_data['tx1'] != 'undefined') marker.tx1 = repeater_data['tx1'];
     if (typeof repeater_data['tx2'] != 'undefined') marker.tx2 = repeater_data['tx2'];
     if (typeof repeater_data['tx3'] != 'undefined') marker.tx3 = repeater_data['tx3'];
@@ -105,204 +103,55 @@ function createRepeaterMarker(repeater_data) {
     if (typeof repeater_data['rx7'] != 'undefined') marker.rx7 = repeater_data['rx7'];
     if (typeof repeater_data['rx8'] != 'undefined') marker.rx8 = repeater_data['rx8'];
     if (typeof repeater_data['rx9'] != 'undefined') marker.rx9 = repeater_data['rx9'];
-    
-    marker.is2m = 0;
-    marker.is70cm = 0;
-    marker.is23cm = 0;
-    marker.is13cm = 0;
-    marker.is9cm = 0;
-    marker.is6cm = 0;
-    marker.is3cm = 0;
-    if (typeof repeater_data['2m']!='undefined') marker.is2m = 1;
-    if (typeof repeater_data['70cm']!='undefined') marker.is70cm = 1;
-    if (typeof repeater_data['23cm']!='undefined') marker.is23cm = 1;
-    if (typeof repeater_data['13cm']!='undefined') marker.is13cm = 1;
-    if (typeof repeater_data['9cm']!='undefined') marker.is9cm = 1;
-    if (typeof repeater_data['6cm']!='undefined') marker.is6cm = 1;
-    if (typeof repeater_data['3cm']!='undefined') marker.is3cm = 1;
-    
-    marker.desc = repeater_data['desc']
-    if (typeof repeater_data['www'] != 'undefined') {
-    	marker.website = repeater_data['www']
-    } else {
-    	marker.website = '';
-    }
-    if (typeof repeater_data['keep'] != 'undefined') {
-   		marker.keeper = repeater_data['keep']
-    } else {
-    	marker.keeper = '';
-    }
-    repeater_markers.push(marker);
-    
-    repeater_data = null;
-    
-    var infoTab = '<div class="repeater_bubble_info">'+
-        '<h3 style="line-height: 0.3em;">'+marker.callsign+'</h3>'+
-        '<b>'+marker.locator+'</b>';
-    if(typeof marker.qth!='undefined') infoTab += '&nbsp;-&nbsp;'+marker.qth;
-    if(logged_in) {
-    	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
-    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+marker.callsign+"','"+marker.lat+"','"+marker.lon+"'";
-    	infoTab+='<br><br>'+
-    		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, latlon)))+'&deg;<br>'+
-    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, latlon)/1000)*10)/10+'km<br>'+
-    		'<a href="javascript:elevation_profile('+elevation_vars+')"><b>Path Elevation Profile</b></a>';
-    }
-    infoTab += '</div>';
-    var freqTab = '<div class="repeater_bubble_freq">';
-    
-    if (typeof marker.tx1 != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx1+'MHz</b><br>';
-    if (typeof marker.tx2 != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx2+'MHz</b><br>';
-    if (typeof marker.tx3 != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx3+'MHz</b><br>';
-    if (typeof marker.tx4 != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx4+'MHz</b><br>';
-    if (typeof marker.tx5 != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx5+'MHz</b><br>';
-    if (typeof marker.tx6 != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx6+'MHz</b><br>';
-    if (typeof marker.tx7 != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx7+'MHz</b><br>';
-    if (typeof marker.tx8 != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx8+'MHz</b><br>';
-    if (typeof marker.tx9 != 'undefined') freqTab += '<b>TX:&nbsp;'+marker.tx9+'MHz</b><br>';
-    
-    if (typeof marker.rx1 != 'undefined') freqTab += '<br><b>RX:&nbsp;'+marker.rx1+'MHz</b><br>';
-    if (typeof marker.rx2 != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx2+'MHz</b><br>';
-    if (typeof marker.rx3 != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx3+'MHz</b><br>';
-    if (typeof marker.rx4 != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx4+'MHz</b><br>';
-    if (typeof marker.rx5 != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx5+'MHz</b><br>';
-    if (typeof marker.rx6 != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx6+'MHz</b><br>';
-    if (typeof marker.rx7 != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx7+'MHz</b><br>';
-    if (typeof marker.rx8 != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx8+'MHz</b><br>';
-    if (typeof marker.rx9 != 'undefined') freqTab += '<b>RX:&nbsp;'+marker.rx9+'MHz</b><br>';
-    
-    freqTab += '</div>';
-    
-    var descTab = '<div class="repeater_bubble_desc">';
-    descTab += marker.desc+'<br>';
-    if (typeof marker.keeper != 'undefined') descTab += '<b>Keeper:</b>&nbsp;'+marker.keeper+'<br><br>';
-    if (typeof marker.website != 'undefined') descTab += '<a href="'+marker.website+'" target="_blank"><b>Repeater Website</b></a>';
-    descTab += '</div>';
-    
-    var infoBubble = new InfoBubble({
-        maxWidth: 180,
-        minWidth: 180,
-        maxHeight: 110,
-        minHeight: 110,
-		shadowStyle: 0,
-		padding: 8,
-		backgroundColor: '#fff',
-		borderRadius: 8,
-		arrowSize: 10,
-		borderWidth: 1,
-		borderColor: '#ccc',
-		disableAutoPan: true,
-		hideCloseButton: false,
-		arrowPosition: 50,
-		arrowStyle: 0
-    });
-  	
-    infoBubble.addTab('<span class="bubble_label">Info</span>', infoTab);
-    infoBubble.addTab('<span class="bubble_label">Tx/Rx</span>', freqTab);
-    infoBubble.addTab('<span class="bubble_label">Description</span>', descTab);
-
-    google.maps.event.addListener(marker, 'click', function() {
-        if (!infoBubble.isOpen()) {
-            infoBubble.open(map, marker);
-        }
-    });
+    */
+    repeater_markers[repeater_data['qrz']].is2m = 0;
+    repeater_markers[repeater_data['qrz']].is70cm = 0;
+    repeater_markers[repeater_data['qrz']].is23cm = 0;
+    repeater_markers[repeater_data['qrz']].is13cm = 0;
+    repeater_markers[repeater_data['qrz']].is9cm = 0;
+    repeater_markers[repeater_data['qrz']].is6cm = 0;
+    repeater_markers[repeater_data['qrz']].is3cm = 0;
+    if (typeof repeater_data['2m']!='undefined') repeater_markers[repeater_data['qrz']].is2m = 1;
+    if (typeof repeater_data['70cm']!='undefined') repeater_markers[repeater_data['qrz']].is70cm = 1;
+    if (typeof repeater_data['23cm']!='undefined') repeater_markers[repeater_data['qrz']].is23cm = 1;
+    if (typeof repeater_data['13cm']!='undefined') repeater_markers[repeater_data['qrz']].is13cm = 1;
+    if (typeof repeater_data['9cm']!='undefined') repeater_markers[repeater_data['qrz']].is9cm = 1;
+    if (typeof repeater_data['6cm']!='undefined') repeater_markers[repeater_data['qrz']].is6cm = 1;
+    if (typeof repeater_data['3cm']!='undefined') repeater_markers[repeater_data['qrz']].is3cm = 1;
 }
 
 function createSpotLine(spot_data) {
-
-	var primary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['primary_id']; });
-	var primary_latlon = primary_search[0].position;
-	var primary_callsign = primary_search[0].callsign;
 	if(spot_data['secondary_isrepeater']==0) {
-		var secondary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['secondary_id']; });
+		var secondary_latlon = user_markers[spot_data['secondary_id']].getLatLng();
+		var secondary_callsign = user_markers[spot_data['secondary_id']].title;
 	} else {
-		var secondary_search = $.grep(repeater_markers, function(e){ return e.repeater_id == spot_data['secondary_id']; });
+		var secondary_latlon = repeater_markers[spot_data['secondary_id']].getLatLng();
+		var secondary_callsign = repeater_markers[spot_data['secondary_id']].title;
 	}
 	
-	var secondary_latlon = secondary_search[0].position;
-	var secondary_callsign = secondary_search[0].callsign;
-	
 	var spotLineCoordinates = [
-		primary_latlon,
+		user_markers[spot_data['primary_id']].getLatLng(),
 		secondary_latlon
 	];
-	var spotLine = new google.maps.Polyline({
-    	path: spotLineCoordinates,
-    	strokeOpacity: 1.0,
-    	strokeWeight: 3,
-    	geodesic: true,
-        zIndex: 1
-	});
+	
+	var spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: 'red'}).addTo(map);
 	
 	switch(spot_data['band_id']) {
 		case 1: // 70cm
-			spotLine.setOptions( {
-				strokeColor: "#FF0000" //red
-			});
+			var spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FF0000'}).addTo(map);
 			break
 		case 2: // 23cm
-			spotLine.setOptions( {
-				strokeColor: "#FFA500", //orange
-				strokeWeight: 5 // thicker line
-			});
+			var spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FFA500'}).addTo(map);
 			break
 		default: //13 cm and above
-			spotLine.setOptions( {
-				strokeColor: "#0404B4" //blue
-			});
+			var spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#0404B4'}).addTo(map);
 			break
 	}
 	
-	switch(spot_data['mode_id']) {
-		case 0: // Not defined - assume Digital
-			spotLine.setOptions( {
-				zIndex: 5
-			});
-			spotLine.mode = "Digital ATV";
-			break;
-		case 1: // Analog TV
-			spotLine.setOptions( {
-				zIndex: 4
-			});
-			spotLine.mode = "Analog ATV";
-			break;
-		case 2: // Digital TV (WB)
-			spotLine.setOptions( {
-				zIndex: 5
-			});
-			spotLine.mode = "Digital ATV";
-			break;
-		case 3: // Beacon
-			var lineSymbol = {
-				path: 'M 0,-0.5 0,0.5',
-				strokeOpacity: 0.5,
-				scale: 2
-			};
-			spotLine.setOptions( {
-				strokeOpacity: 0,
-				icons: [{
-					icon: lineSymbol,
-					offset: '0',
-					repeat: '10px'
-				}],
-				zIndex: 3
-			});
-			spotLine.mode = "NB Beacon";
-			break;
+	if(spot_data['mode_id']==3) { // Beacon
+		spot_lines[spot_data['id']].setStyle({dashArray:"5, 1"});
 	}
 	
-	spotLine.spot_id = spot_data['id'];
-	spotLine.band_id = spot_data['band_id'];
-	spotLine.mode_id = spot_data['mode_id'];
-	
-	spotLine.primary_id = spot_data['primary_id'];
-	spotLine.primary_callsign = primary_callsign;
-	spotLine.secondary_id = spot_data['secondary_id'];
-	spotLine.secondary_callsign = secondary_callsign;
-	spotLine.secondary_isrepeater = spot_data['secondary_isrepeater']
-	spotLine.time = spot_data['spot_time'];
-	spotLine.ago = spot_data['seconds_ago'];
-	spotLine.comments = spot_data['comments'];
 	spotLine.date = parseInt(spot_data['spot_time'].substr(8,2))+"&nbsp;"+months[parseInt(spot_data['spot_time'].substr(5,2))]+"&nbsp;"+spot_data['spot_time'].substr(11,8);	
 	spotLine.distance = Math.round((google.maps.geometry.spherical.computeDistanceBetween(primary_latlon, secondary_latlon)/1000)*10)/10;
 	
@@ -314,8 +163,10 @@ function createSpotLine(spot_data) {
     	infowindow.open(map);
    	});
 	
-	spotLine.setMap(map);
-	spot_lines.push(spotLine);
+	var infoHTML = '<h3 style="line-height: 0.3em;">'+user_markers[spot_data['primary_id']].title+"</b>&nbsp;->&nbsp;<b>"+secondary_callsign+'</h3>';
+    }
+    
+	spot_lines[spot_data['id']].bindPopup(infoHTML);
 }
 
 function parseRepeaters(JSONinput) {
