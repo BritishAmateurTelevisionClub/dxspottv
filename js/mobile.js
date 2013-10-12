@@ -138,13 +138,13 @@ function createSpotLine(spot_data) {
 	
 	switch(spot_data['band_id']) {
 		case 1: // 70cm
-			var spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FF0000'}).addTo(map);
+			spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FF0000'}).addTo(map);
 			break
 		case 2: // 23cm
-			var spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FFA500'}).addTo(map);
+			spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FFA500'}).addTo(map);
 			break
 		default: //13 cm and above
-			var spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#0404B4'}).addTo(map);
+			spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#0404B4'}).addTo(map);
 			break
 	}
 	
