@@ -161,8 +161,7 @@ function parseRepeaters(JSONinput) {
 	var r_id = new Array();
 	for(r_id in JSONinput){
 		var repeater = JSONinput[r_id];
-		var marker_search = $.grep(repeater_markers, function(e){ return e.callsign == repeater['callsign']; });
-		if(marker_search.length==0 && repeater.length!=0) {
+		if(repeater.length!=0) {
 			createRepeaterMarker(repeater);
 		}
 	}
@@ -198,8 +197,7 @@ function parseSpots(JSONinput) {
 	var s_id = new Array();
 	for(s_id in JSONinput){
 		var spot = JSONinput[s_id];
-		var spot_search = $.grep(spot_lines, function(e){ return e.spot_id == spot['id']; });
-		if(spot_search.length==0 && spot.length!=0) {
+		if(spot.length!=0) {
 			createSpotLine(spot);
 		}
 	}
