@@ -3,9 +3,9 @@ loadUsers(initData['users']);
 parseRepeaters(initData['repeaters']);
 parseSpots(initData['spots']);
 initData = null;
-checkSpots();
-checkUsers();
-checkRepeaters();
+//checkSpots();
+//checkUsers();
+//checkRepeaters();
 
 function createUserMarker(user_data) {    
 
