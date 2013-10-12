@@ -134,7 +134,7 @@ function createSpotLine(spot_data) {
 		secondary_latlon
 	];
 	
-	var spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: 'red'}).addTo(map);
+	spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: 'red'}).addTo(map);
 	
 	switch(spot_data['band_id']) {
 		case 1: // 70cm
