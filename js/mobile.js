@@ -14,19 +14,19 @@ function createUserMarker(user_data) {
             title: user_data['callsign'],
             icon: userUnknownIcon,
             zIndexOffset: 11
-        }).addTo(map);
+        });
 	} else if(user_data['id']==1) {
 	    user_markers[user_data['id']] = L.marker([user_data['lat'],user_data['lon']], {
             title: user_data['callsign'],
             icon: userActiveIcon,
             zIndexOffset: 13
-        }).addTo(map);
+        });
 	} else {
 	    user_markers[user_data['id']] = L.marker([user_data['lat'],user_data['lon']], {
             title: user_data['callsign'],
             icon: userAwayIcon,
             zIndexOffset: 12
-        }).addTo(map);
+        });
 	}
 	
 	var infoHTML = '<h3 style="line-height: 0.3em;">'+user_data['callsign']+'</h3>'+
@@ -36,6 +36,10 @@ function createUserMarker(user_data) {
     }
     
 	user_markers[user_data['id']].bindPopup(infoHTML);
+	
+	if(user_data['seconds_active']<9999) {
+		user_markers[user_data['id']].addTo(map);
+	}
 }
 
 /*
@@ -134,17 +138,15 @@ function createSpotLine(spot_data) {
 		secondary_latlon
 	];
 	
-	spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: 'red'}).addTo(map);
-	
 	switch(spot_data['band_id']) {
 		case 1: // 70cm
-			spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FF0000'}).addTo(map);
+			spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FF0000'});
 			break
 		case 2: // 23cm
-			spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FFA500'}).addTo(map);
+			spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#FFA500'});
 			break
 		default: //13 cm and above
-			spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#0404B4'}).addTo(map);
+			spot_lines[spot_data['id']] = L.polyline(spotLineCoordinates, {color: '#0404B4'});
 			break
 	}
 	
@@ -155,6 +157,10 @@ function createSpotLine(spot_data) {
 	var infoHTML = '<h3 style="line-height: 0.3em;">'+user_markers[spot_data['primary_id']].title+"</b>&nbsp;->&nbsp;<b>"+secondary_callsign+'</h3>';
     
 	spot_lines[spot_data['id']].bindPopup(infoHTML);
+	
+	if(spot_data['seconds_ago']<2678400) {
+		spot_lines[spot_data['id']].addTo(map);
+	}
 }
 
 function parseRepeaters(JSONinput) {
