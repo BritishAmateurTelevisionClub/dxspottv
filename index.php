@@ -274,7 +274,7 @@ if ($auth_error==1) {
 	<div id="aboutTab" class="reduce-tab-padding">
 		DXSpot.TV is an open development project, hosted at <a href="https://github.com/BritishAmateurTelevisionClub/dxspottv/">GitHub</a>. Contribution is welcome!
 		<br><br>
-		====== REDACTED for RSGB Competition ======
+		Most of the development has been done by Phil, M0DNY (aka. craag), from an idea by Noel, G8GTZ.
 		<br><br>
 		Comments/suggestions are welcome, either to us on the Chat, or emailed to us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
 	</div>
