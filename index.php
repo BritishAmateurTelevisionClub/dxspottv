@@ -90,7 +90,6 @@ if($logged_in) { ?>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
-<img src="/images/batc-logo2-79px.png" style="height: 79px; width: 98px;" />
 <img src="/images/DXS8.jpg" style="height: 79px; width: 179px; margin-left: 20px;" />
 <table
 style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
