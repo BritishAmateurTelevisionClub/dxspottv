@@ -91,6 +91,7 @@ if($logged_in) { ?>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
 <img src="/images/DXS8.jpg" style="height: 79px; width: 179px; margin-left: 20px;" />
+<font color="red">Unfortunately due to server management issues, we have experienced a data loss of all new accounts and spots since the 5th October. If you have registered with us since then, please register again! Sorry for the inconvenience.</font>
 <table
 style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
 border="0" cellpadding="0" cellspacing="0">
