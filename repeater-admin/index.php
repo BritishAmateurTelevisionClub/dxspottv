@@ -34,7 +34,7 @@ if($is_admin) {
 <ul>
 <?php
 require_once('dxspottv_pdo.php');
-$repeaters_stmt = mysqli_query($dbc, "SELECT id,callsign FROM repeaters;") or die(mysqli_error($dbc));
+$repeaters_stmt = mysqli_query($dbc, "SELECT id,callsign FROM all_repeaters;") or die(mysqli_error($dbc));
 $repeaters_stmt->execute();
 $repeaters_stmt->bindColumn(1, $current_id);
 $repeaters_stmt->bindColumn(2, $current_callsign);
