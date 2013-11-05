@@ -15,7 +15,6 @@ if(isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"])) {
 	$sessions_stmt->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
 	$sessions_stmt->bindValue(2, $_COOKIE["session_key"]);
 	$sessions_stmt->execute();
-	print $sessions_stmt->rowCount();
 	if($sessions_stmt->rowCount()!=0) {
         $logged_in = true;
         $auth_stmt = $dbc->prepare("SELECT repeater_admin FROM users WHERE id=?;");
