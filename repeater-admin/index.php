@@ -11,10 +11,11 @@ $logged_in = false;
 $is_admin = false;
 if(isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"])) {
 	require_once('dxspottv_pdo.php');
-	$sessions_stmt = $dbc->prepare("SELECT COUNT() FROM sessions WHERE user_id=? AND session_id=?;");
+	$sessions_stmt = $dbc->prepare("SELECT COUNT(1) FROM sessions WHERE user_id=? AND session_id=?;");
 	$sessions_stmt->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
 	$sessions_stmt->bindValue(2, $_COOKIE["session_key"]);
 	$sessions_stmt->execute();
+	print $sessions_stmt->rowCount();
 	if($sessions_stmt->rowCount()!=0) {
         $logged_in = true;
         $auth_stmt = $dbc->prepare("SELECT repeater_admin FROM users WHERE id=?;");
