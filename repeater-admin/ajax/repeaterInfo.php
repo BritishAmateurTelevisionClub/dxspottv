@@ -47,6 +47,13 @@ $repeater_stmt->bindColumn(35, $repeater['height']);
 $repeater_stmt->bindColumn(36, $repeater['id']);
 $repeater_stmt->fetch();
 
+$repeater['callsign'] = html_entity_decode($repeater['callsign']);
+$repeater['qth_r'] = html_entity_decode($repeater['qth_r']);
+$repeater['qth'] = html_entity_decode($repeater['qth']);
+$repeater['description'] = html_entity_decode($repeater['description']);
+$repeater['website'] = html_entity_decode($repeater['website']);
+$repeater['keeper'] = html_entity_decode($repeater['keeper']);
+
 print json_encode($repeater);
 }
 ?>
