@@ -40,7 +40,7 @@ $repeaters_stmt->bindColumn(1, $current_id);
 $repeaters_stmt->bindColumn(2, $current_callsign);
 while($repeaters_stmt->fetch()) {
 ?>
-<li><a href="editRepeater.html?id=<?php print $current_id; ?>"><?php print $current_callsign; ?></a>
+<li><a href="editRepeater.php?id=<?php print $current_id; ?>"><?php print $current_callsign; ?></a>
 <?php
 }
 ?>
