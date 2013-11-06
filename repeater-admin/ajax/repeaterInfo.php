@@ -4,8 +4,6 @@ if(!(isset($_REQUEST["repeater_id"]))) {
 	print "Error: No ID requested.";
 } else {
 
-$repeater;
-
 require_once('dxspottv_pdo.php');
 
 $repeater_stmt = $dbc->prepare("SELECT callsign, lat, lon, qth_r, qth, 2m, 70cm, 23cm, 13cm, 9cm, 6cm, 3cm, tx1, tx2, tx3, tx4, tx5, tx6, tx7, tx8, tx9, rx1, rx2, rx3, rx4, rx5, rx6, rx7, rx8, rx9, description, website, keeper_callsign, active, height, id FROM all_repeaters WHERE id =?;");
