@@ -162,7 +162,7 @@ function submitEdit() {
 </head>
 <body>
 <h1>Admin</h1>
-<a href="/repeater-admin/admin/index.php"><h3>Back to List of Repeaters</h2></a>
+<a href="/repeater-admin/"><h3>Back to List of Repeaters</h2></a>
 <h2>Add Repeater</h2>
 <b>Callsign:</b>&nbsp;<input type=text id="input_callsign"></input><br>
 <b>Locator:</b>&nbsp;<input type=text id="input_locator"></input><br>
