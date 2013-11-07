@@ -83,7 +83,7 @@ function submitAdd() {
 		success: function( data ) {
 			retData = eval('(' + data + ')');
 			if (typeof retData['success'] != 'undefined') {
-				$('#editStatus').html("<font color=green>Added.</font>");
+				$('#editStatus').html("<font color=green>Added Successfully.</font>");
 				$('#editStatus').show();
 				$('#editStatus').fadeOut(1500);
 			} else {
@@ -97,7 +97,7 @@ function submitAdd() {
 					break;
 				}
 				$('#editStatus').show();
-				$('#editStatus').fadeOut(3000);
+				$('#editStatus').fadeOut(8000);
 			}
 		}
 	});
