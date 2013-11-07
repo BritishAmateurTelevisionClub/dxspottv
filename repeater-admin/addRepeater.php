@@ -4,6 +4,13 @@
 <head>
 <meta charset="utf-8">
 <title>Add Repeater</title>
+<style>
+#map-div {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+}
+</style>
 <link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script src="/static/js/jquery-plus-ui.js"></script>
 <?php
@@ -32,14 +39,47 @@ if($is_admin) {
 ?>
 <script src="/js/locator.js"></script>
 <script>
+var marker;
 $(document).ready(function() {
     $('#edit_button').button().click( function() {
     	submitAdd();
 	});
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize'; // callback: initialize()
+	document.body.appendChild(script);
 });
 
+function placeMarker(location) {
+  if ( marker ) {
+    marker.setPosition(location);
+  } else {
+    marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  }
+}
+
+function initialize() {
+	google.maps.visualRefresh = true;
+	var mapOptions = {
+		zoom: 4,
+		center: new google.maps.LatLng(50.5, 0),
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		streetViewControl: false
+	};
+
+	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+	google.maps.event.addListener(map, 'click', function(event) {
+		$('#lat').val(event.latLng.lat());
+		$('#lon').val(event.latLng.lng());
+		placeMarker(event.latLng);
+	});
+}
+
 function submitAdd() {
-    var add_latlon = LoctoLatLon($('#input_locator').val());
 	$.ajax({
 		url: "/repeater-admin/ajax/addRepeater.php",
 		type: "GET",
@@ -47,8 +87,8 @@ function submitAdd() {
 			callsign: $('#input_callsign').val(),
 			locator: $('#input_locator').val(),
 			location: $('#input_location').val(),
-			lat: add_latlon[0],
-			lon: add_latlon[1],
+			lat: $('#lat').val(),
+			lon: $('#lon').val(),
 			height: $('#input_height').val(),
 			is_2m: $('#input_is_2m').val(),
 			is_70cm: $('#input_is_70cm').val(),
@@ -145,6 +185,20 @@ function submitAdd() {
 <b>Keeper:</b>&nbsp;<input type=text id="input_keeper"></input><br>
 <b>Active:</b>&nbsp;<input type=text id="input_active" value="1"></input> (1 or 0)<br>
 <button class="edit-button reduce-font-size" id="edit_button">Submit</button>&nbsp;<span id="editStatus"></span>
+<div id="map-div">
+<center>
+<h3>Set Station Location</h3>
+<div id="map_canvas"></div>
+</center>
+<br>
+Simply zoom in and click on the map to set your location.<br><br>
+<i>Your Latitude and Longtitude will be filled in automatically.<i>
+<br>
+<br>
+<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" minlength="4" />
+<br>
+<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" minlength="4" />
+</div>
 <?php
 } else { // Logged In, not allowed
 ?>
