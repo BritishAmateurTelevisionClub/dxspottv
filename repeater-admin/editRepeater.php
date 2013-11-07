@@ -34,7 +34,7 @@ if($is_admin) {
 <script>
 $(document).ready(function() {
     $('#edit_button').button().click( function() {
-    	submitAdd();
+    	submitEdit();
 	});
 	
 	var parts = window.location.search.substr(1).split("&");
