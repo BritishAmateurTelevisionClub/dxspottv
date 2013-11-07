@@ -60,42 +60,40 @@ $(document).ready(function() {
     		$('#input_website').val(data.website);
     		$('#input_keeper').val(data.keeper);
     		$('#input_active').val(data.active);
+    		
+    		$('#input_is_2m').val(data.is_2m),
+			$('#input_is_70cm').val(data.is_70cm),
+			$('#input_is_23cm').val(data.is_23cm),
+			$('#input_is_13cm').val(data.is_13cm),
+			$('#input_is_9cm').val(data.is_9cm),
+			$('#input_is_6cm').val(data.is_6cm),
+			$('#input_is_3cm').val(data.is_3cm),
+    		
+    		$('#input_tx1').val(data.tx1);
+    		$('#input_tx2').val(data.tx2);
+    		$('#input_tx3').val(data.tx3);
+    		$('#input_tx4').val(data.tx4);
+    		$('#input_tx5').val(data.tx5);
+    		$('#input_tx6').val(data.tx6);
+    		$('#input_tx7').val(data.tx7);
+    		$('#input_tx8').val(data.tx8);
+    		$('#input_tx9').val(data.tx9);
+    		
+    		$('#input_rx1').val(data.rx1);
+    		$('#input_rx2').val(data.rx2);
+    		$('#input_rx3').val(data.rx3);
+    		$('#input_rx4').val(data.rx4);
+    		$('#input_rx5').val(data.rx5);
+    		$('#input_rx6').val(data.rx6);
+    		$('#input_rx7').val(data.rx7);
+    		$('#input_rx8').val(data.rx8);
+    		$('#input_rx9').val(data.rx9);
 		}
 	});
 });
 
 function submitEdit() {
     var add_latlon = LoctoLatLon($('#input_locator').val());
-    var is_2m=0;
-    var is_70cm=0;
-    var is_23cm=0;
-    var is_13cm=0;
-    var is_9cm=0;
-    var is_6cm=0;
-    var is_3cm=0;
-    switch ($('#input_band').val()) {
-        case "2m":
-          is_2m=1;
-          break;
-        case "70cm":
-          is_70cm=1;
-          break;
-        case "23cm":
-          is_23cm=1;
-          break;
-        case "13cm":
-          is_13cm=1;
-          break;
-        case "9cm":
-          is_9cm=1;
-          break;
-        case "6cm":
-          is_6cm=1;
-          break;
-        case "3cm":
-          is_3cm=1;
-          break;
-    }
 	$.ajax({
 		url: "/repeater-admin/ajax/addRepeater.php",
 		type: "GET",
@@ -106,13 +104,13 @@ function submitEdit() {
 			lat: add_latlon[0],
 			lon: add_latlon[1],
 			height: $('#input_height').val(),
-			is_2m: is_2m,
-			is_70cm: is_70cm,
-			is_23cm: is_23cm,
-			is_13cm: is_13cm,
-			is_9cm: is_9cm,
-			is_6cm: is_6cm,
-			is_3cm: is_3cm,
+			is_2m: $('#input_is_2m').val(),
+			is_70cm: $('#input_is_70cm').val(),
+			is_23cm: $('#input_is_23cm').val(),
+			is_13cm: $('#input_is_13cm').val(),
+			is_9cm: $('#input_is_9cm').val(),
+			is_6cm: $('#input_is_6cm').val(),
+			is_3cm: $('#input_is_3cm').val(),
 			tx1: $('#input_tx1').val(),
 			tx2: $('#input_tx2').val(),
 			tx3: $('#input_tx3').val(),
@@ -168,16 +166,14 @@ function submitEdit() {
 <b>Locator:</b>&nbsp;<input type=text id="input_locator"></input><br>
 <b>Antenna Height:</b>&nbsp;<input type=text id="input_height" value="0"></input>m<br>
 <b>Location:</b>&nbsp;<input type=text id="input_location"></input><br>
-<b>Band:</b>&nbsp;
-<select id="input_band">
-  <option value="2m">2m</option>
-  <option value="70cm">70cm</option>
-  <option value="23cm">23cm</option>
-  <option value="13cm">13cm</option>
-  <option value="9cm">9cm</option>
-  <option value="6cm">6cm</option>
-  <option value="3cm">3cm</option>
-</select><br>
+<h3>Output Bands: (0 or 1)</h3>
+<b>2m:</b>&nbsp;<input type=text id="input_is_2m"></input><br>
+<b>70cm:</b>&nbsp;<input type=text id="input_is_70cm"></input><br>
+<b>23cm:</b>&nbsp;<input type=text id="input_is_23cm"></input><br>
+<b>13cm:</b>&nbsp;<input type=text id="input_is_13cm"></input><br>
+<b>9cm:</b>&nbsp;<input type=text id="input_is_9cm"></input><br>
+<b>6cm:</b>&nbsp;<input type=text id="input_is_6cm"></input><br>
+<b>3cm:</b>&nbsp;<input type=text id="input_is_3cm"></input><br>
 <h3>TX</h3>
 <b>1:</b>&nbsp;<input type=text id="input_tx1"></input>&nbsp;MHz<br>
 <b>2:</b>&nbsp;<input type=text id="input_tx2"></input>&nbsp;MHz<br>
