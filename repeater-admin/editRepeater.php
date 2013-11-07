@@ -95,9 +95,10 @@ $(document).ready(function() {
 function submitEdit() {
     var add_latlon = LoctoLatLon($('#input_locator').val());
 	$.ajax({
-		url: "/repeater-admin/ajax/addRepeater.php",
+		url: "/repeater-admin/ajax/editRepeater.php",
 		type: "GET",
 		data: {
+		    id: repeater_id,
 			callsign: $('#input_callsign').val(),
 			locator: $('#input_locator').val(),
 			location: $('#input_location').val(),
