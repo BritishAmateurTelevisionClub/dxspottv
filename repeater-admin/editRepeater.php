@@ -142,17 +142,17 @@ function initialize() {
 }
 
 function submitEdit() {
-    var add_latlon = LoctoLatLon($('#input_locator').val());
 	$.ajax({
 		url: "/repeater-admin/ajax/editRepeater.php",
-		type: "GET",
+		type: "POST",
+		dataType: 'json',
 		data: {
 		    id: repeater_id,
 			callsign: $('#input_callsign').val(),
 			locator: $('#input_locator').val(),
 			location: $('#input_location').val(),
-			lat: add_latlon[0],
-			lon: add_latlon[1],
+			lat: $('#lat').val(),
+			lon: $('#lon').val(),
 			height: $('#input_height').val(),
 			is_2m: $('#input_is_2m').val(),
 			is_70cm: $('#input_is_70cm').val(),
@@ -185,13 +185,12 @@ function submitEdit() {
 			active: $('#input_active').val()
 		},
 		success: function( data ) {
-			retData = eval('(' + data + ')');
-			if (typeof retData['success'] != 'undefined') {
+			if (typeof data.success != 'undefined') {
 				$('#editStatus').html("<font color=green>Edited Successfully.</font>");
 				$('#editStatus').show();
 				$('#editStatus').fadeOut(1500);
 			} else {
-				switch(retData['error'])
+				switch(data.error)
 				{
 				case "1":
 					$('#editStatus').html("<font color=red>Form Error.</font>");
