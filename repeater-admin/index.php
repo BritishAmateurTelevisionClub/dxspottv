@@ -31,6 +31,8 @@ if($logged_in) {
 if($is_admin) {
 ?>
 <h1>Repeater Admin</h1>
+<a href="addRepeater.php">Add New Repeater</a>
+<br>
 <ul>
 <?php
 require_once('dxspottv_pdo.php');
