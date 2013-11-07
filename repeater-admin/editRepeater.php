@@ -4,6 +4,17 @@
 <head>
 <meta charset="utf-8">
 <title>Edit Repeater</title>
+<style>
+#map-div {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+}
+#map_canvas {
+	height: 300px;
+	width: 400px;
+}
+</style>
 <link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script src="/static/js/jquery-plus-ui.js"></script>
 <?php
@@ -56,6 +67,8 @@ $(document).ready(function() {
     		$('#input_callsign').val(data.callsign);
     		$('#input_locator').val(data.qth_r);
     		$('#input_location').val(data.qth);
+    		$('#lat').val(data.latitude),
+			$('#lon').val(data.longitude),
     		$('#input_description').val(data.description);
     		$('#input_website').val(data.website);
     		$('#input_keeper').val(data.keeper);
@@ -88,9 +101,44 @@ $(document).ready(function() {
     		$('#input_rx7').val(data.rx7);
     		$('#input_rx8').val(data.rx8);
     		$('#input_rx9').val(data.rx9);
+    		
+    		var script = document.createElement('script');
+	        script.type = 'text/javascript';
+	        script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize'; // callback: initialize()
+	        document.body.appendChild(script);
 		}
 	});
 });
+
+function placeMarker(location) {
+  if ( marker ) {
+    marker.setPosition(location);
+  } else {
+    marker = new google.maps.Marker({
+      position: location,
+      map: map
+    });
+  }
+}
+
+function initialize() {
+	google.maps.visualRefresh = true;
+	var mapOptions = {
+		zoom: 4,
+		center: new google.maps.LatLng(50.5, 0),
+		mapTypeId: google.maps.MapTypeId.ROADMAP,
+		streetViewControl: false
+	};
+
+	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+	google.maps.event.addListener(map, 'click', function(event) {
+		$('#lat').val(event.latLng.lat());
+		$('#lon').val(event.latLng.lng());
+		placeMarker(event.latLng);
+	});
+	placeMarker(new google.maps.LatLng($('#lat').val(),$('#lon').val()));
+}
 
 function submitEdit() {
     var add_latlon = LoctoLatLon($('#input_locator').val());
@@ -200,6 +248,17 @@ function submitEdit() {
 <b>Keeper:</b>&nbsp;<input type=text id="input_keeper"></input><br>
 <b>Active:</b>&nbsp;<input type=text id="input_active" value="1"></input> (1 or 0)<br>
 <button class="edit-button reduce-font-size" id="edit_button">Submit</button>&nbsp;<span id="editStatus"></span>
+<div id="map-div">
+<center>
+<h3>Edit Repeater Location</h3>
+<div id="map_canvas"></div>
+</center>
+<br>
+Simply zoom in and click on the map to change the location.<br><br>
+<label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" minlength="4" />
+<br>
+<label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" minlength="4" />
+</div>
 <?php
 } else { // Logged In, not allowed
 ?>
