@@ -43,6 +43,7 @@ if($is_admin) {
 ?>
 <script src="/js/locator.js"></script>
 <script>
+var marker;
 $(document).ready(function() {
     $('#edit_button').button().click( function() {
     	submitEdit();
