@@ -52,7 +52,7 @@ $(document).ready(function() {
 	    var tmp_latlon = LoctoLatLon($('#input_locator').val());
     	$('#lat').val(tmp_latlon[0]);
 		$('#lon').val(tmp_latlon[1]);
-		placeMarker(new google.maps.LatLng(tmp_latlon[0],tmp_latlon[1]),);
+		placeMarker(new google.maps.LatLng(tmp_latlon[0],tmp_latlon[1]));
 	});
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
