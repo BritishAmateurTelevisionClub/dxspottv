@@ -48,6 +48,12 @@ $(document).ready(function() {
     $('#edit_button').button().click( function() {
     	submitAdd();
 	});
+	$('#locator_button').button().click( function() {
+	    var tmp_latlon = LoctoLatLon($('#input_locator').val());
+    	$('#lat').val(tmp_latlon[0]);
+		$('#lon').val(tmp_latlon[1]);
+		placeMarker(new google.maps.LatLng(tmp_latlon[0],tmp_latlon[1]),);
+	});
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize'; // callback: initialize()
@@ -153,7 +159,7 @@ function submitAdd() {
 <a href="/repeater-admin/"><h3>Back to List of Repeaters</h2></a>
 <h2>Add Repeater</h2>
 <b>Callsign:</b>&nbsp;<input type=text id="input_callsign"></input><br>
-<b>Locator:</b>&nbsp;<input type=text id="input_locator"></input><br>
+<b>Locator:</b>&nbsp;<input type=text id="input_locator"></input><button class="reduce-font-size" id="locator_button">Calculate Lat/Lon</button><br>
 <b>Antenna Height:</b>&nbsp;<input type=text id="input_height" value="0"></input>m<br>
 <b>Location:</b>&nbsp;<input type=text id="input_location"></input><br>
 <h3>Output Bands: (0 or 1)</h3>
@@ -191,14 +197,11 @@ function submitAdd() {
 <button class="edit-button reduce-font-size" id="edit_button">Submit</button>&nbsp;<span id="editStatus"></span>
 <div id="map-div">
 <center>
-<h3>Set Station Location</h3>
+<h3>Set Repeater Location</h3>
 <div id="map_canvas"></div>
 </center>
 <br>
-Simply zoom in and click on the map to set your location.<br><br>
-<i>Your Latitude and Longtitude will be filled in automatically.<i>
-<br>
-<br>
+Simply zoom in and click on the map to set the location.<br><br>
 <label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" minlength="4" />
 <br>
 <label class="register_labels"><b>Longitude:</b>&nbsp;</label><input type=text name='lon' id='lon' class="required number" minlength="4" />
