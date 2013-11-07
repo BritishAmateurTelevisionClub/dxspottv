@@ -79,6 +79,7 @@ if(isset($_REQUEST["callsign"]) && isset($_REQUEST["locator"]) && isset($_REQUES
 	} else {
 		$output['error'] = 2; // MySQL Error
 		$output['affected'] = $insert_statement->rowCount();
+		$output['text'] = print_r($dbc->errorInfo());
 		$dbc->rollBack();
 	}
 	
