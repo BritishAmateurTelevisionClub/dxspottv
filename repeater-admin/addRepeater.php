@@ -10,6 +10,10 @@
     top: 1em;
     right: 1em;
 }
+#map_canvas {
+	height: 300px;
+	width: 400px;
+}
 </style>
 <link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script src="/static/js/jquery-plus-ui.js"></script>
