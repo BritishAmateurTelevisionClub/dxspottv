@@ -163,13 +163,13 @@ function submitAdd() {
 <b>Antenna Height:</b>&nbsp;<input type=text id="input_height" value="0"></input>m<br>
 <b>Location:</b>&nbsp;<input type=text id="input_location"></input><br>
 <h3>Output Bands: (0 or 1)</h3>
-<b>2m:</b>&nbsp;<input type=text id="input_is_2m"></input><br>
-<b>70cm:</b>&nbsp;<input type=text id="input_is_70cm"></input><br>
-<b>23cm:</b>&nbsp;<input type=text id="input_is_23cm"></input><br>
-<b>13cm:</b>&nbsp;<input type=text id="input_is_13cm"></input><br>
-<b>9cm:</b>&nbsp;<input type=text id="input_is_9cm"></input><br>
-<b>6cm:</b>&nbsp;<input type=text id="input_is_6cm"></input><br>
-<b>3cm:</b>&nbsp;<input type=text id="input_is_3cm"></input><br>
+<b>2m:</b>&nbsp;<input type=text id="input_is_2m" value="0"></input><br>
+<b>70cm:</b>&nbsp;<input type=text id="input_is_70cm" value="0"></input><br>
+<b>23cm:</b>&nbsp;<input type=text id="input_is_23cm" value="0"></input><br>
+<b>13cm:</b>&nbsp;<input type=text id="input_is_13cm" value="0"></input><br>
+<b>9cm:</b>&nbsp;<input type=text id="input_is_9cm" value="0"></input><br>
+<b>6cm:</b>&nbsp;<input type=text id="input_is_6cm" value="0"></input><br>
+<b>3cm:</b>&nbsp;<input type=text id="input_is_3cm" value="0"></input><br>
 <h3>TX</h3>
 <b>1:</b>&nbsp;<input type=text id="input_tx1"></input>&nbsp;MHz<br>
 <b>2:</b>&nbsp;<input type=text id="input_tx2"></input>&nbsp;MHz<br>
