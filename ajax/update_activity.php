@@ -2,7 +2,7 @@
 session_start();
 if(isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"])) {
 	require_once('dxspottv_pdo.php');
-	$sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
+	$sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=? ORDER BY activity DESC LIMIT 1;");
 	$sessions_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
 	$sessions_statement->execute();
 	$sessions_statement->bindColumn(1, $sessions_result);
