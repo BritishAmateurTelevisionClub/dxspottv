@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>ATV Repeaters</title>
 </head>
 <body>
 <h1>Repeaters</h1>

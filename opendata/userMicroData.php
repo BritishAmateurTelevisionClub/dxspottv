@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<title>ATV Users</title>
 </head>
 <body>
 <h1>Users</h1>
@@ -19,14 +20,14 @@ $data_stmt->bindColumn(6, $website);
 
 while ($data_stmt->fetch()) {
 	print '<div itemscope itemtype="station">';
-	print '<h2 itemprop="callsign">'+$callsign+'</h2>';
+	print '<h2 itemprop="callsign">'.$callsign.'</h2>';
 	print '<div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">';
-	print 'Latitude: <span itemprop="latitude">'+$lat+'</span><br>';
-	print 'Longitude: <span itemprop="longitude">'+$lon+'</span><br>';
+	print 'Latitude: <span itemprop="latitude">'.$lat.'</span><br>';
+	print 'Longitude: <span itemprop="longitude">'.$lon.'</span><br>';
 	print '</div>';
-	print 'Locator: <span itemprop="maidenhead">'+$locator+'</span><br>';
-	if($description!="") print 'Station Description: <span itemprop="description">'+$description+'</span><br>';
-	if($website!=null) print '<a itemprop="website" href="http://'+$website+'">'+$website+'</a><br>';
+	print 'Locator: <span itemprop="maidenhead">'.$locator.'</span><br>';
+	if($description!="") print 'Station Description: <span itemprop="description">'.$description.'</span><br>';
+	if($website!=null) print '<a itemprop="website" href="http://'.$website.'">'.$website.'</a><br>';
 	print '</div>';
 }
 ?>
