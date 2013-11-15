@@ -202,7 +202,7 @@ function loadSpotAutocomplete() {
 }
 $(document).ready(function() {
 	$('#search_button').button().click( function() {
-		wantedCallsign = $("#search_callsign").val();
+		wantedCallsign = $("#search_callsign").val().toUpperCase();
 		var user_search = $.grep(user_markers, function(e){ return e.callsign == wantedCallsign; });
 		if(user_search.length==0) {
 			var repeater_search = $.grep(repeater_markers, function(e){ return e.callsign == wantedCallsign; });
