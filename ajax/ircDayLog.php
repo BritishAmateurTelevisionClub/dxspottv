@@ -11,7 +11,7 @@ $log_stmt->bindColumn(2, $nick);
 $log_stmt->bindColumn(3, $message);
 $output = array();
 while ($log_stmt->fetch()) {
-    $row['time']=$mtime;
+    $row['time']=intval($mtime);
     $row['nick']=$nick;
     $row['message']=$message;
     $output[]=$row;
