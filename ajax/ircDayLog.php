@@ -1,5 +1,6 @@
 <?php
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: X-Request, X-Requested-With");
 require_once('dxspottv_pdo.php');
 
 $log_stmt = $dbc->prepare("SELECT time,nick,message FROM irclog WHERE time>?;");
