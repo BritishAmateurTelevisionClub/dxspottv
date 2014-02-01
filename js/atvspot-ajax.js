@@ -23,11 +23,13 @@ function doLogin() {
 
 function getUserSpotData() {
 	$.ajax({
-		url: "http://www.dxspot.tv/api/userSpotRefresh",
+		url: "http://www.dxspot.tv/ajax/userSpotRefresh.php",
 		success: function( data ) {
     		updateUsers(data['users']);
-    		parseSpots(data['spots']);
-    		createGlobalSpotLog(data['spots']);
+    		if(data['spots'].length!=0) {
+        		parseSpots(data['spots']);
+        		//createGlobalSpotLog(data['spots']);
+            }
     		
     		setTimeSpan($('#time_select').val());
 			setBandChoice($('#band_select').val());

@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 require_once('dxspottv_pdo.php');
 
 $log_stmt = $dbc->prepare("SELECT id,time,nick,message FROM irclog WHERE time > ?;");

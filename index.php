@@ -78,7 +78,6 @@ if($logged_in) { ?>
 <script src="/static/js/jquery-plus-ui.js"></script>
 <script src="/static/js/infobubble.min.js"></script>
 <script src="/js/atvspot-combined.js"></script>
-<script src="/api/mapData.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -106,8 +105,6 @@ border="0" cellpadding="0" cellspacing="0">
 <td><p class="mapSelecter" align="center">
 <strong>Timespan:</strong>&nbsp;
 <select id="time_select">
-  <option value="all">All Spots</option>
-  <option value="year">Last year</option>
   <option value="6months">Last 6 months</option>
   <option value="1month">Last Month</option>
   <option value="1week">Last Week</option>

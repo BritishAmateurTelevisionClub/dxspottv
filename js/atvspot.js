@@ -70,26 +70,31 @@ function initialize() {
 	repeaterIcon = new google.maps.MarkerImage("/images/active_repeater.ico");
 	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
 
-	parseMapData(initData);
-	initData = null;
+	$.ajax({
+		url: "http://www.dxspot.tv/ajax/mapData.php",
+		success: function( data ) {
+    		parseMapData(data)
+		}
+	});
+	
 	userSpotRefresh=self.setInterval(function(){getUserSpotData()},2000+Math.round(Math.random()*200));
 }
 
 function createUserMarker(user_data) {
-	var lat_lon = new google.maps.LatLng(user_data['lat'], user_data['lon']);
+	var lat_lon = new google.maps.LatLng(user_data['la'], user_data['lo']);
 	
 	var marker = new google.maps.Marker({
         position: lat_lon,
         map: map,
-        title: user_data['callsign']
+        title: user_data['c']
     });
 	
-	if(user_data['seconds_active']>18) { // 18 seconds, should check in every 5 seconds
+	if(user_data['act']>18) { // 18 seconds, should check in every 5 seconds
 		marker.setOptions( {
 			icon: userUnknownIcon, // white icon, if shown (spotted)
 			zIndex: 11
 		});
-	} else if(user_data['radio_active']==1) {
+	} else if(user_data['ra']==1) {
 		marker.setOptions( {
 			icon: userActiveIcon, // green
 			zIndex: 13
@@ -101,14 +106,14 @@ function createUserMarker(user_data) {
 		});
 	}
 	
-    marker.user_id = user_data['id']
-    marker.callsign = user_data['callsign'];
-    marker.locator = user_data['locator'];
-    marker.activity = user_data['seconds_active'];
-    marker.known = user_data['known'];
-    marker.station_desc = user_data['station_desc'];
-    if(user_data['website']!='') {
-    	marker.station_website = "http://"+user_data['website'];
+    marker.user_id = user_data['i']
+    marker.callsign = user_data['c'];
+    marker.locator = user_data['loc'];
+    marker.activity = user_data['act'];
+    marker.known = user_data['k'];
+    marker.station_desc = user_data['sd'];
+    if(user_data['w']!='') {
+    	marker.station_website = "http://"+user_data['w'];
     } else {
     	marker.station_website = '';
     }
@@ -117,9 +122,9 @@ function createUserMarker(user_data) {
     var infoTab = '<div class="user_bubble_info">'+
         '<h3 style="line-height: 0.3em;">'+marker.callsign+'</h3>'+
         '<b>'+marker.locator+'</b>';
-    if(logged_in && (user_callsign!=user_data['callsign'])) {
+    if(logged_in && (user_callsign!=user_data['c'])) {
     	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
-    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['callsign']+"','"+user_data['lat']+"','"+user_data['lon']+"'";
+    	var elevation_vars = "'"+user_callsign+"','"+user_lat+"','"+user_lon+"','"+user_data['c']+"','"+user_data['la']+"','"+user_data['lo']+"'";
     	infoTab+='<br><br>'+
     		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, lat_lon)))+'&deg;<br>'+
     		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, lat_lon)/1000)*10)/10+'km<br>'+
@@ -162,12 +167,12 @@ function createUserMarker(user_data) {
 }
 
 function updateUserMarker(user_data, user_index) {
-	if(user_data['seconds_active']>18) { // 18 seconds, should check in every 5 seconds
+	if(user_data['act']>18) { // 18 seconds, should check in every 5 seconds
 		user_markers[user_index].setOptions( {
 			icon: userUnknownIcon, // white icon, if shown (spotted)
 			zIndex: 11
 		});
-	} else if(user_data['radio_active']==1) {
+	} else if(user_data['ra']==1) {
 		user_markers[user_index].setOptions( {
 			icon: userActiveIcon, // green
 			zIndex: 13
@@ -178,7 +183,7 @@ function updateUserMarker(user_data, user_index) {
 			zIndex: 12
 		});
 	}
-    user_markers[user_index].activity = user_data['seconds_active'];
+    user_markers[user_index].activity = user_data['act'];
 }
 
 function createRepeaterMarker(repeater_data) {
@@ -333,13 +338,13 @@ function createRepeaterMarker(repeater_data) {
 
 function createSpotLine(spot_data) {
 
-	var primary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['primary_id']; });
+	var primary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['p']; });
 	var primary_latlon = primary_search[0].position;
 	var primary_callsign = primary_search[0].callsign;
-	if(spot_data['secondary_isrepeater']==0) {
-		var secondary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['secondary_id']; });
+	if(spot_data['sr']==0) {
+		var secondary_search = $.grep(user_markers, function(e){ return e.user_id == spot_data['s']; });
 	} else {
-		var secondary_search = $.grep(repeater_markers, function(e){ return e.repeater_id == spot_data['secondary_id']; });
+		var secondary_search = $.grep(repeater_markers, function(e){ return e.repeater_id == spot_data['s']; });
 	}
 	
 	var secondary_latlon = secondary_search[0].position;
@@ -357,7 +362,7 @@ function createSpotLine(spot_data) {
         zIndex: 1
 	});
 	
-	switch(spot_data['band_id']) {
+	switch(spot_data['b']) {
 		case 1: // 70cm
 			spotLine.setOptions( {
 				strokeColor: "#FF0000" //red
@@ -376,7 +381,7 @@ function createSpotLine(spot_data) {
 			break
 	}
 	
-	switch(spot_data['mode_id']) {
+	switch(spot_data['m']) {
 		case 0: // Not defined - assume Digital
 			spotLine.setOptions( {
 				zIndex: 5
@@ -414,19 +419,19 @@ function createSpotLine(spot_data) {
 			break;
 	}
 	
-	spotLine.spot_id = spot_data['id'];
-	spotLine.band_id = spot_data['band_id'];
-	spotLine.mode_id = spot_data['mode_id'];
+	spotLine.spot_id = spot_data['i'];
+	spotLine.band_id = spot_data['b'];
+	spotLine.mode_id = spot_data['m'];
 	
-	spotLine.primary_id = spot_data['primary_id'];
+	spotLine.primary_id = spot_data['p'];
 	spotLine.primary_callsign = primary_callsign;
-	spotLine.secondary_id = spot_data['secondary_id'];
+	spotLine.secondary_id = spot_data['s'];
 	spotLine.secondary_callsign = secondary_callsign;
-	spotLine.secondary_isrepeater = spot_data['secondary_isrepeater']
-	spotLine.time = spot_data['spot_time'];
-	spotLine.ago = spot_data['seconds_ago'];
-	spotLine.comments = spot_data['comments'];
-	spotLine.date = parseInt(spot_data['spot_time'].substr(8,2))+"&nbsp;"+months[parseInt(spot_data['spot_time'].substr(5,2))]+"&nbsp;"+spot_data['spot_time'].substr(11,8);	
+	spotLine.secondary_isrepeater = spot_data['sr']
+	spotLine.time = spot_data['t'];
+	spotLine.ago = spot_data['rt'];
+	spotLine.comments = spot_data['c'];
+	spotLine.date = parseInt(spot_data['t'].substr(8,2))+"&nbsp;"+months[parseInt(spot_data['t'].substr(5,2))]+"&nbsp;"+spot_data['t'].substr(11,8);	
 	spotLine.distance = Math.round((google.maps.geometry.spherical.computeDistanceBetween(primary_latlon, secondary_latlon)/1000)*10)/10;
 	
 	var infoContent = spotLine.date+"<br><b>"+primary_callsign+"</b>&nbsp;->&nbsp;"+"<b>"+secondary_callsign+"</b><br>"+bandFromID(spotLine.band_id)+"&nbsp;<i>"+spotLine.mode+"</i><br><i>"+spotLine.comments+"</i><br>"+spotLine.distance+"&nbsp;km";
@@ -480,7 +485,7 @@ function updateUsers(JSONinput) {
 	for(u_id in JSONinput){
 		var user = JSONinput[u_id];
 		if(user.length!=0) {
-			var marker_search = $.grep(user_markers, function(e){ return e.user_id == user['id']; });
+			var marker_search = $.grep(user_markers, function(e){ return e.user_id == user['i']; });
 			if(marker_search.length==1) {
 			    user_index = $.inArray(marker_search[0], user_markers);
 				updateUserMarker(user, user_index);
@@ -495,7 +500,7 @@ function parseSpots(JSONinput) {
 	var s_id = new Array();
 	for(s_id in JSONinput){
 		var spot = JSONinput[s_id];
-		var spot_search = $.grep(spot_lines, function(e){ return e.spot_id == spot['id']; });
+		var spot_search = $.grep(spot_lines, function(e){ return e.spot_id == spot['i']; });
 		if(spot_search.length==0 && spot.length!=0) {
 			createSpotLine(spot);
 		}
