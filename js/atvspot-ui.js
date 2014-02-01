@@ -158,23 +158,23 @@ function createGlobalSpotLog(spotLog) {
 	    	if(s_id=="last") break;
 		    var spot = spotLog[s_id];
 		    var primary_search = $.grep(user_markers, function(e){
-			    return e.user_id == spot.primary_id;
+			    return e.user_id == spot.p;
 		    });
 		    // find our secondary marker
-		    if(spot.secondary_isrepeater==1) { // if its a repeater
+		    if(spot.sr==1) { // if its a repeater
 			    var secondary_search = $.grep(repeater_markers, function(e){
-				    return e.repeater_id == spot.secondary_id;
+				    return e.repeater_id == spot.s;
 			    });
 		    } else { // or a user
 			    var secondary_search = $.grep(user_markers, function(e){
-				    return e.user_id == spot.secondary_id;
+				    return e.user_id == spot.s;
 			    });
 		    }
-		    spotLogDivContent+=parseInt(spot['spot_time'].substr(8,2),10)+"&nbsp;"+months[parseInt(spot['spot_time'].substr(5,2))]+"&nbsp;"+spot['spot_time'].substr(11,8)+":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
-		    spotLogDivContent+="&nbsp;"+bandFromID(spot.band_id);
-		    if(spot['comments'].length != 0) {
+		    spotLogDivContent+=parseInt(spot['t'].substr(8,2),10)+"&nbsp;"+months[parseInt(spot['t'].substr(5,2))]+"&nbsp;"+spot['t'].substr(11,8)+":&nbsp;<b>"+primary_search[0].callsign+"</b>-><b>"+secondary_search[0].callsign+"</b>";
+		    spotLogDivContent+="&nbsp;"+bandFromID(spot.b);
+		    if(spot['c'].length != 0) {
 			    spotLogDivContent+="<br>";
-			    spotLogDivContent+="<i>"+spot['comments']+"</i>";
+			    spotLogDivContent+="<i>"+spot['c']+"</i>";
 		    }
 		    spotLogDivContent+="<br><br>";
 	    }
