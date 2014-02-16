@@ -362,7 +362,7 @@ function createSpotLine(spot_data) {
         zIndex: 1
 	});
 	
-	switch(spot_data['b']) {
+	switch(Number(spot_data['b'])) {
 		case 1: // 70cm
 			spotLine.setOptions( {
 				strokeColor: "#FF0000" //red
