@@ -43,10 +43,10 @@ function newRepeaterMarker(repeater_data) {
 	var marker = new google.maps.Marker({
         position: latlon,
         map: map,
-        title: repeater_data['qrz']
+        title: repeater_data['callsign']
 	});
 	
-	if(typeof repeater_data['op'] != 'undefined') {
+	if(repeater_data['active'] == '1') {
 		marker.setOptions( {
 			icon: repeaterIcon,
 			zIndex: 9
@@ -61,29 +61,29 @@ function newRepeaterMarker(repeater_data) {
 	marker.repeater_id = repeater_data['id'];
 	marker.lat = repeater_data['lat'];
 	marker.lon = repeater_data['lon'];
-    marker.callsign = repeater_data['qrz'];
+    marker.callsign = repeater_data['callsign'];
     if(typeof repeater_data['qth']!='undefined') marker.qth = repeater_data['qth'];
-    marker.locator = repeater_data['loc'];
+    marker.locator = repeater_data['qth_r'];
     
-    if (typeof repeater_data['tx1'] != 'undefined') marker.tx1 = repeater_data['tx1'];
-    if (typeof repeater_data['tx2'] != 'undefined') marker.tx2 = repeater_data['tx2'];
-    if (typeof repeater_data['tx3'] != 'undefined') marker.tx3 = repeater_data['tx3'];
-    if (typeof repeater_data['tx4'] != 'undefined') marker.tx4 = repeater_data['tx4'];
-    if (typeof repeater_data['tx5'] != 'undefined') marker.tx5 = repeater_data['tx5'];
-    if (typeof repeater_data['tx6'] != 'undefined') marker.tx6 = repeater_data['tx6'];
-    if (typeof repeater_data['tx7'] != 'undefined') marker.tx7 = repeater_data['tx7'];
-    if (typeof repeater_data['tx8'] != 'undefined') marker.tx8 = repeater_data['tx8'];
-    if (typeof repeater_data['tx9'] != 'undefined') marker.tx9 = repeater_data['tx9'];
+    if (repeater_data['tx1'] != null && repeater_data['tx1'] != '0') marker.tx1 = repeater_data['tx1'];
+    if (repeater_data['tx2'] != null && repeater_data['tx2'] != '0') marker.tx2 = repeater_data['tx2'];
+    if (repeater_data['tx3'] != null && repeater_data['tx3'] != '0') marker.tx3 = repeater_data['tx3'];
+    if (repeater_data['tx4'] != null && repeater_data['tx4'] != '0') marker.tx4 = repeater_data['tx4'];
+    if (repeater_data['tx5'] != null && repeater_data['tx5'] != '0') marker.tx5 = repeater_data['tx5'];
+    if (repeater_data['tx6'] != null && repeater_data['tx6'] != '0') marker.tx6 = repeater_data['tx6'];
+    if (repeater_data['tx7'] != null && repeater_data['tx7'] != '0') marker.tx7 = repeater_data['tx7'];
+    if (repeater_data['tx8'] != null && repeater_data['tx8'] != '0') marker.tx8 = repeater_data['tx8'];
+    if (repeater_data['tx9'] != null && repeater_data['tx9'] != '0') marker.tx9 = repeater_data['tx9'];
     
-    if (typeof repeater_data['rx1'] != 'undefined') marker.rx1 = repeater_data['rx1'];
-    if (typeof repeater_data['rx2'] != 'undefined') marker.rx2 = repeater_data['rx2'];
-    if (typeof repeater_data['rx3'] != 'undefined') marker.rx3 = repeater_data['rx3'];
-    if (typeof repeater_data['rx4'] != 'undefined') marker.rx4 = repeater_data['rx4'];
-    if (typeof repeater_data['rx5'] != 'undefined') marker.rx5 = repeater_data['rx5'];
-    if (typeof repeater_data['rx6'] != 'undefined') marker.rx6 = repeater_data['rx6'];
-    if (typeof repeater_data['rx7'] != 'undefined') marker.rx7 = repeater_data['rx7'];
-    if (typeof repeater_data['rx8'] != 'undefined') marker.rx8 = repeater_data['rx8'];
-    if (typeof repeater_data['rx9'] != 'undefined') marker.rx9 = repeater_data['rx9'];
+    if (repeater_data['rx1'] != null && repeater_data['rx1'] != '0') marker.rx1 = repeater_data['rx1'];
+    if (repeater_data['rx2'] != null && repeater_data['rx2'] != '0') marker.rx2 = repeater_data['rx2'];
+    if (repeater_data['rx3'] != null && repeater_data['rx3'] != '0') marker.rx3 = repeater_data['rx3'];
+    if (repeater_data['rx4'] != null && repeater_data['rx4'] != '0') marker.rx4 = repeater_data['rx4'];
+    if (repeater_data['rx5'] != null && repeater_data['rx5'] != '0') marker.rx5 = repeater_data['rx5'];
+    if (repeater_data['rx6'] != null && repeater_data['rx6'] != '0') marker.rx6 = repeater_data['rx6'];
+    if (repeater_data['rx7'] != null && repeater_data['rx7'] != '0') marker.rx7 = repeater_data['rx7'];
+    if (repeater_data['rx8'] != null && repeater_data['rx8'] != '0') marker.rx8 = repeater_data['rx8'];
+    if (repeater_data['rx9'] != null && repeater_data['rx9'] != '0') marker.rx9 = repeater_data['rx9'];
     
     marker.is2m = 0;
     marker.is70cm = 0;
@@ -92,22 +92,22 @@ function newRepeaterMarker(repeater_data) {
     marker.is9cm = 0;
     marker.is6cm = 0;
     marker.is3cm = 0;
-    if (typeof repeater_data['2m']!='undefined') marker.is2m = 1;
-    if (typeof repeater_data['70cm']!='undefined') marker.is70cm = 1;
-    if (typeof repeater_data['23cm']!='undefined') marker.is23cm = 1;
-    if (typeof repeater_data['13cm']!='undefined') marker.is13cm = 1;
-    if (typeof repeater_data['9cm']!='undefined') marker.is9cm = 1;
-    if (typeof repeater_data['6cm']!='undefined') marker.is6cm = 1;
-    if (typeof repeater_data['3cm']!='undefined') marker.is3cm = 1;
+    if (repeater_data['2m']!='0') marker.is2m = 1;
+    if (repeater_data['70cm']!='0') marker.is70cm = 1;
+    if (repeater_data['23cm']!='0') marker.is23cm = 1;
+    if (repeater_data['13cm']!='0') marker.is13cm = 1;
+    if (trepeater_data['9cm']!='0') marker.is9cm = 1;
+    if (repeater_data['6cm']!='0') marker.is6cm = 1;
+    if (repeater_data['3cm']!='0') marker.is3cm = 1;
     
-    marker.desc = repeater_data['desc']
-    if (typeof repeater_data['www'] != 'undefined') {
-    	marker.website = repeater_data['www']
+    marker.desc = repeater_data['description']
+    if (repeater_data['website'] != null && repeater_data['website'] != "") {
+    	marker.website = repeater_data['website']
     } else {
     	marker.website = '';
     }
-    if (typeof repeater_data['keep'] != 'undefined') {
-   		marker.keeper = repeater_data['keep']
+    if (repeater_data['keeper_callsign'] != null && repeater_data['keeper_callsign'] != "") {
+   		marker.keeper = repeater_data['keeper_callsign']
     } else {
     	marker.keeper = '';
     }
