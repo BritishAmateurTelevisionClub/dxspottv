@@ -96,7 +96,7 @@ function newRepeaterMarker(repeater_data) {
     if (repeater_data['70cm']!='0') marker.is70cm = 1;
     if (repeater_data['23cm']!='0') marker.is23cm = 1;
     if (repeater_data['13cm']!='0') marker.is13cm = 1;
-    if (trepeater_data['9cm']!='0') marker.is9cm = 1;
+    if (repeater_data['9cm']!='0') marker.is9cm = 1;
     if (repeater_data['6cm']!='0') marker.is6cm = 1;
     if (repeater_data['3cm']!='0') marker.is3cm = 1;
     

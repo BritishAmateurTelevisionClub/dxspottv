@@ -6,13 +6,16 @@ body {
   border-bottom-width: 0px;
   height: 80px;
 }
+.navbar-header {
+  text-align: center;
+}
 #header-batc-logo {
   height: 79px;
   width: 98px;
 }
 #header-dxspot-logo {
   height: 79px;
-  width: 98px;
+  width: 179px;
 }
 #map-canvas {
   height: 400px;
