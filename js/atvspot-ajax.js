@@ -23,7 +23,7 @@ function doLogin() {
 
 function getUserSpotData() {
 	$.ajax({
-		url: "http://www.dxspot.tv/ajax/userSpotRefresh.php",
+		url: "https://www.dxspot.tv/ajax/userSpotRefresh.php",
 		success: function( data ) {
     		updateUsers(data['users']);
     		if(data['spots'].length!=0) {
@@ -55,7 +55,6 @@ function updateActivity() {
 function submitSpot() {
 	var rlatlon = [];
 	rlatlon = LoctoLatLon($("#remote_loc").val());
-	ga('send', 'event', 'action', 'Submit Spot');
 	$('#submitStatus').val("Submitting...");
 	$('#submitStatus').show();
 	$.ajax({

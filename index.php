@@ -66,7 +66,8 @@ if (isset($_COOKIE["auth_error"])) {
 <link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-	var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php print $name . "_" . $callsign; ?>";
+	//var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php print $name . "_" . $callsign; ?>";
+	var irc_frame_source = "https://www.philcrump.co.uk/dxchat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
 <?php } // End of callsign as nick for irc
 if($logged_in) { ?>
 	var logged_in = true;
@@ -78,14 +79,6 @@ if($logged_in) { ?>
 <script src="/static/js/jquery-plus-ui.js"></script>
 <script src="/static/js/infobubble.min.js"></script>
 <script src="/js/atvspot-combined.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-44620544-1', 'dxspot.tv');
-  ga('send', 'pageview');
-</script>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">

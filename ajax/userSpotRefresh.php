@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once('dxspottv_pdo.php');
+require_once('../dxspottv_pdo.php');
 
 $output = array();
 

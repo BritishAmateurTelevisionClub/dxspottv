@@ -19,7 +19,7 @@ if($got_variables) {
 		die ();
 	}
 
-	require_once("dxspottv_pdo.php");
+	require_once("../dxspottv_pdo.php");
 	
 	$callsign = htmlentities(strtoupper($_REQUEST["callsign"]));
 	$passwd = $_REQUEST["passwd"];

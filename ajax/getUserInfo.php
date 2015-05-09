@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"])) {
-	require_once('dxspottv_pdo.php');
+	require_once('../dxspottv_pdo.php');
 	$output = array();
 	$user_statement = $dbc->prepare("SELECT callsign,lat,lon,locator,station_desc,website,radio_active FROM users WHERE id=?;");
 	$user_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);

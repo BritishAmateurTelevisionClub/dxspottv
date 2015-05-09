@@ -5,7 +5,7 @@ $got_variables = (isset($_REQUEST["description"]) && isset($_REQUEST["website"])
 if($got_cookies && $got_variables) {
 	$desc = htmlentities($_REQUEST["description"]);
 	$website = htmlentities($_REQUEST["website"]);
-	require_once('dxspottv_pdo.php');
+	require_once('../dxspottv_pdo.php');
 	$sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
 	$sessions_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
 	$sessions_statement->execute();

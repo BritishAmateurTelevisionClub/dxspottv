@@ -14,5 +14,5 @@ setcookie("session_key", "", time()-3200);
 setcookie("auth_error", "1", time()+3200);
 setcookie("auth_error_text", "Logged Out. Please Log in again.", time()+3200);
 
-header( 'Location: http://www.dxspot.tv/' ) 
+header( 'Location: https://www.dxspot.tv/' ) 
 ?>

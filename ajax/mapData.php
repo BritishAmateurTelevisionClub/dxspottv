@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once('dxspottv_pdo.php');
+require_once('../dxspottv_pdo.php');
 
 $repeater_input_freqs = array();
 $repeater_input_freqs[9] = "rx1";

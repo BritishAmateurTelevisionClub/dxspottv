@@ -73,21 +73,16 @@ $(document).ready(function() {
 						if(returnJSON['successful']==1) {
 							$('#first_form').hide();
 							$('#successMessage').show();
-							ga('send', 'event', 'registration', 'Successful');
 						} else {
 							$('#first_form').show();
 							Recaptcha.reload();
 							if(returnJSON['error']==1) {
-								ga('send', 'event', 'registration', 'Captcha Failed');
 								$("#captchaFailDialog").dialog("open");
 							} else if(returnJSON['error']==2) {
-								ga('send', 'event', 'registration', 'DB Error');
 								alert("A database error occurred, please try again.");
 							} else if(returnJSON['error']==3) {
-								ga('send', 'event', 'registration', 'Duplicate Account');
 								alert("A User Account already exists for this callsign.");
 							} else {
-								ga('send', 'event', 'registration', 'Unknown Error');
 								alert("An unknown error occurred, please try again.");
 							}
 						}

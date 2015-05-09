@@ -85,16 +85,13 @@ $(document).ready(function() {
             }
     });
 	$('#login_button').button().click( function() {
-		ga('send', 'event', 'action', 'Log In');
-    	doLogin();
+        	doLogin();
 	});
 	$('#logout_button').button().click( function() {
-		ga('send', 'event', 'action', 'Log Out');
-    	window.location.href = "/logout.php";
+        	window.location.href = "/logout.php";
 	});
 	$('#register_button').button().click( function() {
-		ga('send', 'event', 'action', 'Register');
-    	window.location.href = "/register.php";
+        	window.location.href = "/register.php";
 	});
 	
 	// Set up tabs

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('dxspottv_pdo.php');
+include('../dxspottv_pdo.php');
 
 if(isset($_REQUEST['callsign'])&&isset($_REQUEST['passwd'])) { // Start Login
 

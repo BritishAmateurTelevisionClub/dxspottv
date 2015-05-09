@@ -35,5 +35,5 @@ if($crypt==$target) {
 }
 //echo json_encode($return_data);
 } // End Login
-header( 'Location: http://www.dxspot.tv/' ) 
+header( 'Location: https://www.dxspot.tv/' ) 
 ?>

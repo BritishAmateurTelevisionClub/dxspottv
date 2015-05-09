@@ -6,8 +6,8 @@ $output['error'] = 0;
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
 $got_variables = (isset($_REQUEST["band_id"]) && isset($_REQUEST["mode"]));
 if($got_cookies && $got_variables) {
-require_once("dxspottv_login_functions.php");
-require_once('dxspottv_login.php');
+require_once("../dxspottv_login_functions.php");
+require_once("../dxspottv_login.php");
 
 $sessions_result = mysqli_query($dbc, "SELECT session_id FROM sessions WHERE user_id='" . $_COOKIE["user_id"] . "';") or die(mysqli_error($dbc));  
 if(mysqli_num_rows ($sessions_result)==0) { // session doesn't exist on server

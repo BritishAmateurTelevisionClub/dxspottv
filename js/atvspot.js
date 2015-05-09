@@ -71,7 +71,7 @@ function initialize() {
 	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
 
 	$.ajax({
-		url: "http://www.dxspot.tv/ajax/mapData.php",
+		url: "https://www.dxspot.tv/ajax/mapData.php",
 		success: function( data ) {
     		parseMapData(data)
 		}
@@ -113,7 +113,7 @@ function createUserMarker(user_data) {
     marker.known = user_data['k'];
     marker.station_desc = user_data['sd'];
     if(user_data['w']!='') {
-    	marker.station_website = "http://"+user_data['w'];
+    	marker.station_website = "https://"+user_data['w'];
     } else {
     	marker.station_website = '';
     }

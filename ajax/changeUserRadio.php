@@ -3,7 +3,7 @@ session_start();
 $got_cookies = (isset($_COOKIE["user_id"]) && isset($_COOKIE["session_key"]));
 $got_variables = isset($_REQUEST["radio_active"]);
 if($got_cookies && $got_variables) {
-	require_once('dxspottv_pdo.php');
+	require_once('../dxspottv_pdo.php');
 	$sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=?;");
 	$sessions_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
 	$sessions_statement->execute();
