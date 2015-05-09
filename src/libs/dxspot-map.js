@@ -33,6 +33,20 @@ function init_map()
       console.log(json);
     }
   });
+  $.getJSON("/api/users.php",function( json ) {
+    if(!json.error)
+    {
+      var data_len = json.length;
+      for(var i=0;i<data_len;i++)
+      {
+        newUserMarker(json[i]);
+      }
+    }
+    else
+    {
+      console.log(json);
+    }
+  });
 }
 
 
@@ -176,6 +190,90 @@ function newRepeaterMarker(repeater_data) {
   	
     infoBubble.addTab('<span class="bubble_label">Info</span>', infoTab);
     infoBubble.addTab('<span class="bubble_label">Tx/Rx</span>', freqTab);
+    infoBubble.addTab('<span class="bubble_label">Description</span>', descTab);
+
+    google.maps.event.addListener(marker, 'click', function() {
+        if (!infoBubble.isOpen()) {
+            infoBubble.open(map, marker);
+        }
+    });
+}
+
+function newUserMarker(user_data) {
+	var lat_lon = new google.maps.LatLng(user_data['lat'], user_data['lon']);
+	
+	var marker = new google.maps.Marker({
+        position: lat_lon,
+        map: map,
+        title: user_data['callsign']
+    });
+	
+	if(user_data['activity_timer']>18) { // 18 seconds, should check in every 5 seconds
+		marker.setOptions( {
+			icon: userUnknownIcon, // white icon, if shown (spotted)
+			zIndex: 11
+		});
+	} else if(user_data['radio_active']==1) {
+		marker.setOptions( {
+			icon: userActiveIcon, // green
+			zIndex: 13
+		});
+	} else {
+		marker.setOptions( {
+			icon: userAwayIcon, // yellow
+			zIndex: 12
+		});
+	}
+	
+    marker.user_id = user_data['id']
+    marker.callsign = user_data['callsign'];
+    marker.locator = user_data['locator'];
+    marker.activity = user_data['activity_timer'];
+    marker.known = user_data['known'];
+    marker.station_desc = user_data['station_desc'];
+    if(user_data['website']!='') {
+    	marker.station_website = "https://"+user_data['website'];
+    } else {
+    	marker.station_website = '';
+    }
+    user_markers.push(marker);
+    
+    var infoTab = '<div class="user_bubble_info">'+
+        '<h3 style="line-height: 0.3em;">'+marker.callsign+'</h3>'+
+        '<b>'+marker.locator+'</b>';
+    if(logged_in && (user_callsign!=user_data['callsign'])) {
+    	var user_latlng = new google.maps.LatLng(user_lat, user_lon);
+    	infoTab+='<br><br>'+
+    		'<b>Bearing:</b>&nbsp;'+Math.round(convertHeading(google.maps.geometry.spherical.computeHeading(user_latlng, lat_lon)))+'&deg;<br>'+
+    		'<b>Distance:</b>&nbsp;'+Math.round((google.maps.geometry.spherical.computeDistanceBetween(user_latlng, lat_lon)/1000)*10)/10+'km<br>';
+    }
+    infoTab += '</div>';
+    var descTab = '<div class="user_bubble_desc">'+
+        marker.station_desc;
+    if(marker.station_website!='') {
+    	descTab += '<br><br><a href="'+marker.station_website+'" target="_blank"><b>'+marker.station_website+'</b></a>';
+    }
+    descTab += '</div>';
+    
+    var infoBubble = new InfoBubble({
+        maxWidth: 150,
+        minWidth: 150,
+        maxHeight: 110,
+        minHeight: 110,
+		shadowStyle: 0,
+		padding: 8,
+		backgroundColor: '#fff',
+		borderRadius: 8,
+		arrowSize: 10,
+		borderWidth: 1,
+		borderColor: '#ccc',
+		disableAutoPan: true,
+		hideCloseButton: false,
+		arrowPosition: 50,
+		arrowStyle: 0
+    });
+  	
+    infoBubble.addTab('<span class="bubble_label">Info</span>', infoTab);
     infoBubble.addTab('<span class="bubble_label">Description</span>', descTab);
 
     google.maps.event.addListener(marker, 'click', function() {

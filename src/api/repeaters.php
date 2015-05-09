@@ -4,7 +4,7 @@ require_once('pdo_login.php');
 
 $output = array();
 
-$stmt = $dbc->prepare("SELECT * FROM all_repeaters WHERE active=1;");
+$stmt = $dbc->prepare("SELECT * FROM all_repeaters;");
 $stmt->execute();
 
 if($stmt->rowCount()>0)
