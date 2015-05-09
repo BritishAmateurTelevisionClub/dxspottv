@@ -14,3 +14,7 @@ body {
   height: 79px;
   width: 98px;
 }
+#map-canvas {
+  height: 400px;
+  width: 500px;
+}
