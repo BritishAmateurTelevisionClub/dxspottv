@@ -1,4 +1,5 @@
 var map;
+var repeater_markers = new Array();
 
 /* Load Map Marker Icons */
 userActiveIcon = new google.maps.MarkerImage("/images/active_user.ico");
