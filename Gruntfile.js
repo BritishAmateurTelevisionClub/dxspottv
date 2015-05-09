@@ -19,7 +19,7 @@ module.exports = function(grunt) {
         dist: {
             files: {
                 'dist/libs/jquerybootstrap.min.js': [
-                    'dist/libs/jquery-1.11.2.min.js',
+                    'dist/libs/jquery-1.11.3.min.js',
                     'dist/libs/bootstrap-3.3.4-dist/js/bootstrap.min.js'
                 ],
                 'dist/libs/compiled.min.css': [
