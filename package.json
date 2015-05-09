@@ -1,0 +1,28 @@
+{
+  "name": "dxspottv",
+  "description": "DXSpot.TV ATV Spots and Repeaters",
+  "author": "BATC",
+  "contributors": [ 
+    {
+      "name": "Phil Crump",
+      "email": "phil@philcrump.co.uk"
+    } 
+  ],
+  "homepage": "https://www.dxspot.tv/",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:BritishAmateurTelevisionClub/dxspottv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BritishAmateurTelevisionClub/dxspottv/issues"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-processhtml": "^0.3.7",
+    "grunt-contrib-compress": "^0.13.0"
+  }
+}

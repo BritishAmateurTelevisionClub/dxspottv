@@ -1,0 +1,16 @@
+body {
+  padding-top: 104px;
+}
+.navbar {
+  background-color: #FFFFFF;
+  border-bottom-width: 0px;
+  height: 80px;
+}
+#header-batc-logo {
+  height: 79px;
+  width: 98px;
+}
+#header-dxspot-logo {
+  height: 79px;
+  width: 98px;
+}
