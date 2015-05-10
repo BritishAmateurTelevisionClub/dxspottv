@@ -68,7 +68,7 @@ function update_map()
     }
   });
 }
-setInterval(5000,update_map);
+setInterval(update_map,5000);
 
 /* Creates a Repeater Marker for the map */
 function newRepeaterMarker(repeater_data) {
