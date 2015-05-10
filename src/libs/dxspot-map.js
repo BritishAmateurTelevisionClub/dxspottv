@@ -1,4 +1,5 @@
 var map;
+var map_updated;
 var repeater_markers = new Array();
 var user_markers = new Array();
 
@@ -20,27 +21,19 @@ function init_map()
   }
   map = new google.maps.Map(mapCanvas, mapOptions);
 
-  $.getJSON("/api/repeaters.php",function( json ) {
+  $.getJSON("/api/mapData.php",function( json ) {
     if(!json.error)
     {
-      var data_len = json.length;
+      map_updated = json.updated;
+      var data_len = json.repeaters.length;
       for(var i=0;i<data_len;i++)
       {
-        newRepeaterMarker(json[i]);
+        newRepeaterMarker(json.repeaters[i]);
       }
-    }
-    else
-    {
-      console.log(json);
-    }
-  });
-  $.getJSON("/api/users.php",function( json ) {
-    if(!json.error)
-    {
-      var data_len = json.length;
+      data_len = json.users.length;
       for(var i=0;i<data_len;i++)
       {
-        newUserMarker(json[i]);
+        newUserMarker(json.users[i]);
       }
     }
     else
@@ -50,6 +43,32 @@ function init_map()
   });
 }
 
+function update_map()
+{
+    $.getJSON("/api/mapData.php", { since: map_updated },function( json ) {
+    if(!json.error)
+    {
+      map_updated = json.updated;
+      var data_len = json.repeaters.length;
+      for(var i=0;i<data_len;i++)
+      {
+        console.log("New repeater found");
+        //newRepeaterMarker(json.repeaters[i]);
+      }
+      data_len = json.users.length;
+      for(var i=0;i<data_len;i++)
+      {
+        console.log("New user found");
+        //newUserMarker(json.users[i]);
+      }
+    }
+    else
+    {
+      console.log(json);
+    }
+  });
+}
+setInterval(5000,update_map);
 
 /* Creates a Repeater Marker for the map */
 function newRepeaterMarker(repeater_data) {
