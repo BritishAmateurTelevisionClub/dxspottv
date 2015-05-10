@@ -36,7 +36,7 @@ function init_map()
         newUserMarker(json.users[i]);
       }
       $("#map-overlay-loading").hide();
-      $("#map-canvas").fadeTo(300, 1);
+      $("#map-canvas").fadeTo(200, 1);
     }
     else
     {
