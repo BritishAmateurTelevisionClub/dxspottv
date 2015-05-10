@@ -27,7 +27,7 @@ body {
   opacity: 0.2;
 }
 .box {
-    position: relative; 
+    position: absolute; 
     background-color: white; 
     border: 1px solid #0070a3; 
     padding: 0.5em;
@@ -41,7 +41,6 @@ body {
     background-repeat:initial initial;
 }
 #map-overlay-loading {
-    position: relative;
     left: 50%;
     top: 50%;
     width: 100px;
