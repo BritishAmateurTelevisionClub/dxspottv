@@ -94,4 +94,3 @@ $dbc = null;
 
 print json_encode($output);
 ?>
-

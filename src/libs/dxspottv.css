@@ -21,4 +21,31 @@ body {
 #map-canvas {
   height: 500px;
   width: 650px;
+  background-color: black;
+  opacity: 0.2;
+}
+.box {
+    position: absolute; 
+    background-color: white; 
+    border: 1px solid #0070a3; 
+    padding: 0.5em;
+    background-attachment:initial;
+    background-clip:initial;
+    background-color:rgb(255, 255, 255);
+    background-color:rgba(255, 255, 255, 0.85);
+    background-image:initial;
+    background-origin:initial;
+    background-position:initial initial;
+    background-repeat:initial initial;
+}
+#map-overlay-loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 200px;
+    height: 100px;
+    margin-left: -200px;
+    margin-top: -50px;
+    padding: 1em;
+    text-align: center;
 }
