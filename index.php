@@ -66,8 +66,7 @@ if (isset($_COOKIE["auth_error"])) {
 <link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-	//var irc_frame_source = "http://webirc.dxspot.tv/?channels=#dxspottv&nick=<?php print $name . "_" . $callsign; ?>";
-	var irc_frame_source = "https://www.philcrump.co.uk/dxchat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
+	var irc_frame_source = "https://philcrump.co.uk/dxchat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
 <?php } // End of callsign as nick for irc
 if($logged_in) { ?>
 	var logged_in = true;
@@ -240,7 +239,7 @@ if ($auth_error==1) {
 		<br>
 		Online help is available at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/viewforum.php?f=80" target="_blank">BATC Forums</a><br>
 		<br>
-		Or you can email us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
+		Or you can email Phil at <a href="mailto:phil@philcrump.co.uk">phil@philcrump.co.uk</a>
 		<br>
 		<br>
 		<u>Map key</u><br>
@@ -265,9 +264,9 @@ if ($auth_error==1) {
 	<div id="aboutTab" class="reduce-tab-padding">
 		DXSpot.TV is an open development project, hosted at <a href="https://github.com/BritishAmateurTelevisionClub/dxspottv/">GitHub</a>. Contribution is welcome!
 		<br><br>
-		Most of the development has been done by Phil, M0DNY (aka. craag), from an idea by Noel, G8GTZ.
+		Most of the development has been done by Phil M0DNY, from concept by Noel G8GTZ.
 		<br><br>
-		Comments/suggestions are welcome, either to us on the Chat, or emailed to us at <a href="mailto:dxspottv.feedback@gmail.com">dxspottv.feedback@gmail.com</a>
+		Comments/suggestions are welcome, either to us on the Chat, or emailed to Phil at <a href="mailto:phil@philcrump.co.uk">phil@philcrump.co.uk</a>
 	</div>
 </div>
 </td>
