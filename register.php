@@ -22,7 +22,8 @@ session_start();
 <td style="width: auto;">
 <h2>New User Registration</h2>
 Please enter the all following information and use the map to set your location<br>
-<b>Please do not register repeaters on this page.</b><b>
+<b>Please do not register repeaters on this page.</b>
+<b>
 <br><br>
 	<label class="register_labels"><b>First Name:</b>&nbsp;</label>
 	<input type=text name='fname' id='fname' class="required" minlength="2" /> (Your chatroom name will be <i>firstname_callsign</i>)
@@ -34,6 +35,7 @@ Please enter the all following information and use the map to set your location<
 	<input type=password name='passwd' id='passwd' class="required" minlength="5" /> (minimum 5 characters)
 <br><br>
 <label class="register_labels"><b>Email Address:</b>&nbsp;</label><input type=text name='email' id='email' class="required email" />
+</b>
 <li>Will not be publicly disclosed. May be used for Administrator contact in case of issues.</li>
 <li>Also may be used for configurable notifications in the future.. <i>Coming Soon(tm)</i>
 <br>
@@ -42,7 +44,7 @@ Please enter the all following information and use the map to set your location<
 Once you have entered the information and used the map to set your location,<br> please complete the captcha and press register<br>
 <br>
 <?php
-require_once('recaptchalib.php');
+require_once('php-includes/recaptchalib.php');
 $publickey = "6LfVM-ESAAAAAIFKeTo0dbqWVOu7c4nd-epDy4qk";
 echo recaptcha_get_html($publickey);
 ?>
@@ -54,7 +56,7 @@ echo recaptcha_get_html($publickey);
 </center>
 <br>
 Simply zoom in and click on the map to set your location.<br><br>
-<i>Your Latitude and Longtitude will be filled in automatically.<i>
+<i>Your Latitude and Longitude will be filled in automatically.<i>
 <br>
 <br>
 <label class="register_labels"><b>Latitude:</b>&nbsp;</label><input type=text name='lat' id='lat' class="required number" minlength="4" />
