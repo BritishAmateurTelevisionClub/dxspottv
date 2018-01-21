@@ -15,7 +15,7 @@ $(document).ready(function() {
 	$('#band_select').change(function() {
 	    setBandChoice($('#band_select').val());
 	    checkSpots();
-		checkUsers();
+         	checkUsers();
 		checkRepeaters();
 	});
     setTimeSpan($('#time_select').val());
@@ -41,11 +41,15 @@ $(document).ready(function() {
     	}
 	});
 	$('#spot_button').button().click( function() {
-		if($('#remote_callsign').val().length>=4 && $('#remote_loc').val().length>=6) {
-    		submitSpot();
-    	} else {
+		if($('#remote_callsign').val().length<4)
+                {
     		$('#submitStatus').show();
     		$('#submitStatus').html("<font color=red>Need callsign.</font>");
+                } else if($('#remote_loc').val().length<6) {
+    		$('#submitStatus').show();
+    		$('#submitStatus').html("<font color=red>Need locator.</font>");
+    	        } else {
+    		submitSpot();
     	}
 	});
 });
@@ -64,7 +68,7 @@ $(document).ready(function() {
 
 // Load IRC (using php-configured url)
 //
-$(window).load(function () {
+$(document).ready(function() {
 	if(logged_in) {
 		document.getElementById('irc_frame').src = irc_frame_source;
 	}
@@ -88,10 +92,10 @@ $(document).ready(function() {
         	doLogin();
 	});
 	$('#logout_button').button().click( function() {
-        	window.location.href = "/logout.php";
+        	window.location.href = "/ajax/logout.php";
 	});
 	$('#register_button').button().click( function() {
-        	window.location.href = "/register.php";
+        	window.location.href = "/register/";
 	});
 	
 	// Set up tabs
@@ -115,7 +119,6 @@ $(document).ready(function() {
 // Station Description Edit Function
 var pos_marker;
 $(document).ready(function() {
-	getUserVars();
 	$('#desc_button').button().click( function() {
 		$('#changePosStatus').fadeOut(500);
 		google.maps.event.clearListeners(map, 'click');
@@ -146,7 +149,13 @@ function placeMarker(location) {
   }
 }
 
-function createGlobalSpotLog(spotLog) {
+var latestSpot = 0;
+function createGlobalSpotLog(spotLog)
+{
+   if(Number(spotLog[0].i)<= latestSpot)
+     return;
+  latestSpot = Number(spotLog[0].i);
+
 	var spotLogDivContent = "";
 	if(spotLog.length!=0) {
 	    var spot = new Array();

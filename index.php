@@ -51,9 +51,6 @@ if (isset($_COOKIE["auth_error"])) {
   $logged_in = 0;
   $auth_error = 0;
 }
-//print "User Known: " . $user_known;
-//print "Logged In: " . $logged_in;
-//print "Auth Error: " . $auth_error;
 ?>
 <!doctype html>
 <html lang="en">
@@ -62,11 +59,11 @@ if (isset($_COOKIE["auth_error"])) {
 <meta name="description" content="Easy to use DX Spotting for ATV/DATV contacts on all bands: 70cms - 3cms.">
 <meta name="keywords" content="dxspot,atv,tv,spot,dx,cluster,contacts,ham,amateur,television,chat,irc">
 <title>DXSpot.TV</title>
+<link href="/lib/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet">
 <link href="/css/atvspot.css" rel="stylesheet">
-<link href="/static/css/flick/jquery-ui-1.10.3.custom.css" rel="stylesheet">
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-	var irc_frame_source = "https://philcrump.co.uk/dxchat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
+	var irc_frame_source = "/dxchat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
 <?php } // End of callsign as nick for irc
 if($logged_in) { ?>
 	var logged_in = true;
@@ -74,15 +71,21 @@ if($logged_in) { ?>
 	var logged_in = false;
 <?php } ?>
 </script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script src="/static/js/jquery-plus-ui.js"></script>
-<script src="/static/js/infobubble.min.js"></script>
-<script src="/js/atvspot-combined.js"></script>
+<script src="/lib/jquery-3.2.1.min.js"></script>
+<script src="/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+<script src="/lib/infobubble.min.js"></script>
+<script src="https://www.google.com/jsapi"></script>
+<script src="/js/atvspot.js"></script>
+<script src="/js/atvspot-ajax.js"></script>
+<script src="/js/atvspot-ui.js"></script>
+<script src="/js/atvspot-util.js"></script>
+<script src="/js/locator.js"></script>
+<script src="/js/map.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA72exT_7wxeWSxakb3hEFVgnWqmv6mx1A&libraries=geometry&callback=init_map" async defer></script>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
-<img src="/images/batc-logo2-79px.png" style="height: 79px; width: 98px;" />
-<img src="/images/DXS8.jpg" style="height: 79px; width: 179px; margin-left: 20px;" />
+<div id="page-banner"><img src="/images/dxspot-header-logos.png" style="height: 80px;" /></div>
 <table
 style="width: 100%; text-align: left; margin-left: auto; margin-right: auto;"
 border="0" cellpadding="0" cellspacing="0">
@@ -94,32 +97,33 @@ border="0" cellpadding="0" cellspacing="0">
 <table border="0" cellspacing="3" cellpadding="0" width="100%" >
 <tr>
 
-<td><p class="mapSelecter" align="center">
-<strong>Timespan:</strong>&nbsp;
+<td class="mapSelecter">
+<strong>Filter Spots:</strong>&nbsp;
+
+<select id="band_select">
+  <option value="all">All Bands</option>
+  <option value="2m" style="background-color: #FF0000; color: white;">2m</option>
+  <option value="70cm" style="background-color: #FF0000; color: white;">70cm</option>
+  <option value="23cm" style="background-color: #FFA500; color: white;">23cm</option>
+  <option value="13cm" style="background-color: #FFA500; color: white;">13cm</option>
+  <option value="9cm" style="background-color: #FFA500; color: white;">9cm</option>
+  <option value="6cm" style="background-color: #FFA500; color: white;">6cm</option>
+  <option value="3cm" style="background-color: #0404B4; color: white;">3cm</option>
+  <option value="1.2cm" style="background-color: #0404B4; color: white;">1.2cm</option>
+</select>
+&nbsp;
 <select id="time_select">
-  <option value="6months">Last 6 months</option>
+  <option value="6months">Last 6 Months</option>
   <option value="1month">Last Month</option>
   <option value="1week">Last Week</option>
   <option value="24hours" selected="selected">Last 24 Hours</option>
   <option value="12hours">Last 12 Hours</option>
   <option value="6hours">Last 6 Hours</option>
 </select>
+
+<td class="mapSelecter">
+<strong>Show repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterBox" />
 </td>
-
-<td><p class="mapSelecter" align="center">
-<strong>Band:</strong>&nbsp;
-<select id="band_select">
-  <option value="all">All Bands</option>
-  <option value="70cm" style="background-color: #FF0000; color: white;">70cm</option>
-  <option value="23cm" style="background-color: #FFA500; color: white;">23cm</option>
-  <option value="13cm" style="background-color: #0404B4; color: white;">13cm</option>
-  <option value="9cm" style="background-color: #0404B4; color: white;">9cm</option>
-  <option value="6cm" style="background-color: #0404B4; color: white;">6cm</option>
-  <option value="3cm" style="background-color: #0404B4; color: white;">3cm</option>
-</select>
-
-<td><p class="mapSelecter" align="center">
-<strong>Show repeaters:</strong>&nbsp;<input type="checkbox" id="repeaterBox" /></p></td>
 
 </tr></table>
 </form>
@@ -135,12 +139,14 @@ border="0" cellpadding="0" cellspacing="0">
 </td><td id="spot_form_cell">
 	<b>New Spot</b><br>
 	<select id="spot_band_select">
+	<option value=7>2m</option>
 	<option value=1>70cm</option>
 	<option value=2>23cm</option>
 	<option value=3>13cm</option>
 	<option value=5>9cm</option>
 	<option value=6>6cm</option>
 	<option value=4>3cm</option>
+	<option value=8>1.2cm</option>
 	</select>
 	&nbsp;
 	<select id="spot_mode_select">

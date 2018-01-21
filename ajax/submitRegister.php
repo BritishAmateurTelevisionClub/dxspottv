@@ -3,16 +3,12 @@
 $got_variables = (isset($_REQUEST["fname"]) && isset($_REQUEST["callsign"]) && isset($_REQUEST["passwd"]) && isset($_REQUEST["email"]) && isset($_REQUEST["locator"]) && isset($_REQUEST["lat"]) && isset($_REQUEST["lon"]));
 
 if($got_variables) {
-	require_once('../php-includes/recaptchalib.php');
-	$privatekey = "6LfVM-ESAAAAAJa-5SRWpWMBEOI1z1UNSkVbvqzp";
-	$resp = recaptcha_check_answer ($privatekey,
-		                            $_SERVER["REMOTE_ADDR"],
-		                            $_REQUEST["recaptcha_challenge_field"],
-		                            $_REQUEST["recaptcha_response_field"]);
+	require_once('reCAPTCHA.php');
+	$reCAPTCHA = new reCAPTCHA('6LcXvUEUAAAAAHrEskwoASn4Q2hkYCRSjtlk4dJs','6LcXvUEUAAAAAGL-LV2GkH9kzSShJiW65tzPLZ_a');
 
 	$output = array();
-
-	if (!$resp->is_valid) {
+	if (!$reCAPTCHA->isValid($_REQUEST['recaptcha']))
+	{
 		$output['successful'] = 0;
 		$output['error'] = "1"; // CAPTCHA Error
 		print json_encode($output);

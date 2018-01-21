@@ -37,7 +37,7 @@ $output = array();
 
 $output['repeaters']=array();
 
-$repeater_stmt = $dbc->prepare("SELECT id,lat,lon,height,callsign,qth_r,qth,ngr,tx1,tx2,tx3,tx4,tx5,tx6,tx7,tx8,tx9,rx1,rx2,rx3,rx4,rx5,rx6,rx7,rx8,rx9,70cm,23cm,13cm,9cm,6cm,3cm,description,website,keeper_callsign,active,updated FROM all_repeaters;");
+$repeater_stmt = $dbc->prepare("SELECT id,lat,lon,height,callsign,qth_r,qth,ngr,tx1,tx2,tx3,tx4,tx5,tx6,tx7,tx8,tx9,rx1,rx2,rx3,rx4,rx5,rx6,rx7,rx8,rx9,2m,70cm,23cm,13cm,9cm,6cm,3cm,description,website,keeper_callsign,active,updated FROM all_repeaters;");
 $repeater_stmt->execute();
 
 while ($reptrRow = $repeater_stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -48,6 +48,7 @@ while ($reptrRow = $repeater_stmt->fetch(PDO::FETCH_ASSOC)) {
     $opRow['lon']=$reptrRow['lon'];
     $opRow['haat']=$reptrRow['height'];
     $opRow['loc']=$reptrRow['qth_r'];
+    $opRow['desc']=$reptrRow['description'];
     if($reptrRow['qth']!=NULL) {
         $opRow['qth']=$reptrRow['qth'];
     }
@@ -87,7 +88,7 @@ while ($reptrRow = $repeater_stmt->fetch(PDO::FETCH_ASSOC)) {
 
 $output['users']=array();
 $userRow = array();
-$user_stmt = $dbc->prepare("SELECT users.id AS i,users.known AS k,users.radio_active AS ra,users.callsign AS c,users.lat AS la,users.lon AS lo,users.locator AS loc,TIME_TO_SEC(TIMEDIFF(NOW(),sessions.activity)) AS act FROM users LEFT JOIN sessions on sessions.user_id=users.id;");
+$user_stmt = $dbc->prepare("SELECT users.id AS i,users.known AS k,users.radio_active AS ra,users.callsign AS c,users.lat AS la,users.lon AS lo,users.locator AS loc,users.station_desc AS sd,users.website as w,TIME_TO_SEC(TIMEDIFF(NOW(),sessions.activity)) AS act FROM users LEFT JOIN (SELECT user_id, MAX(activity) AS activity FROM sessions GROUP BY user_id) AS sessions on sessions.user_id=users.id;");
 $user_stmt->execute();
 
 while ($userRow = $user_stmt->fetch(PDO::FETCH_ASSOC)) {

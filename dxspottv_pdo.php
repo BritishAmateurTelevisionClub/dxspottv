@@ -1,5 +1,5 @@
 <?php
-$dbc = new PDO('mysql:host=localhost;dbname=dxspottv', 'dxspottv', 'c4v56ccHvrbVLBBE', array(
+$dbc = new PDO('mysql:host=10.0.5.1;dbname=batc_dxspot', 'batc_dxspot', 'fRimr2XmQFIsFVR7', array(
     PDO::ATTR_PERSISTENT => true
 ));
 

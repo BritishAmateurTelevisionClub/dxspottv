@@ -6,6 +6,14 @@ html, body {
   font-size: 16px;
 }
 
+#page-banner {
+  background: url('/images/header.png');
+  background-size: 354px 90px;
+  background-repeat: repeat-x;
+  height: 90px;
+  padding-top: 3px;
+}
+
 #irc_frame {
   height: 620px;
   width: 100%;
@@ -104,8 +112,12 @@ html, body {
 }
 
 .mapSelecter {
-	margin-top: 5px;
-	margin-bottom: 0px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+#repeaterBox {
+    vertical-align: middle;
 }
 
 @media print {

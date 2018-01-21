@@ -9,20 +9,44 @@ var infowindow;
 var session_id;
 var logged_in;
 
-// Load Google Maps Script
-//
-$(document).ready(function() {
-	var script = document.createElement('script');
-	script.type = 'text/javascript';
-	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyA72exT_7wxeWSxakb3hEFVgnWqmv6mx1A&libraries=geometry&sensor=false&callback=initialize'; // callback: initialize()
-	document.body.appendChild(script);
+var mapData;
+var init_semaphores = [];
+init_semaphores['map'] = false;
+init_semaphores['mapdata'] = false;
+init_semaphores['userdata'] = false;
+
+$(function() {
+  $.ajax({
+    url: "https://www.dxspot.tv/ajax/mapData.php",
+    success: function( data ) {
+      mapData = data;
+      init_semaphores['mapdata'] = true;
+      init_gate();
+    }
+  });
+  getUserVars();
 });
+
+
+function init_gate()
+{
+  if(Object.keys(init_semaphores).every(function(el) { return init_semaphores[el]; }))
+  {
+    parseMapData(mapData);
+    mapData = null;
+    if(logged_in)
+    {
+      map.setOptions({ zoom: 6, center: new google.maps.LatLng(user_lat, user_lon) });
+    }
+    setTimeout(getUserSpotData, 2000);
+  }
+}
 
 google.load("visualization", "1", {packages:["corechart"]});
 
 // Callback from Google Maps Script Load
 //
-function initialize() {
+function init_map() {
 	google.maps.visualRefresh = true;
 	var mapOptions = {
 		zoom: 3,
@@ -31,12 +55,7 @@ function initialize() {
 	};
 	
 	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
-	
-	if (typeof user_lat != 'undefined') {
-		map.setOptions({ zoom: 6, center: new google.maps.LatLng(user_lat, user_lon) });
-	} else {
-		map.setOptions({ center: new google.maps.LatLng(44.7, -46) });
-	}
+	map.setOptions({ center: new google.maps.LatLng(44.7, -46) });
 
 	infowindow = new google.maps.InfoWindow( {
 			size: new google.maps.Size(150,50)
@@ -70,14 +89,8 @@ function initialize() {
 	repeaterIcon = new google.maps.MarkerImage("/images/active_repeater.ico");
 	repeaterOfflineIcon = new google.maps.MarkerImage("/images/inactive_repeater.ico");
 
-	$.ajax({
-		url: "https://www.dxspot.tv/ajax/mapData.php",
-		success: function( data ) {
-    		parseMapData(data)
-		}
-	});
-	
-	userSpotRefresh=self.setInterval(function(){getUserSpotData()},2000+Math.round(Math.random()*200));
+        init_semaphores['map'] = true;
+        init_gate();
 }
 
 function createUserMarker(user_data) {
@@ -113,7 +126,7 @@ function createUserMarker(user_data) {
     marker.known = user_data['k'];
     marker.station_desc = user_data['sd'];
     if(user_data['w']!='') {
-    	marker.station_website = "https://"+user_data['w'];
+    	marker.station_website = "http://"+user_data['w'];
     } else {
     	marker.station_website = '';
     }
@@ -131,13 +144,6 @@ function createUserMarker(user_data) {
     		'<a href="javascript:elevation_profile('+elevation_vars+')"><b>Path Elevation Profile</b></a>';
     }
     infoTab += '</div>';
-    var descTab = '<div class="user_bubble_desc">'+
-        marker.station_desc;
-    if(marker.station_website!='') {
-    	descTab += '<br><br><a href="'+marker.station_website+'" target="_blank"><b>'+marker.station_website+'</b></a>';
-    }
-    descTab += '</div>';
-    
     var infoBubble = new InfoBubble({
         maxWidth: 150,
         minWidth: 150,
@@ -157,7 +163,17 @@ function createUserMarker(user_data) {
     });
   	
     infoBubble.addTab('<span class="bubble_label">Info</span>', infoTab);
-    infoBubble.addTab('<span class="bubble_label">Description</span>', descTab);
+    if(marker.station_desc != '' || marker.station_website != '')
+    {
+      var descTab = '<div class="user_bubble_desc">'+
+        marker.station_desc;
+      if(marker.station_website!='') 
+      {
+    	descTab += '<br><br><a href="'+marker.station_website+'" target="_blank"><b>'+marker.station_website+'</b></a>';
+      }
+      descTab += '</div>';
+      infoBubble.addTab('<span class="bubble_label">Description</span>', descTab);
+    }
 
     google.maps.event.addListener(marker, 'click', function() {
         if (!infoBubble.isOpen()) {
@@ -302,7 +318,7 @@ function createRepeaterMarker(repeater_data) {
     freqTab += '</div>';
     
     var descTab = '<div class="repeater_bubble_desc">';
-    descTab += marker.desc+'<br>';
+    if ( marker.desc != '') descTab += marker.desc+'<br><br>';
     if (marker.keeper != '') descTab += '<b>Keeper:</b>&nbsp;'+marker.keeper+'<br><br>';
     if (marker.website != '') descTab += '<a href="'+marker.website+'" target="_blank"><b>Repeater Website</b></a>';
     descTab += '</div>';
@@ -364,11 +380,15 @@ function createSpotLine(spot_data) {
 	
 	switch(Number(spot_data['b'])) {
 		case 1: // 70cm
+                case 7: // 2m
 			spotLine.setOptions( {
 				strokeColor: "#FF0000" //red
 			});
 			break
 		case 2: // 23cm
+                case 3: // 13cm
+                case 5: // 9cm
+                case 6: // 6cm
 			spotLine.setOptions( {
 				strokeColor: "#FFA500", //orange
 				strokeWeight: 4 // thicker line
@@ -381,7 +401,7 @@ function createSpotLine(spot_data) {
 			break
 	}
 	
-	switch(spot_data['m']) {
+	switch(Number(spot_data['m'])) {
 		case 0: // Not defined - assume Digital
 			spotLine.setOptions( {
 				zIndex: 5
@@ -430,7 +450,7 @@ function createSpotLine(spot_data) {
 	spotLine.secondary_isrepeater = spot_data['sr']
 	spotLine.time = spot_data['t'];
 	spotLine.ago = spot_data['rt'];
-	spotLine.comments = spot_data['c'];
+        spotLine.comments = spot_data['c'];
 	spotLine.date = parseInt(spot_data['t'].substr(8,2))+"&nbsp;"+months[parseInt(spot_data['t'].substr(5,2))]+"&nbsp;"+spot_data['t'].substr(11,8);	
 	spotLine.distance = Math.round((google.maps.geometry.spherical.computeDistanceBetween(primary_latlon, secondary_latlon)/1000)*10)/10;
 	

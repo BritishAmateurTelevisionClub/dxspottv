@@ -1,13 +1,6 @@
 // Set up map
 //
 var marker;
-$(document).ready(function() {
-	var script = document.createElement('script');
-	script.type = 'text/javascript';
-	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry&sensor=false&callback=initialize'; // callback: initialize()
-	document.body.appendChild(script);
-});
-
 function placeMarker(location) {
   if ( marker ) {
     marker.setPosition(location);
@@ -31,14 +24,36 @@ function initialize() {
 	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
 	google.maps.event.addListener(map, 'click', function(event) {
-		$('#lat').val(event.latLng.lat());
-		$('#lon').val(event.latLng.lng());
+		$('#lat').val(roundTo(event.latLng.lat(),4));
+		$('#lon').val(roundTo(event.latLng.lng(),4));
 		placeMarker(event.latLng);
 	});
 }
 
-// Set up button
-//
+var input_password = document.getElementById('passwd');
+var password_bar = document.getElementById('passwd-bar');
+input_password.addEventListener('keyup', function(){
+  var analysis = zxcvbn(input_password.value);
+  switch(analysis.score)
+  {
+    case 0:
+      password_bar.style.backgroundImage = 'linear-gradient(to right, #ff0000, #ff0000 20%, #ffffff 20%)';
+      break;
+    case 1:
+      password_bar.style.backgroundImage = 'linear-gradient(to right, #df4500, #df4500 40%, #ffffff 40%)';
+      break;
+    case 2:
+      password_bar.style.backgroundImage = 'linear-gradient(to right, #d0a500, #d0a500 60%, #ffffff 60%)';
+      break;
+    case 3:
+      password_bar.style.backgroundImage = 'linear-gradient(to right, #c3e35c, #c3e35c 80%, #ffffff 80%)';
+      break;
+    case 4:
+      password_bar.style.backgroundImage = 'linear-gradient(to right, #a3ff5c, #a3ff5c 100%, #ffffff 100%)';
+      break;
+  }
+});
+
 var button_lock=false; // To prevent double-click
 $(document).ready(function() {
 	$("#validationFailDialog").dialog({ autoOpen: false });
@@ -50,10 +65,9 @@ $(document).ready(function() {
 		if($("#register_form").valid()==true) {
 			if(!button_lock) {
 				button_lock = true;
-				$("#submitStatus").html('<font color="green"><b>Submitting...</b></font>');
 				$.ajax({
 					url: '/ajax/submitRegister.php',
-					type: "GET",
+					type: "POST",
 					data: {
 						fname: $('#fname').val(),
 						callsign: $('#callsign').val(),
@@ -62,8 +76,7 @@ $(document).ready(function() {
 						locator: CoordToLoc(parseFloat($('#lat').val()),parseFloat($('#lon').val())),
 						lat: $('#lat').val(),
 						lon: $('#lon').val(),
-						recaptcha_challenge_field: $('[name="recaptcha_challenge_field"]').val(),
-						recaptcha_response_field: $('[name="recaptcha_response_field"]').val()
+						recaptcha: grecaptcha.getResponse()
 					},
 					success: function( data ) {
 						//console.log(data);
@@ -75,7 +88,6 @@ $(document).ready(function() {
 							$('#successMessage').show();
 						} else {
 							$('#first_form').show();
-							Recaptcha.reload();
 							if(returnJSON['error']==1) {
 								$("#captchaFailDialog").dialog("open");
 							} else if(returnJSON['error']==2) {
@@ -88,6 +100,8 @@ $(document).ready(function() {
 						}
 					}
 				});
+				$("#submitStatus").html('<font color="green"><b>Submitting...</b></font>');
+				grecaptcha.reset();
 			}
 		}
 	});
@@ -95,3 +109,8 @@ $(document).ready(function() {
     	window.location.href = "/";
 	});
 });
+
+function roundTo(value, decimal_places)
+{
+  return Number(Math.round(value+'e'+decimal_places)+'e-'+decimal_places);
+}

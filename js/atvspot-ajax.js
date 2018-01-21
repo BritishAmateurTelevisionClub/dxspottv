@@ -1,15 +1,12 @@
-// Set up refresh functions
-//
-var userSpotRefresh;
 
 if(logged_in) {
-	var activityRefresh=self.setInterval(function(){updateActivity()},3000+Math.round(Math.random()*400)); // Add from 0-400ms randomly
+	updateActivity();
 }
 
 function doLogin() {
 	$.ajax({
-		url: "/login.php",
-		type: "GET",
+		url: "/ajax/login.php",
+		type: "POST",
 		data: {
 			callsign: $("#callsign_input").val(),
 			passwd: $('#passwd_input').val()
@@ -23,13 +20,13 @@ function doLogin() {
 
 function getUserSpotData() {
 	$.ajax({
-		url: "https://www.dxspot.tv/ajax/userSpotRefresh.php",
+		url: "/ajax/userSpotRefresh.php",
 		success: function( data ) {
     		updateUsers(data['users']);
     		if(data['spots'].length!=0) {
         		parseSpots(data['spots']);
-        		//createGlobalSpotLog(data['spots']);
-            }
+        		createGlobalSpotLog(data['spots']);
+                }
     		
     		setTimeSpan($('#time_select').val());
 			setBandChoice($('#band_select').val());
@@ -38,6 +35,7 @@ function getUserSpotData() {
 			checkRepeaters();
 		
     		loadSpotAutocomplete();
+                setTimeout(getUserSpotData, 2000+Math.round(Math.random()*500));
 		}
 	});
 }
@@ -48,6 +46,7 @@ function updateActivity() {
 		url: "/ajax/update_activity.php",
 		success: function( data ) {
 			//console.log(data);
+                        setTimeout(updateActivity,3000+Math.round(Math.random()*500));
 		}
 	});
 }
@@ -59,7 +58,7 @@ function submitSpot() {
 	$('#submitStatus').show();
 	$.ajax({
 		url: "/ajax/submit_spot.php",
-		type: "GET",
+		type: "POST",
 		data: {
 			band_id: $("#spot_band_select").val(),
 			mode: $("#spot_mode_select").val(),
@@ -146,11 +145,18 @@ function doChangeRadio(status) {
 
 
 function getUserVars() {
+	if(!logged_in)
+	{
+            init_semaphores['userdata'] = true;
+            init_gate();
+            return;
+	}
 	$.ajax({
 		url: "/ajax/getUserInfo.php",
-		success: function( data ) {
-			//console.log(data);
-			userData = eval('(' + data + ')');
+                dataType: "json",
+		success: function( userData ) {
+                   if(userData['error'] === undefined)
+                   {
 			user_callsign = userData['callsign'];
 			user_lat = userData['lat'];
 			user_lon = userData['lon'];
@@ -166,6 +172,9 @@ function getUserVars() {
 			} else {
 				$('#radioBox').prop('checked',false);
 			}
+                    }
+                    init_semaphores['userdata'] = true;
+                    init_gate();
 		}
 	});
 }
