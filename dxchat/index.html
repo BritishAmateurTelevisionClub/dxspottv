@@ -1,0 +1,237 @@
+<html>
+<head>
+<title>DXChat</title>
+<style>
+body {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  background: #3F464C;
+  color: #ccc;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+#main-wrapper {
+  padding-bottom: 30px;
+  bottom: 30px;
+}
+#messages-panel {
+  list-style: none;
+  padding: 7px;
+  padding-right: 5px;
+  margin-right: 110px !important;
+  overflow: auto;
+  margin: 0;
+  font-size: 13;
+}
+.messages-panel-object {
+  padding-bottom: 5px;
+}
+.message-datestamp {
+  text-decoration: underline;
+}
+.message-datestamp, .message-timestamp {
+  color: #b0b0b0;
+  padding-right: 1em;
+}
+.message-nick {
+  font-weight: bold;
+  color: #FBDE2D;
+  padding-right: 0.5em;
+}
+.message-text {
+    display: block;
+    margin-top: 0.2em;
+    margin-left: 0.5em; /*3.5em;*/
+}
+.message-announcement {
+  font-weight: bold;
+}
+#users-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 10px;
+  padding-bottom: 20px;
+  width: 90px;
+  overflow: auto;
+  border-left: 1px solid #ccc;
+  font-size: 13;
+}
+.users-panel-object {
+  padding-bottom: 10px;
+}
+#bottom-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  width: 100%;
+  padding: 0 5px;
+  height: 30px;
+  display: block;
+  background: #FFFFFF;
+  color: #111;
+}
+</style>
+</head>
+<body>
+<div id="main-wrapper">
+<div id="messages-panel">
+</div>
+<div id="users-panel">
+</div>
+</div>
+<input type="text" id="bottom-bar" placeholder="Type a message here and then press enter." />
+</body>
+<script src="/lib/jquery-3.2.1.min.js"></script>
+<script>
+var subscribedRoom=0;
+var lastMessageId=0;
+var lastTS=new Date(1970);
+var userNick='';
+var urlVars = getUrlVars();
+    
+var userNick='';
+if(typeof urlVars['nick']!='undefined') {
+    userNick=urlVars['nick'];
+}
+var subscribedRoom=0;
+if(typeof urlVars['room']!='undefined') {
+    subscribedRoom=urlVars['room'];
+}
+
+$(document).ready(function() {
+    if(userNick=='') {
+        $("#bottom-bar").attr("placeholder","Type '/nick your_name' and press enter to join.");
+    $('#bottom-bar').on('keypress', function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
+            var messageText = $('#bottom-bar').val();
+            $('#bottom-bar').val("");
+            if(messageText.startsWith("/nick ")) {
+                var wantedNick = messageText.substr(6).trim();
+                if(wantedNick!='') window.location.replace("/dxchat/?room="+subscribedRoom+"&nick="+wantedNick);
+            }
+        }
+    });
+    } else {
+    $('#bottom-bar').on('keypress', function(e) {
+        if (e.which == 13) {
+            e.preventDefault();
+            var messageText = $('#bottom-bar').val();
+            $('#bottom-bar').val("");
+            if(messageText.startsWith("/nick ")) {
+                var wantedNick = messageText.substr(6).trim();
+                if(wantedNick!='') window.location.replace("/dxchat/?room="+subscribedRoom+"&nick="+wantedNick);
+            } else {
+                $.ajax({
+                    url: "send.php",
+                    type: "POST",
+                    data: {
+                        room: subscribedRoom,
+                        nick: userNick,
+                        message: messageText,
+                    },
+                    dataType: 'json',
+                    success: function( data ) {
+                        if(data.s == 1) { // Logged in successfully
+                            getLatest();
+                        }
+                    }
+                });
+            }
+        }
+    });
+    }
+    getLatest();
+    getUsers();
+    setInterval(getLatest,1*1000);
+    setInterval(getUsers,3*1000);
+});
+function getLatest() {
+    $.ajax({
+        url: "messages.php",
+        type: "GET",
+        data: {
+            room: subscribedRoom,
+            lastid: lastMessageId
+        },
+        dataType: 'json',
+        success: function( data ) {
+            if(data.s == 1 && data.ms.length>0 && data.l>lastMessageId) {
+                var dataLength = data.ms.length;
+                for (var i=0; i<dataLength; i++) {
+                    var ts = dateFromMysql(data.ms[i].t);
+                    if(ts.toLocaleDateString()!=lastTS.toLocaleDateString())
+                    {
+                        $("#messages-panel").append($("<div></div>").addClass("messages-panel-object").append($("<span></span>").addClass("message-datestamp").text(ts.toLocaleDateString())));
+                        lastTS=ts;
+                    }
+                    var nuMessageObj = $("<div></div>").addClass("messages-panel-object");
+                    nuMessageObj.append($("<span></span>").addClass("message-timestamp").text(timeString(ts)));
+                    nuMessageObj.append($("<span></span>").addClass("message-nick").text(data.ms[i].n));
+                    nuMessageObj.append($("<span></span>").addClass("message-text").text(data.ms[i].m));
+                    $("#messages-panel").append(nuMessageObj);
+                }
+                $("#messages-panel").scrollTop($("#messages-panel")[0].scrollHeight);
+                lastMessageId=data.l;
+            }
+        }
+    });
+}
+function getUsers() {
+    $.ajax({
+        url: "users.php",
+        type: "POST",
+        data: {
+            room: subscribedRoom,
+            nick: userNick
+        },
+        dataType: 'json',
+        success: function( data ) {
+            $("#users-panel").html("");
+            if(data.s == 1 && data.us.length>0) {
+                var dataLength = data.us.length;
+                for (var i=0; i<dataLength; i++) {
+                    $("#users-panel").append($("<div></div>").addClass("users-panel-object").text(data.us[i]));
+                }
+            }
+            if(data.s == 10)
+            {
+                window.location.replace("/dxchat/?room="+subscribedRoom+"&nick="+data.rn);
+            }	
+        }
+    });
+}
+function getUrlVars()
+{
+    var vars = [], hash;
+    if(window.location.href.indexOf('?')>1) {
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++) {
+		    hash = hashes[i].split('=');
+		    vars.push(hash[0]);
+		    vars[hash[0]] = hash[1];
+        }
+    }
+    return vars
+}
+function dateFromMysql(datetimeString) {
+    var t = datetimeString.split(/[- :]/);
+    return new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+}
+function timeString(t) {
+    var s = t.toLocaleTimeString().split(/[:]/);
+    return s[0]+":"+s[1];
+}
+function shuffle_panels() {
+    var p_height = $(window).height() - (30+15); 
+    $("#messages-panel").height(p_height);
+    $("#users-panel").height(p_height);
+}
+shuffle_panels();
+window.onresize = shuffle_panels;
+</script>
+</html>
