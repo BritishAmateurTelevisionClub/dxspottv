@@ -21,16 +21,7 @@ if($_POST['message']!="")
 }
 
 /* Connect to database */
-try
-{
-    $dbc = new PDO("mysql:host=10.0.5.1;dbname=batc_dxspot;charset=utf8", "batc_dxspot", "fRimr2XmQFIsFVR7", array(    
-        PDO::ATTR_PERSISTENT => true  
-    ));;
-}
-catch (PDOException $e)
-{
-    die(json_encode(Array('s' => 3)));
-}
+include('../dxspottv_pdo.php');
 
 $stmt = $dbc->prepare("INSERT INTO legacymessages (room,nick,message) VALUES (?,?,?);");
 $stmt->execute(array($form_room,$form_nick,$form_message));

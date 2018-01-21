@@ -22,16 +22,7 @@ else if(isset($_SESSION["nick"]))
 }
 
 /* Connect to database */
-try
-{
-    $dbc = new PDO("mysql:host=10.0.5.1;dbname=batc_dxspot;charset=utf8", "batc_dxspot", "fRimr2XmQFIsFVR7", array(    
-        PDO::ATTR_PERSISTENT => true
-    ));
-}
-catch (PDOException $e)
-{
-    die(json_encode(Array('s' => 3)));
-}
+include('../dxspottv_pdo.php');
 $ret_array = Array('s' => 4);
 
 if(isset($req_nick)) {

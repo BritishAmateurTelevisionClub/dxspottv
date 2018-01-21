@@ -14,17 +14,8 @@ if($_GET['lastid']!="")
     die(json_encode(Array('s' => 2)));
 }
 
-/* Connect to database */
-try
-{
-    $dbc = new PDO("mysql:host=10.0.5.1;dbname=batc_dxspot;charset=utf8", "batc_dxspot", "fRimr2XmQFIsFVR7", array(    
-        PDO::ATTR_PERSISTENT => true  
-    ));
-}
-catch (PDOException $e)
-{
-    die(json_encode(Array('s' => 3)));
-}
+include('../dxspottv_pdo.php');
+
 $ret_array = Array('s' => 4);
 $stmt = $dbc->prepare("SELECT * FROM legacymessages WHERE room=? AND id>? AND ts>=(now() - INTERVAL 1 DAY) ORDER BY ts ASC;");
 $stmt->execute(array($req_room, $req_id));
