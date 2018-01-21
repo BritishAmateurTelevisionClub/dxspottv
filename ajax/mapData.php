@@ -40,7 +40,8 @@ $output['repeaters']=array();
 $repeater_stmt = $dbc->prepare("SELECT id,lat,lon,height,callsign,qth_r,qth,ngr,tx1,tx2,tx3,tx4,tx5,tx6,tx7,tx8,tx9,rx1,rx2,rx3,rx4,rx5,rx6,rx7,rx8,rx9,2m,70cm,23cm,13cm,9cm,6cm,3cm,description,website,keeper_callsign,active,updated FROM all_repeaters;");
 $repeater_stmt->execute();
 
-while ($reptrRow = $repeater_stmt->fetch(PDO::FETCH_ASSOC)) {
+while ($reptrRow = $repeater_stmt->fetch(PDO::FETCH_ASSOC))
+{
     $opRow=array();
     $opRow['id']=$reptrRow['id'];
     $opRow['qrz']=$reptrRow['callsign'];
@@ -49,36 +50,47 @@ while ($reptrRow = $repeater_stmt->fetch(PDO::FETCH_ASSOC)) {
     $opRow['haat']=$reptrRow['height'];
     $opRow['loc']=$reptrRow['qth_r'];
     $opRow['desc']=$reptrRow['description'];
-    if($reptrRow['qth']!=NULL) {
+    if($reptrRow['qth']!=NULL)
+    {
         $opRow['qth']=$reptrRow['qth'];
     }
-    if($reptrRow['ngr']!=NULL) {
+    if($reptrRow['ngr']!=NULL)
+    {
         $opRow['ngr']=$reptrRow['ngr'];
     }
-    if($reptrRow['website']!=NULL) {
+    if($reptrRow['website']!=NULL)
+    {
         $opRow['www']=$reptrRow['website'];
     }
-    if($reptrRow['keeper_callsign']!="") {
+    if($reptrRow['keeper_callsign']!="")
+    {
         $opRow['keep']=$reptrRow['keeper_callsign'];
     }
-    if($reptrRow['active']==1) {
+    if($reptrRow['active']==1)
+    {
         $opRow['op']=1;
     }
     
-    foreach ($repeater_input_freqs as $input_freq) {
-        if($reptrRow[$input_freq]!=NULL) {
+    foreach ($repeater_input_freqs as $input_freq)
+    {
+        if($reptrRow[$input_freq]!=NULL)
+        {
             $opRow[$input_freq] = $reptrRow[$input_freq];
         }
     }
     
-    foreach ($repeater_output_freqs as $output_freq) {
-        if($reptrRow[$output_freq]!=NULL) {
+    foreach ($repeater_output_freqs as $output_freq)
+    {
+        if($reptrRow[$output_freq]!=NULL)
+        {
             $opRow[$output_freq] = $reptrRow[$output_freq];
         }
     }
     
-    foreach ($repeater_bands as $band) {
-        if($reptrRow[$band]!=NULL) {
+    foreach ($repeater_bands as $band)
+    {
+        if($reptrRow[$band]!=NULL)
+        {
             $opRow[$band] = $reptrRow[$band];
         }
     }
@@ -91,8 +103,10 @@ $userRow = array();
 $user_stmt = $dbc->prepare("SELECT users.id AS i,users.known AS k,users.radio_active AS ra,users.callsign AS c,users.lat AS la,users.lon AS lo,users.locator AS loc,users.station_desc AS sd,users.website as w,TIME_TO_SEC(TIMEDIFF(NOW(),sessions.activity)) AS act FROM users LEFT JOIN (SELECT user_id, MAX(activity) AS activity FROM sessions GROUP BY user_id) AS sessions on sessions.user_id=users.id;");
 $user_stmt->execute();
 
-while ($userRow = $user_stmt->fetch(PDO::FETCH_ASSOC)) {
-    if($userRow['act']==NULL) {
+while ($userRow = $user_stmt->fetch(PDO::FETCH_ASSOC))
+{
+    if($userRow['act']==NULL)
+    {
         $userRow['act']=9999;
     }
     $output['users'][] = $userRow;
@@ -104,7 +118,8 @@ $spotRow = array();
 $spot_stmt = $dbc->prepare("SELECT id AS i,band_id AS b,mode_id AS m,primary_id AS p,secondary_id AS s,secondary_isrepeater AS sr,spot_time AS t,comments AS c,TIME_TO_SEC(TIMEDIFF(NOW(),spot_time)) AS rt FROM spots WHERE spot_time>DATE_SUB(now(), INTERVAL 6 MONTH) ORDER BY spot_time DESC;");
 $spot_stmt->execute();
 
-while ($spotRow = $spot_stmt->fetch(PDO::FETCH_ASSOC)) {
+while ($spotRow = $spot_stmt->fetch(PDO::FETCH_ASSOC))
+{
     $output['spots'][] = $spotRow;
 }
 

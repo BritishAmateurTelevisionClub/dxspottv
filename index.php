@@ -1,55 +1,68 @@
 <?php
 session_start();
-if (isset($_COOKIE["auth_error"])) {
-  if ($_COOKIE["auth_error"]=="1") {
-  	// Unset Auth Error
-  	setcookie("auth_error", "", time()-3600);
-    // Redirect back after failed login
+
+if (isset($_COOKIE["auth_error"]))
+{
+    if ($_COOKIE["auth_error"]=="1")
+    {
+        // Unset Auth Error
+        setcookie("auth_error", "", time()-3600);
+        // Redirect back after failed login
+        $user_known = 0;
+        $logged_in = 0;
+        $auth_error = 1;
+        $auth_error_text = $_COOKIE["auth_error_text"];
+    } 
+    else 
+    {
+        require('dxspottv_pdo.php');
+        $callsign_statement = $dbc->prepare("SELECT callsign,name FROM users WHERE id=?;");
+        $callsign_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
+        $callsign_statement->execute();
+        $callsign_statement->bindColumn(1, $callsign);
+        $callsign_statement->bindColumn(2, $name);
+        $callsign_statement->fetch();
+        // Logged in, but check session id is valid
+        $sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=? ORDER BY activity DESC LIMIT 1;");
+        $sessions_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
+        $sessions_statement->execute();
+        $sessions_statement->bindColumn(1, $sessions_result);
+        if($sessions_statement->rowCount()==0) 
+        { // session doesn't exist on server
+            $user_known = 1;
+            $logged_in = 0;
+            $auth_error = 1;
+            $auth_error_text = "Session not found, please log in.";
+        } 
+        else 
+        {
+            $logged_in = 0;
+            while ($sessions_statement->fetch()) 
+            {
+                if ($_COOKIE["session_key"]==$sessions_result) 
+                { // Session matches, so is logged in!
+                    $user_known = 1;
+                    $logged_in = 1;
+                    $auth_error = 0;
+                }
+            }
+            if($logged_in != 1) 
+            {
+                // Session doesn't match, make them log in again
+                $user_known = 1;
+                $auth_error = 1;
+                $auth_error_text = "Session not found, please log in.";
+            }
+        }
+    $auth_error=0;
+    }
+}
+else
+{
+    // Guest User
     $user_known = 0;
     $logged_in = 0;
-    $auth_error = 1;
-    $auth_error_text = $_COOKIE["auth_error_text"];
-  } else {
-    require('dxspottv_pdo.php');
-    $callsign_statement = $dbc->prepare("SELECT callsign,name FROM users WHERE id=?;");
-    $callsign_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
-    $callsign_statement->execute();
-    $callsign_statement->bindColumn(1, $callsign);
-    $callsign_statement->bindColumn(2, $name);
-	$callsign_statement->fetch();
-    // Logged in, but check session id is valid
-    $sessions_statement = $dbc->prepare("SELECT session_id FROM sessions WHERE user_id=? ORDER BY activity DESC LIMIT 1;");
-    $sessions_statement->bindValue(1, $_COOKIE["user_id"], PDO::PARAM_INT);
-    $sessions_statement->execute();
-    $sessions_statement->bindColumn(1, $sessions_result);
-    if($sessions_statement->rowCount()==0) { // session doesn't exist on server
-      $user_known = 1;
-      $logged_in = 0;
-      $auth_error = 1;
-      $auth_error_text = "Session not found, please log in.";
-    } else {
-      $logged_in = 0;
-      while ($sessions_statement->fetch()) {
-		  if ($_COOKIE["session_key"]==$sessions_result) { // Session matches, so is logged in!
-		    $user_known = 1;
-		    $logged_in = 1;
-		    $auth_error = 0;
-		  }
-      }
-      if($logged_in != 1) {
-        // Session doesn't match, make them log in again
-        $user_known = 1;
-        $auth_error = 1;
-        $auth_error_text = "Session not found, please log in.";
-      }
-    }
-    $auth_error=0;
-  }
-} else {
-  // Guest User
-  $user_known = 0;
-  $logged_in = 0;
-  $auth_error = 0;
+    $auth_error = 0;
 }
 ?>
 <!doctype html>
@@ -63,12 +76,12 @@ if (isset($_COOKIE["auth_error"])) {
 <link href="/css/atvspot.css" rel="stylesheet">
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-	var irc_frame_source = "/dxchat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
+    var irc_frame_source = "/dxchat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
 <?php } // End of callsign as nick for irc
 if($logged_in) { ?>
-	var logged_in = true;
+    var logged_in = true;
 <?php } else { ?>
-	var logged_in = false;
+    var logged_in = false;
 <?php } ?>
 </script>
 <script src="/lib/jquery-3.2.1.min.js"></script>
@@ -132,37 +145,37 @@ border="0" cellpadding="0" cellspacing="0">
 <table id="spot_table">
 <tr>
 <td id="spot_log_cell">
-	<div id="spot_log_div" style="line-height: 0.9em;">
-		<h4>Global Spot Log</h4>
-		<span id="spotLog" class="reduce-font-size">Loading...</span>
-	</div>
+    <div id="spot_log_div" style="line-height: 0.9em;">
+        <h4>Global Spot Log</h4>
+        <span id="spotLog" class="reduce-font-size">Loading...</span>
+    </div>
 </td><td id="spot_form_cell">
-	<b>New Spot</b><br>
-	<select id="spot_band_select">
-	<option value=7>2m</option>
-	<option value=1>70cm</option>
-	<option value=2>23cm</option>
-	<option value=3>13cm</option>
-	<option value=5>9cm</option>
-	<option value=6>6cm</option>
-	<option value=4>3cm</option>
-	<option value=8>1.2cm</option>
-	</select>
-	&nbsp;
-	<select id="spot_mode_select">
-	<option value="1">Analog TV</option>
-	<option value="2">Digital TV</option>
-	<option value="3">Beacon</option>
-	</select><br>
-	<b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />
-	<br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
-	Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
-	<button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
+    <b>New Spot</b><br>
+    <select id="spot_band_select">
+    <option value=7>2m</option>
+    <option value=1>70cm</option>
+    <option value=2>23cm</option>
+    <option value=3>13cm</option>
+    <option value=5>9cm</option>
+    <option value=6>6cm</option>
+    <option value=4>3cm</option>
+    <option value=8>1.2cm</option>
+    </select>
+    &nbsp;
+    <select id="spot_mode_select">
+    <option value="1">Analog TV</option>
+    <option value="2">Digital TV</option>
+    <option value="3">Beacon</option>
+    </select><br>
+    <b>Remote</b>&nbsp;Callsign:&nbsp;&nbsp;<input type=text name="remote_callsign" id="remote_callsign" class="spot_box_short" />
+    <br><span class="spotFormLabel">Locator:</span>&nbsp;&nbsp;<input type=text name="remote_loc" id="remote_loc" class="spot_box_short" /><br>
+    Frequency / Comments:<br><input type=text name="spot_comments" id="spot_comments" class="spot_box_long" /><br>
+    <button class="spot-button reduce-font-size" id="spot_button">Submit Spot</button>&nbsp;<span id="submitStatus"></span>
 </td></tr></table>
 <?php } else { ?>
 <div id="spot_wide_log_div" style="line-height: 0.9em;">
-	<h4>Global Spot Log</h4>
-	<span id="spotLog" class="reduce-font-size">Loading...</span>
+    <h4>Global Spot Log</h4>
+    <span id="spotLog" class="reduce-font-size">Loading...</span>
 </div>
 <?php } ?>
 </td>
@@ -186,94 +199,94 @@ Callsign: <input type=text name="callsign" id="callsign_input" <?php if($user_kn
 if ($auth_error==1) {
 ?>
 <div class="ui-state-error ui-corner-all reduce-font-size" style="padding: 0em .7em;">
-		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-		<strong>Alert:</strong>&nbsp;<?php print $auth_error_text; ?></p>
+        <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+        <strong>Alert:</strong>&nbsp;<?php print $auth_error_text; ?></p>
 </div>
 <?php
 } // End of auth_error.
 } // End of greeting/login form
 ?>
 <div id="tabs">
-	<ul>
-		<li><a href="#webIRC" class="reduce-font-size">DXSpot Chat</a></li>
-		<?php
-		if($logged_in) { // If logged in, show spot form
-		?>
-		<li><a href="#editStation" class="reduce-font-size">Edit My Station</a></li>
-		<?php } ?>
-		<li><a href="#findStation" class="reduce-font-size">Find Station</a></li>
-		<li><a href="#helpTab" class="reduce-font-size">Help</a></li>
-		<li><a href="#aboutTab" class="reduce-font-size">About</a></li>
-	</ul>
-	<div id="webIRC" class="reduce-tab-padding">
-		<?php if($logged_in) { ?>
-			<iframe id='irc_frame' frameborder="0"></iframe><br>
-		<?php } else { ?>
-			<div id='n_irc_content'>
-				<h2>Welcome to DXSpot.TV</h2>
-				<h3>Please Register and Log In to use the ATV DXSpot Chat and Submit Spots.</h3>
-			</div>
-		<?php } ?>
-	</div>
-	<?php
-		if($logged_in) { // If logged in, show edit station
-		?>
-	<div id="editStation" class="reduce-tab-padding">
-		<h4>My Station Description:</h4>
-		<b>I am currently active on ATV:</b>&nbsp;<input type="checkbox" id="radioBox" /><span id="changeRadioStatus"></span><br>
-		<textarea rows="4" cols="50" id="station_description_edit"></textarea><br>
-		No HTML permitted.<br><br>
-		<b>Website:</b><br>
-		http://<input type="text" id="station_website_edit"></input>
-		<br><br>
-		<b>Location</b><button class="reduce-font-size" id="setposition_button">Set With Map</button>&nbsp;<span id="changePosStatus"></span><br>
-		Latitude: <input type="text" id="station_lat_edit"></input><br>
-		Longitude: <input type="text" id="station_lon_edit"></input><br>
-		<br>
-		<button class="station-desc-button" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
-	</div>
-	<?php } ?>
-	<div id="findStation" class="reduce-tab-padding">
-		<b>Enter station callsign:&nbsp;</b><input type=text id="search_callsign" class="spot_box_short" /><button class="search-button reduce-font-size" id="search_button">Search</button>
-		<br><br>
-		<div id="findResults">
-		</div>
-	</div>
-	<div id="helpTab" class="reduce-tab-padding">
-		Download the user guide from here <a href="/dxspotguidev1.pdf" target="_blank">English (PDF)</a> <a href="http://www.pi6ats.nl/Gebruiksaanwijzing%20DXspot.pdf">Dutch (PDF)</a><br>
-		<li>Thanks to Chris PA3CRX for the Dutch Translation</li>
-		<br>
-		Online help is available at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/viewforum.php?f=80" target="_blank">BATC Forums</a><br>
-		<br>
-		Or you can email Phil at <a href="mailto:phil@philcrump.co.uk">phil@philcrump.co.uk</a>
-		<br>
-		<br>
-		<u>Map key</u><br>
-		<br>
-		Station Icons:<br>
-		Green = logged in and radio active<br>
-		Yellow = logged in but just watching - set by tick box in "Edit my station" <br>
-		White = Not logged in but spotted on a Dx contact<br>
-		<br>
-		Cyan = Operational repeater<br>
-		Red = Licensed but non operational repeater <br>
-		<br>
-		<u>DxSpot key </u><br>
-		<br>
-		Red = 70cms<br>
-		Orange = 23cms<br>
-		Blue = 13cms and above<br>
-		<br>
-		Dotted line = Narrow band beacon spot<br>
+    <ul>
+        <li><a href="#webIRC" class="reduce-font-size">DXSpot Chat</a></li>
+        <?php
+        if($logged_in) { // If logged in, show spot form
+        ?>
+        <li><a href="#editStation" class="reduce-font-size">Edit My Station</a></li>
+        <?php } ?>
+        <li><a href="#findStation" class="reduce-font-size">Find Station</a></li>
+        <li><a href="#helpTab" class="reduce-font-size">Help</a></li>
+        <li><a href="#aboutTab" class="reduce-font-size">About</a></li>
+    </ul>
+    <div id="webIRC" class="reduce-tab-padding">
+        <?php if($logged_in) { ?>
+            <iframe id='irc_frame' frameborder="0"></iframe><br>
+        <?php } else { ?>
+            <div id='n_irc_content'>
+                <h2>Welcome to DXSpot.TV</h2>
+                <h3>Please Register and Log In to use the ATV DXSpot Chat and Submit Spots.</h3>
+            </div>
+        <?php } ?>
+    </div>
+    <?php
+        if($logged_in) { // If logged in, show edit station
+        ?>
+    <div id="editStation" class="reduce-tab-padding">
+        <h4>My Station Description:</h4>
+        <b>I am currently active on ATV:</b>&nbsp;<input type="checkbox" id="radioBox" /><span id="changeRadioStatus"></span><br>
+        <textarea rows="4" cols="50" id="station_description_edit"></textarea><br>
+        No HTML permitted.<br><br>
+        <b>Website:</b><br>
+        http://<input type="text" id="station_website_edit"></input>
+        <br><br>
+        <b>Location</b><button class="reduce-font-size" id="setposition_button">Set With Map</button>&nbsp;<span id="changePosStatus"></span><br>
+        Latitude: <input type="text" id="station_lat_edit"></input><br>
+        Longitude: <input type="text" id="station_lon_edit"></input><br>
+        <br>
+        <button class="station-desc-button" id="desc_button">Save</button>&nbsp;<span id="changeDescStatus"></span>
+    </div>
+    <?php } ?>
+    <div id="findStation" class="reduce-tab-padding">
+        <b>Enter station callsign:&nbsp;</b><input type=text id="search_callsign" class="spot_box_short" /><button class="search-button reduce-font-size" id="search_button">Search</button>
+        <br><br>
+        <div id="findResults">
+        </div>
+    </div>
+    <div id="helpTab" class="reduce-tab-padding">
+        Download the user guide from here <a href="/dxspotguidev1.pdf" target="_blank">English (PDF)</a> <a href="http://www.pi6ats.nl/Gebruiksaanwijzing%20DXspot.pdf">Dutch (PDF)</a><br>
+        <li>Thanks to Chris PA3CRX for the Dutch Translation</li>
+        <br>
+        Online help is available at the dxspot.tv forum at <a href="http://www.batc.org.uk/forum/viewforum.php?f=80" target="_blank">BATC Forums</a><br>
+        <br>
+        Or you can email Phil at <a href="mailto:phil@philcrump.co.uk">phil@philcrump.co.uk</a>
+        <br>
+        <br>
+        <u>Map key</u><br>
+        <br>
+        Station Icons:<br>
+        Green = logged in and radio active<br>
+        Yellow = logged in but just watching - set by tick box in "Edit my station" <br>
+        White = Not logged in but spotted on a Dx contact<br>
+        <br>
+        Cyan = Operational repeater<br>
+        Red = Licensed but non operational repeater <br>
+        <br>
+        <u>DxSpot key </u><br>
+        <br>
+        Red = 70cms<br>
+        Orange = 23cms<br>
+        Blue = 13cms and above<br>
+        <br>
+        Dotted line = Narrow band beacon spot<br>
 
-	</div>
-	<div id="aboutTab" class="reduce-tab-padding">
-		DXSpot.TV is an open development project, hosted at <a href="https://github.com/BritishAmateurTelevisionClub/dxspottv/">GitHub</a>. Contribution is welcome!
-		<br><br>
-		Most of the development has been done by Phil M0DNY, from concept by Noel G8GTZ.
-		<br><br>
-		Comments/suggestions are welcome, either to us on the Chat, or emailed to Phil at <a href="mailto:phil@philcrump.co.uk">phil@philcrump.co.uk</a>
-	</div>
+    </div>
+    <div id="aboutTab" class="reduce-tab-padding">
+        DXSpot.TV is an open development project, hosted at <a href="https://github.com/BritishAmateurTelevisionClub/dxspottv/">GitHub</a>. Contribution is welcome!
+        <br><br>
+        Most of the development has been done by Phil M0DNY, from concept by Noel G8GTZ.
+        <br><br>
+        Comments/suggestions are welcome, either to us on the Chat, or emailed to Phil at <a href="mailto:phil@philcrump.co.uk">phil@philcrump.co.uk</a>
+    </div>
 </div>
 </td>
 </tr>

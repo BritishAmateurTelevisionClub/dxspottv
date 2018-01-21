@@ -1,38 +1,43 @@
-// Set up map
-//
 var marker;
-function placeMarker(location) {
-  if ( marker ) {
-    marker.setPosition(location);
-  } else {
-    marker = new google.maps.Marker({
-      position: location,
-      map: map
-    });
-  }
+function placeMarker(location)
+{
+    if(marker)
+    {
+        marker.setPosition(location);
+    }
+    else
+    {
+        marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+    }
 }
 
-function initialize() {
-	google.maps.visualRefresh = true;
-	var mapOptions = {
-		zoom: 4,
-		center: new google.maps.LatLng(50.5, 0),
-		mapTypeId: google.maps.MapTypeId.ROADMAP,
-		streetViewControl: false
-	};
+function initialize()
+{
+    google.maps.visualRefresh = true;
+    var mapOptions = {
+        zoom: 4,
+        center: new google.maps.LatLng(50.5, 0),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        streetViewControl: false
+    };
 
-	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-	google.maps.event.addListener(map, 'click', function(event) {
-		$('#lat').val(roundTo(event.latLng.lat(),4));
-		$('#lon').val(roundTo(event.latLng.lng(),4));
-		placeMarker(event.latLng);
-	});
+    google.maps.event.addListener(map, 'click', function(event)
+    {
+        $('#lat').val(roundTo(event.latLng.lat(),4));
+        $('#lon').val(roundTo(event.latLng.lng(),4));
+        placeMarker(event.latLng);
+    });
 }
 
 var input_password = document.getElementById('passwd');
 var password_bar = document.getElementById('passwd-bar');
-input_password.addEventListener('keyup', function(){
+input_password.addEventListener('keyup', function()
+{
   var analysis = zxcvbn(input_password.value);
   switch(analysis.score)
   {
@@ -55,62 +60,79 @@ input_password.addEventListener('keyup', function(){
 });
 
 var button_lock=false; // To prevent double-click
-$(document).ready(function() {
-	$("#validationFailDialog").dialog({ autoOpen: false });
-	$("#captchaFailDialog").dialog({ autoOpen: false });
-	$('#register_form').validate({
-		submitHandler: function(form) { }
-	});
-	$('#register_button').button().click( function() {
-		if($("#register_form").valid()==true) {
-			if(!button_lock) {
-				button_lock = true;
-				$.ajax({
-					url: '/ajax/submitRegister.php',
-					type: "POST",
-					data: {
-						fname: $('#fname').val(),
-						callsign: $('#callsign').val(),
-						passwd: $('#passwd').val(),
-						email: $('#email').val(),
-						locator: CoordToLoc(parseFloat($('#lat').val()),parseFloat($('#lon').val())),
-						lat: $('#lat').val(),
-						lon: $('#lon').val(),
-						recaptcha: grecaptcha.getResponse()
-					},
-					success: function( data ) {
-						//console.log(data);
-						button_lock = false;
-						$("#submitStatus").html('');
-						var returnJSON = eval('(' + data + ')');
-						if(returnJSON['successful']==1) {
-							$('#first_form').hide();
-							$('#successMessage').show();
-						} else {
-							$('#first_form').show();
-							if(returnJSON['error']==1) {
-								$("#captchaFailDialog").dialog("open");
-							} else if(returnJSON['error']==2) {
-								alert("A database error occurred, please try again.");
-							} else if(returnJSON['error']==3) {
-								alert("A User Account already exists for this callsign.");
-							} else {
-								alert("An unknown error occurred, please try again.");
-							}
-						}
-					}
-				});
-				$("#submitStatus").html('<font color="green"><b>Submitting...</b></font>');
-				grecaptcha.reset();
-			}
-		}
-	});
-	$('#return_button').button().click( function() {
-    	window.location.href = "/";
-	});
+$(document).ready(function()
+{
+    $("#validationFailDialog").dialog({ autoOpen: false });
+    $("#captchaFailDialog").dialog({ autoOpen: false });
+    $('#register_form').validate({
+        submitHandler: function(form) { }
+    });
+    $('#register_button').button().click( function()
+    {
+        if($("#register_form").valid()==true)
+        {
+            if(!button_lock)
+            {
+                button_lock = true;
+                $.ajax({
+                    url: '/ajax/submitRegister.php',
+                    type: "POST",
+                    data: {
+                        fname: $('#fname').val(),
+                        callsign: $('#callsign').val(),
+                        passwd: $('#passwd').val(),
+                        email: $('#email').val(),
+                        locator: CoordToLoc(parseFloat($('#lat').val()),parseFloat($('#lon').val())),
+                        lat: $('#lat').val(),
+                        lon: $('#lon').val(),
+                        recaptcha: grecaptcha.getResponse()
+                    },
+                    success: function( data )
+                    {
+                        //console.log(data);
+                        button_lock = false;
+                        $("#submitStatus").html('');
+                        var returnJSON = eval('(' + data + ')');
+                        if(returnJSON['successful']==1)
+                        {
+                            $('#first_form').hide();
+                            $('#successMessage').show();
+                        }
+                        else
+                        {
+                            $('#first_form').show();
+                            switch(returnJSON['error'])
+                            {
+                                case 1:
+                                    $("#captchaFailDialog").dialog("open");
+                                    break;
+
+                                case 2:
+                                    alert("A database error occurred, please try again.");
+                                    break;
+
+                                case 3:
+                                    alert("A User Account already exists for this callsign.");
+                                    break;
+
+                                default:
+                                   alert("An unknown error occurred, please try again."); 
+                            }
+                        }
+                    }
+                });
+                $("#submitStatus").html('<font color="green"><b>Submitting...</b></font>');
+                grecaptcha.reset();
+            }
+        }
+    });
+    $('#return_button').button().click( function()
+    {
+        window.location.href = "/";
+    });
 });
 
 function roundTo(value, decimal_places)
 {
-  return Number(Math.round(value+'e'+decimal_places)+'e-'+decimal_places);
+    return Number(Math.round(value+'e'+decimal_places)+'e-'+decimal_places);
 }
