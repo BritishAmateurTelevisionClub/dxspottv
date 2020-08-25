@@ -69,9 +69,9 @@ Simply zoom in and click on the map to set your location.<br><br>
 <script src="/lib/jquery-3.2.1.min.js"></script>
 <script src="/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
 <script src="/lib/jquery.validate.min.js"></script>
-<script src="/js/register.js"></script>
 <script src="/js/locator.js"></script>
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA72exT_7wxeWSxakb3hEFVgnWqmv6mx1A&callback=initialize" async defer></script>
+<script src="/js/register.js"></script>
 <script src="/lib/zxcvbn.js" async></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA72exT_7wxeWSxakb3hEFVgnWqmv6mx1A&callback=initialize" async defer></script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </html>

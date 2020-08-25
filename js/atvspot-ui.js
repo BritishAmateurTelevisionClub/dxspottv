@@ -125,6 +125,12 @@ $(document).ready(function()
     
     // Set up tabs
     $( "#tabs" ).tabs();
+
+    if(auth_error)
+    {
+        $('#auth-error-text').text(auth_error_text);
+        $('#auth-error-box').show();
+    }
 });
 
 // Radio active status

@@ -17,7 +17,7 @@ if($_GET['lastid']!="")
 include('../dxspottv_pdo.php');
 
 $ret_array = Array('s' => 4);
-$stmt = $dbc->prepare("SELECT * FROM legacymessages WHERE room=? AND id>? AND ts>=(now() - INTERVAL 1 DAY) ORDER BY ts ASC;");
+$stmt = $dbc->prepare("SELECT * FROM legacymessages WHERE room=? AND id>? AND ts>=(now() - INTERVAL 7 DAY) ORDER BY ts ASC;");
 $stmt->execute(array($req_room, $req_id));
 if($stmt->rowCount()>0)
 {

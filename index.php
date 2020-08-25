@@ -77,12 +77,10 @@ else
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
     var irc_frame_source = "/dxchat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
-<?php } // End of callsign as nick for irc
-if($logged_in) { ?>
-    var logged_in = true;
-<?php } else { ?>
-    var logged_in = false;
 <?php } ?>
+var logged_in = <?php if($logged_in) { print 'true'; } else { print 'false'; } ?>;
+var auth_error = <?php if($auth_error==1) { print 'true'; } else { print 'false'; } ?>;
+var auth_error_text = "<?php if($auth_error==1) { print $auth_error_text; } ?>";
 </script>
 <script src="/lib/jquery-3.2.1.min.js"></script>
 <script src="/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
@@ -95,6 +93,7 @@ if($logged_in) { ?>
 <script src="/js/locator.js"></script>
 <script src="/js/map.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA72exT_7wxeWSxakb3hEFVgnWqmv6mx1A&libraries=geometry&callback=init_map" async defer></script>
+<script src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js"></script>
 </head>
 <body>
 <div style="text-align: center; align: top; height: 100%; ">
@@ -194,16 +193,14 @@ Callsign: <input type=text name="callsign" id="callsign_input" <?php if($user_kn
 &nbsp;Password: <input type=password name="passwd" id="passwd_input" />
 &nbsp;&nbsp;<button class="login-button reduce-font-size" id="login_button">Log In</button>
 &nbsp;&nbsp;<button class="register-button reduce-font-size" id="register_button">Register</button>
+&nbsp;<a class="reduce-font-size" href="/resetPassword/" target="_blank">Forgotten Password?</a>
+</div>
+<div class="ui-state-error ui-corner-all reduce-font-size" id="auth-error-box">
+    <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+        <strong>Alert:</strong>&nbsp;<span id="auth-error-text"></span>
+    </p>
 </div>
 <?php
-if ($auth_error==1) {
-?>
-<div class="ui-state-error ui-corner-all reduce-font-size" style="padding: 0em .7em;">
-        <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-        <strong>Alert:</strong>&nbsp;<?php print $auth_error_text; ?></p>
-</div>
-<?php
-} // End of auth_error.
 } // End of greeting/login form
 ?>
 <div id="tabs">

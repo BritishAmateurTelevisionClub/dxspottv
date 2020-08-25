@@ -13,6 +13,10 @@ html, body {
   height: 90px;
   padding-top: 3px;
 }
+#auth-error-box {
+    padding: 0em .7em;
+    display: none;
+}
 
 #irc_frame {
   height: 620px;
@@ -148,4 +152,7 @@ html, body {
 }
 .repeater_bubble_desc {
 	white-space: pre-wrap;
+}
+#station_description_edit {
+  width: 80%;
 }

@@ -6,17 +6,40 @@ if(logged_in)
 
 function doLogin()
 {
+    var login_callsign = $("#callsign_input").val();
+    if(login_callsign=="")
+    {
+        $('#auth-error-text').text("Callsign required.");
+        $('#auth-error-box').show();
+        return;
+    }
+    var login_password = $('#passwd_input').val();
+    if(login_password=="")
+    {
+        $('#auth-error-text').text("Password required.");
+        $('#auth-error-box').show();
+        return;
+    }
     $.ajax({
         url: "/ajax/login.php",
         type: "POST",
+        dataType: "json",
         data: {
-            callsign: $("#callsign_input").val(),
-            passwd: $('#passwd_input').val()
+            callsign: login_callsign,
+            passwd: login_password
         },
         success: function( data )
         {
-            //console.log(data);
-            location.reload(true);
+            if(data.error == 0)
+            {
+                location.reload(true);
+            }
+            else
+            {
+                $('#passwd_input').val("");
+                $('#auth-error-text').text(data.message);
+                $('#auth-error-box').show();
+            }
         }
     });
 }
