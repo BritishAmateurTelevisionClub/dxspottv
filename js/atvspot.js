@@ -18,7 +18,7 @@ init_semaphores['userdata'] = false;
 $(function()
 {
     $.ajax({
-        url: "https://www.dxspot.tv/ajax/mapData.php",
+        url: "https://dxspot.batc.org.uk/ajax/mapData.php",
         success: function( data )
         {
             mapData = data;

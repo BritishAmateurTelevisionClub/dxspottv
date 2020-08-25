@@ -67,9 +67,9 @@ if(isset($_REQUEST["callsign"]))
                 'DXSpot.TV - Password Reset Requested',
                 "Hi ".$_REQUEST["callsign"].",<br>
 <br>
-You, or someone claiming to be you, has requested a password reset on your account at <a href=\"https://www.dxspot.tv/\" target=\"_blank\">DXSpot.TV</a>.<br>
+You, or someone claiming to be you, has requested a password reset on your account at <a href=\"https://dxspot.batc.org.uk/\" target=\"_blank\">DXSpot.TV</a>.<br>
 <br>
-To complete this password reset, please set your new password at <a href=\"https://www.dxspot.tv/resetPassword/?key=".$key."\" target=\"_blank\">https://www.dxspot.tv/resetPassword/?key=".$key."</a><br>
+To complete this password reset, please set your new password at <a href=\"https://dxspot.batc.org.uk/resetPassword/?key=".$key."\" target=\"_blank\">https://dxspot.batc.org.uk/resetPassword/?key=".$key."</a><br>
 <br>
 If this was not you, then please ignore this email and nothing will be changed.<br>
 <br>
@@ -79,7 +79,7 @@ BATC Administration Team",
 
 You, or someone claiming to be you, has requested a password reset on your account at DXSpot.TV.
 
-To complete this password reset, please set your new password at https://www.dxspot.tv/resetPassword/?key=".$key."
+To complete this password reset, please set your new password at https://dxspot.batc.org.uk/resetPassword/?key=".$key."
 
 If this was not you, then please ignore this email and nothing will be changed.
 

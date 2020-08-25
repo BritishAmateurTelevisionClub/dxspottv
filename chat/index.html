@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>DXChat</title>
+<title>DXSpot.TV Chat</title>
 <style>
 body {
   height: 100%;
@@ -87,7 +87,6 @@ body {
 </body>
 <script src="/lib/jquery-3.2.1.min.js"></script>
 <script>
-var subscribedRoom=0;
 var lastMessageId=0;
 var lastTS=new Date(1970);
 var urlVars = getUrlVars();
@@ -95,10 +94,6 @@ var urlVars = getUrlVars();
 var userNick='';
 if(typeof urlVars['nick']!='undefined') {
     userNick=urlVars['nick'];
-}
-var subscribedRoom=0;
-if(typeof urlVars['room']!='undefined') {
-    subscribedRoom=urlVars['room'];
 }
 
 $(document).ready(function() {
@@ -111,7 +106,7 @@ $(document).ready(function() {
             $('#bottom-bar').val("");
             if(messageText.startsWith("/nick ")) {
                 var wantedNick = messageText.substr(6).trim();
-                if(wantedNick!='') window.location.replace("/dxchat/?room="+subscribedRoom+"&nick="+wantedNick);
+                if(wantedNick!='') window.location.replace("/chat/?nick="+wantedNick);
             }
         }
     });
@@ -123,13 +118,12 @@ $(document).ready(function() {
             $('#bottom-bar').val("");
             if(messageText.startsWith("/nick ")) {
                 var wantedNick = messageText.substr(6).trim();
-                if(wantedNick!='') window.location.replace("/dxchat/?room="+subscribedRoom+"&nick="+wantedNick);
+                if(wantedNick!='') window.location.replace("/chat/?nick="+wantedNick);
             } else {
                 $.ajax({
                     url: "send.php",
                     type: "POST",
                     data: {
-                        room: subscribedRoom,
                         nick: userNick,
                         message: messageText,
                     },
@@ -154,7 +148,6 @@ function getLatest() {
         url: "messages.php",
         type: "GET",
         data: {
-            room: subscribedRoom,
             lastid: lastMessageId
         },
         dataType: 'json',
@@ -185,7 +178,6 @@ function getUsers() {
         url: "users.php",
         type: "POST",
         data: {
-            room: subscribedRoom,
             nick: userNick
         },
         dataType: 'json',
@@ -199,7 +191,7 @@ function getUsers() {
             }
             if(data.s == 10)
             {
-                window.location.replace("/dxchat/?room="+subscribedRoom+"&nick="+data.rn);
+                window.location.replace("/chat/?nick="+data.rn);
             }	
         }
     });

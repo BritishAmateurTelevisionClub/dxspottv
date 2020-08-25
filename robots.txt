@@ -1,4 +1,4 @@
-Sitemap: https://www.dxspot.tv/sitemap.xml
+Sitemap: https://dxspot.batc.org.uk/sitemap.xml
 User-agent: *
 Disallow: /ajax/
 Disallow: /logout.php

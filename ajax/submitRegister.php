@@ -10,7 +10,7 @@ if(isset($_REQUEST["fname"]) && isset($_REQUEST["callsign"]) && isset($_REQUEST[
     if (!$reCAPTCHA->isValid($_REQUEST['recaptcha']))
     {
         $output['successful'] = 0;
-        $output['error'] = "1"; // CAPTCHA Error
+        $output['error'] = 1; // CAPTCHA Error
         print json_encode($output);
         die ();
     }
@@ -40,7 +40,7 @@ if(isset($_REQUEST["fname"]) && isset($_REQUEST["callsign"]) && isset($_REQUEST[
         if($existing_result==1)
         { //Existing real user
             $output['successful'] = 0;
-            $output['error'] = "3";
+            $output['error'] = 3;
             print json_encode($output);
             die ();
         }
@@ -82,13 +82,13 @@ if(isset($_REQUEST["fname"]) && isset($_REQUEST["callsign"]) && isset($_REQUEST[
     else
     {
         $output['successful'] = 0;
-        $output['error'] = "2"; // MYSQL Error
+        $output['error'] = 2; // MYSQL Error
     }
 }
 else
 {
     $output['successful'] = 0;
-    $output['error'] = "0"; // Lack of stuff Error
+    $output['error'] = 0; // Lack of stuff Error
 }
 print json_encode($output);
 ?>

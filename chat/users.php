@@ -2,12 +2,13 @@
 session_start();
 
 /* Sanity check user input */
-if($_POST['room']!="")
-{
-    $req_room = $_POST['room'];
-} else {
-    die(json_encode(Array('s' => 2)));
-}
+#if($_POST['room']!="")
+#{
+#    $req_room = $_POST['room'];
+#} else {
+#    die(json_encode(Array('s' => 2)));
+#}
+$req_room = 1;
 if($_POST['nick']!="")
 {
     $req_nick = urldecode($_POST['nick']);

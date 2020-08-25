@@ -1,12 +1,13 @@
 <?php
 
 /* Sanity check user input */
-if($_POST['room']!="")
-{
-    $form_room = $_POST['room'];
-} else {
-    die(json_encode(Array('s' => 2)));
-}
+#if($_POST['room']!="")
+#{
+#    $form_room = $_POST['room'];
+#} else {
+#    die(json_encode(Array('s' => 2)));
+#}
+$form_room = 1;
 if($_POST['nick']!="")
 {
     $form_nick = $_POST['nick'];

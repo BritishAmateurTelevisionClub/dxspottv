@@ -76,7 +76,7 @@ else
 <link href="/css/atvspot.css" rel="stylesheet">
 <script type="text/javascript">
 <?php if($user_known) { ?> // Do we fill in callsign as nick for irc
-    var irc_frame_source = "/dxchat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
+    var irc_frame_source = "/chat/?room=1&nick=<?php print $name . "_" . $callsign; ?>";
 <?php } ?>
 var logged_in = <?php if($logged_in) { print 'true'; } else { print 'false'; } ?>;
 var auth_error = <?php if($auth_error==1) { print 'true'; } else { print 'false'; } ?>;

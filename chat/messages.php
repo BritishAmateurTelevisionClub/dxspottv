@@ -1,12 +1,13 @@
 <?php
 
 /* Sanity check user input */
-if($_GET['room']!="")
-{
-    $req_room = $_GET['room'];
-} else {
-    die(json_encode(Array('s' => 2)));
-}
+#if($_GET['room']!="")
+#{
+#    $req_room = $_GET['room'];
+#} else {
+#    die(json_encode(Array('s' => 2)));
+#}
+$req_room = 1;
 if($_GET['lastid']!="")
 {
     $req_id = $_GET['lastid'];
